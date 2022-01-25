@@ -8,32 +8,26 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Thomas\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\hugom\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Thomas\\Documents\\CESI\\A3 FISA\\Programmation Système\\EasySave\\EasySave.csproj",
+      "projectUniqueName": "C:\\Users\\hugom\\Documents\\Alternance\\CESI\\Projet C#\\EasySave\\EasySave.csproj",
       "projectName": "EasySave",
-      "projectPath": "E:\\Thomas\\Documents\\CESI\\A3 FISA\\Programmation Système\\EasySave\\EasySave.csproj",
-      "packagesPath": "C:\\Users\\Thomas\\.nuget\\packages\\",
-      "outputPath": "E:\\Thomas\\Documents\\CESI\\A3 FISA\\Programmation Système\\EasySave\\obj\\",
+      "projectPath": "C:\\Users\\hugom\\Documents\\Alternance\\CESI\\Projet C#\\EasySave\\EasySave.csproj",
+      "packagesPath": "C:\\Users\\hugom\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\hugom\\Documents\\Alternance\\CESI\\Projet C#\\EasySave\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Thomas\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\hugom\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {}
       },
       "frameworks": {
         "netcoreapp3.1": {

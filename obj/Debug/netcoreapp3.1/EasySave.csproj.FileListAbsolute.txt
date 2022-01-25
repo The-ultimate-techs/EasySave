@@ -15,3 +15,20 @@ E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netco
 E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\EasySave.Ressources.English.resources
 E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\EasySave.Ressources.French.resources
 E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\EasySave.csproj.GenerateResource.cache
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.csproj.AssemblyReference.cache
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.Ressources.English.resources
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.Ressources.French.resources
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.csproj.GenerateResource.cache
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.AssemblyInfoInputs.cache
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.AssemblyInfo.cs
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.csproj.CoreCompileInputs.cache
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.dll
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.pdb
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\bin\Debug\netcoreapp3.1\EasySave.exe
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\bin\Debug\netcoreapp3.1\EasySave.deps.json
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\bin\Debug\netcoreapp3.1\EasySave.runtimeconfig.json
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\bin\Debug\netcoreapp3.1\EasySave.runtimeconfig.dev.json
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\bin\Debug\netcoreapp3.1\EasySave.dll
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\bin\Debug\netcoreapp3.1\EasySave.pdb
+C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.genruntimeconfig.cache
