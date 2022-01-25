@@ -18,7 +18,9 @@ namespace EasySave
             Console.WriteLine(Thread.CurrentThread.CurrentUICulture.Name);
             Console.WriteLine(rm.GetString("Language"));
 
+            TModel a = new TModel(); // Object instantiation 
 
+            a.GetElementsOnADirectory(@"C:\Users\thomas\Desktop"); // Function check
         }
     }
 }
