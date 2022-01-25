@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Resources;
+using System.Reflection;
+using System.Threading;
+using System.Globalization;
 
 namespace EasySave
 {
@@ -6,11 +10,15 @@ namespace EasySave
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
 
-            TModel a = new TModel(); // Object instantiation 
+            ResourceManager rm = new ResourceManager("EasySave.Resources.Strings", Assembly.GetExecutingAssembly());
+            
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture("fr-FR");
 
-            a.GetElementsOnADirectory(@"C:\Users\hugom\Desktop"); // Function check
+            Console.WriteLine(Thread.CurrentThread.CurrentUICulture.Name);
+            Console.WriteLine(rm.GetString("Language"));
+
+
         }
     }
 }
