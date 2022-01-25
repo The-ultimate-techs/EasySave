@@ -12,9 +12,18 @@ E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netco
 E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\EasySave.dll
 E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\EasySave.pdb
 E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\EasySave.genruntimeconfig.cache
-E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\EasySave.Ressources.English.resources
-E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\EasySave.Ressources.French.resources
 E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\EasySave.csproj.GenerateResource.cache
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\bin\Debug\netcoreapp3.1\en-US\EasySave.resources.dll
+E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\en-US\EasySave.resources.dll
+E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\bin\Debug\netcoreapp3.1\fr-FR\EasySave.resources.dll
+E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\EasySave.Resources.Strings.en-US.resources
+E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\EasySave.Resources.Strings.fr-FR.resources
+E:\Thomas\Documents\CESI\A3 FISA\Programmation Système\EasySave\obj\Debug\netcoreapp3.1\fr-FR\EasySave.resources.dll
+=======
+>>>>>>> Stashed changes
 C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.csproj.AssemblyReference.cache
 C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.Ressources.English.resources
 C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.Ressources.French.resources
@@ -32,3 +41,7 @@ C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\bin\Debug\netcoreapp
 C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\bin\Debug\netcoreapp3.1\EasySave.dll
 C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\bin\Debug\netcoreapp3.1\EasySave.pdb
 C:\Users\hugom\Documents\Alternance\CESI\Projet C#\EasySave\obj\Debug\netcoreapp3.1\EasySave.genruntimeconfig.cache
+<<<<<<< Updated upstream
+=======
+>>>>>>> b55a3fd0e81dbd25d3ac01b09e75cf1e85158dda
+>>>>>>> Stashed changes
