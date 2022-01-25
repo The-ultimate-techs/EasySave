@@ -120,4 +120,7 @@
   <data name="Language" xml:space="preserve">
     <value>C4EST L4ANGLAIS BORDEL</value>
   </data>
+  <data name="ouai" xml:space="preserve">
+    <value>AZERTYUIOP</value>
+  </data>
 </root>
