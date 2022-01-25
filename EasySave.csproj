@@ -11,26 +11,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Ressources\English.Designer.cs">
+    <Compile Update="Ressources\Strings.en-US.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>English.resx</DependentUpon>
+      <DependentUpon>Strings.en-US.resx</DependentUpon>
     </Compile>
-    <Compile Update="Ressources\French.Designer.cs">
+    <Compile Update="Ressources\Strings.fr-FR.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>French.resx</DependentUpon>
+      <DependentUpon>Strings.fr-FR.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Ressources\English.resx">
+    <EmbeddedResource Update="Ressources\Strings.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>English.Designer.cs</LastGenOutput>
+      <LastGenOutput>Strings.en-US.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Ressources\French.resx">
+    <EmbeddedResource Update="Ressources\Strings.fr-FR.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>French.Designer.cs</LastGenOutput>
+      <LastGenOutput>Strings.fr-FR.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
