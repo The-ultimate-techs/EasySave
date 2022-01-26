@@ -11,17 +11,15 @@ namespace EasySave
         static void Main(string[] args)
         {
 
-
-
             MainViewModel MainViewModel = new MainViewModel();
 
-/*
-            TModel a = new TModel(); // Object instantiation 
+            /*
+                        TModel a = new TModel(); // Object instantiation 
 
-            a.GetElementsOnADirectory(@"C:\Users\thomas\Desktop"); // Function check
+                        a.GetElementsOnADirectory(@"C:\Users\thomas\Desktop"); // Function check
 
-            Console.WriteLine(Environment.GetEnvironmentVariable("Username"));
-*/
+                        Console.WriteLine(Environment.GetEnvironmentVariable("Username"));
+            */
 
         }
     }

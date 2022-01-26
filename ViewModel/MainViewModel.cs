@@ -8,6 +8,7 @@ namespace EasySave
     {
         //Private attributes
         private string Language;
+        private string MenuChoice;
 
         // publilc object from other classes 
         public View View;
@@ -24,35 +25,90 @@ namespace EasySave
                      LogManagement = new LogManagement();*/
             View.SetCLILanguage(GetUserLanguage());
             View.DisplayTranslatedMessage("Language");
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(2000);
             View.Clear();
-           
+            Menu();
+
         }
+
+
+
+        //Menu Method 
+        public void Menu()
+        {
+
+            do
+            {
+                View.DisplayTranslatedMessage("MainMenu");
+               
+                string result = Console.ReadLine();
+                View.DisplayBasicMessage("\n ");
+
+                switch (result)
+                {
+                    case "1":
+                        SetMenuChoice(result);
+                        break;
+
+                    case "2":
+                        SetMenuChoice(result);
+                        break;
+
+                    case "3":
+                        SetMenuChoice(result);
+                        break;
+
+                    case "4":
+                        SetMenuChoice(result);
+                        View.Clear();
+                        View.SetCLILanguage(GetUserLanguage());
+                        View.DisplayTranslatedMessage("Language");
+                        System.Threading.Thread.Sleep(2000);
+                        View.Clear();
+                        break;
+
+                    case "5":
+                       
+                        SetMenuChoice(result);
+                        View.Clear();
+                        View.DisplayTranslatedMessage("Goodbye");
+                        System.Threading.Thread.Sleep(2000);
+                        break;
+                }
+
+            } while (GetMenuChoice() != "5" );
+            
+        }
+
+
 
 
         //Method to get which Language the user wants to choose 
         public string GetUserLanguage()
         {
             // With this loop, users are forced to choose between FR or EN, if the choice is wrong it starts again
-            while (true)
-            { 
-            string Message = "Choose your language / Choisissez votre langue : \n \n English: 1 \n Français: 2 \n \n Your choice / Votre choix :";
-            View.DisplayBasicMessage(Message);
-            string result = Console.ReadLine();
-            View.DisplayBasicMessage("\n ");
+            do
+            {
+                string Message = "Choose your language / Choisissez votre langue : \n \n English: 1 \n Français: 2 \n \nYour choice / Votre choix :  ";
+                View.DisplayBasicMessage(Message);
+                string result = Console.ReadLine();
+                View.DisplayBasicMessage("\n ");
 
                 switch (result)
                 {
                     case "1":
-                        return "en-US";
+                        SetMenuChoice("en-US");
+                        break;
 
                     case "2":
-                        return "fr-FR";
+                        SetMenuChoice("fr-FR");
+                        break;
                 }
-           
-            }
 
+            } while (GetMenuChoice() != "en-US" && GetMenuChoice() != "fr-FR");
+            return GetMenuChoice();
         }
+
 
 
 
@@ -66,6 +122,16 @@ namespace EasySave
         public string GetLanguage()
         {
             return this.Language;
+        }
+
+        public void SetMenuChoice(string MenuChoice)
+        {
+            this.MenuChoice = MenuChoice;
+        }
+
+        public string GetMenuChoice()
+        {
+            return this.MenuChoice;
         }
 
 

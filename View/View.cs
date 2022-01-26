@@ -29,7 +29,7 @@ namespace EasySave
         {
             SetIdMessage(IdMessage);
 
-            Console.WriteLine(rm.GetString(GetIdMessage()));
+            Console.Write(rm.GetString(GetIdMessage()));
 
         }
 
@@ -37,7 +37,7 @@ namespace EasySave
         public void DisplayBasicMessage(string Message)
         {
            
-            Console.WriteLine(Message);
+            Console.Write(Message);
 
         }
 
@@ -49,17 +49,17 @@ namespace EasySave
             SetLanguage(Language);
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(GetLanguage());
 
+            DisplayTranslatedMessage("Loading");
 
-            Console.Write(rm.GetString("Loading"));
 
-            Console.Write("[");
+            DisplayBasicMessage("[");
             for (int i=0; i< 90; i++)
             {
-                Console.Write("/");
-                System.Threading.Thread.Sleep(50);
+                DisplayBasicMessage("/");
+                System.Threading.Thread.Sleep(5);
             }
-            Console.Write("]");
-            DisplayBasicMessage(" \n \n");
+            DisplayBasicMessage("] \n \n");
+           
 
         }
 
