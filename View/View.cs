@@ -49,7 +49,28 @@ namespace EasySave
             SetLanguage(Language);
             Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(GetLanguage());
 
+
+            Console.Write(rm.GetString("Loading"));
+
+            Console.Write("[");
+            for (int i=0; i< 90; i++)
+            {
+                Console.Write("/");
+                System.Threading.Thread.Sleep(50);
+            }
+            Console.Write("]");
+            DisplayBasicMessage(" \n \n");
+
         }
+
+
+        //Method to Clear CLI
+
+        public void Clear()
+        {
+            Console.Clear();
+        }
+
 
 
         //Setter & getter for IdMessage
