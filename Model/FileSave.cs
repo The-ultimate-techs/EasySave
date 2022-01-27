@@ -11,6 +11,7 @@ namespace EasySave
         private string SourceDirectory;
         private string DestinationDirectory;
         private string Type;
+        private string SaveFilesDirectory = "c:,kekfbe";
 
 
 

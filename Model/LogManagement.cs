@@ -9,12 +9,13 @@ namespace EasySave
 
         private DateTime DateTime;
         private System.Diagnostics.Stopwatch Stopwatch;
+        private long TimeDuration;
 
 
         public LogManagement()
         {
             Stopwatch = new System.Diagnostics.Stopwatch();
-            Stopwatch.Start();
+            
         }
 
 
@@ -22,8 +23,31 @@ namespace EasySave
 
         public void BeginSaveFileExecution()
         {
-            watch.start();
+
+            Stopwatch.Restart();
+            Stopwatch.Start();
         }
+
+        public long EndSaveFileExecution()
+        {
+                        
+            Stopwatch.Stop();
+            SetTimeDuration(Stopwatch.ElapsedMilliseconds);
+            return GetTimeDuration();
+        }
+
+
+
+        public long GetTimeDuration()
+        {
+            return this.TimeDuration;
+        }
+
+        public void SetTimeDuration(long TimeDuration)
+        {
+            this.TimeDuration = TimeDuration;
+        }
+
 
     }
 }

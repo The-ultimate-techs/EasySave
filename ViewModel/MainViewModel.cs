@@ -12,8 +12,9 @@ namespace EasySave
 
         // publilc object from other classes 
         public View View;
-/*      public FileSaveManagement FileSaveManagement;
-        public  LogManagement();*/
+        //public FileSaveManagement FileSaveManagement;
+        public LogManagement LogManagement;
+
 
 
 
@@ -21,8 +22,8 @@ namespace EasySave
         public MainViewModel()
         {
             View = new View();
-            /*         FileSaveManagement = new FileSaveManagement();
-                     LogManagement = new LogManagement();*/
+            //FileSaveManagement = new FileSaveManagement();
+            LogManagement = new LogManagement();
             View.SetCLILanguage(GetUserLanguage());
             View.DisplayTranslatedMessage("Language");
             System.Threading.Thread.Sleep(2000);
@@ -56,6 +57,8 @@ namespace EasySave
 
                     case "3":
                         SetMenuChoice(result);
+
+
                         break;
 
                     case "4":
