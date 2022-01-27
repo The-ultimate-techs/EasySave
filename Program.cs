@@ -11,7 +11,10 @@ namespace EasySave
         static void Main(string[] args)
         {
 
-            MainViewModel MainViewModel = new MainViewModel();
+/*            MainViewModel MainViewModel = new MainViewModel();
+*/
+            FileSaveManagement test = new FileSaveManagement();
+            test.CreateSaveFile("test","", @"C:\Users\chloe\OneDrive\Documents\TEST");
 
             /*
                         TModel a = new TModel(); // Object instantiation 
