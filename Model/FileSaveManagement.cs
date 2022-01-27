@@ -9,8 +9,6 @@ namespace EasySave
     {
         public void CreateSaveFile(string Title= null, string SourceDirectory= null, string DestinationDirectory= null, string Type= null)
         {
-            System.IO.FileStream file = File.Create(DestinationDirectory);
-            System.IO.File.SetAttributes
 
         }
 

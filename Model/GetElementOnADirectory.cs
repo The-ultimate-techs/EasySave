@@ -7,7 +7,7 @@ namespace EasySave
 {
     public class TModel
     {
-        public void GetElementsOnADirectory(string dir)
+        public string[] GetElementsOnADirectory(string dir)
         {
             string[] files = Directory.GetFiles(@dir); // Get all the files in the specified directory
             foreach (string file in files)
@@ -20,8 +20,7 @@ namespace EasySave
                 {
                     Console.WriteLine(directory); // display each directories in the specified directory
                 };
-
-
+            return files; 
 
         }
 
