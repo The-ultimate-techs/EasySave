@@ -139,4 +139,7 @@ Choose an action:
 
 Your choice : </value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
 </root>
