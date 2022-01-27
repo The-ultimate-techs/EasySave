@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace EasySave
@@ -10,8 +11,9 @@ namespace EasySave
         private string Title;
         private string SourceDirectory;
         private string DestinationDirectory;
-        private string Type;
-        private string SaveFilesDirectory = "c:,kekfbe";
+        private string Type;    
+        private string SaveFilesDirectory = @"../../../../../Log/";
+        FileInfo FileInfo ;
 
 
 
@@ -21,6 +23,7 @@ namespace EasySave
             SetSourceDirectory(SourceDirectory);
             SetDestinationDirectory(DestinationDirectory);
             SetType(Type);
+            
         }
 
         // Setter & getter for private attributes
@@ -65,9 +68,16 @@ namespace EasySave
         }
 
 
+        public string GetSaveFilesDirectory()
+        {
+            return this.SaveFilesDirectory;
+        }
 
-
-
+        public long FileSize(string Path)
+        {
+            FileInfo = new FileInfo(Path);
+            return FileInfo.Length;
+        }
 
     }
 }

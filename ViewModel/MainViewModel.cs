@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace EasySave
@@ -57,8 +58,9 @@ namespace EasySave
 
                     case "3":
                         SetMenuChoice(result);
-
-
+                        LogManagement.BeginEndProcess();
+                        LogManagement.RunningLogGénérator("Test", "Source Dir","C thomas",500,848484,45); 
+                        LogManagement.BeginEndProcess();
                         break;
 
                     case "4":
