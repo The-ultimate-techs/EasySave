@@ -13,8 +13,11 @@ namespace EasySave
 
 /*            MainViewModel MainViewModel = new MainViewModel();
 */
+
             FileSaveManagement test = new FileSaveManagement();
-            test.CreateSaveFile("test","", @"C:\Users\chloe\OneDrive\Documents\TEST");
+
+            // test.CreateSaveFile("Title",@"SourcePath",@"DestinationPath","Type") where type can be "differential" or "complete"
+            test.CreateSaveFile("test", @"D:\TEST2", @"D:\TEST", "differential");
 
             /*
                         TModel a = new TModel(); // Object instantiation 
