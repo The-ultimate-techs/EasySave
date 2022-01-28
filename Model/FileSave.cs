@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EasySave
 {
-    public abstract class FileSave
+    public class FileSave
     {
         //attributes
         private string Title;
@@ -80,4 +80,21 @@ namespace EasySave
         }
 
     }
+
+
+    public class DirectorySave
+    {
+
+        public string Title { get; set; }
+        public string SourceDirectory { get; set; }
+        public string DestinationDirectory { get; set; }
+
+
+
+    }
+
+
+
+
+
 }
