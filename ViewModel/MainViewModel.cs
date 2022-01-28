@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace EasySave
@@ -12,8 +13,9 @@ namespace EasySave
 
         // publilc object from other classes 
         public View View;
-/*      public FileSaveManagement FileSaveManagement;
-        public  LogManagement();*/
+        //public FileSaveManagement FileSaveManagement;
+        public LogManagement LogManagement;
+
 
 
 
@@ -21,8 +23,8 @@ namespace EasySave
         public MainViewModel()
         {
             View = new View();
-            /*         FileSaveManagement = new FileSaveManagement();
-                     LogManagement = new LogManagement();*/
+            //FileSaveManagement = new FileSaveManagement();
+            LogManagement = new LogManagement();
             View.SetCLILanguage(GetUserLanguage());
             View.DisplayTranslatedMessage("Language");
             System.Threading.Thread.Sleep(2000);
@@ -56,6 +58,9 @@ namespace EasySave
 
                     case "3":
                         SetMenuChoice(result);
+                        LogManagement.BeginEndProcess();
+                        LogManagement.RunningLogGénérator("Test", "Source Dir","C thomas",500,848484,45); 
+                        LogManagement.BeginEndProcess();
                         break;
 
                     case "4":
