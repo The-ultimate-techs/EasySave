@@ -15,23 +15,18 @@ namespace EasySave
             /*            MainViewModel MainViewModel = new MainViewModel();
             */
 
-            /*FileSaveManagement test = new FileSaveManagement();*/
+            FileSaveManagement test = new FileSaveManagement();
 
-            // test.CreateSaveFile("Title",@"SourcePath",@"DestinationPath","Type") where type can be "differential" or "complete"
-            /*  test.CreateSaveFile("TaMere", @"C:\TEST2\TEST3", @"C:\TEST\TEST3", "complete");
-  */
+            // test.CreateSaveFile("Title.extension",@"SourcePath",@"DestinationPath","Type") where type can be "differential" or "complete"
+            /*test.CreateSaveFile("TaMere.txt", @"C:\TEST2\TEST3\", @"C:\TEST\TEST3", "complete");*/
 
-            /*
 
-            
-
-            Console.WriteLine(Environment.GetEnvironmentVariable("Username"));*/
 
             FileSaveManagement a = new FileSaveManagement(); // Object instantiation 
+            FileSaveManagement b = new FileSaveManagement(); // Object instantiation 
 
-            a.GetDirectoriesOnADirectory(@"C:\Users\chloe\OneDrive\Documents\GitHub", @"C:\thomas"); // Function check
-            
-
+            /*a.GetDirectoriesOnADirectory(@"C:\Users\hugom\Documents\DUT", @"C:\thomas"); // Function check*/
+            b.CopyDirectories(@"C:\Users\hugom\Documents\Alternance\CESI", @"C:\thomas");
         }
     }
 }
