@@ -12,10 +12,10 @@ namespace EasySave
         static void Main(string[] args)
         {
 
-            /*            MainViewModel MainViewModel = new MainViewModel();
-            */
+            MainViewModel MainViewModel = new MainViewModel();
 
-            FileSaveManagement test = new FileSaveManagement();
+
+           /* FileSaveManagement test = new FileSaveManagement();
 
             // test.CreateSaveFile("Title.extension",@"SourcePath",@"DestinationPath","Type") where type can be "differential" or "complete"
             /*test.CreateSaveFile("TaMere.txt", @"C:\TEST2\TEST3\", @"C:\TEST\TEST3", "complete");*/

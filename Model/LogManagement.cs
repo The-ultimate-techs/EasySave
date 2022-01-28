@@ -34,7 +34,7 @@ namespace EasySave
 
 
 
-            string path = GetSaveFilesDirectory() + "DailyLog/" + GetTitle() + ".Json";
+            string path = GetDirectoryPath() + "Log/DailyLog/" + GetTitle() + ".Json";
 
 
             if (!File.Exists(path))
@@ -80,7 +80,7 @@ namespace EasySave
         {
 
             
-            string path = GetSaveFilesDirectory() + "StateLog.Json";
+            string path = GetDirectoryPath() + "Log/StateLog.Json";
 
             if (!File.Exists(path))
             {

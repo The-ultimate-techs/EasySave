@@ -86,6 +86,10 @@ namespace EasySave
                 {
                     FileTitle = FileTitle.Substring(file.IndexOf("\\") - 1);
                 }
+                while (FileTitle.Contains('/'))
+                {
+                    FileTitle = FileTitle.Substring(file.IndexOf("/") -1 );
+                }
                 obj.SetTitle(FileTitle);
 
                 ListFile.Add(obj);
