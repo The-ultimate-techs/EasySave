@@ -192,7 +192,7 @@ namespace EasySave
                         FileSave = ListSaveFile()[Convert.ToInt32(FileToEdit) - 1];
 
                         SaveFileJson EditFileJson = new SaveFileJson();
-                        EditFileJson.Title = FileSave.GetTitle().Remove(5);
+                        EditFileJson.Title = FileSave.GetTitle().Replace(".Json","");
                         EditFileJson.SourcePath = SourcePath;
                         EditFileJson.DestPath = DestPath;
                         EditFileJson.Type = (Type == "1") ? "COMPLETE" : "PARTIAL"; ;
