@@ -164,6 +164,17 @@ Choose an action:
 
 Your choice : </value>
   </data>
+  <data name="RunTool" xml:space="preserve">
+    <value>Savefiles running tool
+
+
+</value>
+  </data>
+  <data name="RunTool.choice" xml:space="preserve">
+    <value>
+
+Choose the savefile you want to run : </value>
+  </data>
   <data name="SubMenuCreate" xml:space="preserve">
     <value>SaveFile creation tool :
     </value>

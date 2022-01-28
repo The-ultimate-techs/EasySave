@@ -164,6 +164,17 @@ Selectionner une action:
 
 Vôtre choix : </value>
   </data>
+  <data name="RunTool" xml:space="preserve">
+    <value>Outil d'execution de travaux de sauvegarde
+
+
+</value>
+  </data>
+  <data name="RunTool.choice" xml:space="preserve">
+    <value>
+
+Choisir le travail de sauvegarde à executer</value>
+  </data>
   <data name="SubMenuCreate" xml:space="preserve">
     <value>Outil création d'un travail de sauvegarde :
     </value>

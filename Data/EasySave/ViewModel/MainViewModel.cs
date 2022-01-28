@@ -62,7 +62,8 @@ namespace EasySave
 
                     case "3":
                         SetMenuChoice(result);
-                       
+                        SubMenuRun();
+
                         break;
 
                     case "4":
@@ -312,6 +313,62 @@ namespace EasySave
             } while (GetMenuChoice() != "en-US" && GetMenuChoice() != "fr-FR");
             return GetMenuChoice();
         }
+
+
+        public void SubMenuRun()
+        {
+
+
+
+            string FileToRun;
+            do
+            {
+
+                View.Clear();
+                View.DisplayTranslatedMessage("RunTool");
+                DisplayListSaveFile();
+                View.DisplayTranslatedMessage("SubMenuEditDelete.choice2");
+                FileToRun = Console.ReadLine();
+
+
+                bool isNumeric = int.TryParse(FileToRun, out _);
+                if (isNumeric == false)
+                {
+                    FileToRun = "0";
+                }
+
+            } while (Convert.ToInt32(FileToRun) > ListSaveFile().Count || Convert.ToInt32(FileToRun) <= 0);
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         public void DisplayListSaveFile()
