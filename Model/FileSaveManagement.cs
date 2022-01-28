@@ -11,8 +11,8 @@ namespace EasySave
         public void CreateSaveFile(string Title= null, string SourceDirectory= null, string DestinationDirectory= null, string Type= null)
         {
             // Inilization of variables about path of the destination and path of the source
-            string PathSource = SourceDirectory + "\\" + Title + ".txt";
-            string PathDestination = DestinationDirectory + "\\" + Title + ".txt";
+            string PathSource = SourceDirectory + "\\" + Title;
+            string PathDestination = DestinationDirectory + "\\" + Title;
 
             // Inilization of variables about date and time of last modification for each files in source path and destination path
             DateTime DateTimeFileLastModifySource = File.GetLastWriteTime(PathSource);
@@ -65,6 +65,71 @@ namespace EasySave
                     Console.WriteLine("error");
                 }
             }
+        }
+
+
+        public List<FileSave> GetFilesOnADirectory(string SourceDirectory, string DestinationDirectory)
+        {
+
+            List<FileSave> ListFile = new List<FileSave> { };
+
+
+            string[] files = Directory.GetFiles(@SourceDirectory); // Get all the files in the specified directory
+            foreach (string file in files)
+            {
+                FileSave obj = new FileSave();
+                obj.SetSourceDirectory(file);
+                obj.SetDestinationDirectory(file.Replace(SourceDirectory, DestinationDirectory));
+                string FileTitle = file;
+                while (FileTitle.Contains('\\'))
+                {
+                    FileTitle = FileTitle.Substring(file.IndexOf("\\") - 1);
+                }
+                obj.SetTitle(FileTitle);
+
+                ListFile.Add(obj);
+
+            }
+
+            return ListFile;
+
+
+
+
+
+        }
+
+
+        public List<DirectorySave> GetDirectoriesOnADirectory(string SourceDirectory, string DestinationDirectory)
+        {
+
+            List<DirectorySave> ListDirectory = new List<DirectorySave> { };
+
+
+            string[] directories = Directory.GetDirectories(@SourceDirectory); // Get all the files in the specified directory
+            foreach (string directory in directories)
+            {
+                DirectorySave obj = new DirectorySave();
+                obj.SourceDirectory = directory;
+                obj.DestinationDirectory = directory.Replace(SourceDirectory, DestinationDirectory);
+
+                string DirectoryTitle = directory;
+                while (DirectoryTitle.Contains('\\'))
+                {
+                    DirectoryTitle = DirectoryTitle.Substring(directory.IndexOf("\\") - 1);
+                }
+                obj.Title = DirectoryTitle;
+
+                ListDirectory.Add(obj);
+
+            }
+
+            return ListDirectory;
+
+
+
+
+
         }
 
     }

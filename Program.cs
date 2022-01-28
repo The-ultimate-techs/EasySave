@@ -17,15 +17,15 @@ namespace EasySave
             FileSaveManagement test = new FileSaveManagement();
 
             // test.CreateSaveFile("Title",@"SourcePath",@"DestinationPath","Type") where type can be "differential" or "complete"
-            test.CreateSaveFile("test", @"D:\TEST2", @"D:\TEST", "differential");
+          /*  test.CreateSaveFile("TaMere", @"C:\TEST2\TEST3", @"C:\TEST\TEST3", "complete");
+*/
 
-            /*
-                        TModel a = new TModel(); // Object instantiation 
+            TModel a = new TModel(); // Object instantiation 
 
-                        a.GetElementsOnADirectory(@"C:\Users\thomas\Desktop"); // Function check
+            a.GetDirectoriesOnADirectory(@"C:\Users\hugom\Desktop", @"C:\thomas"); // Function check
 
-                        Console.WriteLine(Environment.GetEnvironmentVariable("Username"));
-            */
+            Console.WriteLine(Environment.GetEnvironmentVariable("Username"));
+
 
         }
     }
