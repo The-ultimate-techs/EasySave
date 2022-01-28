@@ -125,6 +125,18 @@
     
     </value>
   </data>
+  <data name="DeleteTool" xml:space="preserve">
+    <value>Deleting tool
+
+
+</value>
+  </data>
+  <data name="EditTool" xml:space="preserve">
+    <value>Editing tool
+
+
+</value>
+  </data>
   <data name="Goodbye" xml:space="preserve">
     <value>Goodbye </value>
   </data>
@@ -154,8 +166,6 @@ Your choice : </value>
   </data>
   <data name="SubMenuCreate" xml:space="preserve">
     <value>SaveFile creation tool :
-
-List of SaveFiles créated :
     </value>
   </data>
   <data name="SubMenuCreate.DestPath" xml:space="preserve">

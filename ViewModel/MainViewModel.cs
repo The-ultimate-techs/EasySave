@@ -156,6 +156,7 @@ namespace EasySave
                         {
                             
                             View.Clear();
+                            View.DisplayTranslatedMessage("EditTool");
                             DisplayListSaveFile();
                             View.DisplayTranslatedMessage("SubMenuEditDelete.choice2");
                             FileToEdit = Console.ReadLine();
@@ -171,8 +172,8 @@ namespace EasySave
 
 
                         View.Clear();
+                        View.DisplayTranslatedMessage("EditTool");
 
-                       
                         View.DisplayTranslatedMessage("SubMenuCreate.SourcePath");
                         string SourcePath = Console.ReadLine();
                         View.DisplayTranslatedMessage("SubMenuCreate.DestPath");
@@ -197,7 +198,7 @@ namespace EasySave
                         EditFileJson.Type = (Type == "1") ? "COMPLETE" : "PARTIAL"; ;
 
 
-                        string JsonPath = FileSaveManagement.GetSaveFileDirectory() + EditFileJson.Title ;
+                        string JsonPath = FileSaveManagement.GetSaveFileDirectory() + FileSave.GetTitle();
 
 
                         string json = JsonConvert.SerializeObject(EditFileJson, Formatting.Indented);
@@ -208,6 +209,7 @@ namespace EasySave
                         {
 
                             View.Clear();
+                            View.DisplayTranslatedMessage("EditTool");
                             View.DisplayTranslatedMessage("Areyousure");
                             AreyousureEdit = Console.ReadLine();
 
@@ -235,6 +237,7 @@ namespace EasySave
                         {
                             
                             View.Clear();
+                            View.DisplayTranslatedMessage("DeleteTool");
                             DisplayListSaveFile();
                             View.DisplayTranslatedMessage("SubMenuEditDelete.choice2");
                             FileToDelete = Console.ReadLine();
@@ -253,6 +256,7 @@ namespace EasySave
                         {
                             
                             View.Clear();
+                            View.DisplayTranslatedMessage("DeleteTool");
                             View.DisplayTranslatedMessage("Areyousure");
                             AreyousureDelete = Console.ReadLine();
 

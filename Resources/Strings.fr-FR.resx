@@ -125,6 +125,18 @@
     
     </value>
   </data>
+  <data name="DeleteTool" xml:space="preserve">
+    <value>Outil de suppression 
+
+
+</value>
+  </data>
+  <data name="EditTool" xml:space="preserve">
+    <value>Outil de modification
+
+
+</value>
+  </data>
   <data name="Goodbye" xml:space="preserve">
     <value>Au revoir </value>
   </data>
@@ -133,7 +145,7 @@
   </data>
   <data name="ListSaveFile" xml:space="preserve">
     <value>
-Voici la liste des travaux de sauvegarde :
+Liste des travaux de sauvegardes actuels :
 </value>
   </data>
   <data name="Loading" xml:space="preserve">
@@ -154,8 +166,6 @@ Vôtre choix : </value>
   </data>
   <data name="SubMenuCreate" xml:space="preserve">
     <value>Outil création d'un travail de sauvegarde :
-
-Liste des travaux de sauvegardes actuels :
     </value>
   </data>
   <data name="SubMenuCreate.DestPath" xml:space="preserve">
