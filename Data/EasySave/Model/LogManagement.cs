@@ -27,14 +27,14 @@ namespace EasySave
         public bool DailyLogGénérator(string Title , string SourceDirectory , string DestinationDirectory, string Type )
         {
             SetTitle(Title);
-            SetSourceDirectory(SourceDirectory);
-            SetDestinationDirectory(DestinationDirectory);
+            SetSourceDirectory(SourceDirectory.Replace("\\","\\\\"));
+            SetDestinationDirectory(DestinationDirectory.Replace("\\", "\\\\"));
             SetType(Type);
 
 
 
 
-            string path = GetDirectoryPath() + "Log/DailyLog/" + GetTitle() + ".Json";
+            string path = GetDirectoryPath() + "SaveFilesLogs/DailyLog/" + GetTitle() + ".Json";
 
 
             if (!File.Exists(path))
@@ -75,12 +75,12 @@ namespace EasySave
 
 
 
-        public bool RunningLogGénérator(string Title, string SourceDirectory, string DestinationDirectory,  int TotalFilesToCopy, int TotalFilesSize, int NbFilesLeftToDo)
+        public bool RunningLogGénérator(string Title, string SourceDirectory, string DestinationDirectory,  int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo)
         
         {
 
             
-            string path = GetDirectoryPath() + "Log/StateLog.Json";
+            string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.Json";
 
             if (!File.Exists(path))
             {

@@ -287,6 +287,97 @@ namespace EasySave
         }
 
 
+        public void SubMenuRun()
+        {
+
+
+
+            string FileToRun;
+            do
+            {
+
+                View.Clear();
+                View.DisplayTranslatedMessage("RunTool");
+                DisplayListSaveFile();
+                View.DisplayTranslatedMessage("SubMenuEditDelete.choice2");
+                FileToRun = Console.ReadLine();
+
+
+                bool isNumeric = int.TryParse(FileToRun, out _);
+                if (isNumeric == false)
+                {
+                    FileToRun = "0";
+                }
+
+            } while (Convert.ToInt32(FileToRun) > ListSaveFile().Count || Convert.ToInt32(FileToRun) <= 0);
+
+            FileSave FileToRunInfo = new FileSave();
+            FileToRunInfo = ListSaveFile()[Convert.ToInt32(FileToRun) - 1];
+            string Jsonpath = FileSaveManagement.GetSaveFileDirectory() + FileToRunInfo.GetTitle();
+
+
+
+            string myJsonFile = File.ReadAllText(Jsonpath);
+            SaveFileJson SaveFileJson = JsonConvert.DeserializeObject<SaveFileJson>(myJsonFile);
+
+            List<DirectorySave> DirectoryList = FileSaveManagement.GetDirectoriesOnADirectory(SaveFileJson.SourcePath, SaveFileJson.DestPath);
+
+            List<FileSave> FileList = FileSaveManagement.GetFilesOnADirectory(SaveFileJson.SourcePath, SaveFileJson.DestPath);
+
+
+
+        foreach(DirectorySave Directory in DirectoryList)
+            {
+
+                FileSaveManagement.CopyDirectories(Directory.SourceDirectory, Directory.DestinationDirectory);
+
+            }
+
+            LogManagement.BeginEndProcess();
+
+            long filesize = 0;
+
+            foreach (FileSave files in FileList)
+            {
+
+
+                filesize = filesize + files.FileSize(files.GetSourceDirectory());
+
+            }
+
+
+
+
+
+
+
+            int progress = 0;
+        foreach (FileSave files in FileList)
+            {
+                progress = progress + 1;
+                LogManagement.BeginSaveFileExecution();
+                FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
+                LogManagement.EndSaveFileExecution();
+
+                LogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+                LogManagement.RunningLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), FileList.Count, filesize , FileList.Count - progress);
+
+
+            }
+
+            LogManagement.BeginEndProcess();
+            LogManagement.RunningLogGénérator(SaveFileJson.Title, "", "", 100, 0, 0);
+
+
+
+
+
+
+
+
+
+        }
+
         //Method to get which Language the user wants to choose 
         public string GetUserLanguage()
         {
@@ -314,36 +405,6 @@ namespace EasySave
             return GetMenuChoice();
         }
 
-
-        public void SubMenuRun()
-        {
-
-
-
-            string FileToRun;
-            do
-            {
-
-                View.Clear();
-                View.DisplayTranslatedMessage("RunTool");
-                DisplayListSaveFile();
-                View.DisplayTranslatedMessage("SubMenuEditDelete.choice2");
-                FileToRun = Console.ReadLine();
-
-
-                bool isNumeric = int.TryParse(FileToRun, out _);
-                if (isNumeric == false)
-                {
-                    FileToRun = "0";
-                }
-
-            } while (Convert.ToInt32(FileToRun) > ListSaveFile().Count || Convert.ToInt32(FileToRun) <= 0);
-
-
-
-
-
-        }
 
 
 

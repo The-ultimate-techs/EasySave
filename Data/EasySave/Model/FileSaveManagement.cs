@@ -11,8 +11,8 @@ namespace EasySave
         public void CreateSaveFile(string Title= null, string SourceDirectory= null, string DestinationDirectory= null, string Type= null)
         {
             // Inilization of variables about path of the destination and path of the source
-            string PathSource = SourceDirectory + "\\" + Title;
-            string PathDestination = DestinationDirectory + "\\" + Title;
+            string PathSource = SourceDirectory ;
+            string PathDestination = DestinationDirectory ;
 
             // Inilization of variables about date and time of last modification for each files in source path and destination path
             DateTime DateTimeFileLastModifySource = File.GetLastWriteTime(PathSource);
@@ -35,7 +35,7 @@ namespace EasySave
             // If file in destination folder exist
             else
             {
-                if (Type == "differential") // Type of backup selected is differential
+                if (Type == "PARTIAL") // Type of backup selected is differential
                 {
                     if (!File.Exists(PathSource) && File.Exists(PathDestination)) // Verify if the file in destination folder exist while it doesn't exist in source folder
                     {
@@ -48,7 +48,7 @@ namespace EasySave
                         File.Copy(PathSource, PathDestination); // The file is copied from the source folder to the destination folder 
                     }
                 }
-                else if (Type == "complete")// Type of backup selected is complete
+                else if (Type == "COMPLETE")// Type of backup selected is complete
                 {
                     if (File.Exists(PathSource)) // If the file exist in the source folder
                     {
@@ -62,7 +62,7 @@ namespace EasySave
                 }
                 else // This error is handled by the view
                 {
-                    Console.WriteLine("error"); // Error message
+                    Console.WriteLine("error1"); // Error message
                 }
             }
         }
@@ -70,7 +70,8 @@ namespace EasySave
 
         public List<FileSave> GetFilesOnADirectory(string SourceDirectory, string DestinationDirectory)
         {
-
+            SourceDirectory = SourceDirectory.Replace("\\\\", "\\");
+            DestinationDirectory = DestinationDirectory.Replace("\\\\", "\\");
 
             List<FileSave> ListFile = new List<FileSave> { };
 
