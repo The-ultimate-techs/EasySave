@@ -117,11 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Areyousure" xml:space="preserve">
+    <value>Are you sure ?
+    
+    Yes---------------------------------------------------------------------------  : 1
+    No----------------------------------------------------------------------------  : 2
+    
+    </value>
+  </data>
   <data name="Goodbye" xml:space="preserve">
     <value>Goodbye </value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>English selected </value>
+  </data>
+  <data name="ListSaveFile" xml:space="preserve">
+    <value>
+Here is the list of existing savefiles :
+</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Loading </value>
@@ -139,7 +152,52 @@ Choose an action:
 
 Your choice : </value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="SubMenuCreate" xml:space="preserve">
+    <value>SaveFile creation tool :
+
+List of SaveFiles créated :
+    </value>
+  </data>
+  <data name="SubMenuCreate.DestPath" xml:space="preserve">
+    <value>Put the folder path that contains the data you want to copy (use UNC format exemple : c:\\Users\\...) :
+    </value>
+  </data>
+  <data name="SubMenuCreate.SourcePath" xml:space="preserve">
+    <value>Put the folder path that will contains the copied data  (use UNC format exemple : c:\\Users\\...) :
+    </value>
+  </data>
+  <data name="SubMenuCreate.Title" xml:space="preserve">
+    <value>Put the Title of the SaveFile you want to create : 
+    </value>
+  </data>
+  <data name="SubMenuCreate.Type" xml:space="preserve">
+    <value>Type of SaveFile : Complete Save : 1 Partial Save : 2 
+    </value>
+  </data>
+  <data name="SubMenuCreate2" xml:space="preserve">
+    <value>
+Complete this form to create your SaveFile : 
+
+</value>
+  </data>
+  <data name="SubMenuEditDelete" xml:space="preserve">
+    <value>
+
+Would you like to edit a saveFile or delete it ?
+    </value>
+  </data>
+  <data name="SubMenuEditDelete.choice" xml:space="preserve">
+    <value>
+
+    Edit--------------------------------------------------------------------------  : 1
+    Delete------------------------------------------------------------------------  : 2
+    Exit--------------------------------------------------------------------------  : 3
+    
+    </value>
+  </data>
+  <data name="SubMenuEditDelete.choice2" xml:space="preserve">
+    <value>
+
+Choose the file you want to process :  </value>
   </data>
 </root>
