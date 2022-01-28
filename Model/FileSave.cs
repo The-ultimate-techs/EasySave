@@ -12,7 +12,8 @@ namespace EasySave
         private string SourceDirectory;
         private string DestinationDirectory;
         private string Type;    
-        private string SaveFilesDirectory = @"../../../../../Log/";
+        private string DirectoryPath = @"../../../../../";
+        private string SaveFileDirectory = @"../../../../../SaveFiles/";
         FileInfo FileInfo ;
 
 
@@ -25,6 +26,10 @@ namespace EasySave
             SetType(Type);
             
         }
+
+
+
+
 
         // Setter & getter for private attributes
         public void SetTitle(string Title)
@@ -68,9 +73,14 @@ namespace EasySave
         }
 
 
-        public string GetSaveFilesDirectory()
+        public string GetDirectoryPath()
         {
-            return this.SaveFilesDirectory;
+            return this.DirectoryPath;
+        }
+
+        public string GetSaveFileDirectory()
+        {
+            return this.SaveFileDirectory;
         }
 
         public long FileSize(string Path)
