@@ -106,7 +106,7 @@ namespace EasySave
             List<DirectorySave> ListDirectory = new List<DirectorySave> { };
 
 
-            string[] directories = Directory.GetDirectories(@SourceDirectory); // Get all the files in the specified directory
+            string[] directories = Directory.GetDirectories(@SourceDirectory,"",SearchOption.AllDirectories); // Get all the files in the specified directory
             foreach (string directory in directories)
             {
                 DirectorySave obj = new DirectorySave();
