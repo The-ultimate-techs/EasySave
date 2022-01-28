@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EasySave
 {
-    class FileSaveManagement:FileSave
+    class FileSaveManagement:FileSave 
     {
         public void CreateSaveFile(string Title= null, string SourceDirectory= null, string DestinationDirectory= null, string Type= null)
         {
