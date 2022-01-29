@@ -366,11 +366,7 @@ namespace EasySave
             }
 
             LogManagement.BeginEndProcess();
-            LogManagement.RunningLogGénérator(SaveFileJson.Title, "", "", 100, 0, 0);
-
-
-
-
+            LogManagement.RunningLogGénérator(SaveFileJson.Title, "", "", FileList.Count, 0, 0);
 
 
 
