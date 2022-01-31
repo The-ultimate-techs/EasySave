@@ -147,6 +147,11 @@ namespace EasySave
 
 
             objects= A.GetDirectoriesOnADirectory(SourceDirectory, DestinationDirectory);
+
+            if (objects.Count == 0 )
+            {
+                Directory.CreateDirectory(DestinationDirectory);
+            }
             
             for (int i= 0; i< objects.Count; i++)
             {

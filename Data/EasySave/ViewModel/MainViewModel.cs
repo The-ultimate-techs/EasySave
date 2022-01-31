@@ -352,8 +352,13 @@ namespace EasySave
 
 
             int progress = 0;
-        foreach (FileSave files in FileList)
+            int bufferpourcentage = 0; 
+
+            foreach (FileSave files in FileList)
+             
             {
+
+
                 progress = progress + 1;
                 LogManagement.BeginSaveFileExecution();
                 FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
@@ -362,7 +367,29 @@ namespace EasySave
                 LogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
                 LogManagement.RunningLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), FileList.Count, filesize , FileList.Count - progress);
 
+                int progressionpercent = progress * 100/ FileList.Count  ;
 
+                
+                if (bufferpourcentage != progressionpercent) { 
+                View.Clear();
+                View.DisplayTranslatedMessage("Loading");
+               
+
+                View.DisplayBasicMessage(" : " + progressionpercent + "% \n\n\n [");
+
+                for (int i = 0; i < progressionpercent ; i++)
+                {
+                    View.DisplayBasicMessage("/");
+                }
+
+                for (int i = 0; i < 100 -progressionpercent; i++)
+                {
+                    View.DisplayBasicMessage(" ");
+                }
+                View.DisplayBasicMessage("]");
+
+                    bufferpourcentage = progressionpercent;
+                }
             }
 
             LogManagement.BeginEndProcess();

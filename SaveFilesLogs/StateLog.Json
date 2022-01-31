@@ -1,13 +1,13 @@
 [
   {
     "Name": "Thomas",
-    "SourceFilePath": "",
-    "TargetFilePath": "",
-    "State": "END",
-    "TotalFilesToCopy": 100,
-    "TotalFilesSize": 0,
-    "NbFilesLeftToDo": 0,
-    "Progression": 100
+    "SourceFilePath": "E:\\Thomas\\Documents\\CESI\\CPI A1\\Projets\\0-English\\~$ticle prosit 2.docx",
+    "TargetFilePath": "C:\\Users\\Thomas\\Desktop\\Test\\CPI A1\\Projets\\0-English\\~$ticle prosit 2.docx",
+    "State": "ACTIVE",
+    "TotalFilesToCopy": 1710,
+    "TotalFilesSize": 9558624143,
+    "NbFilesLeftToDo": 1617,
+    "Progression": 5
   },
   {
     "Name": "TEST",
@@ -18,5 +18,15 @@
     "TotalFilesSize": 26473693512,
     "NbFilesLeftToDo": 19373,
     "Progression": 6
+  },
+  {
+    "Name": "Hearthstone",
+    "SourceFilePath": "",
+    "TargetFilePath": "",
+    "State": "END",
+    "TotalFilesToCopy": 961,
+    "TotalFilesSize": 0,
+    "NbFilesLeftToDo": 0,
+    "Progression": 100
   }
 ]
