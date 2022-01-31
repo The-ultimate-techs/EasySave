@@ -76,7 +76,7 @@ namespace EasySave
             List<FileSave> ListFile = new List<FileSave> { };
 
 
-            string[] files = Directory.GetFiles(@SourceDirectory); // Get all the files in the specified directory
+            string[] files = Directory.GetFiles(@SourceDirectory, "", SearchOption.AllDirectories); // Get all the files in the specified directory
             foreach (string file in files)
             {
                 FileSave obj = new FileSave();
@@ -111,6 +111,8 @@ namespace EasySave
 
             List<DirectorySave> ListDirectory = new List<DirectorySave> { };
 
+            SourceDirectory = SourceDirectory.Replace("\\\\", "\\");
+            DestinationDirectory = DestinationDirectory.Replace("\\\\", "\\");
 
             string[] directories = Directory.GetDirectories(@SourceDirectory,"",SearchOption.AllDirectories); // Get all the files in the specified directory
             foreach (string directory in directories)
@@ -154,7 +156,7 @@ namespace EasySave
                     Path_array= Path.Split("\\"); // Split the path to obtain folders names in an array
 
 
-                    Path = "C:\\";
+                    Path = Path_array[0] + "\\";
                     for (int j= 1; j < Path_array.Length; j++) // Rebuild of the path to create all the missing directory
                     {
                         Path = Path + Path_array[j] + "\\";

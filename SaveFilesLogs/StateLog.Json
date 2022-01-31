@@ -8,5 +8,15 @@
     "TotalFilesSize": 0,
     "NbFilesLeftToDo": 0,
     "Progression": 100
+  },
+  {
+    "Name": "TEST",
+    "SourceFilePath": "C:\\Jeux\\steam\\public\\steambootstrapper_tchinese.txt",
+    "TargetFilePath": "C:\\Users\\chloe\\OneDrive\\Bureau\\test\\steam\\public\\steambootstrapper_tchinese.txt",
+    "State": "ACTIVE",
+    "TotalFilesToCopy": 20615,
+    "TotalFilesSize": 26473693512,
+    "NbFilesLeftToDo": 19373,
+    "Progression": 6
   }
 ]
