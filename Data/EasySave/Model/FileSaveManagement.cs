@@ -6,8 +6,21 @@ using System.Text;
 
 namespace EasySave
 {
-    class FileSaveManagement:FileSave 
+    class FileSaveManagement : FileSave
     {
+
+        public FileSaveManagement()
+        {
+            if (!Directory.Exists(GetDirectoryPath()))
+            {
+                Directory.CreateDirectory(GetDirectoryPath());
+            }
+            if (!Directory.Exists(GetSaveFileDirectory()))
+            {
+                Directory.CreateDirectory(GetSaveFileDirectory());
+            }
+        }
+
         public void CreateSaveFile(string Title= null, string SourceDirectory= null, string DestinationDirectory= null, string Type= null)
         {
             // Inilization of variables about path of the destination and path of the source

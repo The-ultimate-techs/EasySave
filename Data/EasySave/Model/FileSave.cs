@@ -11,11 +11,11 @@ namespace EasySave
         private string Title;
         private string SourceDirectory;
         private string DestinationDirectory;
-        private string Type;    
-        private string DirectoryPath = @"../../../../../";
-        private string SaveFileDirectory = @"../../../../../SaveFiles/";
+        private string Type;
+        private string DirectoryPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+ @"\EasySave\";
+        private string SaveFileDirectory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+ @"\EasySave\SaveFiles\";
         FileInfo FileInfo ;
-
+      
 
 
         public FileSave(string Title = null , string SourceDirectory = null , string DestinationDirectory = null, string Type = null)
@@ -24,7 +24,7 @@ namespace EasySave
             SetSourceDirectory(SourceDirectory);
             SetDestinationDirectory(DestinationDirectory);
             SetType(Type);
-            
+
         }
 
 
@@ -88,6 +88,8 @@ namespace EasySave
             FileInfo = new FileInfo(Path);
             return FileInfo.Length;
         }
+        
+      
 
     }
 

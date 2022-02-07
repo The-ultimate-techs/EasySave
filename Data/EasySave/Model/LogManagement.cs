@@ -20,6 +20,19 @@ namespace EasySave
         {
             Stopwatch = new System.Diagnostics.Stopwatch();
             SetProcessRunning(false);
+
+            if (!Directory.Exists(GetDirectoryPath()))
+            {
+                Directory.CreateDirectory(GetDirectoryPath());
+            }
+            if (!Directory.Exists(GetDirectoryPath()+ "SaveFilesLogs\\"))
+            {
+                Directory.CreateDirectory(GetDirectoryPath() + "SaveFilesLogs\\");
+            }
+            if (!Directory.Exists(GetDirectoryPath() + "SaveFilesLogs\\DailyLog\\"))
+            {
+                Directory.CreateDirectory(GetDirectoryPath() + "SaveFilesLogs\\DailyLog\\");
+            }
         }
 
 
@@ -34,7 +47,7 @@ namespace EasySave
 
 
 
-            string path = GetDirectoryPath() + "SaveFilesLogs/DailyLog/" + GetTitle() + ".Json";
+            string path = GetDirectoryPath() + "SaveFilesLogs\\DailyLog\\" + GetTitle() + ".Json";
 
 
             if (!File.Exists(path))
