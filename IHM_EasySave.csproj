@@ -7,11 +7,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Dash.png" />
+    <None Remove="france.png" />
+    <None Remove="search.png" />
+    <None Remove="setting.png" />
+    <None Remove="united-states-of-america.png" />
+    <None Remove="x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="MVVM\Model\" />
     <Folder Include="Images\" />
     <Folder Include="Fonts\" />
     <Folder Include="MVVM\ViewModel\" />
     <Folder Include="MVVM\View\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Dash.png" />
+    <Resource Include="france.png" />
+    <Resource Include="search.png" />
+    <Resource Include="setting.png" />
+    <Resource Include="united-states-of-america.png" />
+    <Resource Include="x.png" />
   </ItemGroup>
 
 </Project>

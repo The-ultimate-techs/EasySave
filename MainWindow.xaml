@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:IHM_EasySave"
+
         mc:Ignorable="d"
         Height="600" Width="1050"
         WindowStyle="None"
@@ -13,41 +14,41 @@
 
     <Border Background="#272537"
             CornerRadius="10">
-        <Grid>
+        <Grid Margin="4,0,-4,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="170"/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="51*"/>
+                
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="75"/>
                 <RowDefinition Height="263*"/>
-                <RowDefinition Height="262*"/>
+                
             </Grid.RowDefinitions>
 
             <TextBlock Text="EasySave"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Foreground="White"
-                       FontSize="22" Height="29" Width="88"/>
-
+                       FontSize="22" Height="29" Width="88" Margin="0,0,0,20"/>
             <StackPanel Grid.Row="1" Grid.RowSpan="2">
 
-                <RadioButton Content="Créer un travail&#x0a; de sauvegarde"
+                <RadioButton Content="Créer un travail&#xA; de sauvegarde"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
                              HorizontalAlignment="Center"
                              Style="{StaticResource MenuButtonTheme}"/>
 
-                <RadioButton Content="Editer/supprimer un&#x0a; travail de sauvegarde"
+                <RadioButton Content="Editer/supprimer un&#xA; travail de sauvegarde"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
                              HorizontalAlignment="Center"
                              Style="{StaticResource MenuButtonTheme}"/>
 
-                <RadioButton Content="Exécuter un ou plusieurs&#x0a; travaux de sauvegarde"
+                <RadioButton Content="Exécuter un ou plusieurs&#xA; travaux de sauvegarde"
                              Height="50"
                              Foreground="White"
                              HorizontalAlignment="Center"
@@ -56,19 +57,139 @@
 
             </StackPanel>
 
-            <Button Content="Paramètres généraux..."
-                    Margin="10,226,0,10"
-                    Grid.Row="2"
-                    HorizontalAlignment="Left"/>
+            <Button 
+               
+                Margin="10,470,10,0"
+                Grid.Row="2"
+                Height="50"
+                Width="150"
+                HorizontalAlignment="Left"
+                Click="SettingsClick" 
+                ClickMode="Release"
+                Style="{StaticResource CustomControlButton}">
 
-            <TextBox
-                     VerticalContentAlignment="Center"
-                     HorizontalContentAlignment="Left"
-                     Margin="0,18,675,17"
-                     Grid.Column="1"
-                     Style="{StaticResource ModernTextbox}"/>
+                <StackPanel 
+                    Orientation="Horizontal"
+                    Background="Transparent">
+                    
+                    <Image 
+                        Height="30" 
+                        Width="30"
+                        Source="/setting.png" 
+                        Margin="0,0,20,0"/>
+                    
+                    <TextBlock
+                        Foreground="White"
+                        FontSize="14">
+                          Paramètres<LineBreak />généraux...
+                    </TextBlock>
+                    
+                </StackPanel>
+
+
+            </Button>
+
+            <StackPanel 
+                    Orientation="Horizontal"
+                    Background="Transparent"
+                    Width="400"
+                     Margin="47,0,433,20"
+                     Grid.Column="1">
+                
+                <TextBox
+                    Style="{StaticResource ModernTextbox}" 
+                    TextChanged="TextBox_TextChanged"
+                    Margin="20,0,0,0" 
+                    Width="300"/>
+
+                <Button
+                x:Name="Search"
+                 Margin="20,0,0,0"
+                Grid.Column="2"
+                Height="30" 
+                Width="30"
+                Click="SearchClick" 
+                ClickMode="Release"
+                Style="{StaticResource CustomControlButton}">
+
+                  <Image
+                    Height="30" 
+                    Width="30"
+                    Source="/search.png"/>
+                </Button>
+
+
+            </StackPanel>
+
+            <Image
+                x:Name="US"
+                Margin="455,0,0,22"
+                Height="30" 
+                Width="30"
+                Source="/united-states-of-america.png"
+                Grid.Column="1"
+                Opacity="1"/>
+
+            <local:ToggleButton 
+                x:Name="Bu" 
+                HorizontalAlignment="Left"
+                Height="30" 
+                Grid.Column="1"
+                Margin="690,0,0,22"
+                VerticalAlignment="Center"
+                Width="50"
+                MouseLeftButtonDown="Bu_MouseLeftButtonDown" 
+                Loaded="Bu_Loaded"/>
+
+            <Image 
+                x:Name="France" 
+                Margin="640,0,0,22"
+                
+                Height="30" 
+                Width="30"
+                Source="/france.png"
+                Grid.Column="1"
+                Opacity="0.2"/>
+
+            <Button
+                x:Name="dash" 
+                Margin="720,0,0,22"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Height="30" 
+                Width="30"
+                Click="MinimizeClick" 
+                ClickMode="Release"
+                Style="{StaticResource CustomControlButton}">
+                
+                
+                    <Image 
+                    Margin="0,14,0,0"
+                    Height="25" 
+                    Width="25"
+                    Source="/Dash.png"/>
+
+            </Button>
             
-            
+
+            <Button
+                x:Name="x" 
+                Margin="800,0,0,22"
+                Height="30" 
+                Width="30"
+                Grid.Column="2"
+                Click="CloseClick" 
+                ClickMode="Release"
+                Style="{StaticResource CustomControlButton}">
+                
+                <Image 
+                    Height="25" 
+                    Width="25"
+                    Source="/x.png"/>
+              
+            </Button>
+
+
 
         </Grid>
     </Border>

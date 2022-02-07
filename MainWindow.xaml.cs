@@ -25,5 +25,59 @@ namespace IHM_EasySave
             InitializeComponent();
         }
 
+        private void Bu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (Bu.Toggled1 == true)
+            {
+                France.Opacity = 1;
+                US.Opacity = 0.2;
+
+
+            }
+            else
+            {
+
+                France.Opacity = 0.2;
+                US.Opacity = 1;
+            }
+
+
+        }
+
+        private void Bu_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        void CloseClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+
+        }
+
+        void MinimizeClick(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void dash_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SettingsClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void SearchClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
