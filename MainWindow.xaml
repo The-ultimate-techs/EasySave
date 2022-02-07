@@ -1,0 +1,76 @@
+﻿<Window x:Class="IHM_EasySave.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IHM_EasySave"
+        mc:Ignorable="d"
+        Height="600" Width="1050"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Border Background="#272537"
+            CornerRadius="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="170"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition Height="263*"/>
+                <RowDefinition Height="262*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="EasySave"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="White"
+                       FontSize="22" Height="29" Width="88"/>
+
+            <StackPanel Grid.Row="1" Grid.RowSpan="2">
+
+                <RadioButton Content="Créer un travail&#x0a; de sauvegarde"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             HorizontalAlignment="Center"
+                             Style="{StaticResource MenuButtonTheme}"/>
+
+                <RadioButton Content="Editer/supprimer un&#x0a; travail de sauvegarde"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             HorizontalAlignment="Center"
+                             Style="{StaticResource MenuButtonTheme}"/>
+
+                <RadioButton Content="Exécuter un ou plusieurs&#x0a; travaux de sauvegarde"
+                             Height="50"
+                             Foreground="White"
+                             HorizontalAlignment="Center"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"/>
+
+            </StackPanel>
+
+            <Button Content="Paramètres généraux..."
+                    Margin="10,226,0,10"
+                    Grid.Row="2"
+                    HorizontalAlignment="Left"/>
+
+            <TextBox
+                     VerticalContentAlignment="Center"
+                     HorizontalContentAlignment="Left"
+                     Margin="0,18,675,17"
+                     Grid.Column="1"
+                     Style="{StaticResource ModernTextbox}"/>
+            
+            
+
+        </Grid>
+    </Border>
+
+</Window>
