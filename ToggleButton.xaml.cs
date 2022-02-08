@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace IHM_EasySave
+namespace EasySave
 {
     /// <summary>
     /// Interaction logic for ToggleButton.xaml

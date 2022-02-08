@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resource\Dash.png" />
+    <None Remove="Resource\france.png" />
+    <None Remove="Resource\search.png" />
+    <None Remove="Resource\setting.png" />
+    <None Remove="Resource\The-Ultimate-Techs.png" />
+    <None Remove="Resource\united-states-of-america.png" />
+    <None Remove="Resource\x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resource\Dash.png" />
+    <Resource Include="Resource\france.png" />
+    <Resource Include="Resource\search.png" />
+    <Resource Include="Resource\setting.png" />
+    <Resource Include="Resource\The-Ultimate-Techs.png" />
+    <Resource Include="Resource\united-states-of-america.png" />
+    <Resource Include="Resource\x.png" />
+  </ItemGroup>
+
+</Project>

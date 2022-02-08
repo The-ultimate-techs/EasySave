@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 
-namespace IHM_EasySave.Core
+namespace EasySave.Core
 {
     class ObservableObject : INotifyPropertyChanged
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace IHM_EasySave
+namespace EasySave
 {
     /// <summary>
     /// Interaction logic for App.xaml
