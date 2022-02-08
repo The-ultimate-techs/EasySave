@@ -80,6 +80,12 @@ namespace EasySave
 
         }
 
+        private void HomeButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);

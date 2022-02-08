@@ -34,14 +34,29 @@
                 
             </Grid.RowDefinitions>
 
-       
 
+
+            <Button Height="29" 
+                    Width="88" 
+                    Margin="0,0,0,20"
+                    Click="HomeButtonClick" 
+                    ClickMode="Release"
+                    Style="{StaticResource CustomControlButton}"
+                    Command="{Binding HomePageCommand}">
+                
             <TextBlock Text="EasySave"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
                        Foreground="White"
-                       FontSize="22" Height="29" Width="88" Margin="0,0,0,20"/>
+                       FontSize="22" />
+            </Button>
+            
+            
+            
+            
             <StackPanel Grid.Row="1" Grid.RowSpan="2">
+                
+                
 
                 <RadioButton Content="Créer un travail&#xA; de sauvegarde"
                              Height="50"

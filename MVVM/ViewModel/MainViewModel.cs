@@ -10,6 +10,7 @@ namespace EasySave
         //Relay Command for the different views
         public RelayCommand CreateSafeFileCommand { get; set; }
         public RelayCommand EditDeleteSafeFileCommand { get; set; }
+        public RelayCommand HomePageCommand { get; set; }
         public RelayCommand RunSaveFileCommand { get; set; }
         public RelayCommand SettingsCommand { get; set; }
 
@@ -47,6 +48,8 @@ namespace EasySave
             SettingsVM = new SettingsViewModel();
             CurrentView = HomePageVM;
 
+
+
             CreateSafeFileCommand = new RelayCommand(o =>
            {
                CurrentView = CreateSaveFileVM;
@@ -55,6 +58,11 @@ namespace EasySave
             EditDeleteSafeFileCommand = new RelayCommand(o =>
             {
                 CurrentView = EditDeleteSaveFileVM;
+            });
+
+            HomePageCommand = new RelayCommand(o =>
+            {
+                CurrentView = HomePageVM;
             });
 
             RunSaveFileCommand = new RelayCommand(o =>
