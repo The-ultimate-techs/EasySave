@@ -94,7 +94,8 @@
                 Click="SettingsClick" 
                 ClickMode="Release"
                 Style="{StaticResource CustomControlButton}"
-                Command="{Binding SettingsCommand}">
+                Command="{Binding SettingsCommand}"
+ >
 
                 <StackPanel 
                     Orientation="Horizontal"

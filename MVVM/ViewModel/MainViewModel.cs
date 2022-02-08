@@ -46,8 +46,8 @@ namespace EasySave
             HomePageVM = new HomePageViewModel();
             RunSaveFileVM = new RunSaveFileViewModel();
             SettingsVM = new SettingsViewModel();
-            CurrentView = HomePageVM;
-
+            //CurrentView = HomePageVM;
+            CurrentView = SettingsVM;
 
 
             CreateSafeFileCommand = new RelayCommand(o =>
