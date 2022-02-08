@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EasySave"
+        xmlns:Viewmomdel="clr-namespace:EasySave.MVVM.ViewModel"
+        xmlns:View="clr-namespace:EasySave.MVVM.View"
 
         mc:Ignorable="d"
         Height="600" Width="1050"
@@ -11,6 +13,11 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True">
+
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+
 
     <Border Background="#272537"
             CornerRadius="10">
@@ -27,6 +34,8 @@
                 
             </Grid.RowDefinitions>
 
+       
+
             <TextBlock Text="EasySave"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Center"
@@ -39,21 +48,24 @@
                              Foreground="White"
                              FontSize="14"
                              HorizontalAlignment="Center"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding CreateSafeFileCommand}"/>
 
                 <RadioButton Content="Editer/supprimer un&#xA; travail de sauvegarde"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
                              HorizontalAlignment="Center"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding EditDeleteSafeFileCommand}"/>
 
                 <RadioButton Content="Exécuter un ou plusieurs&#xA; travaux de sauvegarde"
                              Height="50"
                              Foreground="White"
                              HorizontalAlignment="Center"
                              FontSize="14"
-                             Style="{StaticResource MenuButtonTheme}"/>
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding RunSaveFileCommand}"/>
 
             </StackPanel>
 
@@ -66,7 +78,8 @@
                 HorizontalAlignment="Left"
                 Click="SettingsClick" 
                 ClickMode="Release"
-                Style="{StaticResource CustomControlButton}">
+                Style="{StaticResource CustomControlButton}"
+                Command="{Binding SettingsCommand}">
 
                 <StackPanel 
                     Orientation="Horizontal"
@@ -188,6 +201,11 @@
                     Source="Resource/x.png"/>
               
             </Button>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
 
 
 
