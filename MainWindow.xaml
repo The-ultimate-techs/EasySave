@@ -75,7 +75,7 @@
                     <Image 
                         Height="30" 
                         Width="30"
-                        Source="/setting.png" 
+                        Source="Resource/setting.png" 
                         Margin="0,0,20,0"/>
                     
                     <TextBlock
@@ -115,7 +115,7 @@
                   <Image
                     Height="30" 
                     Width="30"
-                    Source="/search.png"/>
+                    Source="Resource/search.png"/>
                 </Button>
 
 
@@ -126,7 +126,7 @@
                 Margin="455,0,0,22"
                 Height="30" 
                 Width="30"
-                Source="/united-states-of-america.png"
+                Source="Resource/united-states-of-america.png"
                 Grid.Column="1"
                 Opacity="1"/>
 
@@ -147,7 +147,7 @@
                 
                 Height="30" 
                 Width="30"
-                Source="/Ressources/france.png"
+                Source="Resource/france.png"
                 Grid.Column="1"
                 Opacity="0.2"/>
 
@@ -167,7 +167,7 @@
                     Margin="0,14,0,0"
                     Height="25" 
                     Width="25"
-                    Source="/Dash.png"/>
+                    Source="Resource/Dash.png"/>
 
             </Button>
             
@@ -185,7 +185,7 @@
                 <Image 
                     Height="25" 
                     Width="25"
-                    Source="/x.png"/>
+                    Source="Resource/x.png"/>
               
             </Button>
 
