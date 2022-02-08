@@ -93,6 +93,10 @@ namespace EasySave
             // Begin dragging the window
             this.DragMove();
         }
-     
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

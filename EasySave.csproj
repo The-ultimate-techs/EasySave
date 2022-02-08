@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resource\backup.png" />
     <None Remove="Resource\Dash.png" />
     <None Remove="Resource\france.png" />
     <None Remove="Resource\search.png" />
@@ -17,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resource\backup.png" />
     <Resource Include="Resource\Dash.png" />
     <Resource Include="Resource\france.png" />
     <Resource Include="Resource\search.png" />
