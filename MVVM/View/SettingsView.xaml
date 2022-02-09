@@ -179,9 +179,12 @@
 
                 <TextBox   Margin="20,0,20,0" 
                            TextWrapping="Wrap"
-                           Text=""
-                           
+                           Tag="Path to the process"
+                           Style="{StaticResource ModernTextbox}" 
+                           IsReadOnly="False"
                            Name="FileNameTextBox"/>
+             
+                
 
                 <Button x:Name="BrowseButton"
                         Content="Browse a file" 
@@ -253,4 +256,8 @@
 
 
     </Grid>
+    
+    
+    
+    
 </UserControl>

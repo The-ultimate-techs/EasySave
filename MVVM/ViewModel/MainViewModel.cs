@@ -8,8 +8,8 @@ namespace EasySave
     class MainViewModel : ObservableObject
     {
         //Relay Command for the different views
-        public RelayCommand CreateSafeFileCommand { get; set; }
-        public RelayCommand EditDeleteSafeFileCommand { get; set; }
+        public RelayCommand CreateSaveFileCommand { get; set; }
+        public RelayCommand EditDeleteSaveFileCommand { get; set; }
         public RelayCommand HomePageCommand { get; set; }
         public RelayCommand RunSaveFileCommand { get; set; }
         public RelayCommand SettingsCommand { get; set; }
@@ -50,12 +50,12 @@ namespace EasySave
             CurrentView = SettingsVM;
 
 
-            CreateSafeFileCommand = new RelayCommand(o =>
+            CreateSaveFileCommand = new RelayCommand(o =>
            {
                CurrentView = CreateSaveFileVM;
            });
 
-            EditDeleteSafeFileCommand = new RelayCommand(o =>
+            EditDeleteSaveFileCommand = new RelayCommand(o =>
             {
                 CurrentView = EditDeleteSaveFileVM;
             });

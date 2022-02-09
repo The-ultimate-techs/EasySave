@@ -6,8 +6,7 @@
             <Setter.Value>
             <ControlTemplate TargetType="{x:Type TextBox}">
                 <Border CornerRadius="10"
-                            Background="#354540"
-                            Width="300" Height="30">
+                            Background="#354540">
 
                     <Grid>
                         <Rectangle StrokeThickness="1"/>
@@ -21,7 +20,7 @@
                                      x:Name="SearchBox"/>
 
                         <TextBlock IsHitTestVisible="False"
-                                Text= "Search"
+                                Text= "{TemplateBinding Tag}"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Left"
                                 Margin="10,0,0,0"
@@ -34,6 +33,7 @@
                                             <DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value="">
                                                 <Setter Property="Visibility" Value="Visible"/>
                                             </DataTrigger>
+                                         
                                         </Style.Triggers>
                                         <Setter Property="Visibility" Value="Hidden"/>
                                     </Style>
@@ -51,4 +51,10 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+
+
+
+
 </ResourceDictionary>
