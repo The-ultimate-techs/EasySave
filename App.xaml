@@ -11,6 +11,10 @@
                 <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
                 <ResourceDictionary Source="Theme/TextBoxTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ControlButton.xaml"/>
+                <ResourceDictionary Source="Theme/AppButton.xaml"/>
+                <ResourceDictionary Source="Theme/ListTheme.xaml"/>
+
+
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type Viewmomdel:CreateSaveFileViewModel}" >

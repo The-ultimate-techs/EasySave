@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" 
              d:DesignWidth="800">
-             
+
     <Grid Margin="20,20,20,0">
 
         <Grid.ColumnDefinitions>
@@ -15,8 +15,8 @@
             <ColumnDefinition />
 
         </Grid.ColumnDefinitions>
-        
-        
+
+
 
         <Border Grid.Column="0"
                 Margin="10,10,10,0">
@@ -27,13 +27,13 @@
 
 
                 </LinearGradientBrush>
-                
+
             </Border.Background>
             <Border.Clip>
 
                 <RectangleGeometry RadiusX="10"
                                    RadiusY="10"
-                                   Rect="0,0,230,450"/>
+                                   Rect="0,0,230,460"/>
             </Border.Clip>
             <Grid>
                 <StackPanel>
@@ -54,33 +54,202 @@
                 <Image Width="120"
                        Height="120"
                        Source="../../Resource/setting2.png" 
-                       Margin="140,360,0,0"/>
+                       Margin="140,370,0,0"/>
 
             </Grid>
-            
+
         </Border>
 
-        <StackPanel Grid.Column="1" Grid.RowSpan="2">
 
-            <StackPanel Orientation="Horizontal">
+        <Grid Grid.Column="1"
+              Margin="10,-45,-5,0">
 
-                <TextBlock Text="Change Language&#10;Changer de langue"
-                                   Foreground="white"
-                                   FontSize="20" 
-                                   Margin="140,50,0,0" 
-                                   TextAlignment="Center"/>
 
-            
-                <Image Width="80"
-                           Height="80"
-                           Source="../../Resource/Curve-arrow.png"
-                           Margin="70,0,0,50"
-                       
-                           />
-                
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="210"/>
+                <ColumnDefinition Width="200*"/>
+                <ColumnDefinition Width="210"/>
+
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="125"/>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="155"/>
+                <RowDefinition Height="30"/>
+
+            </Grid.RowDefinitions>
+
+
+
+
+            <TextBlock Text="Change Language&#10;Changer de langue"
+                       Foreground="white"
+                       FontSize="17" 
+                       TextAlignment="Center"
+                       Margin="0,50,0,0"
+                       Grid.Row="0"/>
+
+
+            <Image
+                   Source="../../Resource/Curve-arrow.png"
+                   Grid.Column="2" 
+                   Margin="20,2,120,53"/>
+
+
+
+            <TextBlock Text="List of extensions"
+                       Grid.Row="1" 
+                       Grid.Column="0" 
+                       Foreground="white"
+                       FontSize="17" 
+                       TextAlignment="Center"/>
+
+            <ListBox Grid.Row="1" 
+                     Grid.Column="0" 
+                      Name="ExtensionsList" 
+                      HorizontalAlignment="Left"
+                      Width="185" 
+                     Margin="10,40,0,22" SelectionChanged="ExtensionsList_SelectionChanged" 
+                     Style="{StaticResource listBoxStyle}"/>
+
+
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        VerticalAlignment="Center" Height="70"
+                        Margin="0,20,0,0">
+
+
+                <Button
+                    x:Name="Add"
+                    Height="25" 
+                    Width="80"
+                    Click="SearchClick" 
+                    ClickMode="Release"
+                    Content="Add >>"
+                    Style="{StaticResource CustomAppButton}"/>
+
+                <Button
+                    x:Name="Remove"
+                    Height="25"
+                    Width="80"
+                    Margin="0,15,0,0"
+                    Click="SearchClick" 
+                    ClickMode="Release"
+                    Content="&lt;&lt; Remove"
+                    Style="{StaticResource CustomAppButton}"/>
+
             </StackPanel>
 
-        </StackPanel>
+
+
+            <TextBlock Text="Extensions to encrypt"
+                       Grid.Row="1" 
+                       Grid.Column="2" 
+                       Foreground="white"
+                       FontSize="17" 
+                       TextAlignment="Center"/>
+
+            <ListBox Grid.Row="1" 
+                     Grid.Column="2" 
+                      Name="ExtensionsToEncrypt" 
+                      HorizontalAlignment="Left"
+                      Width="185" 
+                     Margin="15,40,0,22"
+                     Style="{StaticResource listBoxStyle}"/>
+
+
+            <TextBlock Text="ajouter un logiciel metier"
+                       Grid.Row="2" 
+                       Grid.Column="0" 
+                       Foreground="white"
+                       FontSize="17" 
+                       TextAlignment="Center"/>
+
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                         Margin="0,20,0,0">
+
+
+
+
+                <TextBox   Margin="20,0,20,0" 
+                           TextWrapping="Wrap"
+                           Text=""
+                           
+                           Name="FileNameTextBox"/>
+
+                <Button x:Name="BrowseButton"
+                        Content="Browse a file" 
+                        Margin="20,20,20,0"
+                        Click="BrowseButton_Click" 
+                        Style="{StaticResource CustomAppButton}"
+                        RenderTransformOrigin="1.047,0.821" Height="20"/>
+
+
+            </StackPanel>
+
+
+            <StackPanel Orientation="Vertical"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        VerticalAlignment="Center" Height="66"
+                         Margin="0,20,0,0">
+
+                <Button
+                    x:Name="Add2"
+                    Height="25" 
+                    Width="80"
+                    Click="SearchClick" 
+                    ClickMode="Release"
+                    Content="Add"
+                    Style="{StaticResource CustomAppButton}"/>
+
+                <Button
+                        x:Name="Remove2"
+                        Height="25"
+                        Width="80"
+                        Margin="0,15,0,0"
+                        Click="SearchClick" 
+                        ClickMode="Release"
+                        Content="Remove"
+                    Style="{StaticResource CustomAppButton}"/>
+
+
+            </StackPanel>
+
+
+            <TextBlock Text="List of Process"
+                       Grid.Row="2" 
+                       Grid.Column="2" 
+                       Foreground="white"
+                       FontSize="17" 
+                       TextAlignment="Center"/>
+
+            <ListBox Grid.Row="2" 
+                      Grid.Column="2" 
+                      Name="Processlist" 
+                     HorizontalAlignment="Left"
+                      Width="185" 
+                     Margin="15,40,0,22" 
+                     Style="{StaticResource listBoxStyle}" SelectionChanged="Processlist_SelectionChanged">
+
+                <ListBoxItem 
+                    >Orange</ListBoxItem>
+                <ListBoxItem>Green</ListBoxItem>
+                <ListBoxItem>Blue</ListBoxItem>
+                <ListBoxItem>Gray</ListBoxItem>
+                <ListBoxItem>LightGray</ListBoxItem>
+                <ListBoxItem>Red</ListBoxItem>
+            </ListBox>
+
+
+        </Grid>
+
 
 
     </Grid>

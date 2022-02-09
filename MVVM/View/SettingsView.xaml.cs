@@ -22,5 +22,30 @@ namespace EasySave.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void SearchClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExtensionsToEncrypt_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ExtensionsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void Processlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
