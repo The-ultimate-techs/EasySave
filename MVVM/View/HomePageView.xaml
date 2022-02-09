@@ -9,14 +9,25 @@
 
     <Grid Margin="20,20,20,0">
 
+        <!--Visual management with Column : defined-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="750"/>
-            <ColumnDefinition />
-
+            <ColumnDefinition Width="190"/>
+            <ColumnDefinition Width="190"/>
+            <ColumnDefinition Width="190"/>
+            <ColumnDefinition Width="190"/>
+            <ColumnDefinition Width="190"/>
         </Grid.ColumnDefinitions>
 
+        <!--Visual management with Row : defined-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="170"/>
+            <RowDefinition Height="300"/>
+        </Grid.RowDefinitions>
+
+        <!--First TextBox about EasySave-->
         <Border Grid.Column="0"
-                Margin="10,9,15,0" Height="420" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                Grid.Row="0"
+                Margin="5,9,-1,0" Height="421" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="4" Grid.RowSpan="2">
             <Border.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -28,7 +39,7 @@
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
                     <GradientStop Color="#FF6400" Offset="0.0"/>
-                    <GradientStop Color="#FFC800" Offset="1.3"/>
+                    <GradientStop Color="#FFC800" Offset="0.9"/>
 
 
                 </LinearGradientBrush>
@@ -38,7 +49,7 @@
 
                 <RectangleGeometry RadiusX="10"
                                    RadiusY="10"
-                                   Rect="5,5,725,145"/>
+                                   Rect="2,3,745,145"/>
             </Border.Clip>
             <Grid Margin="0,0,2,2">
                 <StackPanel Margin="0,0,1,258">
@@ -51,7 +62,7 @@
                                Foreground="white"
                                FontSize="14" 
                                Margin="10,5,0,0"/>
-                    
+
                     <TextBlock Text="Vous pouvez sauvegarder depuis n'importe quel dossier, sur une multitude de plate-forme :"
                                Foreground="white"
                                FontSize="14" 
@@ -79,18 +90,227 @@
 
                 </StackPanel>
 
+
+
                 <Image Width="70"
                        Height="70"
                        Source="../../Resource/backup.png" 
-                       Margin="200,50,-350,250"/>
+                       Margin="200,50,-440,250"/>
 
             </Grid>
 
         </Border>
 
+        <!--Second TextBox about CryptoSoft-->
+        <Border Grid.Column="0"
+                Grid.Row="1"
+                Margin="5,0,189,0" Height="300" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
 
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.198"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.397"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="#418C41" Offset="0.0"/>
+                    <GradientStop Color="#FFC800" Offset="0.9"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border.Clip>
+                <RectangleGeometry RadiusX="10"
+                                   RadiusY="10"
+                                   Rect="2,3,175,250"/>
+            </Border.Clip>
+
+            <StackPanel Margin="2,8,1,-200">
+
+                <TextBlock Text="Sécurisez vos données &#xA;grâce à CryptoSoft !"
+                               Foreground="white"
+                               FontSize="17" 
+                               Width="176"
+                               TextAlignment="Justify"/>
+
+                <TextBlock Text="Cryptosoft, un logiciel de chi-&#xA;ffrement de données de no-&#xA;tre progamme, est intégré à &#xA;EasySave pour vous permet-&#xA;tre de sauvegarder en toute &#xA;sécurité vos fichiers si vous le &#xA;souhaitez. "
+                               Foreground="white"
+                               FontSize="13" 
+                               Width="200" 
+                               Margin="2,5,0,100" 
+                               TextAlignment="Justify"
+                               Padding="2" Height="126"/>
+                
+            <Image Width="70"
+                   Height="70"
+                   Source="../../Resource/chiffrement.png" 
+                   Margin="-350,-98,-450,250"/>
+            
+            </StackPanel>
+            
+        </Border>
+
+        <!--Third TextBox about ? -->
+        <Border Grid.Column="1"
+                Grid.Row="1"
+                Margin="5,0,189,0" Height="300" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.198"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.397"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="#4F42F5" Offset="0.0"/>
+                    <GradientStop Color="#C072F8" Offset="0.9"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border.Clip>
+                <RectangleGeometry RadiusX="10"
+                                   RadiusY="10"
+                                   Rect="2,3,175,250"/>
+            </Border.Clip>
+
+            <StackPanel Margin="6,8,14,-200">
+                <TextBlock Text="Créer en un clic un tra-&#xA;vail de sauvegarde !"
+                               Foreground="white"
+                               FontSize="17" 
+                               Margin="0,0,0,0"/>
+
+                <TextBlock Text="Mais qu'est-ce qu'un travail &#xA;de sauvegarde ? &#xA;Nous appelons ''travail de &#xA;sauvegarde'' que vous réalis-&#xA;ez régulièrement et que vous &#xA;souhaitez automatiser."
+                               Foreground="white"
+                               FontSize="13" 
+                               TextAlignment="Justify"
+                               Margin="0,0,0,0"/>
+
+                <TextBlock Text="Pour cela, veuillez-vous rendre &#xA;dans le menu ''Créer un travail de &#xA;sauvegarde'' sur votre gauche."
+                               Foreground="white"
+                               FontSize="11" 
+                               TextAlignment="Justify"
+                               Margin="0,0,0,0"/>
+
+                <Image Width="48"
+                   Height="48"
+                   Source="../../Resource/idee.png" 
+                   Margin="-330,-60,-450,-110"/>
+
+            </StackPanel>
+        </Border>
+
+        <!--Fourth TextBox about ? -->
+        <Border Grid.Column="2"
+                Grid.Row="1"
+                Margin="5,0,189,0" Height="300" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.198"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.397"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="#42C9F5" Offset="0.0"/>
+                    <GradientStop Color="#292DED" Offset="0.9"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border.Clip>
+                <RectangleGeometry RadiusX="10"
+                                   RadiusY="10"
+                                   Rect="2,3,175,250"/>
+            </Border.Clip>
+
+            <StackPanel Margin="6,8,14,-200">
+                <TextBlock Text="Modifiez à l'infini vos &#xA;travaux de sauvegar-&#xA;de ou supprimez ceux &#xA;dont vous n'avez plus &#xA;besoin !"
+                               Foreground="white"
+                               FontSize="17" 
+                               />
+
+                <TextBlock Text="EasySave vous permet d'édi-&#xA;ter les caractéristiques de &#xA;vos travaux de savegarde ou &#xA;de les supprimer."
+                               Foreground="white"
+                               FontSize="13"
+                               TextAlignment="Justify"
+                               />
+
+                <TextBlock Text="Pour cela, veuillez-vous rendre &#xA;dans le menu ''Editer/Supprimer &#xA;un travail de sauvegarde'' sur &#xA;votre gauche."
+                               Foreground="white"
+                               FontSize="11"
+                               TextAlignment="Justify"
+                               />
+
+                <Image Width="25"
+                   Height="25"
+                   Source="../../Resource/crayon.png" 
+                   Margin="-480,-390,-470,-115"/>
+
+            </StackPanel>
+        </Border>
+
+        <!--Fith TextBox about ? -->
+        <Border Grid.Column="3"
+                Grid.Row="1"
+                Margin="5,0,189,0" Height="300" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.198"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.397"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="#ECD829" Offset="0.0"/>
+                    <GradientStop Color="#F09434" Offset="0.9"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border.Clip>
+                <RectangleGeometry RadiusX="10"
+                                   RadiusY="10"
+                                   Rect="2,3,175,250"/>
+            </Border.Clip>
+
+
+            <StackPanel Margin="6,8,14,-200">
+                <TextBlock Text="Exécutez un ou plu-&#xA;sieurs travaux de sau-&#xA;vegarde simultané-&#xA;ment !"
+                               Foreground="white"
+                               FontSize="17" 
+                               />
+
+                <TextBlock Text="Réalisez une ou pluiseurs &#xA;sauvegardes en parallèle en &#xA;sélectionnant les travaux de &#xA;sauvegarde souhaités."
+                               Foreground="white"
+                               FontSize="13" 
+                               TextAlignment="Justify"
+                               />
+
+                <TextBlock Text="Pour cela, veuillez-vous rendre &#xA;dans le menu ''Exécuter un ou plu-&#xA;sieurs travaux de sauvegarde'' sur &#xA;votre gauche."
+                               Foreground="white"
+                               FontSize="11" 
+                               TextAlignment="Justify"
+                               />
+
+                <Image Width="47"
+                   Height="47"
+                   Source="../../Resource/executif.png" 
+                   Margin="-330,-100,-450,-110"/>
+
+            </StackPanel>
+        </Border>
 
 
 
     </Grid>
+
 </UserControl>

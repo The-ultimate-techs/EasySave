@@ -8,8 +8,12 @@
 
   <ItemGroup>
     <None Remove="Resource\backup.png" />
+    <None Remove="Resource\chiffrement.png" />
+    <None Remove="Resource\crayon.png" />
     <None Remove="Resource\Dash.png" />
+    <None Remove="Resource\executif.png" />
     <None Remove="Resource\france.png" />
+    <None Remove="Resource\idee.png" />
     <None Remove="Resource\search.png" />
     <None Remove="Resource\setting.png" />
     <None Remove="Resource\The-Ultimate-Techs.png" />
@@ -19,8 +23,12 @@
 
   <ItemGroup>
     <Resource Include="Resource\backup.png" />
+    <Resource Include="Resource\chiffrement.png" />
+    <Resource Include="Resource\crayon.png" />
     <Resource Include="Resource\Dash.png" />
+    <Resource Include="Resource\executif.png" />
     <Resource Include="Resource\france.png" />
+    <Resource Include="Resource\idee.png" />
     <Resource Include="Resource\search.png" />
     <Resource Include="Resource\setting.png" />
     <Resource Include="Resource\The-Ultimate-Techs.png" />
