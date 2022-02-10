@@ -4,9 +4,9 @@ using System.Text;
 
 namespace EasySave.MVVM.ViewModel
 {
-    class EditDeleteSaveFileViewModel
+    class DeleteSaveFileViewModel
     {
-        public EditDeleteSaveFileViewModel()
+        public DeleteSaveFileViewModel()
         {
 
         }

@@ -73,13 +73,15 @@
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding CreateSaveFileCommand}" Checked="RadioButton_Checked"/>
 
-                <RadioButton Content="Editer/supprimer un&#xA; travail de sauvegarde"
+                <RadioButton Content="Editer un travail &#xA;de sauvegarde"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
                              HorizontalAlignment="Center"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding EditDeleteSaveFileCommand}"/>
+                             Command="{Binding EditSaveFileCommand}"/>
+                
+
 
                 <RadioButton Content="Exécuter un ou plusieurs&#xA; travaux de sauvegarde"
                              Height="50"
@@ -89,6 +91,13 @@
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding RunSaveFileCommand}"/>
 
+                <RadioButton Content="Supprimer un travail de &#xA;sauvegarde"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             HorizontalAlignment="Center"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding DeleteSaveFileCommand}"/>
             </StackPanel>
 
             <Button 
