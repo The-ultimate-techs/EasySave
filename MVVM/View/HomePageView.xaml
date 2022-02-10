@@ -4,10 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EasySave.MVVM.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" Height="454" Width="775">
 
-    <Grid Margin="20,20,20,0">
+    <Grid Margin="0,0,15,0">
 
         <!--Visual management with Column : defined-->
         <Grid.ColumnDefinitions>
@@ -20,7 +19,7 @@
 
         <!--Visual management with Row : defined-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="170"/>
+            <RowDefinition Height="185"/>
             <RowDefinition Height="300"/>
         </Grid.RowDefinitions>
 
@@ -49,7 +48,7 @@
 
                 <RectangleGeometry RadiusX="10"
                                    RadiusY="10"
-                                   Rect="2,3,745,145"/>
+                                   Rect="2,3,750,145"/>
             </Border.Clip>
             <Grid Margin="0,0,2,2">
                 <StackPanel Margin="0,0,1,258">
@@ -104,7 +103,7 @@
         <!--Second TextBox about CryptoSoft-->
         <Border Grid.Column="0"
                 Grid.Row="1"
-                Margin="5,0,189,0" Height="300" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                Margin="5,0,189,0" Height="300" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
 
             <Border.RenderTransform>
                 <TransformGroup>
@@ -142,20 +141,20 @@
                                Margin="2,5,0,100" 
                                TextAlignment="Justify"
                                Padding="2" Height="126"/>
-                
-            <Image Width="70"
+
+                <Image Width="70"
                    Height="70"
                    Source="../../Resource/chiffrement.png" 
                    Margin="-350,-98,-450,250"/>
-            
+
             </StackPanel>
-            
+
         </Border>
 
         <!--Third TextBox about ? -->
         <Border Grid.Column="1"
                 Grid.Row="1"
-                Margin="5,0,189,0" Height="300" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                Margin="8,0,189,0" Height="300" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
 
             <Border.RenderTransform>
                 <TransformGroup>
@@ -207,7 +206,7 @@
         <!--Fourth TextBox about ? -->
         <Border Grid.Column="2"
                 Grid.Row="1"
-                Margin="5,0,189,0" Height="300" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                Margin="8,0,189,0" Height="300" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
 
             <Border.RenderTransform>
                 <TransformGroup>
@@ -259,7 +258,7 @@
         <!--Fith TextBox about ? -->
         <Border Grid.Column="3"
                 Grid.Row="1"
-                Margin="5,0,189,0" Height="300" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
+                Margin="8,0,189,0" Height="300" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2">
 
             <Border.RenderTransform>
                 <TransformGroup>
