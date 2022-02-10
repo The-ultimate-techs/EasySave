@@ -64,7 +64,7 @@
                              FontSize="14"
                              HorizontalAlignment="Center"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding CreateSafeFileCommand}"/>
+                             Command="{Binding CreateSafeFileCommand}" Checked="RadioButton_Checked"/>
 
                 <RadioButton Content="Editer/supprimer un&#xA; travail de sauvegarde"
                              Height="50"
