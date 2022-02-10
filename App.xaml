@@ -18,7 +18,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type Viewmomdel:CreateSaveFileViewModel}" >
-                <View:CreateSaveFileView/>
+                <View:CreateSaveFileView />
             </DataTemplate>
             <DataTemplate DataType="{x:Type Viewmomdel:EditDeleteSaveFileViewModel}" >
                 <View:EditDeleteSaveFileView/>

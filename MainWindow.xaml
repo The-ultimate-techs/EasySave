@@ -16,8 +16,11 @@
 
     <Window.DataContext>
         <local:MainViewModel/>
+        
     </Window.DataContext>
 
+    
+    
 
     <Border Background="#272537"
             CornerRadius="10">
@@ -131,7 +134,8 @@
                     Margin="20,0,0,0"
                     Tag="Search"
                     Width="300" 
-                    Height="30"/>
+                    Height="30"
+                    />
 
                 <Button
                 x:Name="Search"

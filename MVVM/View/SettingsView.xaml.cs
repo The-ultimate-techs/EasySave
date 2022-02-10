@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -17,12 +18,18 @@ namespace EasySave.MVVM.View
     /// Logique d'interaction pour SettingsView.xaml
     /// </summary>
     public partial class SettingsView : UserControl
+
     {
+
+        
+
         public SettingsView()
         {
+            
             InitializeComponent();
         }
 
+     
         private void SearchClick(object sender, RoutedEventArgs e)
         {
 
@@ -46,8 +53,10 @@ namespace EasySave.MVVM.View
         private void Processlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+
         }
 
-
+       
+  
     }
 }

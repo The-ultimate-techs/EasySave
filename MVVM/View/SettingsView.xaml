@@ -3,10 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:EasySave.MVVM.View"
+             xmlns:local="clr-namespace:EasySave"
+             xmlns:Viewmomdel="clr-namespace:EasySave.MVVM.ViewModel"
+             xmlns:View="clr-namespace:EasySave.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="500" 
              d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <Viewmomdel:SettingsViewModel/>
+    </UserControl.DataContext>
+    
+    
+
+
 
     <Grid Margin="20,20,20,0">
 
@@ -158,7 +168,8 @@
                       HorizontalAlignment="Left"
                       Width="185" 
                      Margin="15,40,0,22"
-                     Style="{StaticResource listBoxStyle}"/>
+                     Style="{StaticResource listBoxStyle}"
+                      ItemsSource="{Binding ExtensionToEncryptlist}"/>
 
 
             <TextBlock Text="ajouter un logiciel metier"
@@ -234,20 +245,15 @@
                        TextAlignment="Center"/>
 
             <ListBox Grid.Row="2" 
-                      Grid.Column="2" 
-                      Name="Processlist" 
+                     Grid.Column="2" 
+                     Name="SoftwarePackagelist" 
                      HorizontalAlignment="Left"
-                      Width="185" 
+                     Width="185" 
                      Margin="15,40,0,22" 
-                     Style="{StaticResource listBoxStyle}" SelectionChanged="Processlist_SelectionChanged">
-
-                <ListBoxItem 
-                    >Orange</ListBoxItem>
-                <ListBoxItem>Green</ListBoxItem>
-                <ListBoxItem>Blue</ListBoxItem>
-                <ListBoxItem>Gray</ListBoxItem>
-                <ListBoxItem>LightGray</ListBoxItem>
-                <ListBoxItem>Red</ListBoxItem>
+                     Style="{StaticResource listBoxStyle}" SelectionChanged="Processlist_SelectionChanged"
+                     ItemsSource="{Binding SoftwarePackageList}">
+                
+           
             </ListBox>
 
 
