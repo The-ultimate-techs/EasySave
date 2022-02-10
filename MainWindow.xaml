@@ -94,7 +94,8 @@
                 Click="SettingsClick" 
                 ClickMode="Release"
                 Style="{StaticResource CustomControlButton}"
-                Command="{Binding SettingsCommand}">
+                Command="{Binding SettingsCommand}"
+ >
 
                 <StackPanel 
                     Orientation="Horizontal"
@@ -127,8 +128,10 @@
                 <TextBox
                     Style="{StaticResource ModernTextbox}" 
                     TextChanged="TextBox_TextChanged"
-                    Margin="20,0,0,0" 
-                    Width="300"/>
+                    Margin="20,0,0,0"
+                    Tag="Search"
+                    Width="300" 
+                    Height="30"/>
 
                 <Button
                 x:Name="Search"
