@@ -16,6 +16,7 @@
     <None Remove="Resource\executif.png" />
     <None Remove="Resource\france.png" />
     <None Remove="Resource\idee.png" />
+    <None Remove="Resource\logo.png" />
     <None Remove="Resource\search.png" />
     <None Remove="Resource\setting.png" />
     <None Remove="Resource\setting2.png" />
@@ -34,6 +35,7 @@
     <Resource Include="Resource\executif.png" />
     <Resource Include="Resource\france.png" />
     <Resource Include="Resource\idee.png" />
+    <Resource Include="Resource\logo.png" />
     <Resource Include="Resource\search.png" />
     <Resource Include="Resource\setting.png" />
     <Resource Include="Resource\setting2.png" />
