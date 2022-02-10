@@ -5,9 +5,144 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EasySave.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Background="white">
-    <Grid>
-            
+             d:DesignHeight="500" 
+             d:DesignWidth="800">
+    <Grid Margin="20,20,20,0">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                Margin="10,10,10,0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="#4F42F5" Offset="0.0"/>
+                    <GradientStop Color="#C072F8" Offset="1.3"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Border.Clip>
+                <RectangleGeometry RadiusX="10"
+                                   RadiusY="10"
+                                   Rect="0,0,230,460"/>
+            </Border.Clip>
+
+            <Grid>
+                <StackPanel>
+                    <TextBlock Text="Instruction 1"
+                               Foreground="white"
+                               FontSize="15" 
+                               Margin="10,10,0,0"/>
+
+                    <TextBlock Text="Description Instruction 1"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
+                </StackPanel>
+                <Image Width="120"
+                       Height="120"
+                       Source="../../Resource/idee.png" 
+                       Margin="140,360,0,0"/>
+
+            </Grid>
+        </Border>
+
+        <Grid Grid.Column="1"
+                  Margin="10,-45,0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="252"/>
+                <ColumnDefinition Width="168"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="46"/>
+                <RowDefinition Height ="239"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+
+
+        </Grid>
+
+        <TextBlock Text="Nom du travail de travail que vous souhaitez créer :" 
+                       Grid.Column="1" 
+                       Foreground="white"
+                       FontSize="20" 
+                       TextAlignment="Left" Margin="18,15,8,431"/>
+
+        <TextBlock Text="Chemin du dossier source :" 
+                       Grid.Column="1" 
+                       Foreground="white"
+                       FontSize="20" 
+                       TextAlignment="Left" Margin="18,104,8,342"/>
+
+        <TextBlock Text="Chemin du dossier destination :" 
+                       Grid.Column="1" 
+                       Foreground="white"
+                       FontSize="20" 
+                       TextAlignment="Left" Margin="13,193,13,253"/>
+
+        <TextBlock Text="Type de sauvegade souhaitée :" 
+                       Grid.Column="1" 
+                       Foreground="white"
+                       FontSize="20" 
+                       TextAlignment="Left" Margin="13,276,13,170"/>
+
+        <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Top"
+                         Margin="240,53,190,0" Grid.ColumnSpan="2">
+
+            <TextBox 
+                           TextWrapping="Wrap"
+                           Tag="Save File Name..."
+                           Style="{StaticResource ModernTextbox}" 
+                           IsReadOnly="False"
+                           x:Name="SaveFileName" Width="282"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Top"
+                         Margin="84,450,84,0" Grid.Column="1">
+            <Button x:Name="BrowseButton"
+                        Content="Créer !"
+                        Click="ButtonClick"
+                        Style="{StaticResource CustomAppButton}"
+                        RenderTransformOrigin="1.047,0.821" Height="20" Width="150"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Bottom"
+                         Margin="240,53,190,310" Grid.ColumnSpan="2">
+            <TextBox 
+                           TextWrapping="Wrap"
+                           Tag="Source Path..."
+                           Style="{StaticResource ModernTextbox}" 
+                           IsReadOnly="False"
+                           x:Name="PathSource" Width="282"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Bottom"
+                         Margin="240,53,190,220" Grid.ColumnSpan="2">
+            <TextBox 
+                           TextWrapping="Wrap"
+                           Tag="Destination Path..."
+                           Style="{StaticResource ModernTextbox}" 
+                           IsReadOnly="False"
+                           x:Name="DestPath" Width="282"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Bottom"
+                         Margin="300,53,0,130" Grid.ColumnSpan="2">
+            <RadioButton x:Name="Diferential" Checked="WriteText2" Foreground="white" FontSize="17" Content="Différentiel"/>
+            <RadioButton x:Name="Complete" Checked="WriteText1" Foreground="white" FontSize="17" Content="Complète"/>
+        </StackPanel>
+        
     </Grid>
 </UserControl>
+
+       
