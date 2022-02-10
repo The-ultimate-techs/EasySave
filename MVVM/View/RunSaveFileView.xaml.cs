@@ -22,5 +22,15 @@ namespace EasySave.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void Processlist_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
