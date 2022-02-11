@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace EasySave
+namespace EasySave.MVVM.Model
 {
     public class FileSave
     {

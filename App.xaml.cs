@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EasySave.MVVM.View;
+using EasySave.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +15,6 @@ namespace EasySave
     /// </summary>
     public partial class App : Application
     {
+      
     }
 }
