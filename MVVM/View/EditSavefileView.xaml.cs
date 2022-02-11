@@ -22,5 +22,35 @@ namespace EasySave.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void SaveFileName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void PathSource_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void DestPath_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void WriteText1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
