@@ -40,8 +40,8 @@
                                FontSize="12" 
                                Margin="10,5,0,0"/>
                 </StackPanel>
-                <Image Width="100"
-                       Height="100"
+                <Image Width="110"
+                       Height="110"
                        Source="../../Resource/crayon.png" 
                        Margin="140,360,0,0"/>
 
@@ -66,46 +66,51 @@
 
         </Grid>
 
-        <TextBlock Text="Nom du travail de travail que &#x0a;vous souhaitez créer :" 
+        <TextBlock Text="Nom du travail de travail que vous souhaitez créer :" 
                        Grid.Column="1" 
                        Foreground="white"
                        FontSize="20" 
-                       TextAlignment="Left" Margin="230,2,0,413"/>
+                       TextAlignment="Left" Margin="18,15,8,431"/>
 
         <TextBlock Text="Chemin du dossier source :" 
                        Grid.Column="1" 
                        Foreground="white"
                        FontSize="20" 
-                       TextAlignment="Left" Margin="236,104,8,342"/>
+                       TextAlignment="Left" Margin="18,104,8,342"/>
 
-        <TextBlock Text="Chemin du dossier destina-&#x0a;tion :" 
+        <TextBlock Text="Chemin du dossier destination :" 
                        Grid.Column="1" 
                        Foreground="white"
                        FontSize="20" 
-                       TextAlignment="Left" Margin="236,193,13,228"/>
+                       TextAlignment="Left" Margin="13,193,13,253"/>
 
         <TextBlock Text="Type de sauvegade souhaitée :" 
                        Grid.Column="1" 
                        Foreground="white"
                        FontSize="20" 
-                       TextAlignment="Left" Margin="230,288,13,158"/>
+                       TextAlignment="Left" Margin="13,276,13,170"/>
 
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
-                         Margin="480,70,0,0" Grid.ColumnSpan="2">
-            <TextBox 
-                           TextWrapping="Wrap"
-                           Tag="Save File Name..."
-                           Style="{StaticResource ModernTextbox}" 
-                           IsReadOnly="False"
-                           x:Name="SaveFileName" Width="282" TextChanged="SaveFileName_TextChanged"/>
+                         Margin="240,53,190,0" Grid.ColumnSpan="2">
+
+            <ComboBox Margin="25,15,25,300"
+                      IsEditable="True"
+                      Text="--Sélectionnez le travail de sauvegarde--" SelectionChanged="ComboBox_SelectionChanged_2"
+                      >
+                <ComboBoxItem>Travail 1</ComboBoxItem>
+                <ComboBoxItem>Travail 2</ComboBoxItem>
+                
+
+            </ComboBox>
+            
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
-                         Margin="265,450,35,0" Grid.Column="1">
+                         Margin="84,450,84,0" Grid.Column="1">
             <Button x:Name="BrowseButton"
-                        Content="Valider les modifications !"
+                        Content="Créer !"
                         Click="ButtonClick"
                         Style="{StaticResource CustomAppButton}"
                         RenderTransformOrigin="1.047,0.821" Height="20" Width="150"/>
@@ -113,29 +118,29 @@
 
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Bottom"
-                         Margin="480,53,0,310" Grid.ColumnSpan="2">
+                         Margin="240,53,190,310" Grid.ColumnSpan="2">
             <TextBox 
                            TextWrapping="Wrap"
                            Tag="Source Path..."
                            Style="{StaticResource ModernTextbox}" 
                            IsReadOnly="False"
-                           x:Name="PathSource" Width="282" TextChanged="PathSource_TextChanged"/>
+                           x:Name="PathSource" Width="282"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Bottom"
-                         Margin="480,53,0,200" Grid.ColumnSpan="2">
+                         Margin="240,53,190,220" Grid.ColumnSpan="2">
             <TextBox 
                            TextWrapping="Wrap"
                            Tag="Destination Path..."
                            Style="{StaticResource ModernTextbox}" 
                            IsReadOnly="False"
-                           x:Name="DestPath" Width="282" TextChanged="DestPath_TextChanged"/>
+                           x:Name="DestPath" Width="282"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Bottom"
-                         Margin="480,53,0,120" Grid.ColumnSpan="2">
+                         Margin="300,53,0,130" Grid.ColumnSpan="2">
             <RadioButton x:Name="Diferential" Checked="WriteText2" Foreground="white" FontSize="17" Content="Différentiel"/>
             <RadioButton x:Name="Complete" Checked="WriteText1" Foreground="white" FontSize="17" Content="Complète"/>
         </StackPanel>
