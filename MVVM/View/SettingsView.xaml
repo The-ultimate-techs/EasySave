@@ -13,8 +13,8 @@
     <UserControl.DataContext>
         <Viewmomdel:SettingsViewModel/>
     </UserControl.DataContext>
-    
-    
+
+
 
 
 
@@ -117,12 +117,14 @@
                        TextAlignment="Center"/>
 
             <ListBox Grid.Row="1" 
-                     Grid.Column="0" 
-                      Name="ExtensionsList" 
-                      HorizontalAlignment="Left"
-                      Width="185" 
-                     Margin="10,40,0,22" SelectionChanged="ExtensionsList_SelectionChanged" 
-                     Style="{StaticResource listBoxStyle}"/>
+                     Grid.Column="0"
+                     Name="ExtensionsList" 
+                     HorizontalAlignment="Left"
+                     Width="185" 
+                     Margin="15,40,0,22"
+                     SelectedItem="{Binding ExtensionSelected}"
+                     Style="{StaticResource listBoxStyle}"
+                     ItemsSource="{Binding ExtensionList}"/>
 
 
             <StackPanel Orientation="Vertical"
@@ -136,20 +138,24 @@
                     x:Name="Add"
                     Height="25" 
                     Width="80"
-                    Click="SearchClick" 
+                    Click="Add1Click" 
                     ClickMode="Release"
                     Content="Add >>"
-                    Style="{StaticResource CustomAppButton}"/>
+                    Style="{StaticResource CustomAppButton}"
+                    Command="{Binding Add1Command}"/>
 
                 <Button
                     x:Name="Remove"
                     Height="25"
                     Width="80"
                     Margin="0,15,0,0"
-                    Click="SearchClick" 
+                    Click="Remove1Click" 
                     ClickMode="Release"
                     Content="&lt;&lt; Remove"
-                    Style="{StaticResource CustomAppButton}"/>
+                    
+                    Style="{StaticResource CustomAppButton}"
+                    Command="{Binding Remove1Command}"/>
+                
 
             </StackPanel>
 
@@ -168,8 +174,10 @@
                       HorizontalAlignment="Left"
                       Width="185" 
                      Margin="15,40,0,22"
+                     SelectedItem="{Binding ExtensionToEncryptSelected}"
+                     
                      Style="{StaticResource listBoxStyle}"
-                      ItemsSource="{Binding ExtensionToEncryptlist}"/>
+                     ItemsSource="{Binding ExtensionToEncryptlist}"/>
 
 
             <TextBlock Text="ajouter un logiciel metier"
@@ -189,13 +197,14 @@
 
 
                 <TextBox   Margin="20,0,20,0" 
-                           TextWrapping="Wrap"
+                           Width="170"
                            Tag="Path to the process"
                            Style="{StaticResource ModernTextbox}" 
-                           IsReadOnly="False"
+                           IsReadOnly="True"
+                           Text="{Binding SoftwarePath}"
                            Name="FileNameTextBox"/>
-             
-                
+
+
 
                 <Button x:Name="BrowseButton"
                         Content="Browse a file" 
@@ -218,20 +227,22 @@
                     x:Name="Add2"
                     Height="25" 
                     Width="80"
-                    Click="SearchClick" 
+                    Click="Add2Click" 
                     ClickMode="Release"
                     Content="Add"
-                    Style="{StaticResource CustomAppButton}"/>
+                    Style="{StaticResource CustomAppButton}"
+                    Command="{Binding Add2Command}"/>
 
                 <Button
                         x:Name="Remove2"
                         Height="25"
                         Width="80"
                         Margin="0,15,0,0"
-                        Click="SearchClick" 
+                        Click="Remove2Click" 
                         ClickMode="Release"
                         Content="Remove"
-                    Style="{StaticResource CustomAppButton}"/>
+                        Style="{StaticResource CustomAppButton}"
+                        Command="{Binding Remove2Command}"/>
 
 
             </StackPanel>
@@ -250,10 +261,11 @@
                      HorizontalAlignment="Left"
                      Width="185" 
                      Margin="15,40,0,22" 
+                     SelectedItem="{Binding SoftwareToRemove}"
                      Style="{StaticResource listBoxStyle}" SelectionChanged="Processlist_SelectionChanged"
                      ItemsSource="{Binding SoftwarePackageList}">
-                
-           
+
+
             </ListBox>
 
 
@@ -262,8 +274,8 @@
 
 
     </Grid>
-    
-    
-    
-    
+
+
+
+
 </UserControl>
