@@ -22,5 +22,15 @@ namespace EasySave.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void SearchClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_SelectionChanged_2(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

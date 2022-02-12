@@ -88,7 +88,7 @@
             Content="Search folder..."
             Click="ButtonClick"
             Style="{StaticResource CustomAppButton}"
-            RenderTransformOrigin="1.047,0.821" Height="20" Margin="320,239,103,224" Grid.Column="1"/>
+            RenderTransformOrigin="1.047,0.821" Height="20" Margin="341,239,103,224" Grid.Column="1"/>
 
         <TextBlock Text="Type de sauvegade souhaitée :" 
                        Grid.Column="1" 
@@ -100,7 +100,7 @@
                         Content="Search folder..."
                         Click="ButtonClick"
                         Style="{StaticResource CustomAppButton}"
-                        RenderTransformOrigin="1.047,0.821" Height="20" Margin="320,149,103,314" Grid.Column="1"/>
+                        RenderTransformOrigin="1.047,0.821" Height="20" Margin="341,149,103,314" Grid.Column="1"/>
 
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
