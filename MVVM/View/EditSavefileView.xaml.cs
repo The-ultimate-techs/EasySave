@@ -67,5 +67,10 @@ namespace EasySave.MVVM.View
         {
 
         }
+
+        private void SearchClick(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

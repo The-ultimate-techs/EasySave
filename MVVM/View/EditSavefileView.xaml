@@ -83,12 +83,24 @@
                        Foreground="white"
                        FontSize="20" 
                        TextAlignment="Left" Margin="13,193,13,253"/>
+        
+        <Button x:Name="BrowseButton_2"
+            Content="Search folder..."
+            Click="ButtonClick"
+            Style="{StaticResource CustomAppButton}"
+            RenderTransformOrigin="1.047,0.821" Height="20" Margin="320,239,103,224" Grid.Column="1"/>
 
         <TextBlock Text="Type de sauvegade souhaitée :" 
                        Grid.Column="1" 
                        Foreground="white"
                        FontSize="20" 
                        TextAlignment="Left" Margin="13,276,13,170"/>
+            
+        <Button x:Name="BrowseButton"
+                        Content="Search folder..."
+                        Click="ButtonClick"
+                        Style="{StaticResource CustomAppButton}"
+                        RenderTransformOrigin="1.047,0.821" Height="20" Margin="320,149,103,314" Grid.Column="1"/>
 
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
@@ -109,11 +121,16 @@
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
                          Margin="84,450,84,0" Grid.Column="1">
-            <Button x:Name="BrowseButton"
-                        Content="Créer !"
-                        Click="ButtonClick"
-                        Style="{StaticResource CustomAppButton}"
-                        RenderTransformOrigin="1.047,0.821" Height="20" Width="150"/>
+
+            <Button
+                    x:Name="Modify1"
+                    Height="20" 
+                    Width="150"
+                    Click="SearchClick" 
+                    ClickMode="Release"
+                    Content="Valider vos modifications !"
+                    Style="{StaticResource CustomAppButton}"/>
+            
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
