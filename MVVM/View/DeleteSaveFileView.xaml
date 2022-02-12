@@ -65,10 +65,10 @@
 
         </Grid>
 
-        <TextBlock Text="Nom du travail de travail que vous souhaitez créer :" 
+        <TextBlock Text="Nom du travail de travail que vous souhaitez supprimer :" 
                        Grid.Column="1" 
                        Foreground="white"
-                       FontSize="20" 
+                       FontSize="19.5" 
                        TextAlignment="Left" Margin="18,15,8,431"/>
 
         <StackPanel Orientation="Vertical"
