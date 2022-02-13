@@ -23,7 +23,7 @@ namespace EasySave.MVVM.View
             InitializeComponent();
         }
 
-        private void ButtonClick(object sender, RoutedEventArgs e)
+        private void ButtonCreate(object sender, RoutedEventArgs e)
         {
 
         }
