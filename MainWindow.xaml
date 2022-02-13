@@ -19,8 +19,9 @@
         
     </Window.DataContext>
 
-    
-    
+
+
+
 
     <Border Background="#272537"
             CornerRadius="10">
@@ -172,21 +173,29 @@
                 Grid.Column="1"
                 Opacity="1"/>
 
+            <Button HorizontalAlignment="Left"
+                    Height="35" 
+                    Grid.Column="1"
+                    Margin="690,0,0,22"
+                    VerticalAlignment="Center"
+                    Width="50" 
+                    x:Name="ChangeLanguageButton"
+                    Tag="{Binding Language}"
+                    Style="{StaticResource InvisibleButton}"
+                    Command="{Binding ChangeLanguage}">
+                
             <local:ToggleButton 
                 x:Name="Bu" 
-                HorizontalAlignment="Left"
-                Height="30" 
-                Grid.Column="1"
-                Margin="690,0,0,22"
-                VerticalAlignment="Center"
                 Width="50"
+                Height="30"
                 MouseLeftButtonDown="Bu_MouseLeftButtonDown" 
                 Loaded="Bu_Loaded"/>
+                
+            </Button>
 
             <Image 
                 x:Name="France" 
                 Margin="640,0,0,22"
-                
                 Height="30" 
                 Width="30"
                 Source="Resource/france.png"

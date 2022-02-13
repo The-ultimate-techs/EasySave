@@ -24,15 +24,32 @@ namespace EasySave
         Thickness RightSide = new Thickness(0, 0, -39, 0);
         SolidColorBrush Off = new SolidColorBrush(Color.FromRgb(53, 69, 64));
         SolidColorBrush On = new SolidColorBrush(Color.FromRgb(34, 32, 47));
-        private bool Toggled = false;
+        private bool Toggled ;
 
         public ToggleButton()
         {
+            
+      
+
             InitializeComponent();
-            Back.Fill = Off;
-            Toggled = false;
-            Dot.Margin = LeftSide;
+            if (Back.Tag.ToString() == "en-US")
+            {
+
+                Back.Fill = Off;
+                Toggled = false;
+                Dot.Margin = LeftSide;
+
+            } if(Back.Tag.ToString() == "fr-FR")
+            {
+                    Back.Fill = On;
+                    Toggled = true;
+                    Dot.Margin = RightSide;
+            }
+
+        
         }
+
+        
 
         public bool Toggled1 { get => Toggled; set => Toggled = value; }
 
@@ -45,7 +62,7 @@ namespace EasySave
                 Dot.Margin = RightSide;
 
             }
-            else
+            else 
             {
 
                 Back.Fill = Off;

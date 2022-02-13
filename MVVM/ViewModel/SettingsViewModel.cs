@@ -114,7 +114,7 @@ namespace EasySave.MVVM.ViewModel
 
         public void Reload()
         {
-            SettingManager.Getsettings().Language = Language;
+            
             ExtensionToEncryptlist.Clear();
             SoftwarePackageList.Clear();
             ExtensionList.Clear();

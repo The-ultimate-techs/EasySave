@@ -1,4 +1,5 @@
-﻿using EasySave.MVVM.ViewModel;
+﻿using EasySave.MVVM.Model;
+using EasySave.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,9 +9,9 @@ namespace EasySave
     class MainViewModel : ObservableObject
     {
 
-        
 
-
+        public object Language { get; set; }
+        SettingManager SettingManager ;
 
 
 
@@ -20,6 +21,7 @@ namespace EasySave
         public RelayCommand HomePageCommand { get; set; }
         public RelayCommand RunSaveFileCommand { get; set; }
         public RelayCommand SettingsCommand { get; set; }
+        public RelayCommand ChangeLanguage { get; set; }
 
 
 
@@ -44,6 +46,7 @@ namespace EasySave
 
 
 
+
         //Constructor
         public MainViewModel()
         {
@@ -53,9 +56,10 @@ namespace EasySave
             HomePageVM = new HomePageViewModel();
             RunSaveFileVM = new RunSaveFileViewModel();
             SettingsVM = new SettingsViewModel();
+            SettingManager = new SettingManager();
             CurrentView = HomePageVM;
-
-           
+            reload();
+            
 
 
             CreateSaveFileCommand = new RelayCommand(o =>
@@ -85,6 +89,28 @@ namespace EasySave
                
 
             });
+
+
+            ChangeLanguage = new RelayCommand(o =>
+            {
+
+                if (Language.ToString() == "en-US")
+                {
+                    SettingManager.SetLanguage("fr-FR"); 
+                }
+
+                if (Language.ToString() == "fr-FR")
+                {
+                    SettingManager.SetLanguage("en-US");
+                }
+
+
+                reload();
+            });
+        }
+        public void reload()
+        {
+            Language = SettingManager.Getsettings().Language;
         }
     }
 }

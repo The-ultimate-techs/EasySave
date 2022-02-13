@@ -23,6 +23,25 @@ namespace EasySave
         public MainWindow()
         {
             InitializeComponent();
+
+            if (ChangeLanguageButton.Tag.ToString() == "fr-FR")
+            {
+                France.Opacity = 1;
+                US.Opacity = 0.2;
+                
+
+
+
+            }
+            if (ChangeLanguageButton.Tag.ToString() == "en-US")
+            {
+
+                France.Opacity = 0.2;
+                US.Opacity = 1;
+               
+            }
+
+
         }
 
         private void Bu_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -31,6 +50,8 @@ namespace EasySave
             {
                 France.Opacity = 1;
                 US.Opacity = 0.2;
+                Bu.Tag = "fr-FR";
+                
 
 
             }
@@ -39,6 +60,7 @@ namespace EasySave
 
                 France.Opacity = 0.2;
                 US.Opacity = 1;
+                Bu.Tag = "en-US";
             }
 
 
@@ -46,12 +68,14 @@ namespace EasySave
 
         private void Bu_Loaded(object sender, RoutedEventArgs e)
         {
+            
 
         }
 
         void CloseClick(object sender, RoutedEventArgs e)
         {
             this.Close();
+            
 
         }
 
@@ -98,5 +122,7 @@ namespace EasySave
         {
 
         }
+
+
     }
 }

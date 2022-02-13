@@ -73,5 +73,26 @@ namespace EasySave.MVVM.Model
 
 
         }
+
+
+        public void SetLanguage( string language)
+        {
+            Settingjson Settingjson = new Settingjson();
+
+                       
+            Settingjson = Getsettings();
+
+            Settingjson.Language = language;
+            
+
+            string json = JsonConvert.SerializeObject(Settingjson, Formatting.Indented);
+
+            using (StreamWriter sw = File.CreateText(SettingJsonPath))
+            {
+
+                sw.WriteLine(json);
+                sw.Close();
+            }
+        }
     }
 }
