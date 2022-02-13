@@ -14,7 +14,7 @@ namespace EasySave.MVVM.ViewModel
         public object SourcePath { get; set; }
         public object DestinationPath { get; set; }
         public bool TypeComplete { get; set; }
-        public bool TypeSequential { get; set; }
+        public bool TypeDifferencial { get; set; }
 
 
 
@@ -48,11 +48,11 @@ namespace EasySave.MVVM.ViewModel
 
         public void Clean()
         {
-            Title = "";
-            SourcePath = "";
-            DestinationPath = "";
-            TypeComplete = false;
-            TypeSequential = false;
+            Title = "azerty";
+            SourcePath = "qsdfgh";
+            DestinationPath = "wxcvb";
+            TypeComplete = true;
+            TypeDifferencial = true;
         }
     }
 }

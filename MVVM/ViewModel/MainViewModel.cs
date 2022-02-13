@@ -2,7 +2,11 @@
 using EasySave.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Reflection;
+using System.Resources;
 using System.Text;
+using System.Threading;
 
 namespace EasySave
 {
@@ -12,7 +16,7 @@ namespace EasySave
 
         public object Language { get; set; }
         SettingManager SettingManager ;
-
+        public ResourceManager rm;
 
 
         //Relay Command for the different views
@@ -50,7 +54,7 @@ namespace EasySave
         //Constructor
         public MainViewModel()
         {
-            
+            rm = new ResourceManager("EasySave.Languages.Strings", Assembly.GetExecutingAssembly());
             CreateSaveFileVM = new CreateSaveFileViewModel();
             EditDeleteSaveFileVM = new EditDeleteSaveFileViewModel();
             HomePageVM = new HomePageViewModel();
@@ -111,6 +115,10 @@ namespace EasySave
         public void reload()
         {
             Language = SettingManager.Getsettings().Language;
+
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(Language.ToString());
+                      
+            
         }
     }
 }

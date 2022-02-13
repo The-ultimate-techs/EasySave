@@ -1,5 +1,6 @@
 ﻿
 using EasySave.MVVM.Model;
+using EasySave;
 using EasySave.MVVM.JsonObjects;
 using Newtonsoft.Json;
 using System;
@@ -7,7 +8,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Text;
-
+using System.Resources;
+using System.Reflection;
 
 namespace EasySave.MVVM.ViewModel
 {
@@ -15,6 +17,7 @@ namespace EasySave.MVVM.ViewModel
     {
 
         SettingManager SettingManager;
+        ResourceManager rm;
 
 
         public string Language { get; set; }
@@ -34,7 +37,12 @@ namespace EasySave.MVVM.ViewModel
         public RelayCommand Remove1Command { get; set; }
         public RelayCommand Add2Command { get; set; }
         public RelayCommand Remove2Command { get; set; }
-     
+
+
+
+
+
+        public object Settings { get; set; }
 
 
 
@@ -48,6 +56,7 @@ namespace EasySave.MVVM.ViewModel
 
         public SettingsViewModel()
         {
+            rm = new ResourceManager("EasySave.Languages.Strings", Assembly.GetExecutingAssembly());
 
             SettingManager = new SettingManager();
             Reload();
@@ -149,6 +158,13 @@ namespace EasySave.MVVM.ViewModel
                 ExtensionList.Remove(ElementToEncrypt);
 
             }
+
+
+            Settings = rm.GetString("Setting");
+
+
+
+
         }
 
 
