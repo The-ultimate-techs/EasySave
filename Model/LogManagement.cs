@@ -55,8 +55,23 @@ namespace EasySave
                 // Create a file to write to.
                 using (StreamWriter sw = File.CreateText(path))
                 {
-                    
-                    sw.WriteLine("[\n { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": " + FileSize(SourceDirectory) + ",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
+                    bool trigger = false;
+                    RunningLogJson obj;
+
+                    obj.SourceFilePath = SourceDirectory;
+                    obj.TargetFilePath = DestinationDirectory;
+                    obj.DestPath = "";
+                    obj.FileSize = FileSize(SourceDirectory);
+                    obj.FileTransferTime = GetTimeDuration();
+                    obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
+                    trigger = true;
+
+                    string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
+                    sw.Write(json);
+                    sw.Close();
+
+
+                    //sw.WriteLine("[\n { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": " + FileSize(SourceDirectory) + ",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
 
                 }
             }
@@ -77,9 +92,17 @@ namespace EasySave
 
                 using (StreamWriter sw = File.AppendText(path))
                 {
-                   
 
+                    obj.SourceFilePath = SourceDirectory;
+                    obj.TargetFilePath = DestinationDirectory;
+                    obj.DestPath = "";
+                    obj.FileSize = FileSize(SourceDirectory);
+                    obj.FileTransferTime = GetTimeDuration();
+                    obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
+                    trigger = true;
                     sw.WriteLine(" { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": "+FileSize(SourceDirectory)+",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
+
+                    string json = JsonConvert.SerializeObject(myJsonList, Formatting.Indented);
 
                 }
             }
@@ -147,6 +170,7 @@ namespace EasySave
             {
 
                 sw.WriteLine(json);
+                sw.Close();
 
             }
 

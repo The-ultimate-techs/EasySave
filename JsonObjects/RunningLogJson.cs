@@ -9,6 +9,10 @@ namespace EasySave
         public string Name { get; set; }
         public string SourceFilePath { get; set; }
         public string TargetFilePath { get; set; }
+        public string DestPath { get; set; }
+        public long FileSize { get; set; }
+        public long FileTransferTime { get; set; }
+        public string Time { get; set; }
         public string State { get; set; }
         public int TotalFilesToCopy { get; set; }
         public long TotalFilesSize { get; set; }
