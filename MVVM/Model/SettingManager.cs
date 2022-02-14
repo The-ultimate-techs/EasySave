@@ -10,7 +10,7 @@ namespace EasySave.MVVM.Model
 {
     class SettingManager : FileSave
     {
-        private string DefaultSettings { get; } = "{\r\n  \"Language\": \"en-US\",\r\n  \"ExtensionToEncryptlist\": [\r\n    \".PDF\",\r\n    \".DOCX\",\r\n    \".HTML\"\r\n  ],\r\n  \"SoftwarePackageList\": [\r\n    \"C:\\\\Windows\\\\System32\\\\calc.exe\"\r\n  ]\r\n}";
+        private string DefaultSettings { get; } = "{\r\n  \"Language\": \"fr-FR\",\r\n  \"ExtensionToEncryptlist\": [\r\n    \".DOCX\",\r\n    \".HTML\",\r\n    \".PDF\"\r\n  ],\r\n  \"SoftwarePackageList\": [\r\n    \"C:\\\\Windows\\\\System32\\\\calc.exe\"\r\n  ],\r\n  \"LogType\": \"JSON\"\r\n}";
             public string SettingJsonPath { get; set; }
         public SettingManager()
         {
@@ -36,7 +36,7 @@ namespace EasySave.MVVM.Model
             return JsonConvert.DeserializeObject<Settingjson>(myJsonFile);
 
         }
-        public void SetSettings(ObservableCollection<string> ExtensionToEncryptlist, ObservableCollection<string> SoftwarePackageList)
+        public void SetSettings(ObservableCollection<string> ExtensionToEncryptlist, ObservableCollection<string> SoftwarePackageList , string LogType)
         {
 
             Settingjson Settingjson = new Settingjson();
@@ -59,6 +59,7 @@ namespace EasySave.MVVM.Model
 
             Settingjson.ExtensionToEncryptlist = ExtensionToEncryptlist1;
             Settingjson.SoftwarePackageList = SoftwarePackageList1;
+            Settingjson.LogType = LogType;
 
             string json = JsonConvert.SerializeObject(Settingjson, Formatting.Indented);
 
@@ -69,13 +70,13 @@ namespace EasySave.MVVM.Model
                 sw.Close();
             }
 
-
+             
 
 
         }
 
 
-        public void SetLanguage( string language)
+        public void SetLanguage(string language)
         {
             Settingjson Settingjson = new Settingjson();
 

@@ -2,7 +2,13 @@
 using EasySave.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Text;
+using System.Threading;
+using System.Windows;
 
 namespace EasySave
 {
@@ -12,7 +18,7 @@ namespace EasySave
 
         public object Language { get; set; }
         SettingManager SettingManager ;
-
+      
 
 
         //Relay Command for the different views
@@ -53,7 +59,14 @@ namespace EasySave
         //Constructor
         public MainViewModel()
         {
-            
+
+      
+
+
+
+
+
+
             CreateSaveFileVM = new CreateSaveFileViewModel();
             DeleteSaveFileVM = new DeleteSaveFileViewModel();
             HomePageVM = new HomePageViewModel();
@@ -120,6 +133,31 @@ namespace EasySave
         public void reload()
         {
             Language = SettingManager.Getsettings().Language;
+            LoadStringResource(Language.ToString());
+
+
+
+
         }
+
+        private void LoadStringResource(string locale)
+        {
+            var resources = new ResourceDictionary();
+
+            resources.Source = new Uri("pack://application:,,,/Languages/Language_" + locale + ".xaml", UriKind.Absolute);
+
+            var current = Application.Current.Resources.MergedDictionaries.FirstOrDefault(
+                             m => m.Source.OriginalString.EndsWith("Strings.xaml"));
+
+
+            if (current != null)
+            {
+                Application.Current.Resources.MergedDictionaries.Remove(current);
+            }
+
+            Application.Current.Resources.MergedDictionaries.Add(resources);
+        }
+
+
     }
 }

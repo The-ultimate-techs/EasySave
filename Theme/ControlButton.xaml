@@ -20,6 +20,11 @@
         </Style.Triggers>
     </Style>
 
+    
+    
+        
+    
+    
     <Style TargetType="{x:Type Button}"
            x:Key="InvisibleButton">
         <Setter Property="Background" Value="Transparent"/>

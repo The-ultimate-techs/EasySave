@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ookii.Dialogs.Wpf;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -21,11 +22,12 @@ namespace EasySave.MVVM.View
         public CreateSaveFileView()
         {
             InitializeComponent();
+
         }
 
-        private void ButtonClick(object sender, RoutedEventArgs e)
+        private void ButtonCreateClick(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void WriteText2(object sender, RoutedEventArgs e)
@@ -37,5 +39,43 @@ namespace EasySave.MVVM.View
         {
 
         }
+
+        private void BrowseButton1Click(object sender, RoutedEventArgs e)
+        {
+
+            VistaFolderBrowserDialog dlg = new VistaFolderBrowserDialog();
+            dlg.ShowNewFolderButton = true;
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                SourcePath.Text =  dlg.SelectedPath;
+                SourcePath.Focus();
+                
+            }
+
+
+
+        }
+
+        private void BrowseButton2Click(object sender, RoutedEventArgs e)
+        {
+
+            VistaFolderBrowserDialog dlg = new VistaFolderBrowserDialog();
+            dlg.ShowNewFolderButton = true;
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                DestPath.Text = dlg.SelectedPath;
+                DestPath.Focus();
+                
+            }
+
+        }
+
+
+
+
     }
 }

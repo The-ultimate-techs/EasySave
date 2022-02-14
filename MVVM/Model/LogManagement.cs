@@ -148,6 +148,7 @@ namespace EasySave.MVVM.Model
             {
 
                 sw.WriteLine(json);
+                sw.Close();
 
             }
 

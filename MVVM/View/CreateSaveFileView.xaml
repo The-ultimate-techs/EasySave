@@ -9,6 +9,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" 
              d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <Viewmomdel:CreateSaveFileViewModel/>
+    </UserControl.DataContext>
+
+
     <Grid Margin="20,20,20,0">
 
         <Grid.ColumnDefinitions>
@@ -69,6 +75,24 @@
 
         </Grid>
 
+        <Button x:Name="BrowseButton"
+                Content="Search folder..."
+                Click="BrowseButton1Click"
+                Style="{StaticResource CustomAppButton}"
+                Margin="355,145,55,310" Grid.Column="1"
+                Height="25"
+                Width="100">
+
+        </Button>
+
+        <Button x:Name="BrowseButton_2"
+                Content="Search folder..."
+                Click="BrowseButton2Click"
+                Style="{StaticResource CustomAppButton}"
+                Margin="355,235,55,220" Grid.Column="1"
+                Height="25"
+                Width="100"/>
+
         <TextBlock Text="Nom du travail de travail que vous souhaitez créer :" 
                        Grid.Column="1" 
                        Foreground="white"
@@ -93,37 +117,46 @@
                        FontSize="20" 
                        TextAlignment="Left" Margin="13,276,13,170"/>
 
-        <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Top"
-                         Margin="240,53,190,0" Grid.ColumnSpan="2">
-
-            <TextBox 
-                           TextWrapping="Wrap"
-                           Tag="Save File Name..."
-                           Style="{StaticResource ModernTextbox}" 
-                           IsReadOnly="False"
-                           x:Name="SaveFileName" Width="282"/>
-        </StackPanel>
 
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
                          Margin="84,450,84,0" Grid.Column="1">
-            <Button x:Name="BrowseButton"
-                        Content="Créer !"
-                        Click="ButtonClick"
-                        Style="{StaticResource CustomAppButton}"
-                        RenderTransformOrigin="1.047,0.821" Height="20" Width="150"/>
+            <Button x:Name="ButtonCreate"
+                    Content="Créer !"
+                    Click="ButtonCreateClick"
+                    Style="{StaticResource CustomAppButton}"
+                    RenderTransformOrigin="1.047,0.821" 
+                    Height="20" Width="150"
+                    Command="{Binding CreateCommand}"/>
         </StackPanel>
 
+        <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Top"
+                         Margin="13,60,55,0" Grid.Column="1"
+                    >
+            
+                <TextBox x:Name="Title" 
+                         TextWrapping="Wrap"
+                         Tag="Enter the Title here ..."
+                         Text="{Binding Title}"
+                         Style="{StaticResource ModernTextbox}" 
+                         IsReadOnly="False"
+                         Height="30"
+                         Width="438"/>
+            
+        </StackPanel>
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Bottom"
                          Margin="240,53,190,310" Grid.ColumnSpan="2">
             <TextBox 
                            TextWrapping="Wrap"
                            Tag="Source Path..."
+                           Text="{Binding SourcePath}"
                            Style="{StaticResource ModernTextbox}" 
-                           IsReadOnly="False"
-                           x:Name="PathSource" Width="282"/>
+                           IsReadOnly="True"
+                           x:Name="SourcePath"
+                           Height="30"
+                           Width="282"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
@@ -132,18 +165,20 @@
             <TextBox 
                            TextWrapping="Wrap"
                            Tag="Destination Path..."
+                           Text="{Binding DestinationPath}"
                            Style="{StaticResource ModernTextbox}" 
-                           IsReadOnly="False"
+                           IsReadOnly="True"
+                           Height="30"
                            x:Name="DestPath" Width="282"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Bottom"
-                         Margin="300,53,0,130" Grid.ColumnSpan="2">
-            <RadioButton x:Name="Diferential" Checked="WriteText2" Foreground="white" FontSize="17" Content="Différentiel"/>
-            <RadioButton x:Name="Complete" Checked="WriteText1" Foreground="white" FontSize="17" Content="Complète"/>
+                    VerticalAlignment="Bottom"
+                    Margin="300,53,0,110" Grid.ColumnSpan="2">
+            <RadioButton x:Name="Diferential" Checked="WriteText2" Foreground="white" FontSize="17" Content="Différentiel" IsChecked="{Binding TypeDifferencial}"/>
+            <RadioButton x:Name="Complete" Checked="WriteText1" Foreground="white" FontSize="17" Content="Complète" IsChecked="{Binding TypeComplete}"/>
         </StackPanel>
-        
+
     </Grid>
 </UserControl>
 
