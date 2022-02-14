@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EasySave.MVVM.View"
-             mc:Ignorable="d" d:DesignWidth="800" Height="503">
+             mc:Ignorable="d" d:DesignWidth="800" Height="505">
 
     <Grid Margin="20,20,20,0">
 
@@ -88,7 +88,9 @@
             Content="Search folder..."
             Click="ButtonClick"
             Style="{StaticResource CustomAppButton}"
-            RenderTransformOrigin="1.047,0.821" Height="20" Margin="341,239,103,224" Grid.Column="1"/>
+            Margin="355,235,55,220" Grid.Column="1"
+            Height="25"
+            Width="100"/>
 
         <TextBlock Text="Type de sauvegade souhaitée :" 
                        Grid.Column="1" 
@@ -100,13 +102,17 @@
                         Content="Search folder..."
                         Click="ButtonClick"
                         Style="{StaticResource CustomAppButton}"
-                        RenderTransformOrigin="1.047,0.821" Height="20" Margin="341,149,103,314" Grid.Column="1"/>
+                        Margin="355,145,55,310" Grid.Column="1"
+                        Height="25"
+                         Width="100"/>
 
         <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Top"
-                         Margin="240,53,190,0" Grid.ColumnSpan="2">
+                    VerticalAlignment="Top"
+                    Margin="13,60,55,0" 
+                    Grid.Column="1">
 
-            <ComboBox Margin="25,15,25,300"
+            <ComboBox Height="30"
+                      Width="438"
                       IsEditable="True"
                       Text="--Sélectionnez le travail de sauvegarde--" SelectionChanged="ComboBox_SelectionChanged_2"
                       >
@@ -141,6 +147,7 @@
                            Tag="Source Path..."
                            Style="{StaticResource ModernTextbox}" 
                            IsReadOnly="False"
+                           Height="30"
                            x:Name="PathSource" Width="282"/>
         </StackPanel>
 
@@ -149,6 +156,7 @@
                          Margin="240,53,190,220" Grid.ColumnSpan="2">
             <TextBox 
                            TextWrapping="Wrap"
+                           Height="30"
                            Tag="Destination Path..."
                            Style="{StaticResource ModernTextbox}" 
                            IsReadOnly="False"
@@ -156,8 +164,8 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Bottom"
-                         Margin="300,53,0,130" Grid.ColumnSpan="2">
+                    VerticalAlignment="Bottom"
+                    Margin="300,53,0,110" Grid.ColumnSpan="2">
             <RadioButton x:Name="Diferential" Checked="WriteText2" Foreground="white" FontSize="17" Content="Différentiel"/>
             <RadioButton x:Name="Complete" Checked="WriteText1" Foreground="white" FontSize="17" Content="Complète"/>
         </StackPanel>
