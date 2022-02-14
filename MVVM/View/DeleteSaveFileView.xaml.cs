@@ -16,11 +16,21 @@ namespace EasySave.MVVM.View
     /// <summary>
     /// Logique d'interaction pour EditDeleteSaveFileView.xaml
     /// </summary>
-    public partial class EditDeleteSaveFileView : UserControl
+    public partial class DeleteSaveFileView : UserControl
     {
-        public EditDeleteSaveFileView()
+        public DeleteSaveFileView()
         {
             InitializeComponent();
+        }
+
+        private void SearchClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_SelectionChanged_2(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -17,21 +17,24 @@ namespace EasySave
 
         //Relay Command for the different views
         public RelayCommand CreateSaveFileCommand { get; set; }
-        public RelayCommand EditDeleteSaveFileCommand { get; set; }
+        public RelayCommand DeleteSaveFileCommand { get; set; }
         public RelayCommand HomePageCommand { get; set; }
         public RelayCommand RunSaveFileCommand { get; set; }
         public RelayCommand SettingsCommand { get; set; }
         public RelayCommand ChangeLanguage { get; set; }
+        public RelayCommand EditSaveFileCommand { get; set; }
 
 
 
 
         //objects déclartion for the views 
         public CreateSaveFileViewModel CreateSaveFileVM { get; set; }
-        public EditDeleteSaveFileViewModel EditDeleteSaveFileVM { get; set; }
+        public DeleteSaveFileViewModel DeleteSaveFileVM { get; set; }
+        public EditSaveFileViewModel EditSaveFileVM { get; set; }
         public HomePageViewModel HomePageVM { get; set; }
         public RunSaveFileViewModel RunSaveFileVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
+        
 
 
         private object _CurrentView;
@@ -52,11 +55,12 @@ namespace EasySave
         {
             
             CreateSaveFileVM = new CreateSaveFileViewModel();
-            EditDeleteSaveFileVM = new EditDeleteSaveFileViewModel();
+            DeleteSaveFileVM = new DeleteSaveFileViewModel();
             HomePageVM = new HomePageViewModel();
             RunSaveFileVM = new RunSaveFileViewModel();
             SettingsVM = new SettingsViewModel();
             SettingManager = new SettingManager();
+            EditSaveFileVM = new EditSaveFileViewModel();
             CurrentView = HomePageVM;
             reload();
             
@@ -67,9 +71,14 @@ namespace EasySave
                CurrentView = CreateSaveFileVM;
            });
 
-            EditDeleteSaveFileCommand = new RelayCommand(o =>
+            DeleteSaveFileCommand = new RelayCommand(o =>
             {
-                CurrentView = EditDeleteSaveFileVM;
+                CurrentView = DeleteSaveFileVM;
+            });
+
+            EditSaveFileCommand = new RelayCommand(o =>
+            {
+                CurrentView = EditSaveFileVM;
             });
 
             HomePageCommand = new RelayCommand(o =>

@@ -20,8 +20,11 @@
             <DataTemplate DataType="{x:Type Viewmomdel:CreateSaveFileViewModel}" >
                 <View:CreateSaveFileView />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type Viewmomdel:EditDeleteSaveFileViewModel}" >
-                <View:EditDeleteSaveFileView/>
+            <DataTemplate DataType="{x:Type Viewmomdel:DeleteSaveFileViewModel}" >
+                <View:DeleteSaveFileView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type Viewmomdel:EditSaveFileViewModel}" >
+                <View:EditSavefileView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type Viewmomdel:HomePageViewModel}" >
                 <View:HomePageView/>

@@ -20,6 +20,7 @@
     <None Remove="Resource\search.png" />
     <None Remove="Resource\setting.png" />
     <None Remove="Resource\setting2.png" />
+    <None Remove="Resource\supprimer.png" />
     <None Remove="Resource\The-Ultimate-Techs.png" />
     <None Remove="Resource\united-states-of-america.png" />
     <None Remove="Resource\x.png" />
@@ -39,6 +40,7 @@
     <Resource Include="Resource\search.png" />
     <Resource Include="Resource\setting.png" />
     <Resource Include="Resource\setting2.png" />
+    <Resource Include="Resource\supprimer.png" />
     <Resource Include="Resource\The-Ultimate-Techs.png" />
     <Resource Include="Resource\united-states-of-america.png" />
     <Resource Include="Resource\x.png" />
