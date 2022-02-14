@@ -46,7 +46,7 @@
             </Border.Clip>
             <Grid>
                 <StackPanel>
-                    <TextBlock Text="{Binding Settings}"
+                    <TextBlock Text="{DynamicResource Settings}"
                                Foreground="white"
                                FontSize="15" 
                                Margin="10,10,0,0"/>

@@ -13,6 +13,8 @@
                 <ResourceDictionary Source="Theme/ControlButton.xaml"/>
                 <ResourceDictionary Source="Theme/AppButton.xaml"/>
                 <ResourceDictionary Source="Theme/ListTheme.xaml"/>
+                <ResourceDictionary Source="Languages/Language_en-US.xaml"/>
+                <ResourceDictionary Source="Languages/Language_fr-FR.xaml"/>
 
 
             </ResourceDictionary.MergedDictionaries>
