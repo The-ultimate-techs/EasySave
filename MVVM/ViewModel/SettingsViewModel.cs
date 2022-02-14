@@ -17,7 +17,7 @@ namespace EasySave.MVVM.ViewModel
     {
 
         SettingManager SettingManager;
-        ResourceManager rm;
+     
 
 
         public string Language { get; set; }
@@ -30,6 +30,8 @@ namespace EasySave.MVVM.ViewModel
         public object ExtensionToEncryptSelected { get; set; }
         public string SoftwarePath { get; set; }
         public object SoftwareToRemove { get; set; }
+        public bool LogJson { get; set; }
+        public bool LogXml { get; set; }
 
 
 
@@ -38,13 +40,9 @@ namespace EasySave.MVVM.ViewModel
         public RelayCommand Add2Command { get; set; }
         public RelayCommand Remove2Command { get; set; }
 
+        public RelayCommand JsonSelected { get; set; }
 
-
-
-
-        public object Settings { get; set; }
-
-
+        public RelayCommand XMLSelected { get; set; }
 
 
 
@@ -56,10 +54,13 @@ namespace EasySave.MVVM.ViewModel
 
         public SettingsViewModel()
         {
-            rm = new ResourceManager("EasySave.Languages.Strings", Assembly.GetExecutingAssembly());
+            
 
             SettingManager = new SettingManager();
             Reload();
+            string Log = (LogJson == true) ? "JSON" : "XML";
+
+
 
             Add1Command = new RelayCommand(o =>
             {
@@ -68,7 +69,7 @@ namespace EasySave.MVVM.ViewModel
                 {
                     ExtensionToEncryptlist.Add(ExtensionSelected.ToString());
                     ExtensionList.Remove(ExtensionSelected.ToString());
-                    SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList);
+                    SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
                 }
 
 
@@ -80,7 +81,7 @@ namespace EasySave.MVVM.ViewModel
                 {
                     ExtensionList.Add(ExtensionToEncryptSelected.ToString());
                     ExtensionToEncryptlist.Remove(ExtensionToEncryptSelected.ToString());
-                    SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList);
+                    SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
                 }
             });
 
@@ -103,7 +104,7 @@ namespace EasySave.MVVM.ViewModel
                     if (Isthere == false)
                     {
                         SoftwarePackageList.Add(SoftwarePath.ToString());
-                        SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList);
+                        SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
                     }
                 }
 
@@ -114,9 +115,35 @@ namespace EasySave.MVVM.ViewModel
                 if (SoftwareToRemove != null)
                 {
                     SoftwarePackageList.Remove(SoftwareToRemove.ToString());
-                    SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList);
+                    SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
                 }
             });
+
+
+
+            JsonSelected = new RelayCommand(o =>
+            {
+
+                string Log = (LogJson == true) ? "JSON" : "XML";
+                SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
+
+            });
+
+
+            XMLSelected = new RelayCommand(o =>
+            {
+                string Log = (LogJson == true) ? "JSON" : "XML";
+                SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
+
+            });
+
+
+
+
+
+
+
+
 
 
         }
@@ -159,10 +186,22 @@ namespace EasySave.MVVM.ViewModel
 
             }
 
+            if (SettingManager.Getsettings().LogType == "JSON")
+            {
+                LogJson = true;
+                LogXml = false;
 
-            Settings = rm.GetString("Setting");
+            }
+
+            if (SettingManager.Getsettings().LogType == "XML")
+            {
+                LogJson = false;
+                LogXml = true;
+
+            }
 
 
+          
 
 
         }

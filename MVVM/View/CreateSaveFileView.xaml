@@ -117,18 +117,6 @@
                        FontSize="20" 
                        TextAlignment="Left" Margin="13,276,13,170"/>
 
-        <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Top"
-                         Margin="13,60,55,0" Grid.Column="1">
-            <TextBox 
-                           TextWrapping="Wrap"
-                           Tag="Save File Name..."
-                           Style="{StaticResource ModernTextbox}" 
-                           Text="{Binding Title}"
-                           IsReadOnly="False"
-                           Height="25"
-                           x:Name="SaveFileName" Width="438"/>
-        </StackPanel>
 
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
@@ -143,6 +131,21 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Top"
+                         Margin="13,60,55,0" Grid.Column="1"
+                    >
+            
+                <TextBox x:Name="Title" 
+                         TextWrapping="Wrap"
+                         Tag="Enter the Title here ..."
+                         Text="{Binding Title}"
+                         Style="{StaticResource ModernTextbox}" 
+                         IsReadOnly="False"
+                         Height="30"
+                         Width="438"/>
+            
+        </StackPanel>
+        <StackPanel Orientation="Vertical"
                         VerticalAlignment="Bottom"
                          Margin="240,53,190,310" Grid.ColumnSpan="2">
             <TextBox 
@@ -152,7 +155,7 @@
                            Style="{StaticResource ModernTextbox}" 
                            IsReadOnly="True"
                            x:Name="SourcePath"
-                           Height="25"
+                           Height="30"
                            Width="282"/>
         </StackPanel>
 
@@ -165,7 +168,7 @@
                            Text="{Binding DestinationPath}"
                            Style="{StaticResource ModernTextbox}" 
                            IsReadOnly="True"
-                           Height="25"
+                           Height="30"
                            x:Name="DestPath" Width="282"/>
         </StackPanel>
 

@@ -91,5 +91,15 @@ namespace EasySave.MVVM.View
         {
 
         }
+
+        private void WriteText2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText1(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
