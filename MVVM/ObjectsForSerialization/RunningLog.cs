@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EasySave
+namespace EasySave.MVVM.ObjectsForSerialization
 {
-    class RunningLogJson
+    class RunningLog
     {
         public string Name { get; set; }
         public string SourceFilePath { get; set; }
@@ -14,6 +14,6 @@ namespace EasySave
         public long TotalFilesSize { get; set; }
         public int NbFilesLeftToDo { get; set; }
         public int Progression { get; set; }
-
+       
     }
 }

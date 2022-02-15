@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="EasySave.MVVM.View.CreateSaveFileView"
+﻿<UserControl x:Class="EasySave.MVVM.View.DeleteSaveFileView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,17 +6,14 @@
              xmlns:local="clr-namespace:EasySave"
              xmlns:Viewmomdel="clr-namespace:EasySave.MVVM.ViewModel"
              xmlns:View="clr-namespace:EasySave.MVVM.View"
-             mc:Ignorable="d" 
-             d:DesignHeight="500" 
-             d:DesignWidth="800">
+             mc:Ignorable="d" d:DesignWidth="800" Height="505">
+
 
     <UserControl.DataContext>
-        <Viewmomdel:CreateSaveFileViewModel/>
+        <Viewmomdel:DeleteSaveFileViewModel/>
     </UserControl.DataContext>
 
-
     <Grid Margin="20,20,20,0">
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition />
@@ -26,8 +23,8 @@
                 Margin="10,10,10,0">
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                    <GradientStop Color="#4F42F5" Offset="0.0"/>
-                    <GradientStop Color="#C072F8" Offset="1.3"/>
+                    <GradientStop Color="#427AF5" Offset="0.0"/>
+                    <GradientStop Color="#C97AEB" Offset="1.3"/>
                 </LinearGradientBrush>
             </Border.Background>
 
@@ -49,9 +46,9 @@
                                FontSize="12" 
                                Margin="10,5,0,0"/>
                 </StackPanel>
-                <Image Width="120"
-                       Height="120"
-                       Source="../../Resource/idee.png" 
+                <Image Width="110"
+                       Height="110"
+                       Source="../../Resource/supprimer.png" 
                        Margin="140,360,0,0"/>
 
             </Grid>
@@ -75,29 +72,10 @@
 
         </Grid>
 
-        <Button x:Name="BrowseButton"
-                Content="Search folder..."
-                Click="BrowseButton1Click"
-                Style="{StaticResource CustomAppButton}"
-                Margin="355,145,55,310" Grid.Column="1"
-                Height="25"
-                Width="100"/>
-
-
-
-
-        <Button x:Name="BrowseButton_2"
-                Content="Search folder..."
-                Click="BrowseButton2Click"
-                Style="{StaticResource CustomAppButton}"
-                Margin="355,235,55,220" Grid.Column="1"
-                Height="25"
-                Width="100"/>
-
-        <TextBlock Text="Nom du travail de travail que vous souhaitez créer :" 
+        <TextBlock Text="Nom du travail de travail que vous souhaitez supprimer :" 
                        Grid.Column="1" 
                        Foreground="white"
-                       FontSize="20" 
+                       FontSize="19.5" 
                        TextAlignment="Left" Margin="18,15,8,431"/>
 
         <TextBlock Text="Chemin du dossier source :" 
@@ -112,6 +90,9 @@
                        FontSize="20" 
                        TextAlignment="Left" Margin="13,193,13,253"/>
 
+
+
+
         <TextBlock Text="Type de sauvegade souhaitée :" 
                        Grid.Column="1" 
                        Foreground="white"
@@ -119,69 +100,84 @@
                        TextAlignment="Left" Margin="13,276,13,170"/>
 
 
+
+
+        <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Top"
+                    Margin="13,60,55,0" 
+                    Grid.Column="1">
+
+            <ComboBox Height="30"
+                      Width="438"
+                      IsEditable="True"
+                      Text="--Sélectionnez le travail de sauvegarde--" 
+                      SelectionChanged="ComboBox_SelectionChanged"
+                      ItemsSource="{Binding TitleList}"
+                      SelectedItem="{Binding Title}"
+                      IsReadOnly="True"
+                      x:Name ="TitleSelected">
+
+
+
+
+            </ComboBox>
+
+        </StackPanel>
+
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
                          Margin="84,450,84,0" Grid.Column="1">
-            <Button x:Name="ButtonCreate"
-                    Content="Créer !"
-                    Click="ButtonCreateClick"
-                    Style="{StaticResource CustomAppButton}"
-                    RenderTransformOrigin="1.047,0.821" 
-                    Height="20" Width="150"
-                    Command="{Binding CreateCommand}"/>
+
+            <Button
+                    x:Name="Delete1"
+                    Height="20" 
+                    Width="200"
+                    Click="SearchClick" 
+                    ClickMode="Release"
+                    Content="Supprimer ce travail de sauvegarde !"
+                    Command="{Binding DeleteCommand}"
+                    Style="{StaticResource CustomAppButton}"/>
+
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Top"
-                         Margin="13,60,55,0" Grid.Column="1"
-                    >
-            
-                <TextBox x:Name="Title" 
-                         TextWrapping="Wrap"
-                         Tag="Enter the Title here ..."
-                         Text="{Binding Title}"
-                         Style="{StaticResource ModernTextbox}" 
-                         IsReadOnly="False"
-                         Height="30"
-                         Width="438"/>
-            
-        </StackPanel>
-        <StackPanel Orientation="Vertical"
                         VerticalAlignment="Bottom"
-                         Margin="240,53,190,310" Grid.ColumnSpan="2">
+                         Margin="235,0,102,310" Grid.ColumnSpan="2">
             <TextBox 
                            TextWrapping="Wrap"
                            Tag="Source Path..."
-                           Text="{Binding SourcePath}"
                            Style="{StaticResource ModernTextbox}" 
                            IsReadOnly="True"
-                           x:Name="SourcePath"
                            Height="30"
-                           Width="282"/>
+                           Width="438"
+                           Text="{Binding SourcePath}"
+                           x:Name="SourcePath" Margin="25,0,-50,0" TextChanged="SourcePath_TextChanged"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Bottom"
-                         Margin="240,53,190,220" Grid.ColumnSpan="2">
+                         Margin="235,53,102,220" Grid.ColumnSpan="2">
             <TextBox 
                            TextWrapping="Wrap"
+                           Height="30"
+                           Width="438"
                            Tag="Destination Path..."
-                           Text="{Binding DestinationPath}"
                            Style="{StaticResource ModernTextbox}" 
                            IsReadOnly="True"
-                           Height="30"
-                           x:Name="DestPath" Width="282"/>
+                            
+                           Text="{Binding DestinationPath}"
+                           x:Name="DestPath"
+                           Margin="25,0,-50,0" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"
                     VerticalAlignment="Top"
                     Height="22"
                     Margin="0,320,0,0" Grid.Column="1">
-            <RadioButton x:Name="Diferential" Margin="78,0,0,0"   Foreground="white" FontSize="17" Content="Différentiel" IsChecked="{Binding TypeDifferencial}"/>
-            <RadioButton x:Name="Complete" Margin="150,0,0,0"    Foreground="white" FontSize="17" Content="Complète" IsChecked="{Binding TypeComplete}"/>
+            <RadioButton x:Name="Diferential" Margin="78,0,0,0" IsEnabled="False"  Foreground="white" FontSize="17" Content="Différentiel" IsChecked="{Binding TypeDifferencial}"/>
+            <RadioButton x:Name="Complete" Margin="150,0,0,0"  IsEnabled="False"  Foreground="white" FontSize="17" Content="Complète" IsChecked="{Binding TypeComplete}"/>
         </StackPanel>
+
 
     </Grid>
 </UserControl>
-
-       

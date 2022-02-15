@@ -3,10 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:EasySave.MVVM.View"
+             xmlns:local="clr-namespace:EasySave"
+             xmlns:Viewmomdel="clr-namespace:EasySave.MVVM.ViewModel"
+             xmlns:View="clr-namespace:EasySave.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="500" 
-             d:DesignWidth="800">
+             d:DesignHeight="500" Width="842">
+
+    <UserControl.DataContext>
+        <Viewmomdel:SettingsViewModel/>
+    </UserControl.DataContext>
+
+
+
+
 
     <Grid Margin="20,20,20,0">
 
@@ -37,7 +46,7 @@
             </Border.Clip>
             <Grid>
                 <StackPanel>
-                    <TextBlock Text="Instruction 1"
+                    <TextBlock Text="{DynamicResource Settings}"
                                Foreground="white"
                                FontSize="15" 
                                Margin="10,10,0,0"/>
@@ -62,7 +71,7 @@
 
 
         <Grid Grid.Column="1"
-              Margin="10,-45,-5,0">
+              Margin="35,-43,-17,-2">
 
 
 
@@ -76,8 +85,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="125"/>
                 <RowDefinition Height="160"/>
-                <RowDefinition Height="155"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="158"/>
+                <RowDefinition Height="27"/>
 
             </Grid.RowDefinitions>
 
@@ -107,39 +116,45 @@
                        TextAlignment="Center"/>
 
             <ListBox Grid.Row="1" 
-                     Grid.Column="0" 
-                      Name="ExtensionsList" 
-                      HorizontalAlignment="Left"
-                      Width="185" 
-                     Margin="10,40,0,22" SelectionChanged="ExtensionsList_SelectionChanged" 
-                     Style="{StaticResource listBoxStyle}"/>
+                     Grid.Column="0"
+                     Name="ExtensionsList" 
+                     HorizontalAlignment="Left"
+                     Width="185" 
+                     Margin="15,40,0,22"
+                     SelectedItem="{Binding ExtensionSelected}"
+                     Style="{StaticResource listBoxStyle}"
+                     ItemsSource="{Binding ExtensionList}"/>
 
 
             <StackPanel Orientation="Vertical"
                         Grid.Row="1"
                         Grid.Column="1"
-                        VerticalAlignment="Center" Height="70"
-                        Margin="0,20,0,0">
+                        VerticalAlignment="Top" Height="70"
+                        Margin="0,55,0,0">
 
 
                 <Button
                     x:Name="Add"
                     Height="25" 
                     Width="80"
-                    Click="SearchClick" 
+                    Click="Add1Click" 
                     ClickMode="Release"
                     Content="Add >>"
-                    Style="{StaticResource CustomAppButton}"/>
+                    Style="{StaticResource CustomAppButton}"
+                    Command="{Binding Add1Command}"/>
 
                 <Button
                     x:Name="Remove"
                     Height="25"
                     Width="80"
                     Margin="0,15,0,0"
-                    Click="SearchClick" 
+                    Click="Remove1Click" 
                     ClickMode="Release"
                     Content="&lt;&lt; Remove"
-                    Style="{StaticResource CustomAppButton}"/>
+                    
+                    Style="{StaticResource CustomAppButton}"
+                    Command="{Binding Remove1Command}"/>
+
 
             </StackPanel>
 
@@ -158,7 +173,10 @@
                       HorizontalAlignment="Left"
                       Width="185" 
                      Margin="15,40,0,22"
-                     Style="{StaticResource listBoxStyle}"/>
+                     SelectedItem="{Binding ExtensionToEncryptSelected}"
+                     
+                     Style="{StaticResource listBoxStyle}"
+                     ItemsSource="{Binding ExtensionToEncryptlist}"/>
 
 
             <TextBlock Text="ajouter un logiciel metier"
@@ -171,20 +189,21 @@
             <StackPanel Orientation="Vertical"
                         Grid.Row="2"
                         Grid.Column="0"
-                        VerticalAlignment="Center"
-                         Margin="0,20,0,0">
+                        VerticalAlignment="Center" Height="70">
 
 
 
 
                 <TextBox   Margin="20,0,20,0" 
-                           TextWrapping="Wrap"
+                           Height="30"
+                           Width="170"
                            Tag="Path to the process"
                            Style="{StaticResource ModernTextbox}" 
-                           IsReadOnly="False"
+                           IsReadOnly="True"
+                           Text="{Binding SoftwarePath}"
                            Name="FileNameTextBox"/>
-             
-                
+
+
 
                 <Button x:Name="BrowseButton"
                         Content="Browse a file" 
@@ -200,27 +219,29 @@
             <StackPanel Orientation="Vertical"
                         Grid.Row="2"
                         Grid.Column="1"
-                        VerticalAlignment="Center" Height="66"
-                         Margin="0,20,0,0">
+                        VerticalAlignment="Top" Height="66"
+                         Margin="0,56,0,0">
 
                 <Button
                     x:Name="Add2"
                     Height="25" 
                     Width="80"
-                    Click="SearchClick" 
+                    Click="Add2Click" 
                     ClickMode="Release"
                     Content="Add"
-                    Style="{StaticResource CustomAppButton}"/>
+                    Style="{StaticResource CustomAppButton}"
+                    Command="{Binding Add2Command}"/>
 
                 <Button
                         x:Name="Remove2"
                         Height="25"
                         Width="80"
                         Margin="0,15,0,0"
-                        Click="SearchClick" 
+                        Click="Remove2Click" 
                         ClickMode="Release"
                         Content="Remove"
-                    Style="{StaticResource CustomAppButton}"/>
+                        Style="{StaticResource CustomAppButton}"
+                        Command="{Binding Remove2Command}"/>
 
 
             </StackPanel>
@@ -234,30 +255,42 @@
                        TextAlignment="Center"/>
 
             <ListBox Grid.Row="2" 
-                      Grid.Column="2" 
-                      Name="Processlist" 
+                     Grid.Column="2" 
+                     Name="SoftwarePackagelist" 
                      HorizontalAlignment="Left"
-                      Width="185" 
+                     Width="185" 
                      Margin="15,40,0,22" 
-                     Style="{StaticResource listBoxStyle}" SelectionChanged="Processlist_SelectionChanged">
+                     SelectedItem="{Binding SoftwareToRemove}"
+                     Style="{StaticResource listBoxStyle}" SelectionChanged="Processlist_SelectionChanged"
+                     ItemsSource="{Binding SoftwarePackageList}">
 
-                <ListBoxItem 
-                    >Orange</ListBoxItem>
-                <ListBoxItem>Green</ListBoxItem>
-                <ListBoxItem>Blue</ListBoxItem>
-                <ListBoxItem>Gray</ListBoxItem>
-                <ListBoxItem>LightGray</ListBoxItem>
-                <ListBoxItem>Red</ListBoxItem>
+
             </ListBox>
 
+
+            <TextBlock Text="Log Type"
+                       Grid.Row="3" 
+                       Grid.Column="0" 
+                       Foreground="white"
+                       FontSize="17" 
+                       TextAlignment="Center"/>
+
+            <StackPanel Orientation="Horizontal"
+                        Grid.Row="3"
+                        Grid.ColumnSpan="3"
+                        Height="22" Margin="0,32,0,-40"
+>
+                <RadioButton x:Name="XML"  Margin="78,0,0,0" Checked="WriteText2" Foreground="white" FontSize="17" Content="XML" IsChecked="{Binding LogXml}" Command ="{Binding XMLSelected}"/>
+                <RadioButton x:Name="JSON" Margin="240,0,0,0" Checked="WriteText1" Foreground="white" FontSize="17" Content="JSON" IsChecked="{Binding LogJson}" Command ="{Binding JsonSelected}"/>
+            </StackPanel>
 
         </Grid>
 
 
 
     </Grid>
-    
-    
-    
-    
+
+
+
+
 </UserControl>

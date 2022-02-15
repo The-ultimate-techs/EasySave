@@ -13,15 +13,20 @@
                 <ResourceDictionary Source="Theme/ControlButton.xaml"/>
                 <ResourceDictionary Source="Theme/AppButton.xaml"/>
                 <ResourceDictionary Source="Theme/ListTheme.xaml"/>
+                <ResourceDictionary Source="Languages/Language_en-US.xaml"/>
+                <ResourceDictionary Source="Languages/Language_fr-FR.xaml"/>
 
 
             </ResourceDictionary.MergedDictionaries>
 
             <DataTemplate DataType="{x:Type Viewmomdel:CreateSaveFileViewModel}" >
-                <View:CreateSaveFileView/>
+                <View:CreateSaveFileView />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type Viewmomdel:EditDeleteSaveFileViewModel}" >
-                <View:EditDeleteSaveFileView/>
+            <DataTemplate DataType="{x:Type Viewmomdel:DeleteSaveFileViewModel}" >
+                <View:DeleteSaveFileView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type Viewmomdel:EditSaveFileViewModel}" >
+                <View:EditSavefileView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type Viewmomdel:HomePageViewModel}" >
                 <View:HomePageView/>

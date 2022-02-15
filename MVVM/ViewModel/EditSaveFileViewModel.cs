@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using EasySave.MVVM.Model;
+﻿using EasySave.MVVM.Model;
 using EasySave.MVVM.ObjectsForSerialization;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Text;
 using Newtonsoft.Json;
 using System.IO;
 
 namespace EasySave.MVVM.ViewModel
 {
-    class CreateSaveFileViewModel
+    class EditSaveFileViewModel 
+    
     {
+
         FileSaveManagement FileSaveManagement;
 
-
+        public ObservableCollection<string> TitleList { get; set; } = new ObservableCollection<string>();
         public string Title { get; set; }
         public object SourcePath { get; set; }
         public object DestinationPath { get; set; }
@@ -23,21 +27,17 @@ namespace EasySave.MVVM.ViewModel
 
 
 
+        public RelayCommand Edit { get; set; }
 
 
-
-        public RelayCommand CreateCommand { get; set; }
-
-
-
-        public CreateSaveFileViewModel()
+        public EditSaveFileViewModel()
         {
-            FileSaveManagement = new FileSaveManagement(); 
+            FileSaveManagement = new FileSaveManagement();
             Clean();
+            FullFillList();
 
+            Edit = new RelayCommand(o =>
 
-
-            CreateCommand = new RelayCommand(o =>
             {
 
                 SaveFileJson SaveFileJson = new SaveFileJson();
@@ -59,16 +59,41 @@ namespace EasySave.MVVM.ViewModel
 
                 }
 
-                
             });
+
+
+
+
+
 
 
         }
 
 
-        public void Clean()
+        public void FullFillList()
         {
 
+            List<FileSave> ListFile = new List<FileSave> { };
+            ListFile = FileSaveManagement.GetFilesOnADirectory(FileSaveManagement.GetSaveFileDirectory(), "");
+
+            foreach (FileSave FileSave in ListFile)
+            {
+
+                TitleList.Add(FileSave.GetTitle().Replace(".Json", ""));
+               
+            }
+                
+        }
+
+
+
+
+
+
+
+        public void Clean()
+        {
+            TitleList.Clear();
             Title = "";
             SourcePath = "";
             DestinationPath = "";

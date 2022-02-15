@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EasySave
+namespace EasySave.MVVM.ObjectsForSerialization
 {
     class SaveFileJson
     {

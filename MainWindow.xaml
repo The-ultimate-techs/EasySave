@@ -16,7 +16,11 @@
 
     <Window.DataContext>
         <local:MainViewModel/>
+        
     </Window.DataContext>
+
+
+
 
 
     <Border Background="#272537"
@@ -38,7 +42,7 @@
 
             <Button Height="29" 
                     Width="88" 
-                    Margin="0,0,0,20"
+                    Margin="12,5,0,20"
                     Click="HomeButtonClick" 
                     ClickMode="Release"
                     Style="{StaticResource CustomControlButton}"
@@ -49,11 +53,18 @@
                        HorizontalAlignment="Center"
                        Foreground="White"
                        FontSize="22" />
+                
+                   
+                
             </Button>
             
+            <Image Width="50"
+                       Height="50"
+                       Source="Resource/logo.png" 
+                       Margin="0,-10,130,0"/> 
             
-            
-            
+
+
             <StackPanel Grid.Row="1" Grid.RowSpan="2">
                 
                 
@@ -66,13 +77,16 @@
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding CreateSaveFileCommand}" Checked="RadioButton_Checked"/>
 
-                <RadioButton Content="Editer/supprimer un&#xA; travail de sauvegarde"
+                <RadioButton Content="Editer un travail &#xA;de sauvegarde"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
                              HorizontalAlignment="Center"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding EditDeleteSaveFileCommand}"/>
+                     Command="{Binding EditSaveFileCommand}"/>
+                
+
+
 
                 <RadioButton Content="Exécuter un ou plusieurs&#xA; travaux de sauvegarde"
                              Height="50"
@@ -82,6 +96,13 @@
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding RunSaveFileCommand}"/>
 
+                <RadioButton Content="Supprimer un travail de &#xA;sauvegarde"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             HorizontalAlignment="Center"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding DeleteSaveFileCommand}"/>
             </StackPanel>
 
             <Button 
@@ -131,7 +152,8 @@
                     Margin="20,0,0,0"
                     Tag="Search"
                     Width="300" 
-                    Height="30"/>
+                    Height="30"
+                    />
 
                 <Button
                 x:Name="Search"
@@ -161,21 +183,29 @@
                 Grid.Column="1"
                 Opacity="1"/>
 
+            <Button HorizontalAlignment="Left"
+                    Height="35" 
+                    Grid.Column="1"
+                    Margin="690,0,0,22"
+                    VerticalAlignment="Center"
+                    Width="50" 
+                    x:Name="ChangeLanguageButton"
+                    Tag="{Binding Language}"
+                    Style="{StaticResource InvisibleButton}"
+                    Command="{Binding ChangeLanguage}">
+                
             <local:ToggleButton 
                 x:Name="Bu" 
-                HorizontalAlignment="Left"
-                Height="30" 
-                Grid.Column="1"
-                Margin="690,0,0,22"
-                VerticalAlignment="Center"
                 Width="50"
+                Height="30"
                 MouseLeftButtonDown="Bu_MouseLeftButtonDown" 
                 Loaded="Bu_Loaded"/>
+                
+            </Button>
 
             <Image 
                 x:Name="France" 
                 Margin="640,0,0,22"
-                
                 Height="30" 
                 Width="30"
                 Source="Resource/france.png"
