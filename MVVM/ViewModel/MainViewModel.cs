@@ -72,8 +72,8 @@ namespace EasySave
             HomePageVM = new HomePageViewModel();
             RunSaveFileVM = new RunSaveFileViewModel();
             SettingsVM = new SettingsViewModel();
-            SettingManager = new SettingManager();
             EditSaveFileVM = new EditSaveFileViewModel();
+            SettingManager = new SettingManager();
             CurrentView = HomePageVM;
             reload();
             

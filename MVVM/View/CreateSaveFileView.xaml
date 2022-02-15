@@ -81,9 +81,10 @@
                 Style="{StaticResource CustomAppButton}"
                 Margin="355,145,55,310" Grid.Column="1"
                 Height="25"
-                Width="100">
+                Width="100"/>
 
-        </Button>
+
+
 
         <Button x:Name="BrowseButton_2"
                 Content="Search folder..."
@@ -172,11 +173,12 @@
                            x:Name="DestPath" Width="282"/>
         </StackPanel>
 
-        <StackPanel Orientation="Vertical"
-                    VerticalAlignment="Bottom"
-                    Margin="300,53,0,110" Grid.ColumnSpan="2">
-            <RadioButton x:Name="Diferential" Checked="WriteText2" Foreground="white" FontSize="17" Content="Différentiel" IsChecked="{Binding TypeDifferencial}"/>
-            <RadioButton x:Name="Complete" Checked="WriteText1" Foreground="white" FontSize="17" Content="Complète" IsChecked="{Binding TypeComplete}"/>
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    Height="22"
+                    Margin="0,320,0,0" Grid.Column="1">
+            <RadioButton x:Name="Diferential" Margin="78,0,0,0"   Foreground="white" FontSize="17" Content="Différentiel" IsChecked="{Binding TypeDifferencial}"/>
+            <RadioButton x:Name="Complete" Margin="150,0,0,0"    Foreground="white" FontSize="17" Content="Complète" IsChecked="{Binding TypeComplete}"/>
         </StackPanel>
 
     </Grid>

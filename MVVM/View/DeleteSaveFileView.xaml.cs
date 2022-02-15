@@ -1,5 +1,9 @@
-﻿using System;
+﻿using EasySave.MVVM.Model;
+using EasySave.MVVM.ObjectsForSerialization;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +22,8 @@ namespace EasySave.MVVM.View
     /// </summary>
     public partial class DeleteSaveFileView : UserControl
     {
+
+        FileSaveManagement FileSaveManagement = new FileSaveManagement();
         public DeleteSaveFileView()
         {
             InitializeComponent();
@@ -32,5 +38,53 @@ namespace EasySave.MVVM.View
         {
 
         }
+
+        private void SourcePath_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            FullFillForm();
+        }
+
+
+        public void FullFillForm()
+        {
+
+
+
+            string myJsonFile = File.ReadAllText(FileSaveManagement.GetSaveFileDirectory() + TitleSelected.SelectedItem + ".json");
+
+            SaveFileJson FileDetail = new SaveFileJson { };
+
+            FileDetail = JsonConvert.DeserializeObject<SaveFileJson>(myJsonFile);
+
+            SourcePath.Text = FileDetail.SourcePath;
+            SourcePath.Focus();
+            DestPath.Text = FileDetail.DestPath;
+            DestPath.Focus();
+
+            if (FileDetail.Type == "COMPLETE")
+            {
+                Diferential.IsChecked = false;
+                Complete.IsChecked = true;
+
+            }
+
+            if (FileDetail.Type == "PARTIAL")
+            {
+                Complete.IsChecked = false;
+                Diferential.IsChecked = true;
+
+            }
+
+
+
+
+        }
+
+
     }
 }

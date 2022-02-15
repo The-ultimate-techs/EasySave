@@ -1,16 +1,16 @@
-﻿using EasySave.MVVM.JsonObjects;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using EasySave.MVVM.ObjectsForSerialization;
 
 namespace EasySave.MVVM.Model
 {
     class LogManagement : FileSave
     {
-
+        
         private DateTime DateTime;
         private System.Diagnostics.Stopwatch Stopwatch;
         private long TimeDuration;
@@ -106,11 +106,11 @@ namespace EasySave.MVVM.Model
 
                 }
             }
-
+           
             string myJsonFile = File.ReadAllText(path);
-            var myJsonList = JsonConvert.DeserializeObject<List<RunningLogJson>>(myJsonFile);
+            var myJsonList = JsonConvert.DeserializeObject<List<RunningLog>>(myJsonFile);
             bool trigger = false;
-            foreach (RunningLogJson obj in myJsonList)
+            foreach (RunningLog obj in myJsonList)
             {
                 if (obj.Name == Title && trigger == false)
                 {
@@ -126,7 +126,7 @@ namespace EasySave.MVVM.Model
             }
             if (trigger == false)
             {
-                RunningLogJson Newobj = new RunningLogJson();
+                RunningLog Newobj = new RunningLog();
                 Newobj.Name = Title;
                 Newobj.SourceFilePath = SourceDirectory;
                 Newobj.TargetFilePath = DestinationDirectory;

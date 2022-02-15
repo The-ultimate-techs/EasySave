@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using EasySave.MVVM.Model;
-using EasySave.MVVM.JsonObjects;
+using EasySave.MVVM.ObjectsForSerialization;
 using Newtonsoft.Json;
 using System.IO;
 
