@@ -3,8 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:EasySave.MVVM.View"
+             xmlns:local="clr-namespace:EasySave"
+             xmlns:Viewmomdel="clr-namespace:EasySave.MVVM.ViewModel"
+             xmlns:View="clr-namespace:EasySave.MVVM.View"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"      
+             xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              mc:Ignorable="d" d:DesignWidth="800" Height="505">
+
+    <UserControl.DataContext>
+        <Viewmomdel:EditSaveFileViewModel/>
+    </UserControl.DataContext>
 
     <Grid Margin="20,20,20,0">
 
@@ -66,7 +74,7 @@
 
         </Grid>
 
-        <TextBlock Text="Nom du travail de travail que vous souhaitez créer :" 
+        <TextBlock Text="Nom du travail de travail que vous souhaitez modifier :" 
                        Grid.Column="1" 
                        Foreground="white"
                        FontSize="20" 
@@ -83,28 +91,30 @@
                        Foreground="white"
                        FontSize="20" 
                        TextAlignment="Left" Margin="13,193,13,253"/>
-        
+
+
         <Button x:Name="BrowseButton_2"
-            Content="Search folder..."
-            Click="ButtonClick"
-            Style="{StaticResource CustomAppButton}"
-            Margin="355,235,55,220" Grid.Column="1"
-            Height="25"
-            Width="100"/>
+                Content="Search folder..."
+                Click="BrowseButton2Click"
+                Style="{StaticResource CustomAppButton}"
+                Margin="355,235,55,220" Grid.Column="1"
+                Height="25"
+                Width="100"/>
 
         <TextBlock Text="Type de sauvegade souhaitée :" 
                        Grid.Column="1" 
                        Foreground="white"
                        FontSize="20" 
                        TextAlignment="Left" Margin="13,276,13,170"/>
-            
+
+
         <Button x:Name="BrowseButton"
-                        Content="Search folder..."
-                        Click="ButtonClick"
-                        Style="{StaticResource CustomAppButton}"
-                        Margin="355,145,55,310" Grid.Column="1"
-                        Height="25"
-                         Width="100"/>
+                Content="Search folder..."
+                Click="BrowseButton1Click"
+                Style="{StaticResource CustomAppButton}"
+                Margin="355,145,55,310" Grid.Column="1"
+                Height="25"
+                Width="100"/>
 
         <StackPanel Orientation="Vertical"
                     VerticalAlignment="Top"
@@ -114,11 +124,15 @@
             <ComboBox Height="30"
                       Width="438"
                       IsEditable="True"
-                      Text="--Sélectionnez le travail de sauvegarde--" SelectionChanged="ComboBox_SelectionChanged_2"
-                      >
-                <ComboBoxItem>Travail 1</ComboBoxItem>
-                <ComboBoxItem>Travail 2</ComboBoxItem>
+                      Text="--Sélectionnez le travail de sauvegarde--" 
+                      SelectionChanged="ComboBox_SelectionChanged"
+                      ItemsSource="{Binding TitleList}"
+                      SelectedItem="{Binding Title}"
+                      IsReadOnly="True"
+                      x:Name ="TitleSelected">
                 
+
+
 
             </ComboBox>
             
@@ -135,7 +149,8 @@
                     Click="SearchClick" 
                     ClickMode="Release"
                     Content="Valider vos modifications !"
-                    Style="{StaticResource CustomAppButton}"/>
+                    Style="{StaticResource CustomAppButton}"
+                    Command="{Binding Edit}"/>
             
         </StackPanel>
 
@@ -146,9 +161,10 @@
                            TextWrapping="Wrap"
                            Tag="Source Path..."
                            Style="{StaticResource ModernTextbox}" 
-                           IsReadOnly="False"
+                           IsReadOnly="True"
                            Height="30"
-                           x:Name="PathSource" Width="282"/>
+                           Text="{Binding SourcePath}"
+                           x:Name="SourcePath" Width="282"/>
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
@@ -159,16 +175,20 @@
                            Height="30"
                            Tag="Destination Path..."
                            Style="{StaticResource ModernTextbox}" 
-                           IsReadOnly="False"
+                           IsReadOnly="True"
+                           Text="{Binding DestinationPath}"
                            x:Name="DestPath" Width="282"/>
         </StackPanel>
 
-        <StackPanel Orientation="Vertical"
-                    VerticalAlignment="Bottom"
-                    Margin="300,53,0,110" Grid.ColumnSpan="2">
-            <RadioButton x:Name="Diferential" Checked="WriteText2" Foreground="white" FontSize="17" Content="Différentiel"/>
-            <RadioButton x:Name="Complete" Checked="WriteText1" Foreground="white" FontSize="17" Content="Complète"/>
+
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    Height="22"
+                    Margin="0,320,0,0" Grid.Column="1">
+            <RadioButton x:Name="Diferential" Margin="78,0,0,0"   Foreground="white" FontSize="17" Content="Différentiel" IsChecked="{Binding TypeDifferencial}"/>
+            <RadioButton x:Name="Complete" Margin="150,0,0,0"    Foreground="white" FontSize="17" Content="Complète" IsChecked="{Binding TypeComplete}"/>
         </StackPanel>
+
 
     </Grid>
 </UserControl>

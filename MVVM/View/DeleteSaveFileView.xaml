@@ -3,8 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:EasySave.MVVM.View"
-             mc:Ignorable="d" d:DesignWidth="800" Height="500">
+             xmlns:local="clr-namespace:EasySave"
+             xmlns:Viewmomdel="clr-namespace:EasySave.MVVM.ViewModel"
+             xmlns:View="clr-namespace:EasySave.MVVM.View"
+             mc:Ignorable="d" d:DesignWidth="800" Height="505">
+
+
+    <UserControl.DataContext>
+        <Viewmomdel:DeleteSaveFileViewModel/>
+    </UserControl.DataContext>
 
     <Grid Margin="20,20,20,0">
         <Grid.ColumnDefinitions>
@@ -71,16 +78,46 @@
                        FontSize="19.5" 
                        TextAlignment="Left" Margin="18,15,8,431"/>
 
-        <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Top"
-                         Margin="240,53,42,0" Grid.ColumnSpan="2" Height="45">
+        <TextBlock Text="Chemin du dossier source :" 
+                       Grid.Column="1" 
+                       Foreground="white"
+                       FontSize="20" 
+                       TextAlignment="Left" Margin="18,104,8,342"/>
 
-            <ComboBox Margin="25,10,25,300"
+        <TextBlock Text="Chemin du dossier destination :" 
+                       Grid.Column="1" 
+                       Foreground="white"
+                       FontSize="20" 
+                       TextAlignment="Left" Margin="13,193,13,253"/>
+
+
+
+
+        <TextBlock Text="Type de sauvegade souhaitée :" 
+                       Grid.Column="1" 
+                       Foreground="white"
+                       FontSize="20" 
+                       TextAlignment="Left" Margin="13,276,13,170"/>
+
+
+
+
+        <StackPanel Orientation="Vertical"
+                    VerticalAlignment="Top"
+                    Margin="13,60,55,0" 
+                    Grid.Column="1">
+
+            <ComboBox Height="30"
+                      Width="438"
                       IsEditable="True"
-                      Text="--Sélectionnez le travail de sauvegarde--" SelectionChanged="ComboBox_SelectionChanged_2"
-                      >
-                <ComboBoxItem>Travail 1</ComboBoxItem>
-                <ComboBoxItem>Travail 2</ComboBoxItem>
+                      Text="--Sélectionnez le travail de sauvegarde--" 
+                      SelectionChanged="ComboBox_SelectionChanged"
+                      ItemsSource="{Binding TitleList}"
+                      SelectedItem="{Binding Title}"
+                      IsReadOnly="True"
+                      x:Name ="TitleSelected">
+
+
 
 
             </ComboBox>
@@ -90,6 +127,7 @@
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
                          Margin="84,450,84,0" Grid.Column="1">
+
             <Button
                     x:Name="Delete1"
                     Height="20" 
@@ -97,9 +135,49 @@
                     Click="SearchClick" 
                     ClickMode="Release"
                     Content="Supprimer ce travail de sauvegarde !"
+                    Command="{Binding DeleteCommand}"
                     Style="{StaticResource CustomAppButton}"/>
 
         </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Bottom"
+                         Margin="235,0,102,310" Grid.ColumnSpan="2">
+            <TextBox 
+                           TextWrapping="Wrap"
+                           Tag="Source Path..."
+                           Style="{StaticResource ModernTextbox}" 
+                           IsReadOnly="True"
+                           Height="30"
+                           Width="438"
+                           Text="{Binding SourcePath}"
+                           x:Name="SourcePath" Margin="25,0,-50,0" TextChanged="SourcePath_TextChanged"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical"
+                        VerticalAlignment="Bottom"
+                         Margin="235,53,102,220" Grid.ColumnSpan="2">
+            <TextBox 
+                           TextWrapping="Wrap"
+                           Height="30"
+                           Width="438"
+                           Tag="Destination Path..."
+                           Style="{StaticResource ModernTextbox}" 
+                           IsReadOnly="True"
+                            
+                           Text="{Binding DestinationPath}"
+                           x:Name="DestPath"
+                           Margin="25,0,-50,0" />
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    VerticalAlignment="Top"
+                    Height="22"
+                    Margin="0,320,0,0" Grid.Column="1">
+            <RadioButton x:Name="Diferential" Margin="78,0,0,0" IsEnabled="False"  Foreground="white" FontSize="17" Content="Différentiel" IsChecked="{Binding TypeDifferencial}"/>
+            <RadioButton x:Name="Complete" Margin="150,0,0,0"  IsEnabled="False"  Foreground="white" FontSize="17" Content="Complète" IsChecked="{Binding TypeComplete}"/>
+        </StackPanel>
+
 
     </Grid>
 </UserControl>

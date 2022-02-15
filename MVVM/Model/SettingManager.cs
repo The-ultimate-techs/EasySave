@@ -1,4 +1,4 @@
-﻿using EasySave.MVVM.JsonObjects;
+﻿using EasySave.MVVM.ObjectsForSerialization;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
