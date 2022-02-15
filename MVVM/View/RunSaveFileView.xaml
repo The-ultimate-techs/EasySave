@@ -7,9 +7,101 @@
              xmlns:Viewmomdel="clr-namespace:EasySave.MVVM.ViewModel"
              xmlns:View="clr-namespace:EasySave.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
-             Background="Yellow">
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid>
+
+            <Border
+                Margin="8,0,391,0" Height="444" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+
+                <Border.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="-0.198"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="-0.397"/>
+                    </TransformGroup>
+                </Border.RenderTransform>
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                        <GradientStop Color="#ECD829" Offset="0.0"/>
+                        <GradientStop Color="#F09434" Offset="0.9"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Border.Clip>
+                    <RectangleGeometry RadiusX="10"
+                                   RadiusY="10"
+                                   Rect="2,3,400,440"/>
+                </Border.Clip>
+
+
+                <StackPanel Margin="6,8,14,-200">
+                    <TextBlock Text="Exécutez un ou plu-&#xA;sieurs travaux de sau-&#xA;vegarde simultané-&#xA;ment !"
+                               Foreground="white"
+                               FontSize="17" 
+                               />
+
+                    <TextBlock Text="Réalisez une ou pluiseurs &#xA;sauvegardes en parallèle en &#xA;sélectionnant les travaux de &#xA;sauvegarde souhaités."
+                               Foreground="white"
+                               FontSize="13" 
+                               TextAlignment="Justify"
+                               />
+
+                    <TextBlock Text="Pour cela, veuillez-vous rendre &#xA;dans le menu ''Exécuter un ou plu-&#xA;sieurs travaux de sauvegarde'' sur &#xA;votre gauche."
+                               Foreground="white"
+                               FontSize="11" 
+                               TextAlignment="Justify"
+                               />
+                    <Image Width="47"
+                   Height="46"
+                   Source="../../Resource/executif.png" 
+                   Margin="-100,170,-460,10"
+                   />
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text=" Liste des travaux de sauvegarde existants"
+                               Foreground="White"
+                               FontSize="17"
+                               Margin="413,10,0,411"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                               />
+
+            <ListBox 
+                      Name="Processlist" 
+                     HorizontalAlignment="Left"
+                      Width="377" 
+                     Margin="413,55,0,55" 
+                     Style="{StaticResource listBoxStyle}" SelectionChanged="Processlist_SelectionChanged"
+                     SelectionMode="Extended">
+
+                <ListBoxItem 
+                    >Titre1</ListBoxItem>
+                <ListBoxItem>Titre2</ListBoxItem>
+                <ListBoxItem>Titre3</ListBoxItem>
+                <ListBoxItem>Titre4</ListBoxItem>
+                <ListBoxItem>Titre5</ListBoxItem>
+                <ListBoxItem>Titre6</ListBoxItem>
+                <ListBoxItem>Titre7</ListBoxItem>
+                <ListBoxItem>Titre8</ListBoxItem>
+                <ListBoxItem>Titre9</ListBoxItem>
+                <ListBoxItem>Titre10</ListBoxItem>
+                <ListBoxItem>Titre11</ListBoxItem>
+                <ListBoxItem>Titre12</ListBoxItem>
+                <ListBoxItem>Titre13</ListBoxItem>
+                <ListBoxItem>Titre14</ListBoxItem>
+                <ListBoxItem>Titre15</ListBoxItem>
+                
+            </ListBox>
+
+            <Button x:Name="BrowseButton"
+                        Content="Exécuter !"
+                        Click="ButtonClick"
+                        Style="{StaticResource CustomAppButton}"
+                        RenderTransformOrigin="1.047,0.821" Height="20" Width="150" Margin="526,411,124,19"/>
+        </Grid>
+
     </Grid>
 </UserControl>

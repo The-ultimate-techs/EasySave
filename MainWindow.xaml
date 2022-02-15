@@ -83,8 +83,9 @@
                              FontSize="14"
                              HorizontalAlignment="Center"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding EditSaveFileCommand}"/>
+                     Command="{Binding EditSaveFileCommand}"/>
                 
+
 
 
                 <RadioButton Content="Exécuter un ou plusieurs&#xA; travaux de sauvegarde"
