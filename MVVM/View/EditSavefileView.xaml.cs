@@ -32,6 +32,39 @@ namespace EasySave.MVVM.View
             InitializeComponent();
         }
 
+        private void ButtonnoClick(object sender, RoutedEventArgs e)
+        {
+
+            FullFillForm();
+            Modify1.Visibility = Visibility.Visible;
+            Buttonno.Visibility = Visibility.Hidden;
+            Buttonyes.Visibility = Visibility.Hidden;
+            Areyousure.Visibility = Visibility.Hidden;
+        }
+
+
+        private void ButtonEditClick1(object sender, RoutedEventArgs e)
+        {
+
+
+            Modify1.Visibility = Visibility.Hidden;
+            Buttonno.Visibility = Visibility.Visible;
+            Buttonyes.Visibility = Visibility.Visible;
+            Areyousure.Visibility = Visibility.Visible;
+
+
+        }
+
+        private void ButtonyesClick(object sender, RoutedEventArgs e)
+        {
+
+
+            Modify1.Visibility = Visibility.Visible;
+            Buttonno.Visibility = Visibility.Hidden;
+            Buttonyes.Visibility = Visibility.Hidden;
+            Areyousure.Visibility = Visibility.Hidden;
+        }
+
         private void SaveFileName_TextChanged(object sender, TextChangedEventArgs e)
         {
 

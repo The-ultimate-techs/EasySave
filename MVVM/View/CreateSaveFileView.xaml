@@ -12,6 +12,8 @@
 
     <UserControl.DataContext>
         <Viewmomdel:CreateSaveFileViewModel/>
+        
+       
     </UserControl.DataContext>
 
 
@@ -119,24 +121,69 @@
                        TextAlignment="Left" Margin="13,276,13,170"/>
 
 
-        <StackPanel Orientation="Vertical"
+        <TextBlock Text="Are you sure ?" 
+            Grid.Column="1" 
+            Foreground="white"
+            FontSize="20" 
+            HorizontalAlignment="Center"
+             x:Name="Areyousure"
+             Visibility="Hidden"
+            TextAlignment="Left" Margin="0,390,0,0"/>
+        
+        
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
                         VerticalAlignment="Top"
-                         Margin="84,450,84,0" Grid.Column="1">
+                         Margin="0,430,0,0" Grid.Column="1">
+
+
             <Button x:Name="ButtonCreate"
                     Content="Créer !"
-                    Click="ButtonCreateClick"
+                    Click="ButtonCreateClick1"
                     Style="{StaticResource CustomAppButton}"
                     RenderTransformOrigin="1.047,0.821" 
-                    Height="20" Width="150"
-                    Command="{Binding CreateCommand}"/>
+                    Height="20"
+                    Visibility="Visible"
+                    Width="150"/>
+
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                         Margin="0,430,0,0" Grid.Column="1">
+
+            <Button x:Name="Buttonno"
+                    Content="No"
+                    Margin="0,0,100,0"
+                    Click="ButtonnoClick"
+                    Style="{StaticResource CustomAppButton}"
+                    RenderTransformOrigin="1.047,0.821" 
+                    Height="20"
+                    Width="150"
+                    Visibility="Hidden"
+                    />
+
+
+            <Button x:Name="Buttonyes"
+                    Content="oui"
+                    Style="{StaticResource CustomAppButton }"
+                    RenderTransformOrigin="1.047,0.821" 
+                    Height="20"
+                    Width="150"
+                    Click="ButtonyesClick"
+                    Visibility="Hidden"
+                    Command="{Binding CreateCommand}"
+                    
+                    />
         </StackPanel>
 
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Top"
-                         Margin="13,60,55,0" Grid.Column="1"
-                    >
-            
-                <TextBox x:Name="Title" 
+                         Margin="13,60,55,0" Grid.Column="1">
+
+            <TextBox x:Name="Title" 
                          TextWrapping="Wrap"
                          Tag="Enter the Title here ..."
                          Text="{Binding Title}"
@@ -144,7 +191,7 @@
                          IsReadOnly="False"
                          Height="30"
                          Width="438"/>
-            
+
         </StackPanel>
         <StackPanel Orientation="Vertical"
                         VerticalAlignment="Bottom"
@@ -180,6 +227,11 @@
             <RadioButton x:Name="Diferential" Margin="78,0,0,0"   Foreground="white" FontSize="17" Content="Différentiel" IsChecked="{Binding TypeDifferencial}"/>
             <RadioButton x:Name="Complete" Margin="150,0,0,0"    Foreground="white" FontSize="17" Content="Complète" IsChecked="{Binding TypeComplete}"/>
         </StackPanel>
+        <TextBlock Text="Type de sauvegade souhaitée :" 
+            Grid.Column="1" 
+            Foreground="white"
+            FontSize="20" 
+            TextAlignment="Left" Margin="13,276,13,170"/>
 
     </Grid>
 </UserControl>

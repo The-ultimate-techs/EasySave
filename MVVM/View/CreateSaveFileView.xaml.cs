@@ -25,9 +25,16 @@ namespace EasySave.MVVM.View
 
         }
 
-        private void ButtonCreateClick(object sender, RoutedEventArgs e)
+        private void ButtonCreateClick1(object sender, RoutedEventArgs e)
         {
-            
+
+
+            ButtonCreate.Visibility = Visibility.Hidden;
+            Buttonno.Visibility = Visibility.Visible;
+            Buttonyes.Visibility = Visibility.Visible;
+            Areyousure.Visibility = Visibility.Visible;
+
+
         }
 
         private void WriteText2(object sender, RoutedEventArgs e)
@@ -39,6 +46,31 @@ namespace EasySave.MVVM.View
         {
 
         }
+
+        private void ButtonyesClick(object sender, RoutedEventArgs e)
+        {
+            Title.Text = "";
+            SourcePath.Text = "";
+            DestPath.Text = "";
+
+
+            ButtonCreate.Visibility = Visibility.Visible;
+            Buttonno.Visibility = Visibility.Hidden;
+            Buttonyes.Visibility = Visibility.Hidden;
+            Areyousure.Visibility = Visibility.Hidden;
+        }
+
+        private void ButtonnoClick(object sender, RoutedEventArgs e)
+        {
+
+
+            ButtonCreate.Visibility = Visibility.Visible;
+            Buttonno.Visibility = Visibility.Hidden;
+            Buttonyes.Visibility = Visibility.Hidden;
+            Areyousure.Visibility = Visibility.Hidden;
+        }
+
+
 
         private void BrowseButton1Click(object sender, RoutedEventArgs e)
         {

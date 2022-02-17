@@ -138,20 +138,61 @@
             
         </StackPanel>
 
-        <StackPanel Orientation="Vertical"
-                        VerticalAlignment="Top"
-                         Margin="84,450,84,0" Grid.Column="1">
 
-            <Button
-                    x:Name="Modify1"
-                    Height="20" 
-                    Width="150"
-                    Click="SearchClick" 
-                    ClickMode="Release"
-                    Content="Valider vos modifications !"
+        <TextBlock Text="Are you sure ?" 
+            Grid.Column="1" 
+            Foreground="white"
+            FontSize="20" 
+            HorizontalAlignment="Center"
+             x:Name="Areyousure"
+             Visibility="Hidden"
+            TextAlignment="Left" Margin="0,390,0,0"/>
+
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                         Margin="0,430,0,0" Grid.Column="1">
+
+
+            <Button x:Name="Modify1"
+                    Content="Edit !"
+                    Click="ButtonEditClick1"
                     Style="{StaticResource CustomAppButton}"
-                    Command="{Binding Edit}"/>
-            
+                    RenderTransformOrigin="1.047,0.821" 
+                    Height="20"
+                    Visibility="Visible"
+                    Width="150"/>
+
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                         Margin="0,430,0,0" Grid.Column="1">
+
+            <Button x:Name="Buttonno"
+                    Content="No"
+                    Margin="0,0,100,0"
+                    Click="ButtonnoClick"
+                    Style="{StaticResource CustomAppButton}"
+                    RenderTransformOrigin="1.047,0.821" 
+                    Height="20"
+                    Width="150"
+                    Visibility="Hidden"/>
+
+
+            <Button x:Name="Buttonyes"
+                    Content="oui"
+                    Style="{StaticResource CustomAppButton }"
+                    RenderTransformOrigin="1.047,0.821" 
+                    Height="20"
+                    Width="150"
+                    Click="ButtonyesClick"
+                    Visibility="Hidden"
+                    Command="{Binding Edit}"
+                    />
         </StackPanel>
 
         <StackPanel Orientation="Vertical"

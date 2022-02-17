@@ -76,7 +76,8 @@
                        Grid.Column="1" 
                        Foreground="white"
                        FontSize="19.5" 
-                       TextAlignment="Left" Margin="18,15,8,431"/>
+                       TextAlignment="Left" 
+                        Margin="18,15,8,431"/>
 
         <TextBlock Text="Chemin du dossier source :" 
                        Grid.Column="1" 
@@ -124,20 +125,61 @@
 
         </StackPanel>
 
-        <StackPanel Orientation="Vertical"
+
+        <TextBlock Text="Are you sure ?" 
+            Grid.Column="1" 
+            Foreground="white"
+            FontSize="20" 
+            HorizontalAlignment="Center"
+             x:Name="Areyousure"
+             Visibility="Hidden"
+            TextAlignment="Left" Margin="0,390,0,0"/>
+        
+        
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
                         VerticalAlignment="Top"
-                         Margin="84,450,84,0" Grid.Column="1">
+                         Margin="0,430,0,0" Grid.Column="1">
 
-            <Button
-                    x:Name="Delete1"
-                    Height="20" 
-                    Width="200"
-                    Click="SearchClick" 
-                    ClickMode="Release"
-                    Content="Supprimer ce travail de sauvegarde !"
+
+            <Button x:Name="Delete"
+                    Content="Delete !"
+                    Click="ButtonDeleteClick1"
+                    Style="{StaticResource CustomAppButton}"
+                    RenderTransformOrigin="1.047,0.821" 
+                    Height="20"
+                    Visibility="Visible"
+                    Width="150"/>
+
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                         Margin="0,430,0,0" Grid.Column="1">
+
+            <Button x:Name="Buttonno"
+                    Content="No"
+                    Margin="0,0,100,0"
+                    Click="ButtonnoClick"
+                    Style="{StaticResource CustomAppButton}"
+                    RenderTransformOrigin="1.047,0.821" 
+                    Height="20"
+                    Width="150"
+                    Visibility="Hidden"/>
+
+
+            <Button x:Name="Buttonyes"
+                    Content="oui"
+                    Style="{StaticResource CustomAppButton }"
+                    RenderTransformOrigin="1.047,0.821" 
+                    Height="20"
+                    Width="150"
+                    Click="ButtonyesClick"
+                    Visibility="Hidden"
                     Command="{Binding DeleteCommand}"
-                    Style="{StaticResource CustomAppButton}"/>
-
+                    />
         </StackPanel>
 
         <StackPanel Orientation="Vertical"

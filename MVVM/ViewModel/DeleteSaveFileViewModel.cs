@@ -36,8 +36,7 @@ namespace EasySave.MVVM.ViewModel
 
               
                 File.Delete(FileSaveManagement.GetSaveFileDirectory() + Title + ".json");
-
-
+                TitleList.Remove(Title);
             });
 
         }

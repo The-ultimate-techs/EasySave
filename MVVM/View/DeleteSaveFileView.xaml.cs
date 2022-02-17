@@ -29,6 +29,41 @@ namespace EasySave.MVVM.View
             InitializeComponent();
         }
 
+        private void ButtonnoClick(object sender, RoutedEventArgs e)
+        {
+
+
+            Delete.Visibility = Visibility.Visible;
+            Buttonno.Visibility = Visibility.Hidden;
+            Buttonyes.Visibility = Visibility.Hidden;
+            Areyousure.Visibility = Visibility.Hidden;
+        }
+
+
+        private void ButtonDeleteClick1(object sender, RoutedEventArgs e)
+        {
+
+
+            Delete.Visibility = Visibility.Hidden;
+            Buttonno.Visibility = Visibility.Visible;
+            Buttonyes.Visibility = Visibility.Visible;
+            Areyousure.Visibility = Visibility.Visible;
+
+
+        }
+
+        private void ButtonyesClick(object sender, RoutedEventArgs e)
+        {
+            
+            SourcePath.Text = "";
+            DestPath.Text = "";
+
+            Delete.Visibility = Visibility.Visible;
+            Buttonno.Visibility = Visibility.Hidden;
+            Buttonyes.Visibility = Visibility.Hidden;
+            Areyousure.Visibility = Visibility.Hidden;
+        }
+
         private void SearchClick(object sender, RoutedEventArgs e)
         {
 
@@ -46,7 +81,12 @@ namespace EasySave.MVVM.View
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+            if (TitleSelected.SelectedItem != null)
+            {
             FullFillForm();
+
+            }
         }
 
 
