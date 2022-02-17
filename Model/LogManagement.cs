@@ -37,75 +37,115 @@ namespace EasySave
 
 
 
-        public bool DailyLogGénérator(string Title , string SourceDirectory , string DestinationDirectory, string Type )
+        public bool DailyLogGénérator_JSON(string Title , string SourceDirectory , string DestinationDirectory, string Type )
         {
             SetTitle(Title);
             SetSourceDirectory(SourceDirectory.Replace("\\","\\\\"));
             SetDestinationDirectory(DestinationDirectory.Replace("\\", "\\\\"));
             SetType(Type);
 
-
+            DailyLogJson obj= new DailyLogJson();
 
 
             string path = GetDirectoryPath() + "SaveFilesLogs\\DailyLog\\" + GetTitle() + ".Json";
 
-
-            if (!File.Exists(path))
+            if (!File.Exists(path)) // if the file does not already exist, we create it
             {
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(path))
-                {
-                    bool trigger = false;
-                    RunningLogJson obj;
-
-                    obj.SourceFilePath = SourceDirectory;
-                    obj.TargetFilePath = DestinationDirectory;
-                    obj.DestPath = "";
-                    obj.FileSize = FileSize(SourceDirectory);
-                    obj.FileTransferTime = GetTimeDuration();
-                    obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
-                    trigger = true;
-
-                    string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
-                    sw.Write(json);
-                    sw.Close();
-
-
-                    //sw.WriteLine("[\n { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": " + FileSize(SourceDirectory) + ",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
-
-                }
+                File.WriteAllText(path, "");
             }
+
+            // update of the attributes
+            obj.Name = Title;
+            obj.FileSource = SourceDirectory;
+            obj.FileTarget = DestinationDirectory;
+            obj.DestPath = "";
+            obj.FileSize = FileSize(SourceDirectory);
+            obj.FileTransferTime = GetTimeDuration();
+            obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
+
+            
+
+            string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
+            var fi1 = new FileInfo(path);
+            string line;
+            long Fi1Length = fi1.Length;
+
+            if (Fi1Length == 0) // On crée le fichier q'il n'existe pas encore
+            {
+                File.AppendAllText(path, "");
+            }
+
+            // on récupère le texte existant
+            var sr = new StreamReader(path);
+            line = sr.ReadToEnd();
+            sr.Close();
+
+            // mise en forme entre chaque objet
+
+            line= String.Concat(line, json);
+            if (Fi1Length != 0)
+            {
+                line= line.Replace("}{", "}, {");
+            }
+            File.WriteAllText(path, line);
+            
+            
+            
+
+
+            /*// Create a file to write to.
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                obj.FileSource = SourceDirectory;
+                obj.FileTarget = DestinationDirectory;
+                obj.DestPath = "";
+                obj.FileSize = FileSize(SourceDirectory);
+                obj.FileTransferTime = GetTimeDuration();
+                obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
+                trigger = true;
+
+
+
+                string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
+                sw.Write("\n ");
+                sw.Write(json);
+                sw.WriteLine(" \n");
+                sw.Close();
+
+                // old methode
+                //sw.WriteLine("[\n { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": " + FileSize(SourceDirectory) + ",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
+
+            }
+        }
+
             else 
             {
                 // This text is always added, making the file longer over time
                 // if it is not deleted.
 
-                StreamReader reader = new StreamReader(File.OpenRead(path));
-                string fileContent = reader.ReadToEnd();
-                reader.Close();
-
-                fileContent = fileContent.Replace("}\n]", "},");
-                StreamWriter writer = new StreamWriter(File.OpenWrite(path));
-                writer.Write(fileContent);
-                writer.Close();
-
-
                 using (StreamWriter sw = File.AppendText(path))
                 {
-
-                    obj.SourceFilePath = SourceDirectory;
-                    obj.TargetFilePath = DestinationDirectory;
+                    // Update the attributes
+                    obj.FileSource = SourceDirectory;
+                    obj.FileTarget = DestinationDirectory;
                     obj.DestPath = "";
                     obj.FileSize = FileSize(SourceDirectory);
                     obj.FileTransferTime = GetTimeDuration();
                     obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
                     trigger = true;
-                    sw.WriteLine(" { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": "+FileSize(SourceDirectory)+",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
 
-                    string json = JsonConvert.SerializeObject(myJsonList, Formatting.Indented);
+                    //old methode
+                    //sw.WriteLine(" { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": "+FileSize(SourceDirectory)+",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
 
+
+                    //transform the string into a json string
+                    string newJson= JsonConvert.SerializeObject(obj, Formatting.Indented);
+
+                    sw.Write(newJson);
+                    sw.Write("\n]");
+                    sw.Close();
                 }
-            }
+            }*/
             return true;
         }
 
@@ -179,7 +219,7 @@ namespace EasySave
         }
 
 
-
+        
 
         public void BeginSaveFileExecution()
         {
