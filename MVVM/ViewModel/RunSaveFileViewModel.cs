@@ -1,24 +1,53 @@
 ﻿using Caliburn.Micro;
 using EasySave.MVVM.Model;
 using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Data;
 
 namespace EasySave.MVVM.ViewModel
 {
     class RunSaveFileViewModel
     {
 
-        public BindableCollection<RunningSaveFile> TileList { get; set; } 
+        public ObservableCollection<RunningSaveFile> TileList { get; set; } 
         FileSaveManagement FileSaveManagement;
+
+
+
+
+
+        public RelayCommand Test { get; set; }
 
         public RunSaveFileViewModel()
         {
-            TileList = new BindableCollection<RunningSaveFile>();
+            TileList = new ObservableCollection<RunningSaveFile>();
             FileSaveManagement = new FileSaveManagement();
             LoadContent();
-        
+
+
+
+
+
+            Test = new RelayCommand(o =>
+
+            {
+                foreach (RunningSaveFile SaveFile in TileList)
+                {
+                    if (o == SaveFile)
+                    {
+                        SaveFile.progression += 1;
+                       
+
+                    }
+                }
+                CollectionViewSource.GetDefaultView(TileList).Refresh();
+
+
+
+            });
 
         }
 
@@ -39,6 +68,8 @@ namespace EasySave.MVVM.ViewModel
                 newob.PlayPause = false;
                 newob.progression = 0;
                 TileList.Add(newob);
+               
+                
 
 
             }
@@ -62,19 +93,14 @@ namespace EasySave.MVVM.ViewModel
 
 
 
-            public RelayCommand Test { get; set; }
+            
 
 
 
             public RunningSaveFile()
             {
 
-                Test = new RelayCommand(o =>
 
-                {
-                    progression += 1;
-
-                });
 
             }
 
