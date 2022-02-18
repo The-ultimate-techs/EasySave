@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace EasySave
 {
@@ -35,9 +36,58 @@ namespace EasySave
             }
         }
 
+        public bool DailyLogGénérator_XML(string Title, string SourceDirectory, string DestinationDirectory, string Type)
+        {
+            SetTitle(Title);
+            SetSourceDirectory(SourceDirectory.Replace("\\", "\\\\"));
+            SetDestinationDirectory(DestinationDirectory.Replace("\\", "\\\\"));
+            SetType(Type);
+
+            DailyLogXml obj = new DailyLogXml();
+
+            string path = GetDirectoryPath() + "SaveFilesLogs\\DailyLog\\" + GetTitle() + ".Xml";
+
+            
+
+            
+            // if the file does not already exist, we create it
+            if (!File.Exists(path))
+            {
+                File.Create(path).Close();
+            }
+
+            #region Update attributes of the object
+            obj.Name = Title;
+            obj.FileSource = SourceDirectory;
+            obj.FileTarget = DestinationDirectory;
+            obj.DestPath = "";
+            obj.FileSize = FileSize(SourceDirectory);
+            obj.FileTransferTime = GetTimeDuration();
+            obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
+            #endregion
+
+            XmlSerializer XmlSerializer = new XmlSerializer(typeof(DailyLogXml));
+            StreamWriter WriterXml = new StreamWriter(path, true);
+            XmlSerializer.Serialize(WriterXml, obj ); // This method serialize and write the xml file
+            var fi1 = new FileInfo(path);
+            long Fi1Length = fi1.Length;
+
+            if (Fi1Length == 0) // On crée le fichier s'il n'existe pas encore
+            {
+                File.AppendAllText(path, "");
+            }
 
 
-        public bool DailyLogGénérator_JSON(string Title , string SourceDirectory , string DestinationDirectory, string Type )
+            WriterXml.Close();
+
+            return true;
+
+
+        }
+
+
+
+        public bool DailyLogGénérator_JSON(string Title , string SourceDirectory , string DestinationDirectory, string Type)
         {
             SetTitle(Title);
             SetSourceDirectory(SourceDirectory.Replace("\\","\\\\"));
