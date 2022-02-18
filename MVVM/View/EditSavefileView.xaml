@@ -119,17 +119,21 @@
         <StackPanel Orientation="Vertical"
                     VerticalAlignment="Top"
                     Margin="13,60,55,0" 
-                    Grid.Column="1">
+                    Grid.Column="1"
+                    >
 
             <ComboBox Height="30"
                       Width="438"
                       IsEditable="True"
+                      Tag="{Binding DataContext.BufferTitle, RelativeSource={RelativeSource AncestorType=Window}}"
                       Text="--Sélectionnez le travail de sauvegarde--" 
                       SelectionChanged="ComboBox_SelectionChanged"
                       ItemsSource="{Binding TitleList}"
                       SelectedItem="{Binding Title}"
                       IsReadOnly="True"
-                      x:Name ="TitleSelected">
+                      Loaded="OnLoad"
+                      x:Name ="TitleSelected"
+                     >
                 
 
 

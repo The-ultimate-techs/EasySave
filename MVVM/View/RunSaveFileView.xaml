@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EasySave"
              xmlns:Viewmomdel="clr-namespace:EasySave.MVVM.ViewModel"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:View="clr-namespace:EasySave.MVVM.View"
              mc:Ignorable="d" 
                 d:DesignWidth="800" Height="505">
@@ -74,10 +75,11 @@
         </Border>
 
 
-        <TextBlock Text="Liste des travaux de sauvegarde"
+        <TextBlock Text="Liste des travaux de sauvegarde : "
                    Grid.Column ="1"
                    Foreground="white"
-                   
+                   Margin="0,20,0,0"
+                   HorizontalAlignment="Center"
                    FontSize="20"/>
 
         <Grid Grid.Column="1" Margin="10,70,10,10">
@@ -91,14 +93,101 @@
                 <ItemsControl ItemsSource="{Binding TileList}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border Background="#354540" Margin="10" CornerRadius="10" Padding="10">
-                                <StackPanel Height="50" Orientation="Horizontal">
+                            <Border  Margin="10" CornerRadius="10" >
+                                
 
-                                    <TextBlock Text="{Binding Title}" Foreground="White"/>
-                                    <TextBlock Text="{Binding progression}" Foreground="White"/>
-                                    <Button Content="test" Command="{Binding DataContext.Test, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" Margin="20,0,0,0" Height="30"/>
+                                <Grid Height="50" >
 
-                                </StackPanel>
+
+                                    <Grid.ColumnDefinitions>
+                                        
+                                        <ColumnDefinition Width="310"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="15"/>
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <ProgressBar Grid.Column="0"
+                                                 Grid.ColumnSpan="7"
+                                                 Minimum="0"
+                                                 Maximum="{Binding TotalFile}"
+                                                 Value="{Binding progression}"
+                                                 Style="{StaticResource CustomProgressBar}">
+
+                                    </ProgressBar>
+
+                                    <Button Grid.Column="1"
+                                            x:Name="PlayButton"
+                                            Visibility="{Binding PlayState}"
+                                            ClickMode="Release"
+                                            Click="PlayClick"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.PlayCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                        <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/play-button-arrowhead.png"/>
+                                    </Button>
+
+
+
+                                    <Button Grid.Column="1"
+                                            x:Name="PauseButton"
+                                            ClickMode="Release"
+                                            Visibility="{Binding PauseState}"
+                                            Click="PauseClick"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.PauseCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                        <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/pause-button.png" 
+                      />
+                                    </Button>
+
+                                    <Button Grid.Column="2"
+                                            x:Name="StopButton"
+                                            ClickMode="Release"
+                                            IsEnabled="{Binding StopButton}"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.StopCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                        <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/stop.png" 
+                      />
+                                    </Button>
+
+                                    <Button Grid.Column="3"
+                                            ClickMode="Release"
+                                            Click="ChangeDataContext"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.EditSaveFileCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}">
+                                                                              
+                                        <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/pencil.png" 
+                      />
+                                    </Button>
+
+                                    <Button Grid.Column="4"
+                                            ClickMode="Release"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.DeleteSaveFileCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}">
+
+                                        <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/delete.png"  
+                      />
+                                    </Button>
+
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="17" Text="{Binding Title}" Foreground="White" Margin="10,0,0,0"/>
+
+                                                                       
+                                    
+                                </Grid>
+                                
+                                                              
                             </Border>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

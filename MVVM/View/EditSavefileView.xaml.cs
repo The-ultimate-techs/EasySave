@@ -30,6 +30,8 @@ namespace EasySave.MVVM.View
         public EditSavefileView()
         {
             InitializeComponent();
+
+
         }
 
         private void ButtonnoClick(object sender, RoutedEventArgs e)
@@ -76,6 +78,18 @@ namespace EasySave.MVVM.View
 
         }
 
+        private void OnLoad(object sender, RoutedEventArgs e)
+        {
+
+            if (TitleSelected.Tag != null)
+            {
+                TitleSelected.SelectedItem = TitleSelected.Tag;
+                FullFillForm();
+            }
+
+
+        }
+
         private void WriteText2(object sender, RoutedEventArgs e)
         {
 
@@ -85,8 +99,7 @@ namespace EasySave.MVVM.View
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-           
+                       
             FullFillForm();
 
         }

@@ -22,6 +22,7 @@ namespace EasySave.MVVM.ViewModel
         public object DestinationPath { get; set; }
         public bool TypeComplete { get; set; }
         public bool TypeDifferencial { get; set; }
+       
 
 
 

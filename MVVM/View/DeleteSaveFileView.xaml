@@ -111,11 +111,13 @@
             <ComboBox Height="30"
                       Width="438"
                       IsEditable="True"
+                      Tag="{Binding DataContext.BufferTitle, RelativeSource={RelativeSource AncestorType=Window}}"
                       Text="--Sélectionnez le travail de sauvegarde--" 
                       SelectionChanged="ComboBox_SelectionChanged"
                       ItemsSource="{Binding TitleList}"
                       SelectedItem="{Binding Title}"
                       IsReadOnly="True"
+                      Loaded="OnLoad"
                       x:Name ="TitleSelected">
 
 

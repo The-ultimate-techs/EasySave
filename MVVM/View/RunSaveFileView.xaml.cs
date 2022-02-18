@@ -32,5 +32,27 @@ namespace EasySave.MVVM.View
         {
 
         }
+
+        private void ChangeDataContext(object sender, RoutedEventArgs e)
+        {
+          
+        }
+
+
+        private void PlayClick(object sender, RoutedEventArgs e)
+        {
+
+
+
+        }
+
+
+        private void PauseClick(object sender, RoutedEventArgs e)
+        {
+
+    
+
+
+        }
     }
 }

@@ -31,7 +31,6 @@ namespace EasySave.MVVM.ViewModel
 
 
             DeleteCommand = new RelayCommand(o =>
-
             {
 
               

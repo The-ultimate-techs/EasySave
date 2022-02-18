@@ -69,6 +69,18 @@ namespace EasySave.MVVM.View
 
         }
 
+        private void OnLoad(object sender, RoutedEventArgs e)
+        {
+
+            if (TitleSelected.Tag != null)
+            {
+                TitleSelected.SelectedItem = TitleSelected.Tag;
+                FullFillForm();
+            }
+
+
+        }
+
         private void ComboBox_SelectionChanged_2(object sender, SelectionChangedEventArgs e)
         {
 
