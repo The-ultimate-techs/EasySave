@@ -89,7 +89,7 @@ namespace EasySave.MVVM.Model
 
 
 
-        public bool RunningLogGénérator(string Title, string SourceDirectory, string DestinationDirectory,  int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo)
+        public bool RunningLogGénérator(string Title, string SourceDirectory, string DestinationDirectory,  int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo , bool state)
         
         {
 
@@ -116,7 +116,7 @@ namespace EasySave.MVVM.Model
                 {
                     obj.SourceFilePath = SourceDirectory;
                     obj.TargetFilePath = DestinationDirectory;
-                    obj.State = (GetProcessRunning() == true) ? "ACTIVE" : "END"; 
+                    obj.State = (state == true) ? "ACTIVE" : "END"; 
                     obj.TotalFilesToCopy = TotalFilesToCopy;
                     obj.TotalFilesSize = TotalFilesSize;
                     obj.NbFilesLeftToDo = NbFilesLeftToDo;
@@ -130,7 +130,7 @@ namespace EasySave.MVVM.Model
                 Newobj.Name = Title;
                 Newobj.SourceFilePath = SourceDirectory;
                 Newobj.TargetFilePath = DestinationDirectory;
-                Newobj.State = (GetProcessRunning() == true) ? "ACTIVE" : "END";
+                Newobj.State = (state == true) ? "ACTIVE" : "END";
                 Newobj.TotalFilesToCopy = TotalFilesToCopy;
                 Newobj.TotalFilesSize = TotalFilesSize;
                 Newobj.NbFilesLeftToDo = NbFilesLeftToDo;

@@ -31,13 +31,11 @@ namespace EasySave.MVVM.ViewModel
 
 
             DeleteCommand = new RelayCommand(o =>
-
             {
 
               
                 File.Delete(FileSaveManagement.GetSaveFileDirectory() + Title + ".json");
-
-
+                TitleList.Remove(Title);
             });
 
         }

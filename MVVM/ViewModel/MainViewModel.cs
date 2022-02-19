@@ -17,6 +17,7 @@ namespace EasySave
 
 
         public object Language { get; set; }
+        public string BufferTitle { get; set; }
         SettingManager SettingManager ;
       
 
@@ -76,22 +77,58 @@ namespace EasySave
             SettingManager = new SettingManager();
             CurrentView = HomePageVM;
             reload();
-            
+           
+
 
 
             CreateSaveFileCommand = new RelayCommand(o =>
            {
+
+              
                CurrentView = CreateSaveFileVM;
            });
 
             DeleteSaveFileCommand = new RelayCommand(o =>
             {
-                CurrentView = DeleteSaveFileVM;
+                if (o == null)
+                {
+                    EditSaveFileVM.Title = null;
+                    CurrentView = DeleteSaveFileVM;
+                    BufferTitle = null;
+                }
+                else
+                {
+                    RunningSaveFile RunningSaveFile = new RunningSaveFile();
+                    RunningSaveFile = o as RunningSaveFile;
+                    BufferTitle = RunningSaveFile.Title;
+
+                    CurrentView = DeleteSaveFileVM;
+
+
+                }
             });
 
             EditSaveFileCommand = new RelayCommand(o =>
             {
-                CurrentView = EditSaveFileVM;
+                
+
+                if (o == null)
+                {
+                    EditSaveFileVM.Title = null;
+                    CurrentView = EditSaveFileVM;
+                    BufferTitle = null;
+                }
+                else 
+                {
+                    RunningSaveFile RunningSaveFile = new RunningSaveFile();
+                    RunningSaveFile = o as RunningSaveFile;
+                    BufferTitle = RunningSaveFile.Title;
+
+                    CurrentView = EditSaveFileVM;
+                    
+                    
+                }
+                   
             });
 
             HomePageCommand = new RelayCommand(o =>

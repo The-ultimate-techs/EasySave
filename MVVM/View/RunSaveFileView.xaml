@@ -5,42 +5,53 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:EasySave"
              xmlns:Viewmomdel="clr-namespace:EasySave.MVVM.ViewModel"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:View="clr-namespace:EasySave.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid>
+                d:DesignWidth="800" Height="505">
 
-            <Border
-                Margin="8,0,391,0" Height="444" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
 
-                <Border.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform AngleY="-0.198"/>
-                        <RotateTransform/>
-                        <TranslateTransform Y="-0.397"/>
-                    </TransformGroup>
-                </Border.RenderTransform>
+    <UserControl.DataContext>
+        <Viewmomdel:RunSaveFileViewModel/>
+  </UserControl.DataContext>
 
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#ECD829" Offset="0.0"/>
-                        <GradientStop Color="#F09434" Offset="0.9"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-                <Border.Clip>
-                    <RectangleGeometry RadiusX="10"
+
+    <Grid Margin="20,20,20,0">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"
+                Margin="10,10,10,0">
+
+
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="#ECD829" Offset="0.0"/>
+                    <GradientStop Color="#F09434" Offset="0.9"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Border.Clip>
+                <RectangleGeometry RadiusX="10"
                                    RadiusY="10"
-                                   Rect="2,3,400,440"/>
-                </Border.Clip>
+                                    Rect="0,0,230,460"/>
+            </Border.Clip>
 
 
-                <StackPanel Margin="6,8,14,-200">
+
+
+
+
+
+            <Grid>
+                <StackPanel>
                     <TextBlock Text="Exécutez un ou plu-&#xA;sieurs travaux de sau-&#xA;vegarde simultané-&#xA;ment !"
                                Foreground="white"
                                FontSize="17" 
                                />
+
 
                     <TextBlock Text="Réalisez une ou pluiseurs &#xA;sauvegardes en parallèle en &#xA;sélectionnant les travaux de &#xA;sauvegarde souhaités."
                                Foreground="white"
@@ -53,55 +64,143 @@
                                FontSize="11" 
                                TextAlignment="Justify"
                                />
-                    <Image Width="47"
-                   Height="46"
-                   Source="../../Resource/executif.png" 
-                   Margin="-100,170,-460,10"
-                   />
                 </StackPanel>
-            </Border>
+                <Image Width="110"
+                       Height="110"
+                       Source="../../Resource/executif.png" 
+                       Margin="130,357,0,0"/>
 
-            <TextBlock Text=" Liste des travaux de sauvegarde existants"
-                               Foreground="White"
-                               FontSize="17"
-                               Margin="413,10,0,411"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"
-                               />
+            </Grid>
 
-            <ListBox 
-                      Name="Processlist" 
-                     HorizontalAlignment="Left"
-                      Width="377" 
-                     Margin="413,55,0,55" 
-                     Style="{StaticResource listBoxStyle}" SelectionChanged="Processlist_SelectionChanged"
-                     SelectionMode="Extended">
+        </Border>
 
-                <ListBoxItem 
-                    >Titre1</ListBoxItem>
-                <ListBoxItem>Titre2</ListBoxItem>
-                <ListBoxItem>Titre3</ListBoxItem>
-                <ListBoxItem>Titre4</ListBoxItem>
-                <ListBoxItem>Titre5</ListBoxItem>
-                <ListBoxItem>Titre6</ListBoxItem>
-                <ListBoxItem>Titre7</ListBoxItem>
-                <ListBoxItem>Titre8</ListBoxItem>
-                <ListBoxItem>Titre9</ListBoxItem>
-                <ListBoxItem>Titre10</ListBoxItem>
-                <ListBoxItem>Titre11</ListBoxItem>
-                <ListBoxItem>Titre12</ListBoxItem>
-                <ListBoxItem>Titre13</ListBoxItem>
-                <ListBoxItem>Titre14</ListBoxItem>
-                <ListBoxItem>Titre15</ListBoxItem>
+
+        <TextBlock Text="Liste des travaux de sauvegarde : "
+                   Grid.Column ="1"
+                   Foreground="white"
+                   Margin="0,20,0,0"
+                   HorizontalAlignment="Center"
+                   FontSize="20"/>
+
+        <Grid Grid.Column="1" Margin="10,70,10,10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
                 
-            </ListBox>
+            </Grid.RowDefinitions>
 
-            <Button x:Name="BrowseButton"
-                        Content="Exécuter !"
-                        Click="ButtonClick"
-                        Style="{StaticResource CustomAppButton}"
-                        RenderTransformOrigin="1.047,0.821" Height="20" Width="150" Margin="526,411,124,19"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="400" BorderThickness="0" >
+                <ItemsControl ItemsSource="{Binding TileList}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border  Margin="10" CornerRadius="10" >
+                                
+
+                                <Grid Height="50" >
+
+
+                                    <Grid.ColumnDefinitions>
+                                        
+                                        <ColumnDefinition Width="310"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="40"/>
+                                        <ColumnDefinition Width="15"/>
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <ProgressBar Grid.Column="0"
+                                                 Grid.ColumnSpan="7"
+                                                 Minimum="0"
+                                                 Maximum="{Binding TotalFile}"
+                                                 Value="{Binding progression}"
+                                                 Style="{StaticResource CustomProgressBar}">
+
+                                    </ProgressBar>
+
+                                    <Button Grid.Column="1"
+                                            x:Name="PlayButton"
+                                            Visibility="{Binding PlayState}"
+                                            ClickMode="Release"
+                                            Click="PlayClick"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.PlayCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                        <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/play-button-arrowhead.png"/>
+                                    </Button>
+
+
+
+                                    <Button Grid.Column="1"
+                                            x:Name="PauseButton"
+                                            ClickMode="Release"
+                                            Visibility="{Binding PauseState}"
+                                            Click="PauseClick"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.PauseCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                        <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/pause-button.png" 
+                      />
+                                    </Button>
+
+                                    <Button Grid.Column="2"
+                                            x:Name="StopButton"
+                                            ClickMode="Release"
+                                            IsEnabled="{Binding StopButton}"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.StopCommand, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}">
+                                        <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/stop.png" 
+                      />
+                                    </Button>
+
+                                    <Button Grid.Column="3"
+                                            ClickMode="Release"
+                                            Click="ChangeDataContext"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.EditSaveFileCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}">
+                                                                              
+                                        <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/pencil.png" 
+                      />
+                                    </Button>
+
+                                    <Button Grid.Column="4"
+                                            ClickMode="Release"
+                                            Style="{StaticResource InvisibleButton}"
+                                            Command="{Binding DataContext.DeleteSaveFileCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}">
+
+                                        <Image Width="25"
+                                                Height="25"
+                                                Source="../../Resource/delete.png"  
+                      />
+                                    </Button>
+
+                                    <TextBlock Grid.Column="0" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="17" Text="{Binding Title}" Foreground="White" Margin="10,0,0,0"/>
+
+                                                                       
+                                    
+                                </Grid>
+                                
+                                                              
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+
         </Grid>
 
+
+
+
+        
     </Grid>
+
+
 </UserControl>
