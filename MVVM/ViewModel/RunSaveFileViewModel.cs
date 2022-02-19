@@ -101,6 +101,8 @@ namespace EasySave.MVVM.ViewModel
                         SaveFile.StopState = true;
                         SaveFile.StopButton = true;
 
+
+
                     }
                 }
 
@@ -126,6 +128,16 @@ namespace EasySave.MVVM.ViewModel
                         SaveFile.progression = 0;
                         SaveFile.TotalFile = 100;
                         SaveFile.progressionBuffer = 0;
+
+
+
+
+                        Filetorun = SaveFile;
+
+                        Thread StopThread = new Thread(StopCopy);
+                        StopThread.Name = SaveFile.Title;
+                        StopThread.Start();
+
                     }
                 }
 
@@ -168,7 +180,7 @@ namespace EasySave.MVVM.ViewModel
 
             }
 
-            LogManagement.BeginEndProcess();
+           
 
             long filesize = 0;
 
@@ -192,11 +204,16 @@ namespace EasySave.MVVM.ViewModel
              
 
                 foreach (RunningSaveFile SaveFile in TileList)
+
+
                 {
+
+                    bool process = false;
+                    
+                   
                     if (Filetoprocess == SaveFile && SaveFile.StopState == false && SaveFile.progressionBuffer < progress)
                     {
-                       
-
+                        
                         System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progression = progress);
                         System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.TotalFile = FileList.Count);
 
@@ -206,9 +223,22 @@ namespace EasySave.MVVM.ViewModel
                         LogManagement.EndSaveFileExecution();
 
                         LogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
-                        LogManagement.RunningLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), FileList.Count, filesize, FileList.Count - progress);
 
-                        
+
+
+
+                        if (Monitor.TryEnter(LogManagement, 3600000))
+                        {
+                            process = true;
+                            LogManagement.RunningLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), FileList.Count, filesize, FileList.Count - progress,true);
+                        }
+
+                        if (process == true)
+                        {
+
+                            Monitor.Exit(LogManagement);
+                        }
+
 
                     }
 
@@ -222,11 +252,27 @@ namespace EasySave.MVVM.ViewModel
 
             foreach (RunningSaveFile SaveFile in TileList)
             {
-                if (Filetoprocess == SaveFile && SaveFile.StopState == false)
+                if (Filetoprocess == SaveFile && SaveFile.StopState == false && SaveFile.progression == FileList.Count)
                 {
 
-                    LogManagement.BeginEndProcess();
-                    LogManagement.RunningLogGénérator(SaveFileJson.Title, "", "", FileList.Count, 0, 0);
+
+
+                    bool process = false;
+
+                    if (Monitor.TryEnter(LogManagement, 3600000))
+                    {
+                        process = true;
+                        LogManagement.RunningLogGénérator(SaveFileJson.Title, "", "", FileList.Count, 0, 0, false);
+                    }
+
+                    if (process == true)
+                    {
+
+                        Monitor.Exit(LogManagement);
+                    }
+
+
+                   
 
 
 
@@ -239,6 +285,9 @@ namespace EasySave.MVVM.ViewModel
 
                 }
 
+
+
+
             }
 
 
@@ -246,6 +295,48 @@ namespace EasySave.MVVM.ViewModel
         
         }
 
+
+        public void StopCopy()
+        {
+
+            RunningSaveFile Filetoprocess = new RunningSaveFile();
+            Filetoprocess = Filetorun;
+
+
+            string Jsonpath = FileSaveManagement.GetSaveFileDirectory() + Filetoprocess.Title + ".Json";
+
+            string myJsonFile = File.ReadAllText(Jsonpath);
+            SaveFileJson SaveFileJson = JsonConvert.DeserializeObject<SaveFileJson>(myJsonFile);
+
+
+            List<FileSave> FileList = FileSaveManagement.GetFilesOnADirectory(SaveFileJson.SourcePath, SaveFileJson.DestPath);
+
+
+            foreach (RunningSaveFile SaveFile in TileList)
+            {
+                if (Filetoprocess == SaveFile && SaveFile.StopState == true )
+                {
+
+
+
+                    bool process = false;
+
+                    if (Monitor.TryEnter(LogManagement, 3600000))
+                    {
+                        process = true;
+                        LogManagement.RunningLogGénérator(SaveFileJson.Title, "", "", FileList.Count, 0, FileList.Count, false);
+                    }
+
+                    if (process == true)
+                    {
+
+                        Monitor.Exit(LogManagement);
+                    }
+
+                }
+            }
+
+        }
 
         public void Refresh()
         {
