@@ -5,5 +5,56 @@
 
 
     <system:String x:Key="Settings">Paramètres</system:String>
+    
+    <!-- Main Menu buttons-->
+    <system:String x:Key="Create_button">Créer un travail de sauvegarde</system:String>
+    <system:String x:Key="Edit_button">Editer un travail de sauvegarde</system:String>
+    <system:String x:Key="Run_button">Exécuter un ou plusieurs travaux de sauvegarde</system:String>
+    <system:String x:Key="Delete_button">Supprimer un travail de sauvegarde</system:String>
+    <system:String x:Key="Parameters">Paramètres_généraux ...</system:String>
+    
+    
+    <!-- Main Menu Tiles -->
+        <!-- First tile -->
+    <system:String x:Key="Title1_Description">EasySave : Une application de sauvegarde rapide et facile !</system:String>
+    <system:String x:Key="First1_Line_Description">Ce logiciel vous permet de réaliser des sauvegardes de vos fichiers simplement grâce à notre interface intuitive !</system:String>
+    <system:String x:Key="Second1_Line_Description">Vous pouvez sauvegarder depuis n'importe quel dossier, sur une multitude de plate-forme :</system:String>
+    <system:String x:Key="Third1_Line_Description">- disque dur interne et externe    - lecteur réseau   - NAS   - Carte SD</system:String>
+
+        <!-- Second tile -->
+    <system:String x:Key="Title2_Description">Sécurisez vos données grâce à CryptoSoft !</system:String>
+    <system:String x:Key="First2_Line_Description">CryptoSoft, un logiciel de chiffrement de données de notre programme, est intégré à EasySave pour vous permettre de sauvegarder en toute sécurité vos fichiers si vous le souhaitez.</system:String>
+
+        <!-- Third tile -->
+    <system:String x:Key="Title3_Description">Créer en un clic un tra-&#xA;vail de sauvegarde !</system:String>
+    <system:String x:Key="First3_Line_Description">Mais qu'est-ce qu'un travail &#xA;de sauvegarde ? &#xA;Nous appelons ''travail de &#xA;sauvegarde'' que vous réalis-&#xA;ez régulièrement et que vous &#xA;souhaitez automatiser.</system:String>
+    <system:String x:Key="Second3_Line_Description">Pour cela, veuillez-vous rendre &#xA;dans le menu ''Créer un travail de &#xA;sauvegarde'' sur votre gauche.</system:String>
+
+        <!-- Fourth tile -->
+    <system:String x:Key="Title4_Description">Modifiez à l'infini vos &#xA;travaux de sauvegar-&#xA;de ou supprimez ceux &#xA;dont vous n'avez plus &#xA;besoin !</system:String>
+    <system:String x:Key="First4_Line_Description">EasySave vous permet d'édi-&#xA;ter les caractéristiques de &#xA;vos travaux de savegarde ou &#xA;de les supprimer.</system:String>
+    <system:String x:Key="Second4_Line_Description">Pour cela, veuillez-vous rendre &#xA;dans le menu ''Editer/Supprimer &#xA;un travail de sauvegarde'' sur &#xA;votre gauche.</system:String>
+
+    <!-- Fifth tile -->
+    <system:String x:Key="Title5_Description">Exécutez un ou plu-&#xA;sieurs travaux de sau-&#xA;vegarde simultané-&#xA;ment !</system:String>
+    <system:String x:Key="First5_Line_Description">Réalisez une ou pluiseurs &#xA;sauvegardes en parallèle en &#xA;sélectionnant les travaux de &#xA;sauvegarde souhaités.</system:String>
+    <system:String x:Key="Second5_Line_Description">Pour cela, veuillez-vous rendre &#xA;dans le menu ''Exécuter un ou plu-&#xA;sieurs travaux de sauvegarde'' sur &#xA;votre gauche.</system:String>
+
+    
+    <!-- Create a backup job menu-->
+    <system:String x:Key="Backup_Job_Name">Nom du travail de travail que vous souhaitez créer :</system:String>
+    <system:String x:Key="Enter_Title">Entrez le nom du travail de sauvegarde ici ...</system:String>
+    
+    <system:String x:Key="Source_Folder_Path">Chemin du dossier source :</system:String>
+    <system:String x:Key="Enter_Source_Path">Entrez le chemin du fichier source ...</system:String>
+    
+    <system:String x:Key="Destination_Folder_Path">Chemin du dossier destination :</system:String>
+    <system:String x:Key="Enter_Destination_Path">Entrez le chemin du fichier de destination ...</system:String>
+
+    <system:String x:Key="Search_Folder">Ouvrir ...</system:String>
+    <system:String x:Key="Are_You_Sure">Type de sauvegade souhaitée :</system:String>
+    <system:String x:Key="Save_Type_Differential">Différentiel</system:String>
+    <system:String x:Key="Save_Type_Complete">Complète</system:String>
+    
 
 </ResourceDictionary>
