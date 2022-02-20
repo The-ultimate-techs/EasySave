@@ -367,7 +367,9 @@ namespace EasySave
 
                 LogManagement.DailyLogGénérator_XML(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
                 LogManagement.DailyLogGénérator_JSON(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
-                LogManagement.RunningLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), FileList.Count, filesize , FileList.Count - progress);
+                LogManagement.RunningLogGénérator_XML_V1(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), FileList.Count, filesize, FileList.Count - progress);
+                //LogManagement.RunningLogGénérator_XML_V2(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), FileList.Count, filesize, FileList.Count - progress);
+                LogManagement.RunningLogGénérator_JSON(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), FileList.Count, filesize , FileList.Count - progress);
 
                 int progressionpercent = progress * 100/ FileList.Count  ;
 
@@ -395,7 +397,8 @@ namespace EasySave
             }
 
             LogManagement.BeginEndProcess();
-            LogManagement.RunningLogGénérator(SaveFileJson.Title, "", "", FileList.Count, 0, 0);
+            LogManagement.RunningLogGénérator_JSON(SaveFileJson.Title, "", "", FileList.Count, 0, 0);
+            LogManagement.RunningLogGénérator_XML_V1(SaveFileJson.Title, "", "", FileList.Count, 0, 0);
 
 
 
