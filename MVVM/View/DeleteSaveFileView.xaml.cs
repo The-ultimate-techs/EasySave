@@ -136,7 +136,5 @@ namespace EasySave.MVVM.View
 
 
         }
-
-
     }
 }

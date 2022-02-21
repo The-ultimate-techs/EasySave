@@ -1,9 +1,96 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
-                    
 
 
-        <system:String x:Key="Settings">Settings</system:String>
+
+    <system:String x:Key="Settings">Settings</system:String>
+
+    <!-- Main Menu buttons-->
+    <system:String x:Key="Create_button" xml:space="preserve">Create a backup job</system:String>
+    <system:String x:Key="Edit_button" xml:space="preserve">Edit a backup job</system:String>
+    <system:String x:Key="Run_button" xml:space="preserve">Run a backup job</system:String>
+    <system:String x:Key="Delete_button" xml:space="preserve">Delete a backup job</system:String>
+    <system:String x:Key="Parameters" xml:space="preserve">Global&#13;Settings ...</system:String>
+
+
+    <!-- Main Menu Tiles -->
+    <!-- First tile -->
+    <system:String x:Key="Title1_Description">EasySave : A quick and easy backup app</system:String>
+    <system:String x:Key="First1_Line_Description">This app allow you to run easily your backup jobs with our intuitive interface !</system:String>
+    <system:String x:Key="Second1_Line_Description">You can backup from any folder, to a multitude of platforms :</system:String>
+    <system:String x:Key="Third11_Line_Description">- Internal and external hard drive disk</system:String>
+    <system:String x:Key="Third12_Line_Description">- Internal network</system:String>
+    <system:String x:Key="Third13_Line_Description">- NAS</system:String>
+    <system:String x:Key="Third14_Line_Description">- SD card</system:String>
+    
+    <!-- Second tile -->
+    <system:String x:Key="Title2_Description" xml:space="preserve">Secure your data&#13;with CryptoSoft !</system:String>
+    <system:String x:Key="First2_Line_Description" xml:space="preserve">CryptoSoft is a data&#13;encryption software integra-&#13;ted to EasySave, to permite&#13;you to backup your jobs&#13;safely.</system:String>
+
+    <!-- Third tile -->
+    <system:String x:Key="Title3_Description" xml:space="preserve">Create a backup job&#13;in one click !</system:String>
+    <system:String x:Key="First3_Line_Description" xml:space="preserve">But what is a backup job ?&#13;What we call a backup job is&#13;one or more backup you do&#13;regularly and you want to&#13;automate.</system:String>
+    <system:String x:Key="Second3_Line_Description" xml:space="preserve">To create a backup job, please go&#13;on the« create a backup job »&#13;section,on the left of your screen.</system:String>
+
+    <!-- Fourth tile -->
+    <system:String x:Key="Title4_Description" xml:space="preserve">Modify your backup&#13;jobs or delete those&#13;you no longer need !</system:String>
+    <system:String x:Key="First4_Line_Description" xml:space="preserve">EasySave allow you to edit&#13;your backup jobs parame-&#13;ters, or to delete them.</system:String>
+    <system:String x:Key="Second4_Line_Description" xml:space="preserve">To edit or delete a backup job,&#13;please go on the « Edit a backup&#13;job » or « delete a backup job »&#13;section, on the left of your screen.</system:String>
+
+    <!-- Fifth tile -->
+    <system:String x:Key="Title5_Description" xml:space="preserve">Run one or more&#13;backup jobs&#13;simultaneously !</system:String>
+    <system:String x:Key="First5_Line_Description" xml:space="preserve">Run one or more backup&#13;jobs simultaneously by&#13;selectionning those you&#13;want to run.</system:String>
+    <system:String x:Key="Second5_Line_Description" xml:space="preserve">To run one or more backup jobs,&#13; please go on the « run one or&#13;more backup jobs» section, on&#13;the left of your screen.</system:String>
+
+
+    <!-- Create a backup job menu-->
+    <system:String x:Key="Backup_Job_Name">Name of the backup job you want to create :</system:String>
+    <system:String x:Key="Enter_Title">Enter the Title here ...</system:String>
+
+    <system:String x:Key="Source_Folder_Path">Source folder path :</system:String>
+    <system:String x:Key="Enter_Source_Path">Source Path...</system:String>
+
+    <system:String x:Key="Destination_Folder_Path">Destination folder path :</system:String>
+    <system:String x:Key="Enter_Destination_Path">Destination Path...</system:String>
+
+    <system:String x:Key="Search_Folder">Search folder...</system:String>
+    <system:String x:Key="Save_Type">Save type :</system:String>
+    <system:String x:Key="Save_Type_Differential">Differential</system:String>
+    <system:String x:Key="Save_Type_Complete">Complete</system:String>
+    <system:String x:Key="Create_Button">Create !</system:String>
+    <system:String x:Key="Are_You_Sure">Are you sure ?</system:String>
+    <system:String x:Key="Yes_Button_Text">Yes</system:String>
+    <system:String x:Key="No_Button_Text">No</system:String>
+
+
+    <!-- Edit a backup job menu-->
+    <system:String x:Key="Edited_Backup_Job_Name">Name of the backup job you want to modify :</system:String>
+    <system:String x:Key="Select_a_backup_job">Select a backup job--</system:String>
+    <system:String x:Key="Edit_Button">Edit !</system:String>
+
+
+    <!--Run backup job menu -->
+    <system:String x:Key="Backup_Job_List">List of backup jobs :</system:String>
+
+
+    <!-- Delete a backup job menu-->
+    <system:String x:Key="Deleted_Backup_Job_Name">Name of the backup job you want to delete :</system:String>
+    <system:String x:Key="Delete_Button">Delete !</system:String>
+
+
+    <!--Global settings menu-->
+    <system:String x:Key="Extention_List_Text">List of extensions</system:String>
+    <system:String x:Key="Extention_to_encrypt_List_Text">Extensions to encrypt</system:String>
+
+    <system:String x:Key="Add_Button_>">Add >></system:String>
+    <system:String x:Key="Remove_Button_>">&#60;&#60; Remove</system:String>
+    <!-- &#60; mean "<"-->
+
+    <system:String x:Key="Add_Job_Software_Text">Add a job software</system:String>
+    <system:String x:Key="List_Process_Text">List of job software</system:String>
+
+    <system:String x:Key="Add_Button">Add</system:String>
+    <system:String x:Key="Remove_Button">Remove</system:String>
 
 </ResourceDictionary>
