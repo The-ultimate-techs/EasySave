@@ -20,9 +20,6 @@
     </Window.DataContext>
 
 
-
-
-
     <Border Background="#272537"
             CornerRadius="10">
         <Grid Margin="4,0,-4,0">
@@ -104,7 +101,8 @@
                              FontSize="14"
                              HorizontalAlignment="Center"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding DeleteSaveFileCommand}"/>
+                             Command="{Binding DeleteSaveFileCommand}"
+                             />
             </StackPanel>
 
             <Button 

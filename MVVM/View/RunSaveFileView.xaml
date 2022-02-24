@@ -62,8 +62,9 @@
                     <TextBlock Text="Pour cela, veuillez-vous rendre &#xA;dans le menu ''Exécuter un ou plu-&#xA;sieurs travaux de sauvegarde'' sur &#xA;votre gauche."
                                Foreground="white"
                                FontSize="11" 
-                               TextAlignment="Justify"
-                               />
+                               TextAlignment="Justify"/>
+
+
                 </StackPanel>
                 <Image Width="110"
                        Height="110"

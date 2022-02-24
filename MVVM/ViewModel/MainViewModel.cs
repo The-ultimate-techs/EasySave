@@ -39,7 +39,7 @@ namespace EasySave
         public DeleteSaveFileViewModel DeleteSaveFileVM { get; set; }
         public EditSaveFileViewModel EditSaveFileVM { get; set; }
         public HomePageViewModel HomePageVM { get; set; }
-        public RunSaveFileViewModel RunSaveFileVM { get; set; }
+        static RunSaveFileViewModel RunSaveFileVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
         
 
@@ -71,8 +71,8 @@ namespace EasySave
             CreateSaveFileVM = new CreateSaveFileViewModel();
             DeleteSaveFileVM = new DeleteSaveFileViewModel();
             HomePageVM = new HomePageViewModel();
-            RunSaveFileVM = new RunSaveFileViewModel();
             SettingsVM = new SettingsViewModel();
+            RunSaveFileVM = new RunSaveFileViewModel();
             EditSaveFileVM = new EditSaveFileViewModel();
             SettingManager = new SettingManager();
             CurrentView = HomePageVM;

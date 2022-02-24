@@ -25,14 +25,15 @@ namespace EasySave.MVVM.ViewModel
 
 
 
-
+        LogManagement LogManagement;
         public RelayCommand CreateCommand { get; set; }
 
 
 
         public CreateSaveFileViewModel()
         {
-            FileSaveManagement = new FileSaveManagement(); 
+            FileSaveManagement = new FileSaveManagement();
+            LogManagement  = new LogManagement();
             Clean();
 
 
@@ -58,8 +59,9 @@ namespace EasySave.MVVM.ViewModel
                     sw.Close();
 
                 }
+                LogManagement.RunningLogGénérator(SaveFileJson.Title, "", "", 1, 0, 0, false);
 
-                
+
             });
 
 

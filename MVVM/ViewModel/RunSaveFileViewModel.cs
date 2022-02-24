@@ -12,22 +12,19 @@ using Newtonsoft.Json;
 using System.Windows.Forms;
 using System.Windows;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 namespace EasySave.MVVM.ViewModel
 {
     class RunSaveFileViewModel
     {
 
-        public ObservableCollection<RunningSaveFile> TileList { get; set; }
+        public ObservableCollection<RunningSaveFile>TileList { get; set; }
         public RunningSaveFile Filetorun { get; set; }
-
-      
-
+       
 
         FileSaveManagement FileSaveManagement;
         LogManagement LogManagement; 
-
-
 
 
 
@@ -38,32 +35,26 @@ namespace EasySave.MVVM.ViewModel
 
 
 
-
-      
-
-
-
-
-
-        
-
-
         public RunSaveFileViewModel()
         {
+
+
             TileList = new ObservableCollection<RunningSaveFile>();
             FileSaveManagement = new FileSaveManagement();
             LogManagement = new LogManagement();
             Filetorun = new RunningSaveFile();
-            LoadContent();
+            LoadContent2();
+          
             Thread RefreshThread = new Thread(refreshrate);
             RefreshThread.Name = "refreshrate";
             RefreshThread.Start();
 ;
-            
+           
 
             PlayCommand = new RelayCommand(o =>
 
             {
+               
                 foreach (RunningSaveFile SaveFile in TileList)
                 {
                     if (o == SaveFile)
@@ -90,7 +81,7 @@ namespace EasySave.MVVM.ViewModel
             PauseCommand = new RelayCommand(o =>
 
             {
-
+                
                 foreach (RunningSaveFile SaveFile in TileList)
                 {
                     if (o == SaveFile)
@@ -137,6 +128,7 @@ namespace EasySave.MVVM.ViewModel
                         Thread StopThread = new Thread(StopCopy);
                         StopThread.Name = SaveFile.Title;
                         StopThread.Start();
+                       
 
                     }
                 }
@@ -158,6 +150,9 @@ namespace EasySave.MVVM.ViewModel
 
             RunningSaveFile Filetoprocess = new RunningSaveFile();
             Filetoprocess = Filetorun;
+
+            ObservableCollection<RunningSaveFile> TileListSaved = new ObservableCollection<RunningSaveFile>();
+            TileListSaved = TileList;
 
 
             string Jsonpath = FileSaveManagement.GetSaveFileDirectory() + Filetoprocess.Title +".Json";
@@ -201,23 +196,26 @@ namespace EasySave.MVVM.ViewModel
             {
 
                 progress = progress + 1;
-             
 
-                foreach (RunningSaveFile SaveFile in TileList)
+        
+
+                foreach (RunningSaveFile SaveFile in TileListSaved)
 
 
                 {
 
-                    bool process = false;
+                        
+                        bool process = false;
                     
                    
                     if (Filetoprocess == SaveFile && SaveFile.StopState == false && SaveFile.progressionBuffer < progress)
                     {
+
                         
                         System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progression = progress);
                         System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.TotalFile = FileList.Count);
 
-                       
+
                         LogManagement.BeginSaveFileExecution();
                         FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
                         LogManagement.EndSaveFileExecution();
@@ -250,7 +248,7 @@ namespace EasySave.MVVM.ViewModel
          
 
 
-            foreach (RunningSaveFile SaveFile in TileList)
+            foreach (RunningSaveFile SaveFile in TileListSaved)
             {
                 if (Filetoprocess == SaveFile && SaveFile.StopState == false && SaveFile.progression == FileList.Count)
                 {
@@ -349,48 +347,58 @@ namespace EasySave.MVVM.ViewModel
 
         public void refreshrate()
         {
-               while (true)
+
+            while (true)
             {
+            Thread.Sleep(500);
+            
+                
                 System.Windows.Application.Current.Dispatcher.BeginInvoke(() => Refresh());
-                Thread.Sleep(300);
+
             }
+
         }
       
 
 
-
-
-        public void LoadContent()
+        public void LoadContent2()
         {
-
-
-
-            List<FileSave> ListFile = new List<FileSave> { };
-            ListFile = FileSaveManagement.GetFilesOnADirectory(FileSaveManagement.GetSaveFileDirectory(), "");
-
-            foreach (FileSave FileSave in ListFile)
+            LogManagement RefreshUI = new LogManagement();
+            
+   
+            TileList.Clear();
+            foreach (RunningLog RunningLog in RefreshUI.LogReader())
             {
+                if (RunningLog.State != "DELETED")
+                {
 
                 RunningSaveFile newob = new RunningSaveFile();
-                newob.Title = FileSave.GetTitle().Replace(".Json", "");
-                newob.progressionBuffer = 0;
-                newob.progression = 0;
-                newob.TotalFile = 100;
-                newob.PauseState = "Hidden";
-                newob.PlayState = "Visible";
+                newob.Title = RunningLog.Name;
+                newob.progressionBuffer = RunningLog.TotalFilesToCopy - RunningLog.TotalFilesToCopy;
+                newob.progression = RunningLog.TotalFilesToCopy - RunningLog.TotalFilesToCopy;
+                newob.TotalFile = Convert.ToInt64(RunningLog.TotalFilesToCopy);
+                newob.PauseState = (RunningLog.State == "ACTIVE") ? "Visible" : "Hidden";
+                newob.PlayState = (RunningLog.State == "ACTIVE") ? "Hidden" : "Visible";
                 newob.StopState = false;
-                newob.StopButton = false;
+                newob.StopButton = (RunningLog.State == "ACTIVE") ? true : false;
+
                 TileList.Add(newob);
-               
-                
 
 
+                }
+              
             }
 
 
+            Refresh();
 
-
+            
         }
+
+
+
+
+        
 
 
 
@@ -402,11 +410,11 @@ namespace EasySave.MVVM.ViewModel
         public string Title { get; set; }
         public int progressionBuffer { get; set; }
         public int progression { get; set; }
-        public int TotalFile { get; set; }
+        public long TotalFile { get; set; }
         public object PauseState { get; set; }
         public object PlayState { get; set; }
         public bool StopState { get; set; }// if true save is running 
-        public bool StopButton { get; set; }
+        public bool StopButton { get; set; } // if false button is not clickable
 
   
 
@@ -415,11 +423,11 @@ namespace EasySave.MVVM.ViewModel
 
 
         public RunningSaveFile()
-            {
+        {
 
 
 
-            }
+        }
 
 
 
