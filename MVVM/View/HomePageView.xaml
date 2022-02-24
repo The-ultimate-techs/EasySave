@@ -54,37 +54,37 @@
             </Border.Clip>
             <Grid Margin="0,0,2,2">
                 <StackPanel Margin="0,0,1,258">
-                    <TextBlock Text="EasySave : Une application de sauvegarde rapide et facile !"
+                    <TextBlock Text="{DynamicResource Title1_Description}"
                                Foreground="white"
                                FontSize="25" 
                                Margin="10,10,0,0"/>
 
-                    <TextBlock Text="Ce logiciel vous permet de réaliser des sauvegardes de vos fichiers simplement grâce à notre interface intuivive !"
+                    <TextBlock Text="{DynamicResource First1_Line_Description}"
                                Foreground="white"
                                FontSize="14" 
                                Margin="10,5,0,0"/>
 
-                    <TextBlock Text="Vous pouvez sauvegarder depuis n'importe quel dossier, sur une multitude de plate-forme :"
+                    <TextBlock Text="{DynamicResource Second1_Line_Description}"
                                Foreground="white"
                                FontSize="14" 
                                Margin="10,5,0,0"/>
 
-                    <TextBlock Text="- disque dur interne et externe ;"
+                    <TextBlock Text="{DynamicResource Third11_Line_Description}"
                                Foreground="white"
                                FontSize="14" 
                                Margin="50,5,0,0"/>
 
-                    <TextBlock Text="- NAS ;"
+                    <TextBlock Text="{DynamicResource Third12_Line_Description}"
                                Foreground="white"
                                FontSize="14" 
                                Margin="50,5,0,0"/>
 
-                    <TextBlock Text="- lecteur réseau ;"
+                    <TextBlock Text="{DynamicResource Third13_Line_Description}"
                                Foreground="white"
                                FontSize="14" 
                                Margin="300,-40,0,0"/>
 
-                    <TextBlock Text="- ou encore une carte SD."
+                    <TextBlock Text="{DynamicResource Third14_Line_Description}"
                                Foreground="white"
                                FontSize="14" 
                                Margin="300,-20,0,0"/>
@@ -130,13 +130,13 @@
 
             <StackPanel Margin="2,8,1,-200">
 
-                <TextBlock Text="Sécurisez vos données &#xA;grâce à CryptoSoft !"
+                <TextBlock Text="{DynamicResource Title2_Description}"
                                Foreground="white"
                                FontSize="17" 
                                Width="176"
                                TextAlignment="Justify"/>
 
-                <TextBlock Text="Cryptosoft, un logiciel de chi-&#xA;ffrement de données de no-&#xA;tre progamme, est intégré à &#xA;EasySave pour vous permet-&#xA;tre de sauvegarder en toute &#xA;sécurité vos fichiers si vous le &#xA;souhaitez. "
+                <TextBlock Text="{DynamicResource First2_Line_Description}"
                                Foreground="white"
                                FontSize="13" 
                                Width="200" 
@@ -180,18 +180,18 @@
             </Border.Clip>
 
             <StackPanel Margin="6,8,14,-200">
-                <TextBlock Text="Créer en un clic un tra-&#xA;vail de sauvegarde !"
+                <TextBlock Text="{DynamicResource Title3_Description}"
                                Foreground="white"
                                FontSize="17" 
                                Margin="0,0,0,0"/>
 
-                <TextBlock Text="Mais qu'est-ce qu'un travail &#xA;de sauvegarde ? &#xA;Nous appelons ''travail de &#xA;sauvegarde'' que vous réalis-&#xA;ez régulièrement et que vous &#xA;souhaitez automatiser."
+                <TextBlock Text="{DynamicResource First3_Line_Description}"
                                Foreground="white"
                                FontSize="13" 
                                TextAlignment="Justify"
                                Margin="0,0,0,0"/>
 
-                <TextBlock Text="Pour cela, veuillez-vous rendre &#xA;dans le menu ''Créer un travail de &#xA;sauvegarde'' sur votre gauche."
+                <TextBlock Text="{DynamicResource Second3_Line_Description}"
                                Foreground="white"
                                FontSize="11" 
                                TextAlignment="Justify"
@@ -232,18 +232,18 @@
             </Border.Clip>
 
             <StackPanel Margin="6,8,14,-200">
-                <TextBlock Text="Modifiez à l'infini vos &#xA;travaux de sauvegar-&#xA;de ou supprimez ceux &#xA;dont vous n'avez plus &#xA;besoin !"
+                <TextBlock Text="{DynamicResource Title4_Description}"
                                Foreground="white"
                                FontSize="17" 
                                />
 
-                <TextBlock Text="EasySave vous permet d'édi-&#xA;ter les caractéristiques de &#xA;vos travaux de savegarde ou &#xA;de les supprimer."
+                <TextBlock Text="{DynamicResource First4_Line_Description}"
                                Foreground="white"
                                FontSize="13"
                                TextAlignment="Justify"
                                />
 
-                <TextBlock Text="Pour cela, veuillez-vous rendre &#xA;dans le menu ''Editer/Supprimer &#xA;un travail de sauvegarde'' sur &#xA;votre gauche."
+                <TextBlock Text="{DynamicResource Second4_Line_Description}"
                                Foreground="white"
                                FontSize="11"
                                TextAlignment="Justify"
@@ -285,18 +285,18 @@
 
 
             <StackPanel Margin="6,8,14,-200">
-                <TextBlock Text="Exécutez un ou plu-&#xA;sieurs travaux de sau-&#xA;vegarde simultané-&#xA;ment !"
+                <TextBlock Text="{DynamicResource Title5_Description}"
                                Foreground="white"
                                FontSize="17" 
                                />
 
-                <TextBlock Text="Réalisez une ou pluiseurs &#xA;sauvegardes en parallèle en &#xA;sélectionnant les travaux de &#xA;sauvegarde souhaités."
+                <TextBlock Text="{DynamicResource First5_Line_Description}"
                                Foreground="white"
                                FontSize="13" 
                                TextAlignment="Justify"
                                />
 
-                <TextBlock Text="Pour cela, veuillez-vous rendre &#xA;dans le menu ''Exécuter un ou plu-&#xA;sieurs travaux de sauvegarde'' sur &#xA;votre gauche."
+                <TextBlock Text="{DynamicResource Second5_Line_Description}"
                                Foreground="white"
                                FontSize="11" 
                                TextAlignment="Justify"
