@@ -12,7 +12,9 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        Icon="Resource/logo.png"
+        Title="EasySave">
 
     <Window.DataContext>
         <local:MainViewModel/>
