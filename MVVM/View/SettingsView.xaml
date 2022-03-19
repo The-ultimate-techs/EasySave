@@ -94,7 +94,7 @@
 
 
 
-            <TextBlock Text="Change Language&#10;Changer de langue"
+            <TextBlock Text="{DynamicResource Change_Language}"
                        Foreground="white"
                        FontSize="17" 
                        TextAlignment="Center"
@@ -109,7 +109,7 @@
 
 
 
-            <TextBlock Text="List of extensions"
+            <TextBlock Text="{DynamicResource Extention_List_Text}"
                        Grid.Row="1" 
                        Grid.Column="0" 
                        Foreground="white"
@@ -140,7 +140,7 @@
                     Width="80"
                     Click="Add1Click" 
                     ClickMode="Release"
-                    Content="Add >>"
+                    Content="{DynamicResource Add_Button_}"
                     Style="{StaticResource CustomAppButton}"
                     Command="{Binding Add1Command}"/>
 
@@ -151,7 +151,7 @@
                     Margin="0,15,0,0"
                     Click="Remove1Click" 
                     ClickMode="Release"
-                    Content="&lt;&lt; Remove"
+                    Content="{DynamicResource Remove_Button_}"
                     
                     Style="{StaticResource CustomAppButton}"
                     Command="{Binding Remove1Command}"/>
@@ -161,7 +161,7 @@
 
 
 
-            <TextBlock Text="Extensions to encrypt"
+            <TextBlock Text="{DynamicResource Extention_to_encrypt_List_Text}"
                        Grid.Row="1" 
                        Grid.Column="2" 
                        Foreground="white"
@@ -180,7 +180,7 @@
                      ItemsSource="{Binding ExtensionToEncryptlist}"/>
 
 
-            <TextBlock Text="ajouter un logiciel metier"
+            <TextBlock Text="{DynamicResource Add_Job_Software_Text}"
                        Grid.Row="2" 
                        Grid.Column="0" 
                        Foreground="white"
@@ -198,7 +198,7 @@
                 <TextBox   Margin="20,0,20,0" 
                            Height="30"
                            Width="170"
-                           Tag="Path to the process"
+                           Tag="{DynamicResource Path_to_process}"
                            Style="{StaticResource ModernTextbox}" 
                            IsReadOnly="True"
                            Text="{Binding SoftwarePath}"
@@ -207,7 +207,7 @@
 
 
                 <Button x:Name="BrowseButton"
-                        Content="Browse a file" 
+                        Content="{DynamicResource Browse_a_file}" 
                         Margin="20,20,20,0"
                         Click="BrowseButton_Click" 
                         Style="{StaticResource CustomAppButton}"
@@ -229,7 +229,7 @@
                     Width="80"
                     Click="Add2Click" 
                     ClickMode="Release"
-                    Content="Add"
+                    Content="{DynamicResource Add_Button}"
                     Style="{StaticResource CustomAppButton}"
                     Command="{Binding Add2Command}"/>
 
@@ -240,7 +240,7 @@
                         Margin="0,15,0,0"
                         Click="Remove2Click" 
                         ClickMode="Release"
-                        Content="Remove"
+                        Content="{DynamicResource Remove_Button}"
                         Style="{StaticResource CustomAppButton}"
                         Command="{Binding Remove2Command}"/>
 
@@ -248,7 +248,7 @@
             </StackPanel>
 
 
-            <TextBlock Text="List of Process"
+            <TextBlock Text="{DynamicResource List_Process_Text}"
                        Grid.Row="2" 
                        Grid.Column="2" 
                        Foreground="white"
@@ -269,7 +269,7 @@
             </ListBox>
 
 
-            <TextBlock Text="Log Type"
+            <TextBlock Text="{DynamicResource Log_Type}"
                        Grid.Row="3" 
                        Grid.Column="0" 
                        Foreground="white"

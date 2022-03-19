@@ -7,11 +7,11 @@
     <system:String x:Key="Settings">Paramètres</system:String>
     
     <!-- Main Menu buttons-->
-    <system:String x:Key="Create_button" xml:space="preserve">Créer un travail&#13;de sauvegarde</system:String>
-    <system:String x:Key="Edit_button" xml:space="preserve">Editer un travail&#13;de sauvegarde</system:String>
-    <system:String x:Key="Run_button" xml:space="preserve">Exécuter un travail&#13;de sauvegarde</system:String>
-    <system:String x:Key="Delete_button" xml:space="preserve">Supprimer un travail&#13;de sauvegarde</system:String>
-    <system:String x:Key="Parameters" xml:space="preserve">Paramètres&#13;généraux ...</system:String>
+    <system:String x:Key="Create_button" xml:space="preserve">Créer un travail&#xA;de sauvegarde</system:String>
+    <system:String x:Key="Edit_button" xml:space="preserve">Editer un travail&#xA;de sauvegarde</system:String>
+    <system:String x:Key="Run_button" xml:space="preserve">Exécuter un travail&#xA;de sauvegarde</system:String>
+    <system:String x:Key="Delete_button" xml:space="preserve">Supprimer un travail&#xA;de sauvegarde</system:String>
+    <system:String x:Key="Parameters" xml:space="preserve">Paramètres&#xA;généraux ...</system:String>
     
     
     <!-- Main Menu Tiles -->
@@ -40,7 +40,7 @@
 
         <!-- Fifth tile -->
     <system:String x:Key="Title5_Description" xml:space="preserve">Exécutez un ou plu-&#xA;sieurs travaux de sau-&#xA;vegarde simultané-&#xA;ment !</system:String>
-    <system:String x:Key="First5_Line_Description" xml:space="preserve">Réalisez une ou pluiseurs &#xA;sauvegardes en parallèle en &#xA;sélectionnant les travaux de &#xA;sauvegarde souhaités.</system:String>
+    <system:String x:Key="First5_Line_Description" xml:space="preserve">Réalisez une ou plusieurs &#xA;sauvegardes en parallèle en &#xA;sélectionnant les travaux de &#xA;sauvegarde souhaités.</system:String>
     <system:String x:Key="Second5_Line_Description" xml:space="preserve">Pour cela, veuillez-vous rendre &#xA;dans le menu ''Exécuter un ou plu-&#xA;sieurs travaux de sauvegarde'' sur &#xA;votre gauche.</system:String>
 
     
@@ -58,6 +58,7 @@
     <system:String x:Key="Save_Type">Type de sauvegade souhaitée :</system:String>
     <system:String x:Key="Save_Type_Differential">Différentiel</system:String>
     <system:String x:Key="Save_Type_Complete">Complète</system:String>
+    <system:String x:Key="Create_Button">Créer !</system:String>
     <system:String x:Key="Are_You_Sure">ëtes-vous sûr ?</system:String>
     <system:String x:Key="Yes_Button_Text">Oui</system:String>
     <system:String x:Key="No_Button_Text">Non</system:String>
@@ -83,12 +84,18 @@
     <system:String x:Key="Extention_List_Text">Liste des extensions</system:String>
     <system:String x:Key="Extention_to_encrypt_List_Text">Extensions à chiffrer</system:String>
 
-    <system:String x:Key="Add_Button_>">Ajouter >></system:String>
-    <system:String x:Key="Remove_Button_>">&#60;&#60; Supprimer</system:String>
+    <system:String x:Key="Add_Button_">Ajouter >></system:String>
+    <system:String x:Key="Remove_Button_">&#60;&#60; Supprimer</system:String>
     <!-- &#60; mean "<"-->
 
     <system:String x:Key="Add_Job_Software_Text">Ajouter un logiciel métier</system:String>
     <system:String x:Key="List_Process_Text">Liste des processus métiers</system:String>
+    <system:String x:Key="Browse_a_file">Rechercher un fichier</system:String>
+    <system:String x:Key="Log_Type">Type de log</system:String>
+    <system:String x:Key="Change_Language">Changer de langue</system:String>
+    <system:String x:Key="Path_to_process">Chemin vers le processus</system:String>
+    
+    
 
     <system:String x:Key="Add_Button">Ajouter</system:String>
     <system:String x:Key="Remove_Button">Supprimer</system:String>
