@@ -202,7 +202,6 @@ namespace EasySave.MVVM.ViewModel
             }
 
            
-
             long filesize = 0;
 
             foreach (FileSave files in FileList)
@@ -247,10 +246,38 @@ namespace EasySave.MVVM.ViewModel
 
 
                         LogManagement.BeginSaveFileExecution();
-                        FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
-                        LogManagement.EndSaveFileExecution();
 
-                        LogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+
+                        foreach (string extension in Settingjson.ExtensionToEncryptlist)
+                        {
+                            if (extension.ToLower() == Path.GetExtension(files.GetSourceDirectory().ToLower()))
+                            {
+
+                                ProcessStartInfo startInfo = new ProcessStartInfo(@"D:/EasySave/Cryptosoft/Cryptosoft.exe");        // exe file
+                               
+
+                                //here you add your arguments
+                                startInfo.ArgumentList.Add(files.GetSourceDirectory());       // First argument          
+                                startInfo.ArgumentList.Add(files.GetDestinationDirectory());       // second argument
+
+                                Process Process = Process.Start(startInfo);
+
+                                Process.WaitForExit();
+                                int result = Process.ExitCode;
+
+
+
+                                LogManagement.EndSaveFileExecution();
+                                LogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+                            }
+                            else
+                            {
+                                FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
+                                LogManagement.EndSaveFileExecution();
+                                LogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+                            }
+
+                        }
 
 
 
