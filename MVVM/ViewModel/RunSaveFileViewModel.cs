@@ -193,6 +193,8 @@ namespace EasySave.MVVM.ViewModel
             Settingjson Settingjson = new Settingjson();
             Settingjson = SettingManager.Getsettings();
 
+            LogManagement DailyLogManagement = new LogManagement();
+
 
             foreach (DirectorySave Directory in DirectoryList)
             {
@@ -229,9 +231,12 @@ namespace EasySave.MVVM.ViewModel
 
                 {
 
+                    while (IsProcessRunning(Settingjson) == true)
+                    {
 
+                        Thread.Sleep(200);
 
-
+                    }
 
 
                     bool process = false;
@@ -240,12 +245,12 @@ namespace EasySave.MVVM.ViewModel
                     if (Filetoprocess == SaveFile && SaveFile.StopState == false && SaveFile.progressionBuffer < progress)
                     {
 
-                        
+                                            
                         System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progression = progress);
                         System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.TotalFile = FileList.Count);
 
 
-                        LogManagement.BeginSaveFileExecution();
+                        DailyLogManagement.BeginSaveFileExecution();
 
 
                         foreach (string extension in Settingjson.ExtensionToEncryptlist)
@@ -267,14 +272,14 @@ namespace EasySave.MVVM.ViewModel
 
 
 
-                                LogManagement.EndSaveFileExecution();
-                                LogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+                                DailyLogManagement.EndSaveFileExecution();
+                                DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
                             }
                             else
                             {
                                 FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
-                                LogManagement.EndSaveFileExecution();
-                                LogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+                                DailyLogManagement.EndSaveFileExecution();
+                                DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
                             }
 
                         }
@@ -299,29 +304,11 @@ namespace EasySave.MVVM.ViewModel
 
 
 
-                    if (IsProcessRunning(Settingjson) == true)
-                    {
-
-                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PauseState = "Hidden");
-                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PlayState = "Hidden");
-                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progressionBuffer = SaveFile.progression);
-                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.StopState = true);
-                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.StopButton = false);
-                        SaveFile.CurrentAction = "PAUSED";
-                        break;
-
-                    }
-
-
-
-
-
-
 
 
                 }
 
-                if (IsProcessRunning(Settingjson) == true) break;
+
 
                 
 
