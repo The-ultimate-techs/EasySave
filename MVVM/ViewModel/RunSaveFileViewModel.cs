@@ -24,7 +24,8 @@ namespace EasySave.MVVM.ViewModel
        
 
         FileSaveManagement FileSaveManagement;
-        LogManagement LogManagement; 
+        LogManagement LogManagement;
+        SettingManager SettingManager;
 
 
 
@@ -42,6 +43,7 @@ namespace EasySave.MVVM.ViewModel
             TileList = new ObservableCollection<RunningSaveFile>();
             FileSaveManagement = new FileSaveManagement();
             LogManagement = new LogManagement();
+            SettingManager = new SettingManager();
             Filetorun = new RunningSaveFile();
             LoadContent2();
           
@@ -86,11 +88,12 @@ namespace EasySave.MVVM.ViewModel
                 {
                     if (o == SaveFile)
                     {
-                        SaveFile.PauseState = "Hidden";
-                        SaveFile.PlayState = "Visible";
                         SaveFile.progressionBuffer = SaveFile.progression;
                         SaveFile.StopState = true;
                         SaveFile.StopButton = true;
+
+                        SaveFile.PauseState = "Hidden";
+                        SaveFile.PlayState = "Visible";
 
 
 
@@ -112,10 +115,10 @@ namespace EasySave.MVVM.ViewModel
                 {
                     if (o == SaveFile)
                     {
-                        SaveFile.PauseState = "Hidden";
-                        SaveFile.PlayState = "Visible";
                         SaveFile.StopState = true;
                         SaveFile.StopButton = false;
+                        SaveFile.PauseState = "Hidden";
+                        SaveFile.PlayState = "Visible";
                         SaveFile.progression = 0;
                         SaveFile.TotalFile = 100;
                         SaveFile.progressionBuffer = 0;
@@ -167,6 +170,9 @@ namespace EasySave.MVVM.ViewModel
             List<FileSave> FileList = FileSaveManagement.GetFilesOnADirectory(SaveFileJson.SourcePath, SaveFileJson.DestPath);
 
 
+            Settingjson Settingjson = new Settingjson();
+            Settingjson = SettingManager.Getsettings();
+
 
             foreach (DirectorySave Directory in DirectoryList)
             {
@@ -204,8 +210,12 @@ namespace EasySave.MVVM.ViewModel
 
                 {
 
-                        
-                        bool process = false;
+
+
+
+
+
+                    bool process = false;
                     
                    
                     if (Filetoprocess == SaveFile && SaveFile.StopState == false && SaveFile.progressionBuffer < progress)
@@ -239,6 +249,27 @@ namespace EasySave.MVVM.ViewModel
 
 
                     }
+
+
+
+/*                    if (IsProcessRunning(Settingjson) == true)
+                    {
+
+                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PauseState = "Hidden");
+                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PlayState = "Visible");
+                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progressionBuffer = SaveFile.progression);
+                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.StopState = true);
+                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.StopButton = true);
+
+
+                    }
+
+                    */
+
+
+
+
+
 
                 }
 
@@ -280,6 +311,18 @@ namespace EasySave.MVVM.ViewModel
                     System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.TotalFile = FileList.Count);
                     System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progression = FileList.Count);
                     System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progressionBuffer = 0);
+
+                }
+
+
+                if (SaveFile.StopState == true && SaveFile.StopButton == true)
+                {
+
+                    System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PauseState = "Hidden");
+                    System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PlayState = "Visible");
+                    break;
+
+
 
                 }
 
@@ -393,6 +436,32 @@ namespace EasySave.MVVM.ViewModel
             Refresh();
 
             
+        }
+
+
+        public bool IsProcessRunning(Settingjson Settingjson)
+        {
+            bool IsprocessRunning = false;
+
+            foreach (string ProcessPath in Settingjson.SoftwarePackageList)
+            {
+                
+
+                string fileName = Path.GetFileName(ProcessPath);
+                // Get the precess that already running as per the exe file name.
+                Process[] processName = Process.GetProcessesByName(fileName.Substring(0, fileName.LastIndexOf('.')));
+                if (processName.Length > 0)
+                {
+                    IsprocessRunning = true;
+                }
+
+
+
+
+            }
+
+
+            return IsprocessRunning;
         }
 
 
