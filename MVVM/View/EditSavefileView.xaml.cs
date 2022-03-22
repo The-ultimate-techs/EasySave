@@ -37,7 +37,7 @@ namespace EasySave.MVVM.View
         private void ButtonnoClick(object sender, RoutedEventArgs e)
         {
 
-            FullFillForm();
+            FullFillForm(TitleSelected.SelectedItem);
             Modify1.Visibility = Visibility.Visible;
             Buttonno.Visibility = Visibility.Hidden;
             Buttonyes.Visibility = Visibility.Hidden;
@@ -83,8 +83,8 @@ namespace EasySave.MVVM.View
 
             if (TitleSelected.Tag != null)
             {
-                TitleSelected.SelectedItem = TitleSelected.Tag;
-                FullFillForm();
+                
+                FullFillForm(TitleSelected.Tag);
             }
 
 
@@ -100,7 +100,7 @@ namespace EasySave.MVVM.View
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
                        
-            FullFillForm();
+            FullFillForm(TitleSelected.SelectedItem);
 
         }
 
@@ -146,12 +146,12 @@ namespace EasySave.MVVM.View
         }
 
 
-        public void FullFillForm()
+        public void FullFillForm(object name)
         {
 
 
             
-            string myJsonFile = File.ReadAllText(FileSaveManagement.GetSaveFileDirectory() + TitleSelected.SelectedItem +".json");
+            string myJsonFile = File.ReadAllText(FileSaveManagement.GetSaveFileDirectory() + name.ToString() + ".json");
 
             SaveFileJson FileDetail = new SaveFileJson { };
 
@@ -176,6 +176,8 @@ namespace EasySave.MVVM.View
 
             }
 
+
+            TitleSelected.Text = name.ToString();
 
 
 

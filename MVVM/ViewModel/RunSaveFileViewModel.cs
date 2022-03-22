@@ -21,7 +21,8 @@ namespace EasySave.MVVM.ViewModel
 
         public ObservableCollection<RunningSaveFile>TileList { get; set; }
         public RunningSaveFile Filetorun { get; set; }
-       
+        
+
 
         FileSaveManagement FileSaveManagement;
         LogManagement LogManagement;
@@ -61,15 +62,22 @@ namespace EasySave.MVVM.ViewModel
                 {
                     if (o == SaveFile)
                     {
-                        SaveFile.PauseState = "Visible";
-                        SaveFile.PlayState = "Hidden";
-                        SaveFile.StopState = false;
-                        SaveFile.StopButton = true;
-                        Filetorun = SaveFile;
-                
-                        Thread CopyThread = new Thread(StartSavefile);
-                        CopyThread.Name = SaveFile.Title;
-                        CopyThread.Start();
+
+
+                        if (SaveFile.CurrentAction == "READY")
+                        {
+                            SaveFile.PauseState = "Visible";
+                            SaveFile.PlayState = "Hidden";
+                            SaveFile.StopState = false;
+                            SaveFile.StopButton = true;
+                            SaveFile.CurrentAction = "RUNNING";
+                            Filetorun = SaveFile;
+                        
+                            Thread CopyThread = new Thread(StartSavefile);
+                            CopyThread.Name = SaveFile.Title;
+                            CopyThread.Start();
+
+                        }
                         
                     }
                 }
@@ -88,12 +96,23 @@ namespace EasySave.MVVM.ViewModel
                 {
                     if (o == SaveFile)
                     {
-                        SaveFile.progressionBuffer = SaveFile.progression;
-                        SaveFile.StopState = true;
-                        SaveFile.StopButton = true;
 
-                        SaveFile.PauseState = "Hidden";
-                        SaveFile.PlayState = "Visible";
+                        if (SaveFile.CurrentAction == "RUNNING")
+                        { 
+                        
+                        
+                            SaveFile.CurrentAction = "PAUSED";
+                            SaveFile.progressionBuffer = SaveFile.progression;
+                            SaveFile.StopState = true;
+                            SaveFile.StopButton = false;
+                            SaveFile.PauseState = "Hidden";
+                            SaveFile.PlayState = "Hidden";
+                                               
+                                               
+                        }
+
+
+
 
 
 
@@ -115,6 +134,7 @@ namespace EasySave.MVVM.ViewModel
                 {
                     if (o == SaveFile)
                     {
+                        SaveFile.CurrentAction = "STOPPED";
                         SaveFile.StopState = true;
                         SaveFile.StopButton = false;
                         SaveFile.PauseState = "Hidden";
@@ -252,19 +272,20 @@ namespace EasySave.MVVM.ViewModel
 
 
 
-/*                    if (IsProcessRunning(Settingjson) == true)
+                    if (IsProcessRunning(Settingjson) == true)
                     {
 
                         System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PauseState = "Hidden");
-                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PlayState = "Visible");
+                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PlayState = "Hidden");
                         System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progressionBuffer = SaveFile.progression);
                         System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.StopState = true);
-                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.StopButton = true);
-
+                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.StopButton = false);
+                        SaveFile.CurrentAction = "PAUSED";
+                        break;
 
                     }
 
-                    */
+
 
 
 
@@ -273,7 +294,11 @@ namespace EasySave.MVVM.ViewModel
 
                 }
 
-                  
+                if (IsProcessRunning(Settingjson) == true) break;
+
+                
+
+
             }
 
          
@@ -312,21 +337,21 @@ namespace EasySave.MVVM.ViewModel
                     System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progression = FileList.Count);
                     System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progressionBuffer = 0);
 
+                    SaveFile.CurrentAction = "READY";
+
                 }
 
-
-                if (SaveFile.StopState == true && SaveFile.StopButton == true)
+                if (SaveFile.CurrentAction == "PAUSED")
                 {
 
+                
+                    System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.StopButton = true);
                     System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PauseState = "Hidden");
                     System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PlayState = "Visible");
+
+                    SaveFile.CurrentAction = "READY";
                     break;
-
-
-
                 }
-
-
 
 
             }
@@ -375,6 +400,7 @@ namespace EasySave.MVVM.ViewModel
                     }
 
                 }
+                SaveFile.CurrentAction = "READY";
             }
 
         }
@@ -424,6 +450,7 @@ namespace EasySave.MVVM.ViewModel
                 newob.PlayState = (RunningLog.State == "ACTIVE") ? "Hidden" : "Visible";
                 newob.StopState = false;
                 newob.StopButton = (RunningLog.State == "ACTIVE") ? true : false;
+                newob.CurrentAction = "READY";
 
                 TileList.Add(newob);
 
@@ -484,8 +511,9 @@ namespace EasySave.MVVM.ViewModel
         public object PlayState { get; set; }
         public bool StopState { get; set; }// if true save is running 
         public bool StopButton { get; set; } // if false button is not clickable
+        public string CurrentAction { get; set; }
 
-  
+
 
 
 
