@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Xml;
@@ -195,123 +196,73 @@ namespace EasySave
             return true;
         }
 
-        public bool RunningLogGénérator_XML_V2(string Title, string SourceDirectory, string DestinationDirectory, int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo)
+
+        public bool RunningLogGénérator_XML(string Title, string SourceDirectory, string DestinationDirectory, int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo)
         {
             string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.xml";
 
-            XmlDocument doc = new XmlDocument();
 
-            #region decla
-            // The Xml declaration
-            XmlDeclaration xmlDeclaration = doc.CreateXmlDeclaration("1.0", "UTF-8", null);
-            XmlElement root = doc.DocumentElement;
-            doc.InsertBefore(xmlDeclaration, root);
-
-            //(2) string.Empty makes cleaner code
-            XmlElement element1 = doc.CreateElement(string.Empty, "body", string.Empty);
-            doc.AppendChild(element1);
-
-            XmlElement element2 = doc.CreateElement(string.Empty, "level1", string.Empty);
-            element1.AppendChild(element2);
-
-            XmlElement element3 = doc.CreateElement(string.Empty, "level2", string.Empty);
-            XmlText text1 = doc.CreateTextNode("text");
-            element3.AppendChild(text1);
-            element2.AppendChild(element3);
-
-            XmlElement element4 = doc.CreateElement(string.Empty, "level2", string.Empty);
-            XmlText text2 = doc.CreateTextNode("other text");
-            element4.AppendChild(text2);
-            element2.AppendChild(element4);
-
-            doc.Save(path);
-
-            #endregion
-
-
-
-
-            return true;
-        }
-
-
-        public bool RunningLogGénérator_XML_V1(string Title, string SourceDirectory, string DestinationDirectory, int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo)
-        {
-            string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.xml";
-
-            var serializer = new XmlSerializer(typeof(RunningLogXml));
             RunningLogXml ObjXml = new RunningLogXml();
-            List<RunningLogXml> ListObjXml = new List<RunningLogXml>();
+            string State;
+            int Progression;
+            string Title_XML = "      <Title>" + Title + "</Title>";
 
-            if (!File.Exists(path)) // if the log file does not exist
+
+            StreamWriter sw = File.AppendText(path); // Write the file, or create it if it does not exit
+            if(new FileInfo(path).Length == 0)
             {
-                File.Create(path).Close();
+                sw.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Statelog>\n</Statelog>");
             }
+            sw.Close();
 
-            else // if the log file already exist
+            State = (GetProcessRunning() == true) ? "ACTIVE" : "END";
+            Progression = ((TotalFilesToCopy - NbFilesLeftToDo) * 100 / TotalFilesToCopy);
+            bool writed = false;
+            List<string> ListeLines;
+
+            string[] Lines = File.ReadAllLines(path);
+
+            for (int i = 0; i < Lines.Length; i++)
             {
-                StreamReader reader = new StreamReader(path);
-                ObjXml = (RunningLogXml)serializer.Deserialize(reader);
-                ListObjXml.Add(ObjXml);
-                reader.Close();
-
-                foreach(RunningLogXml ExistingObjXml in ListObjXml)
-                if (ExistingObjXml.Name == Title)
+                if (Lines[i] == Title_XML) // if the process already exist
                 {
-                    ObjXml.Name = Title;
-                    ObjXml.SourceFilePath = SourceDirectory;
-                    ObjXml.TargetFilePath = DestinationDirectory;
-                    ObjXml.State = (GetProcessRunning() == true) ? "ACTIVE" : "END";
-                    ObjXml.TotalFilesToCopy = TotalFilesToCopy;
-                    ObjXml.TotalFilesSize = TotalFilesSize;
-                    ObjXml.NbFilesLeftToDo = NbFilesLeftToDo;
-                    ObjXml.Progression = ((TotalFilesToCopy - NbFilesLeftToDo) * 100 / TotalFilesToCopy);
+                    ListeLines = Lines.ToList();
+                    ListeLines.Remove("</Statelog>"); // delete the last line "</Statelog>"
+                    ListeLines[i + 3]= ("      <State>" + State + "</State>");
+                    ListeLines[i + 4]=  ("      <TotalFilesToCopy>" + TotalFilesToCopy + "</TotalFilesToCopy>");
+                    ListeLines[i + 5]= ("      <TotalFilesSize>" + TotalFilesSize + "</TotalFilesSize>");
+                    ListeLines[i + 6]= ("      <NbFilesLeftToDo>" + NbFilesLeftToDo + "</NbFilesLeftToDo>");
+                    ListeLines[i + 7]=  ("      <Progression>" + Progression + "</Progression>");
+                    ListeLines.Add("</Statelog>");
 
-                    FileStream OpenFile = File.Open(path, FileMode.Open);
-                    // Serialize using the XmlTextWriter.
-                    serializer.Serialize(OpenFile, ObjXml);
-                    OpenFile.Close();
-                }
+                    Lines = ListeLines.ToArray();
+                    File.WriteAllLines(path, Lines);
+                    writed = true;
 
-                else
-                {
-                    RunningLogXml NewObjXml = new RunningLogXml();
-
-                    NewObjXml.Name = Title;
-                    NewObjXml.SourceFilePath = SourceDirectory;
-                    NewObjXml.TargetFilePath = DestinationDirectory;
-                    NewObjXml.State = (GetProcessRunning() == true) ? "ACTIVE" : "END";
-                    NewObjXml.TotalFilesToCopy = TotalFilesToCopy;
-                    NewObjXml.TotalFilesSize = TotalFilesSize;
-                    NewObjXml.NbFilesLeftToDo = NbFilesLeftToDo;
-                    NewObjXml.Progression = ((TotalFilesToCopy - NbFilesLeftToDo) * 100 / TotalFilesToCopy);
-
-                    FileStream OpenFile = File.Open(path, FileMode.Open);
-                    // Serialize using the XmlTextWriter.
-                    serializer.Serialize(OpenFile, ObjXml);
-                    OpenFile.Close();
+                    break;
                 }
             }
 
+            if (writed == false)
+            {
+                ListeLines = Lines.ToList();
+                ListeLines.Remove("</Statelog>"); // delete the last line "</Statelog>"
+                ListeLines.Add("   <Save>");
+                ListeLines.Add("      <Title>" + Title + "</Title>");
+                ListeLines.Add("      <SourceFilePath>" + SourceDirectory + "</SourceFilePath>");
+                ListeLines.Add("      <TargetFilePath>" + DestinationDirectory + "</TargetFilePath>");
+                ListeLines.Add("      <State>" + State + "</State>");
+                ListeLines.Add("      <TotalFilesToCopy>" + TotalFilesToCopy + "</TotalFilesToCopy>");
+                ListeLines.Add("      <TotalFilesSize>" + TotalFilesSize + "</TotalFilesSize>");
+                ListeLines.Add("      <NbFilesLeftToDo>" + NbFilesLeftToDo + "</NbFilesLeftToDo>");
+                ListeLines.Add("      <Progression>" + Progression + "</Progression>");
+                ListeLines.Add("   </Save>");
+                ListeLines.Add("</Statelog>");
+
+                Lines= ListeLines.ToArray();
+                File.WriteAllLines(path, Lines);
+            }
             
-
-
-            /*// if the file does not already exist, we create it
-            if (!File.Exists(path))
-            {
-                // Create an XmlTextWriter using a FileStream.
-                Stream Fs_Xml = new FileStream(path, FileMode.Create);
-                XmlWriter Xml_Writer = new XmlTextWriter(Fs_Xml, Encoding.Unicode);
-                // Serialize using the XmlTextWriter.
-                serializer.Serialize(Xml_Writer, ObjXml);
-                Xml_Writer.Close();
-            }*/
-
-            /*FileStream file = File.CreateText(path);
-            // Serialize using the XmlTextWriter.
-            serializer.Serialize(file, ObjXml);
-            file.Close();*/
-
 
             return true;
         }
