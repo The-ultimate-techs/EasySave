@@ -100,5 +100,60 @@ namespace EasySave.MVVM.View
         {
 
         }
+
+        private void ExtensionsNoPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ExtensionsPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void WriteText3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText4(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText5(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Add3Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Remove3Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText6(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText7(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText8(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText9(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

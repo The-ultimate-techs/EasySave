@@ -101,5 +101,10 @@ namespace EasySave.MVVM.View
         {
 
         }
+
+        private void Settings2Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
