@@ -95,6 +95,8 @@ namespace EasySave.MVVM.Model
 
                     sw.WriteLine(" { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": "+FileSize(SourceDirectory)+",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
 
+                    sw.Close();
+
                 }
             }
             return true;
@@ -207,7 +209,26 @@ namespace EasySave.MVVM.Model
 
             string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.Json";
             var myJsonFile = File.ReadAllText(path);
-            return JsonConvert.DeserializeObject<List<RunningLog>>(myJsonFile);
+            List<RunningLog> ListRunningLog = new List<RunningLog>();
+
+
+            try
+            {
+                ListRunningLog = JsonConvert.DeserializeObject<List<RunningLog>>(myJsonFile);
+
+            }
+            catch (InvalidCastException e)
+            {
+
+                RunningLog RunningLog = new RunningLog();
+                RunningLog.State = "ACTIVE";
+
+                ListRunningLog.Add(RunningLog);
+            }
+
+
+
+            return ListRunningLog;
 
         }
 

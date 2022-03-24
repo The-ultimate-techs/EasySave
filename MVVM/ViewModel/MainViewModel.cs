@@ -1,4 +1,5 @@
 ﻿using EasySave.MVVM.Model;
+using EasySave.MVVM.ObjectsForSerialization;
 using EasySave.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Resources;
 using System.Text;
 using System.Threading;
 using System.Windows;
+using System.Windows.Data;
 
 namespace EasySave
 {
@@ -18,9 +20,13 @@ namespace EasySave
 
         public object Language { get; set; }
         public string BufferTitle { get; set; }
-        SettingManager SettingManager ;
-      
+        SettingManager SettingManager;
+        SocketHandler SocketHandler = SocketHandler.Instance;
 
+
+
+        LogManagement LogManagement = new LogManagement();
+        List<RunningLog> ListRunningLog = new List<RunningLog>();
 
         //Relay Command for the different views
         public RelayCommand CreateSaveFileCommand { get; set; }
@@ -31,6 +37,7 @@ namespace EasySave
         public RelayCommand ChangeLanguage { get; set; }
         public RelayCommand EditSaveFileCommand { get; set; }
         public RelayCommand SettingsCommand2 { get; set; }
+        public RelayCommand CloseCommand { get; set; }
 
 
 
@@ -40,9 +47,10 @@ namespace EasySave
         public DeleteSaveFileViewModel DeleteSaveFileVM { get; set; }
         public EditSaveFileViewModel EditSaveFileVM { get; set; }
         public HomePageViewModel HomePageVM { get; set; }
-        static RunSaveFileViewModel RunSaveFileVM { get; set; }
+        public RunSaveFileViewModel RunSaveFileVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
         public Settings2ViewModel Settings2VM { get; set; }
+
 
 
 
@@ -51,8 +59,10 @@ namespace EasySave
         public object CurrentView
         {
             get { return _CurrentView; }
-            set { _CurrentView = value;
-                OnPropertyChanged(); 
+            set
+            {
+                _CurrentView = value;
+                OnPropertyChanged();
             }
         }
 
@@ -63,7 +73,7 @@ namespace EasySave
         public MainViewModel()
         {
 
-      
+
 
 
 
@@ -73,85 +83,242 @@ namespace EasySave
             CreateSaveFileVM = new CreateSaveFileViewModel();
             DeleteSaveFileVM = new DeleteSaveFileViewModel();
             HomePageVM = new HomePageViewModel();
-            SettingsVM = new SettingsViewModel();
             RunSaveFileVM = new RunSaveFileViewModel();
+            SettingsVM = new SettingsViewModel();
             EditSaveFileVM = new EditSaveFileViewModel();
             SettingManager = new SettingManager();
             Settings2VM = new Settings2ViewModel();
             CurrentView = HomePageVM;
             reload();
-           
+            SocketHandler.Sending = false;
 
 
 
             CreateSaveFileCommand = new RelayCommand(o =>
-           {
+            {
 
-              
-               CurrentView = CreateSaveFileVM;
-           });
+                ListRunningLog = LogManagement.LogReader();
+
+                bool Iscopyrunning = false; 
+
+                foreach (RunningLog RunningLog in ListRunningLog)
+                {
+                    if (RunningLog.State == "ACTIVE")
+
+                    {
+                        Iscopyrunning = true;
+                        
+
+                    }
+                }
+
+
+                if (Iscopyrunning == false)
+                {
+                    if (CurrentView == RunSaveFileVM)
+                    {
+                       
+                        SocketHandler.Sending = false;
+                    }
+                    CurrentView = CreateSaveFileVM;
+                }
+
+
+            });
 
             DeleteSaveFileCommand = new RelayCommand(o =>
             {
-                if (o == null)
+
+
+
+                ListRunningLog = LogManagement.LogReader();
+
+                bool Iscopyrunning = false;
+
+                foreach (RunningLog RunningLog in ListRunningLog)
                 {
-                    EditSaveFileVM.Title = null;
-                    CurrentView = DeleteSaveFileVM;
-                    BufferTitle = null;
+                    if (RunningLog.State == "ACTIVE")
+
+                    {
+                        Iscopyrunning = true;
+
+
+                    }
                 }
-                else
+
+
+                if (Iscopyrunning == false)
                 {
-                    RunningSaveFile RunningSaveFile = new RunningSaveFile();
-                    RunningSaveFile = o as RunningSaveFile;
-                    BufferTitle = RunningSaveFile.Title;
+                    if (CurrentView == RunSaveFileVM)
+                    {
+                        SocketHandler.Sending = false;
+                    }
+                    if (o == null)
+                    {
+                        EditSaveFileVM.Title = null;
+                        CurrentView = DeleteSaveFileVM;
+                        BufferTitle = null;
+                    }
+                    else
+                    {
+                        RunningSaveFile RunningSaveFile = new RunningSaveFile();
+                        RunningSaveFile = o as RunningSaveFile;
+                        BufferTitle = RunningSaveFile.Title;
 
-                    CurrentView = DeleteSaveFileVM;
+                        CurrentView = DeleteSaveFileVM;
 
 
+                    }
+                  
                 }
+
+
+
+
+
             });
 
             EditSaveFileCommand = new RelayCommand(o =>
             {
-                
 
-                if (o == null)
-                {
-                    EditSaveFileVM.Title = null;
-                    CurrentView = EditSaveFileVM;
-                    BufferTitle = null;
-                }
-                else 
-                {
-                    RunningSaveFile RunningSaveFile = new RunningSaveFile();
-                    RunningSaveFile = o as RunningSaveFile;
-                    BufferTitle = RunningSaveFile.Title;
+                ListRunningLog = LogManagement.LogReader();
 
-                    CurrentView = EditSaveFileVM;
-                    
-                    
+                bool Iscopyrunning = false;
+
+                foreach (RunningLog RunningLog in ListRunningLog)
+                {
+                    if (RunningLog.State == "ACTIVE")
+
+                    {
+                        Iscopyrunning = true;
+
+
+                    }
                 }
-                   
+
+
+                if (Iscopyrunning == false)
+                {
+                    if (CurrentView == RunSaveFileVM)
+                    {
+                        SocketHandler.Sending = false;
+                    }
+
+                    if (o == null)
+                    {
+                        EditSaveFileVM.Title = null;
+                        CurrentView = EditSaveFileVM;
+                        BufferTitle = null;
+                    }
+                    else
+                    {
+                        RunningSaveFile RunningSaveFile = new RunningSaveFile();
+                        RunningSaveFile = o as RunningSaveFile;
+                        BufferTitle = RunningSaveFile.Title;
+
+                        CurrentView = EditSaveFileVM;
+
+
+                    }
+                }
+
+
+
+
+
+
             });
 
             HomePageCommand = new RelayCommand(o =>
+
             {
-                CurrentView = HomePageVM;
+
+                ListRunningLog = LogManagement.LogReader();
+
+                bool Iscopyrunning = false;
+
+                foreach (RunningLog RunningLog in ListRunningLog)
+                {
+                    if (RunningLog.State == "ACTIVE")
+
+                    {
+                        Iscopyrunning = true;
+
+
+                    }
+                }
+
+
+                if (Iscopyrunning == false)
+                {
+                    if (CurrentView == RunSaveFileVM)
+                    {
+                        SocketHandler.Sending = false;
+                    }
+                    CurrentView = HomePageVM;
+
+                }
             });
 
             RunSaveFileCommand = new RelayCommand(o =>
             {
-                CurrentView = RunSaveFileVM;
+                ListRunningLog = LogManagement.LogReader();
+
+                bool Iscopyrunning = false;
+
+                foreach (RunningLog RunningLog in ListRunningLog)
+                {
+                    if (RunningLog.State == "ACTIVE")
+
+                    {
+                        Iscopyrunning = true;
+
+
+                    }
+                }
+
+
+                if (Iscopyrunning == false)
+                {
+
+                    SocketHandler.Sending = true;
+                    CurrentView = RunSaveFileVM;
+                
+                }
             });
 
             SettingsCommand = new RelayCommand(o =>
             {
 
-                CurrentView = SettingsVM;
-               
+                ListRunningLog = LogManagement.LogReader();
+
+                bool Iscopyrunning = false;
+
+                foreach (RunningLog RunningLog in ListRunningLog)
+                {
+                    if (RunningLog.State == "ACTIVE")
+
+                    {
+                        Iscopyrunning = true;
+
+
+                    }
+                }
+
+
+                if (Iscopyrunning == false)
+                {
+                    if (CurrentView == RunSaveFileVM)
+                    {
+                        SocketHandler.Sending = false;
+                    }
+                    CurrentView = SettingsVM;
+
+                }
+
 
             });
-
+            
             SettingsCommand2 = new RelayCommand(o =>
             {
 
@@ -161,12 +328,45 @@ namespace EasySave
             });
 
 
+            CloseCommand = new RelayCommand(o =>
+            {
+
+
+
+                ListRunningLog = LogManagement.LogReader();
+
+                bool Iscopyrunning = false;
+
+                foreach (RunningLog RunningLog in ListRunningLog)
+                {
+                    if (RunningLog.State == "ACTIVE")
+
+                    {
+                        Iscopyrunning = true;
+
+
+                    }
+                }
+
+
+                if (Iscopyrunning == false)
+                {
+                    if (CurrentView == RunSaveFileVM)
+                    {
+                        SocketHandler.Sending = false;
+                    }
+                    Environment.Exit(0);
+
+                }
+            });
+
+
             ChangeLanguage = new RelayCommand(o =>
             {
 
                 if (Language.ToString() == "en-US")
                 {
-                    SettingManager.SetLanguage("fr-FR"); 
+                    SettingManager.SetLanguage("fr-FR");
                 }
 
                 if (Language.ToString() == "fr-FR")
@@ -205,7 +405,6 @@ namespace EasySave
 
             Application.Current.Resources.MergedDictionaries.Add(resources);
         }
-
 
     }
 }

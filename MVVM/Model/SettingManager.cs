@@ -10,7 +10,7 @@ namespace EasySave.MVVM.Model
 {
     class SettingManager : FileSave
     {
-        private string DefaultSettings { get; } = "{\r\n  \"Language\": \"fr-FR\",\r\n  \"ExtensionToEncryptlist\": [\r\n    \".DOCX\",\r\n    \".HTML\",\r\n    \".PDF\"\r\n  ],\r\n  \"SoftwarePackageList\": [\r\n    \"C:\\\\Windows\\\\System32\\\\calc.exe\"\r\n  ],\r\n  \"LogType\": \"JSON\"\r\n}";
+        private string DefaultSettings { get; } = "{\r\n  \"Language\": \"fr-FR\",\r\n  \"ExtensionToEncryptlist\": [\r\n    \".DOCX\",\r\n    \".HTML\",\r\n    \".PDF\"\r\n  ],\r\n  \"SoftwarePackageList\": [\r\n    \"C:\\\\Program Files\\\\WindowsApps\\\\Microsoft.WindowsCalculator_11.2201.4.0_x64__8wekyb3d8bbwe\\\\CalculatorApp.exe\"\r\n  ],\r\n  \"LogType\": \"JSON\"\r\n}";
             public string SettingJsonPath { get; set; }
         public SettingManager()
         {

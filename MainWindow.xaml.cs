@@ -77,11 +77,6 @@ namespace EasySave
         {
 
 
-
-            Environment.Exit(0);
-
-
-
         }
 
         void MinimizeClick(object sender, RoutedEventArgs e)

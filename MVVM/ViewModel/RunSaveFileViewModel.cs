@@ -13,6 +13,8 @@ using System.Windows.Forms;
 using System.Windows;
 using System.Windows.Threading;
 using System.Diagnostics;
+using System.Net.Sockets;
+using System.Net;
 
 namespace EasySave.MVVM.ViewModel
 {
@@ -21,12 +23,13 @@ namespace EasySave.MVVM.ViewModel
 
         public ObservableCollection<RunningSaveFile>TileList { get; set; }
         public RunningSaveFile Filetorun { get; set; }
-       
+        
+
 
         FileSaveManagement FileSaveManagement;
-        LogManagement LogManagement; 
-
-
+        LogManagement LogManagement;
+        SettingManager SettingManager;
+        SocketHandler SocketHandler = SocketHandler.Instance;
 
 
         public RelayCommand PlayCommand { get; set; }
@@ -35,21 +38,31 @@ namespace EasySave.MVVM.ViewModel
 
 
 
+
+
+
+
         public RunSaveFileViewModel()
         {
-
 
             TileList = new ObservableCollection<RunningSaveFile>();
             FileSaveManagement = new FileSaveManagement();
             LogManagement = new LogManagement();
+            SettingManager = new SettingManager();
             Filetorun = new RunningSaveFile();
+            
             LoadContent2();
-          
+
+
+
             Thread RefreshThread = new Thread(refreshrate);
             RefreshThread.Name = "refreshrate";
             RefreshThread.Start();
-;
-           
+
+
+            SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
+
+
 
             PlayCommand = new RelayCommand(o =>
 
@@ -59,15 +72,22 @@ namespace EasySave.MVVM.ViewModel
                 {
                     if (o == SaveFile)
                     {
-                        SaveFile.PauseState = "Visible";
-                        SaveFile.PlayState = "Hidden";
-                        SaveFile.StopState = false;
-                        SaveFile.StopButton = true;
-                        Filetorun = SaveFile;
-                
-                        Thread CopyThread = new Thread(StartSavefile);
-                        CopyThread.Name = SaveFile.Title;
-                        CopyThread.Start();
+
+
+                        if (SaveFile.CurrentAction == "READY")
+                        {
+                            SaveFile.PauseState = "Visible";
+                            SaveFile.PlayState = "Hidden";
+                            SaveFile.StopState = false;
+                            SaveFile.StopButton = true;
+                            SaveFile.CurrentAction = "RUNNING";
+                            Filetorun = SaveFile;
+                        
+                            Thread CopyThread = new Thread(StartSavefile);
+                            CopyThread.Name = SaveFile.Title;
+                            CopyThread.Start();
+
+                        }
                         
                     }
                 }
@@ -86,11 +106,23 @@ namespace EasySave.MVVM.ViewModel
                 {
                     if (o == SaveFile)
                     {
-                        SaveFile.PauseState = "Hidden";
-                        SaveFile.PlayState = "Visible";
-                        SaveFile.progressionBuffer = SaveFile.progression;
-                        SaveFile.StopState = true;
-                        SaveFile.StopButton = true;
+
+                        if (SaveFile.CurrentAction == "RUNNING")
+                        { 
+                        
+                        
+                            SaveFile.CurrentAction = "PAUSED";
+                            SaveFile.progressionBuffer = SaveFile.progression;
+                            SaveFile.StopState = true;
+                            SaveFile.StopButton = false;
+                            SaveFile.PauseState = "Hidden";
+                            SaveFile.PlayState = "Hidden";
+                            SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
+
+                        }
+
+
+
 
 
 
@@ -112,10 +144,11 @@ namespace EasySave.MVVM.ViewModel
                 {
                     if (o == SaveFile)
                     {
-                        SaveFile.PauseState = "Hidden";
-                        SaveFile.PlayState = "Visible";
+                        SaveFile.CurrentAction = "STOPPED";
                         SaveFile.StopState = true;
                         SaveFile.StopButton = false;
+                        SaveFile.PauseState = "Hidden";
+                        SaveFile.PlayState = "Visible";
                         SaveFile.progression = 0;
                         SaveFile.TotalFile = 100;
                         SaveFile.progressionBuffer = 0;
@@ -128,7 +161,7 @@ namespace EasySave.MVVM.ViewModel
                         Thread StopThread = new Thread(StopCopy);
                         StopThread.Name = SaveFile.Title;
                         StopThread.Start();
-                       
+                        SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
 
                     }
                 }
@@ -167,6 +200,11 @@ namespace EasySave.MVVM.ViewModel
             List<FileSave> FileList = FileSaveManagement.GetFilesOnADirectory(SaveFileJson.SourcePath, SaveFileJson.DestPath);
 
 
+            Settingjson Settingjson = new Settingjson();
+            Settingjson = SettingManager.Getsettings();
+
+            LogManagement DailyLogManagement = new LogManagement();
+
 
             foreach (DirectorySave Directory in DirectoryList)
             {
@@ -176,7 +214,6 @@ namespace EasySave.MVVM.ViewModel
             }
 
            
-
             long filesize = 0;
 
             foreach (FileSave files in FileList)
@@ -204,23 +241,58 @@ namespace EasySave.MVVM.ViewModel
 
                 {
 
-                        
-                        bool process = false;
+                    while (IsProcessRunning(Settingjson) == true)
+                    {
+
+                        Thread.Sleep(200);
+
+                    }
+
+
+                    bool process = false;
                     
                    
                     if (Filetoprocess == SaveFile && SaveFile.StopState == false && SaveFile.progressionBuffer < progress)
                     {
 
-                        
+                                            
                         System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progression = progress);
                         System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.TotalFile = FileList.Count);
 
 
-                        LogManagement.BeginSaveFileExecution();
-                        FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
-                        LogManagement.EndSaveFileExecution();
+                        DailyLogManagement.BeginSaveFileExecution();
 
-                        LogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+
+                        foreach (string extension in Settingjson.ExtensionToEncryptlist)
+                        {
+                            if (extension.ToLower() == Path.GetExtension(files.GetSourceDirectory().ToLower()))
+                            {
+
+                                ProcessStartInfo startInfo = new ProcessStartInfo(@"D:/EasySave/Cryptosoft/Cryptosoft.exe");        // exe file
+                               
+
+                                //here you add your arguments
+                                startInfo.ArgumentList.Add(files.GetSourceDirectory());       // First argument          
+                                startInfo.ArgumentList.Add(files.GetDestinationDirectory());       // second argument
+
+                                Process Process = Process.Start(startInfo);
+
+                                Process.WaitForExit();
+                                int result = Process.ExitCode;
+
+
+
+                                DailyLogManagement.EndSaveFileExecution();
+                                DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+                            }
+                            else
+                            {
+                                FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
+                                DailyLogManagement.EndSaveFileExecution();
+                                DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+                            }
+
+                        }
 
 
 
@@ -237,12 +309,21 @@ namespace EasySave.MVVM.ViewModel
                             Monitor.Exit(LogManagement);
                         }
 
+                        SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
 
                     }
 
+
+
+
+
                 }
 
-                  
+
+
+                
+
+
             }
 
          
@@ -281,9 +362,23 @@ namespace EasySave.MVVM.ViewModel
                     System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progression = FileList.Count);
                     System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progressionBuffer = 0);
 
+                    SaveFile.CurrentAction = "READY";
+                    SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
+
                 }
 
+                if (SaveFile.CurrentAction == "PAUSED")
+                {
 
+                
+                    System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.StopButton = true);
+                    System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PauseState = "Hidden");
+                    System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PlayState = "Visible");
+
+                    SaveFile.CurrentAction = "READY";
+                    SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
+                    break;
+                }
 
 
             }
@@ -332,6 +427,8 @@ namespace EasySave.MVVM.ViewModel
                     }
 
                 }
+                SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
+                SaveFile.CurrentAction = "READY";
             }
 
         }
@@ -350,15 +447,13 @@ namespace EasySave.MVVM.ViewModel
 
             while (true)
             {
-            Thread.Sleep(500);
-            
-                
+                Thread.Sleep(500);
+                                               
                 System.Windows.Application.Current.Dispatcher.BeginInvoke(() => Refresh());
-
+                
             }
-
         }
-      
+
 
 
         public void LoadContent2()
@@ -381,6 +476,7 @@ namespace EasySave.MVVM.ViewModel
                 newob.PlayState = (RunningLog.State == "ACTIVE") ? "Hidden" : "Visible";
                 newob.StopState = false;
                 newob.StopButton = (RunningLog.State == "ACTIVE") ? true : false;
+                newob.CurrentAction = "READY";
 
                 TileList.Add(newob);
 
@@ -396,10 +492,30 @@ namespace EasySave.MVVM.ViewModel
         }
 
 
+        public bool IsProcessRunning(Settingjson Settingjson)
+        {
+            bool IsprocessRunning = false;
+
+            foreach (string ProcessPath in Settingjson.SoftwarePackageList)
+            {
+                
+
+                string fileName = Path.GetFileName(ProcessPath);
+                // Get the precess that already running as per the exe file name.
+                Process[] processName = Process.GetProcessesByName(fileName.Substring(0, fileName.LastIndexOf('.')));
+                if (processName.Length > 0)
+                {
+                    IsprocessRunning = true;
+                }
 
 
-        
 
+
+            }
+
+
+            return IsprocessRunning;
+        }
 
 
     }
@@ -415,8 +531,9 @@ namespace EasySave.MVVM.ViewModel
         public object PlayState { get; set; }
         public bool StopState { get; set; }// if true save is running 
         public bool StopButton { get; set; } // if false button is not clickable
+        public string CurrentAction { get; set; }
 
-  
+
 
 
 
