@@ -47,13 +47,13 @@
 
             <Grid>
                 <StackPanel>
-                    <TextBlock Text="Exécutez un ou plu-&#xA;sieurs travaux de sau-&#xA;vegarde simultané-&#xA;ment !"
+                    <TextBlock Text="{DynamicResource Run_button}"
                                Foreground="white"
                                FontSize="17" 
                                />
 
 
-                    <TextBlock Text="Réalisez une ou pluiseurs &#xA;sauvegardes en parallèle en &#xA;sélectionnant les travaux de &#xA;sauvegarde souhaités."
+                    <TextBlock Text="{DynamicResource First5_Line_Description}"
                                Foreground="white"
                                FontSize="13" 
                                TextAlignment="Justify"
