@@ -10,6 +10,7 @@ using System.Resources;
 using System.Text;
 using System.Threading;
 using System.Windows;
+using System.Windows.Data;
 
 namespace EasySave
 {
@@ -20,6 +21,7 @@ namespace EasySave
         public object Language { get; set; }
         public string BufferTitle { get; set; }
         SettingManager SettingManager;
+        SocketHandler SocketHandler = SocketHandler.Instance;
 
 
 
@@ -83,7 +85,7 @@ namespace EasySave
             SettingManager = new SettingManager();
             CurrentView = HomePageVM;
             reload();
-
+            SocketHandler.Sending = false;
 
 
 
@@ -108,7 +110,11 @@ namespace EasySave
 
                 if (Iscopyrunning == false)
                 {
-
+                    if (CurrentView == RunSaveFileVM)
+                    {
+                       
+                        SocketHandler.Sending = false;
+                    }
                     CurrentView = CreateSaveFileVM;
                 }
 
@@ -138,7 +144,10 @@ namespace EasySave
 
                 if (Iscopyrunning == false)
                 {
-
+                    if (CurrentView == RunSaveFileVM)
+                    {
+                        SocketHandler.Sending = false;
+                    }
                     if (o == null)
                     {
                         EditSaveFileVM.Title = null;
@@ -185,7 +194,10 @@ namespace EasySave
 
                 if (Iscopyrunning == false)
                 {
-
+                    if (CurrentView == RunSaveFileVM)
+                    {
+                        SocketHandler.Sending = false;
+                    }
 
                     if (o == null)
                     {
@@ -234,8 +246,11 @@ namespace EasySave
 
                 if (Iscopyrunning == false)
                 {
-
-                CurrentView = HomePageVM;
+                    if (CurrentView == RunSaveFileVM)
+                    {
+                        SocketHandler.Sending = false;
+                    }
+                    CurrentView = HomePageVM;
 
                 }
             });
@@ -261,8 +276,9 @@ namespace EasySave
                 if (Iscopyrunning == false)
                 {
 
-                CurrentView = RunSaveFileVM;
-
+                    SocketHandler.Sending = true;
+                    CurrentView = RunSaveFileVM;
+                
                 }
             });
 
@@ -287,8 +303,11 @@ namespace EasySave
 
                 if (Iscopyrunning == false)
                 {
-
-                CurrentView = SettingsVM;
+                    if (CurrentView == RunSaveFileVM)
+                    {
+                        SocketHandler.Sending = false;
+                    }
+                    CurrentView = SettingsVM;
 
                 }
 
@@ -318,8 +337,11 @@ namespace EasySave
 
                 if (Iscopyrunning == false)
                 {
-
-                Environment.Exit(0);
+                    if (CurrentView == RunSaveFileVM)
+                    {
+                        SocketHandler.Sending = false;
+                    }
+                    Environment.Exit(0);
 
                 }
             });
@@ -368,7 +390,6 @@ namespace EasySave
 
             Application.Current.Resources.MergedDictionaries.Add(resources);
         }
-
 
     }
 }

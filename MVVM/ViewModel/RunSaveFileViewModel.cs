@@ -13,6 +13,8 @@ using System.Windows.Forms;
 using System.Windows;
 using System.Windows.Threading;
 using System.Diagnostics;
+using System.Net.Sockets;
+using System.Net;
 
 namespace EasySave.MVVM.ViewModel
 {
@@ -27,8 +29,7 @@ namespace EasySave.MVVM.ViewModel
         FileSaveManagement FileSaveManagement;
         LogManagement LogManagement;
         SettingManager SettingManager;
-
-
+        SocketHandler SocketHandler = SocketHandler.Instance;
 
 
         public RelayCommand PlayCommand { get; set; }
@@ -37,22 +38,31 @@ namespace EasySave.MVVM.ViewModel
 
 
 
+
+
+
+
         public RunSaveFileViewModel()
         {
-
 
             TileList = new ObservableCollection<RunningSaveFile>();
             FileSaveManagement = new FileSaveManagement();
             LogManagement = new LogManagement();
             SettingManager = new SettingManager();
             Filetorun = new RunningSaveFile();
+            
             LoadContent2();
-          
+
+
+
             Thread RefreshThread = new Thread(refreshrate);
             RefreshThread.Name = "refreshrate";
             RefreshThread.Start();
-;
-           
+
+
+            SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
+
+
 
             PlayCommand = new RelayCommand(o =>
 
@@ -107,8 +117,8 @@ namespace EasySave.MVVM.ViewModel
                             SaveFile.StopButton = false;
                             SaveFile.PauseState = "Hidden";
                             SaveFile.PlayState = "Hidden";
-                                               
-                                               
+                            SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
+
                         }
 
 
@@ -151,7 +161,7 @@ namespace EasySave.MVVM.ViewModel
                         Thread StopThread = new Thread(StopCopy);
                         StopThread.Name = SaveFile.Title;
                         StopThread.Start();
-                       
+                        SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
 
                     }
                 }
@@ -299,6 +309,7 @@ namespace EasySave.MVVM.ViewModel
                             Monitor.Exit(LogManagement);
                         }
 
+                        SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
 
                     }
 
@@ -352,6 +363,7 @@ namespace EasySave.MVVM.ViewModel
                     System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.progressionBuffer = 0);
 
                     SaveFile.CurrentAction = "READY";
+                    SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
 
                 }
 
@@ -364,6 +376,7 @@ namespace EasySave.MVVM.ViewModel
                     System.Windows.Application.Current.Dispatcher.BeginInvoke(() => SaveFile.PlayState = "Visible");
 
                     SaveFile.CurrentAction = "READY";
+                    SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
                     break;
                 }
 
@@ -414,6 +427,7 @@ namespace EasySave.MVVM.ViewModel
                     }
 
                 }
+                SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
                 SaveFile.CurrentAction = "READY";
             }
 
@@ -433,15 +447,13 @@ namespace EasySave.MVVM.ViewModel
 
             while (true)
             {
-            Thread.Sleep(500);
-            
-                
+                Thread.Sleep(500);
+                                               
                 System.Windows.Application.Current.Dispatcher.BeginInvoke(() => Refresh());
-
+                
             }
-
         }
-      
+
 
 
         public void LoadContent2()
@@ -504,12 +516,6 @@ namespace EasySave.MVVM.ViewModel
 
             return IsprocessRunning;
         }
-
-
-
-
-        
-
 
 
     }
