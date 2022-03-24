@@ -36,7 +36,9 @@ namespace EasySave
         public RelayCommand SettingsCommand { get; set; }
         public RelayCommand ChangeLanguage { get; set; }
         public RelayCommand EditSaveFileCommand { get; set; }
+        public RelayCommand SettingsCommand2 { get; set; }
         public RelayCommand CloseCommand { get; set; }
+
 
 
 
@@ -47,6 +49,8 @@ namespace EasySave
         public HomePageViewModel HomePageVM { get; set; }
         public RunSaveFileViewModel RunSaveFileVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
+        public Settings2ViewModel Settings2VM { get; set; }
+
 
 
 
@@ -83,6 +87,7 @@ namespace EasySave
             SettingsVM = new SettingsViewModel();
             EditSaveFileVM = new EditSaveFileViewModel();
             SettingManager = new SettingManager();
+            Settings2VM = new Settings2ViewModel();
             CurrentView = HomePageVM;
             reload();
             SocketHandler.Sending = false;
@@ -313,6 +318,15 @@ namespace EasySave
 
 
             });
+            
+            SettingsCommand2 = new RelayCommand(o =>
+            {
+
+                CurrentView = Settings2VM;
+
+
+            });
+
 
             CloseCommand = new RelayCommand(o =>
             {
@@ -345,6 +359,7 @@ namespace EasySave
 
                 }
             });
+
 
             ChangeLanguage = new RelayCommand(o =>
             {

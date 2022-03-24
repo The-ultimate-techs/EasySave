@@ -17,13 +17,13 @@ namespace EasySave.MVVM.View
     /// <summary>
     /// Logique d'interaction pour SettingsView.xaml
     /// </summary>
-    public partial class SettingsView : UserControl
+    public partial class Settings2View : UserControl
 
     {
 
         
 
-        public SettingsView()
+        public Settings2View()
         {
             
             InitializeComponent();
@@ -43,8 +43,7 @@ namespace EasySave.MVVM.View
             // Load content of file in a TextBlock
             if (result == true)
             {
-                FileNameTextBox.Text = openFileDlg.FileName;
-                FileNameTextBox.Focus();
+
             }
 
         }
@@ -102,7 +101,57 @@ namespace EasySave.MVVM.View
 
         }
 
-        private void Settings2Click(object sender, RoutedEventArgs e)
+        private void ExtensionsNoPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ExtensionsPriority_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void WriteText3(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText4(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText5(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Add3Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Remove3Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText6(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText7(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText8(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WriteText9(object sender, RoutedEventArgs e)
         {
 
         }
