@@ -12,15 +12,14 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        Icon="Resource/logo.png"
+        Title="EasySave">
 
     <Window.DataContext>
         <local:MainViewModel/>
         
     </Window.DataContext>
-
-
-
 
 
     <Border Background="#272537"
@@ -71,15 +70,15 @@
                 
                 
 
-                <RadioButton Content="Créer un travail&#xA; de sauvegarde"
+                <RadioButton Content="{DynamicResource Create_button}"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             HorizontalAlignment="Center"
+                             HorizontalAlignment="Center"                             
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding CreateSaveFileCommand}" Checked="RadioButton_Checked"/>
 
-                <RadioButton Content="Editer un travail &#xA;de sauvegarde"
+                <RadioButton Content="{DynamicResource Edit_button}"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
@@ -90,7 +89,7 @@
 
 
 
-                <RadioButton Content="Exécuter un ou plusieurs&#xA; travaux de sauvegarde"
+                <RadioButton Content="{DynamicResource Run_button}"
                              Height="50"
                              Foreground="White"
                              HorizontalAlignment="Center"
@@ -98,13 +97,14 @@
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding RunSaveFileCommand}"/>
 
-                <RadioButton Content="Supprimer un travail de &#xA;sauvegarde"
+                <RadioButton Content="{DynamicResource Delete_button}"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
                              HorizontalAlignment="Center"
                              Style="{StaticResource MenuButtonTheme}"
-                             Command="{Binding DeleteSaveFileCommand}"/>
+                             Command="{Binding DeleteSaveFileCommand}"
+                             />
             </StackPanel>
 
             <Button 
@@ -129,11 +129,12 @@
                         Width="30"
                         Source="Resource/setting.png" 
                         Margin="0,0,20,0"/>
-                    
+
                     <TextBlock
                         Foreground="White"
-                        FontSize="14">
-                          Paramètres<LineBreak />généraux...
+                        FontSize="14"
+                        HorizontalAlignment="Center"
+                        Text="{DynamicResource Parameters}">
                     </TextBlock>
                     
                 </StackPanel>
@@ -243,7 +244,8 @@
                 Grid.Column="2"
                 Click="CloseClick" 
                 ClickMode="Release"
-                Style="{StaticResource CustomControlButton}">
+                Style="{StaticResource CustomControlButton}"
+                Command="{Binding CloseCommand}">
                 
                 <Image 
                     Height="25" 

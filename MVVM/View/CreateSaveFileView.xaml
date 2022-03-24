@@ -78,7 +78,7 @@
         </Grid>
 
         <Button x:Name="BrowseButton"
-                Content="Search folder..."
+                Content="{DynamicResource Search_Folder}"
                 Click="BrowseButton1Click"
                 Style="{StaticResource CustomAppButton}"
                 Margin="355,145,55,310" Grid.Column="1"
@@ -89,39 +89,39 @@
 
 
         <Button x:Name="BrowseButton_2"
-                Content="Search folder..."
+                Content="{DynamicResource Search_Folder}"
                 Click="BrowseButton2Click"
                 Style="{StaticResource CustomAppButton}"
                 Margin="355,235,55,220" Grid.Column="1"
                 Height="25"
                 Width="100"/>
 
-        <TextBlock Text="Nom du travail de travail que vous souhaitez créer :" 
+        <TextBlock Text="{DynamicResource Backup_Job_Name}" 
                        Grid.Column="1" 
                        Foreground="white"
                        FontSize="20" 
                        TextAlignment="Left" Margin="18,15,8,431"/>
 
-        <TextBlock Text="Chemin du dossier source :" 
+        <TextBlock Text="{DynamicResource Source_Folder_Path}" 
                        Grid.Column="1" 
                        Foreground="white"
                        FontSize="20" 
                        TextAlignment="Left" Margin="18,104,8,342"/>
 
-        <TextBlock Text="Chemin du dossier destination :" 
+        <TextBlock Text="{DynamicResource Destination_Folder_Path}" 
                        Grid.Column="1" 
                        Foreground="white"
                        FontSize="20" 
                        TextAlignment="Left" Margin="13,193,13,253"/>
 
-        <TextBlock Text="Type de sauvegade souhaitée :" 
+        <TextBlock Text="{DynamicResource Save_Type}" 
                        Grid.Column="1" 
                        Foreground="white"
                        FontSize="20" 
                        TextAlignment="Left" Margin="13,276,13,170"/>
 
 
-        <TextBlock Text="Are you sure ?" 
+        <TextBlock Text="{DynamicResource Are_You_Sure}" 
             Grid.Column="1" 
             Foreground="white"
             FontSize="20" 
@@ -138,7 +138,7 @@
 
 
             <Button x:Name="ButtonCreate"
-                    Content="Créer !"
+                    Content="{DynamicResource Create_Button}"
                     Click="ButtonCreateClick1"
                     Style="{StaticResource CustomAppButton}"
                     RenderTransformOrigin="1.047,0.821" 
@@ -155,7 +155,7 @@
                          Margin="0,430,0,0" Grid.Column="1">
 
             <Button x:Name="Buttonno"
-                    Content="No"
+                    Content="{DynamicResource No_Button_Text}"
                     Margin="0,0,100,0"
                     Click="ButtonnoClick"
                     Style="{StaticResource CustomAppButton}"
@@ -167,7 +167,7 @@
 
 
             <Button x:Name="Buttonyes"
-                    Content="oui"
+                    Content="{DynamicResource Yes_Button_Text}"
                     Style="{StaticResource CustomAppButton }"
                     RenderTransformOrigin="1.047,0.821" 
                     Height="20"
@@ -185,7 +185,7 @@
 
             <TextBox x:Name="Title" 
                          TextWrapping="Wrap"
-                         Tag="Enter the Title here ..."
+                         Tag="{DynamicResource Enter_Title}"
                          Text="{Binding Title}"
                          Style="{StaticResource ModernTextbox}" 
                          IsReadOnly="False"
@@ -198,7 +198,7 @@
                          Margin="240,53,190,310" Grid.ColumnSpan="2">
             <TextBox 
                            TextWrapping="Wrap"
-                           Tag="Source Path..."
+                           Tag="{DynamicResource Enter_Source_Path}"
                            Text="{Binding SourcePath}"
                            Style="{StaticResource ModernTextbox}" 
                            IsReadOnly="True"
@@ -212,7 +212,7 @@
                          Margin="240,53,190,220" Grid.ColumnSpan="2">
             <TextBox 
                            TextWrapping="Wrap"
-                           Tag="Destination Path..."
+                           Tag="{DynamicResource Enter_Destination_Path}"
                            Text="{Binding DestinationPath}"
                            Style="{StaticResource ModernTextbox}" 
                            IsReadOnly="True"
@@ -224,10 +224,10 @@
                     VerticalAlignment="Top"
                     Height="22"
                     Margin="0,320,0,0" Grid.Column="1">
-            <RadioButton x:Name="Diferential" Margin="78,0,0,0"   Foreground="white" FontSize="17" Content="Différentiel" IsChecked="{Binding TypeDifferencial}"/>
-            <RadioButton x:Name="Complete" Margin="150,0,0,0"    Foreground="white" FontSize="17" Content="Complète" IsChecked="{Binding TypeComplete}"/>
+            <RadioButton x:Name="Diferential" Margin="78,0,0,0"   Foreground="white" FontSize="17" Content="{DynamicResource Save_Type_Differential}" IsChecked="{Binding TypeDifferencial}"/>
+            <RadioButton x:Name="Complete" Margin="150,0,0,0"    Foreground="white" FontSize="17" Content="{DynamicResource Save_Type_Complete}" IsChecked="{Binding TypeComplete}"/>
         </StackPanel>
-        <TextBlock Text="Type de sauvegade souhaitée :" 
+        <TextBlock Text="{DynamicResource Save_Type}" 
             Grid.Column="1" 
             Foreground="white"
             FontSize="20" 

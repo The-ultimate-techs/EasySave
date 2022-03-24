@@ -11,7 +11,7 @@ namespace EasySave.MVVM.ViewModel
     {
 
         FileSaveManagement FileSaveManagement;
-
+        LogManagement LogManagement;
 
 
 
@@ -25,6 +25,7 @@ namespace EasySave.MVVM.ViewModel
         public DeleteSaveFileViewModel()
         {
             FileSaveManagement = new FileSaveManagement();
+            LogManagement = new LogManagement();
             Clean();
             FullFillList();
 
@@ -35,6 +36,7 @@ namespace EasySave.MVVM.ViewModel
 
               
                 File.Delete(FileSaveManagement.GetSaveFileDirectory() + Title + ".json");
+                LogManagement.RunningLogDeleted(Title);
                 TitleList.Remove(Title);
             });
 

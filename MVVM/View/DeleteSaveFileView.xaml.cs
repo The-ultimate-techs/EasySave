@@ -75,7 +75,7 @@ namespace EasySave.MVVM.View
             if (TitleSelected.Tag != null)
             {
                 TitleSelected.SelectedItem = TitleSelected.Tag;
-                FullFillForm();
+                FullFillForm(TitleSelected.Tag);
             }
 
 
@@ -96,18 +96,18 @@ namespace EasySave.MVVM.View
 
             if (TitleSelected.SelectedItem != null)
             {
-            FullFillForm();
+                FullFillForm(TitleSelected.SelectedItem);
 
             }
         }
 
 
-        public void FullFillForm()
+        public void FullFillForm(object name)
         {
 
 
 
-            string myJsonFile = File.ReadAllText(FileSaveManagement.GetSaveFileDirectory() + TitleSelected.SelectedItem + ".json");
+            string myJsonFile = File.ReadAllText(FileSaveManagement.GetSaveFileDirectory() + name.ToString() + ".json");
 
             SaveFileJson FileDetail = new SaveFileJson { };
 
@@ -132,11 +132,11 @@ namespace EasySave.MVVM.View
 
             }
 
+            TitleSelected.Text = name.ToString();
+
 
 
 
         }
-
-
     }
 }
