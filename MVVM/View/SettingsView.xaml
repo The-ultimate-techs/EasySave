@@ -69,11 +69,9 @@
                         x:Name="Settings2"
                         Height="25"
                         Margin="10,430,95,15"
-                        Click="Settings2Click" 
-                        ClickMode="Release"
                         Content="Advanced Settings..."
                         Style="{StaticResource CustomAppButton}"
-                        Command="{Binding }"/>
+                        Command="{Binding DataContext.SettingsCommand2, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"/>
 
             </Grid>
 

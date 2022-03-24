@@ -287,7 +287,7 @@
 
                     <!--Modify Binding-->
                     <RadioButton x:Name="Yes1"  
-                                 Margin="10,104,2,0" 
+                                 Margin="29,104,193,0" 
                                  Checked="WriteText6" 
                                  Foreground="white" 
                                  FontSize="17" 
@@ -297,11 +297,11 @@
                                  Height="24" 
                                  VerticalAlignment="Top" 
                                  Grid.Row="2" 
-                                 Grid.Column="2"/>
+                                 Grid.Column="2" Grid.ColumnSpan="2"/>
 
                     <!--Modify Binding-->
                     <RadioButton x:Name="No1"  
-                                 Margin="10,104,147,0" 
+                                 Margin="29,104,128,0" 
                                  Checked="WriteText7" 
                                  Foreground="white" 
                                  FontSize="17" 
