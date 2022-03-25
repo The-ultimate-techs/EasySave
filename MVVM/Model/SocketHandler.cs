@@ -99,7 +99,23 @@ namespace EasySave.MVVM.Model
         }
 
 
- 
+        public void synchronization()
+        {
+            if (client !=null)
+            {
+
+                Thread ListenThread = new Thread(new ThreadStart(Listen));
+                ListenThread.Start();
+
+            }
+        }
+
+
+     
+
+
+
+
 
         public void Close()
         {

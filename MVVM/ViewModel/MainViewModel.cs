@@ -280,7 +280,7 @@ namespace EasySave
 
                 if (Iscopyrunning == false)
                 {
-
+                    SocketHandler.synchronization();
                     SocketHandler.Sending = true;
                     CurrentView = RunSaveFileVM;
                 
