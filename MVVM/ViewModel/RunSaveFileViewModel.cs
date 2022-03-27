@@ -233,111 +233,121 @@ namespace EasySave.MVVM.ViewModel
                 }
 
 
-
-                if (SocketHandler.ReceiveData() != null)
+                string test = SocketHandler.ReceiveData();
+                if (SocketHandler.ReceiveData() != null )
                 {
 
                     RunningSaveFile RunningSaveFile = JsonConvert.DeserializeObject<RunningSaveFile>(SocketHandler.ReceiveData());
                     SocketHandler.Receive = false;
 
-                    switch (RunningSaveFile.CurrentAction)
-
+                    if (RunningSaveFile != null)
                     {
-                        case "REMOTEPLAYED":
 
-                            foreach (RunningSaveFile SaveFile in TileList)
-                            {
-                                if (RunningSaveFile.Title == SaveFile.Title)
+
+                        switch (RunningSaveFile.CurrentAction)
+
+                        {
+                            case "REMOTEPLAYED":
+
+                                foreach (RunningSaveFile SaveFile in TileList)
                                 {
-
-
-                                    if (SaveFile.CurrentAction == "READY")
-                                    {
-                                        SaveFile.PauseState = "Visible";
-                                        SaveFile.PlayState = "Hidden";
-                                        SaveFile.StopState = false;
-                                        SaveFile.StopButton = false;
-                                        SaveFile.CurrentAction = "RUNNING";
-                                        Filetorun = SaveFile;
-
-                                        Thread CopyThread = new Thread(StartSavefile);
-                                        CopyThread.Name = SaveFile.Title;
-                                        CopyThread.Start();
-
-                                    }
-                                }
-                            }
-                            Thread.Sleep(1500);
-                            SocketHandler.Receive = true;
-                            break;
-
-                        case "REMOTEPAUSED":
-
-                            foreach (RunningSaveFile SaveFile in TileList)
-                            {
-                                if (RunningSaveFile.Title == SaveFile.Title)
-                                {
-
-                                    if (SaveFile.CurrentAction == "RUNNING")
+                                    if (RunningSaveFile.Title == SaveFile.Title)
                                     {
 
 
-                                        SaveFile.CurrentAction = "PAUSED";
-                                        SaveFile.progressionBuffer = SaveFile.progression;
-                                        SaveFile.StopState = true;
-                                        SaveFile.StopButton = true;
-                                        SaveFile.PauseState = "Hidden";
-                                        SaveFile.PlayState = "Hidden";
-                                        SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
+                                        if (SaveFile.CurrentAction == "READY")
+                                        {
+                                            SaveFile.PauseState = "Visible";
+                                            SaveFile.PlayState = "Hidden";
+                                            SaveFile.StopState = false;
+                                            SaveFile.StopButton = false;
+                                            SaveFile.CurrentAction = "RUNNING";
+                                            Filetorun = SaveFile;
 
+                                            Thread CopyThread = new Thread(StartSavefile);
+                                            CopyThread.Name = SaveFile.Title;
+                                            CopyThread.Start();
+
+                                        }
                                     }
-
-
-
-
-
-
                                 }
-                            }
-                            Thread.Sleep(1500);
-                            SocketHandler.Receive = true;
-                            break;
+                                Thread.Sleep(1500);
+                                SocketHandler.Receive = true;
+                                break;
 
-                        case "REMOTESTOPPED":
+                            case "REMOTEPAUSED":
 
-                            foreach (RunningSaveFile SaveFile in TileList)
-                            {
-                                if (RunningSaveFile.Title == SaveFile.Title)
+                                foreach (RunningSaveFile SaveFile in TileList)
                                 {
-                                    if (SaveFile.CurrentAction == "READY")
+                                    if (RunningSaveFile.Title == SaveFile.Title)
                                     {
-                                        SaveFile.CurrentAction = "STOPPED";
-                                        SaveFile.StopState = true;
-                                        SaveFile.StopButton = false;
-                                        SaveFile.PauseState = "Hidden";
-                                        SaveFile.PlayState = "Visible";
-                                        SaveFile.progression = 0;
-                                        SaveFile.TotalFile = 100;
-                                        SaveFile.progressionBuffer = 0;
+
+                                        if (SaveFile.CurrentAction == "RUNNING")
+                                        {
+
+
+                                            SaveFile.CurrentAction = "PAUSED";
+                                            SaveFile.progressionBuffer = SaveFile.progression;
+                                            SaveFile.StopState = true;
+                                            SaveFile.StopButton = true;
+                                            SaveFile.PauseState = "Hidden";
+                                            SaveFile.PlayState = "Hidden";
+                                            SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
+
+                                        }
 
 
 
 
-                                        Filetorun = SaveFile;
 
-                                        Thread StopThread = new Thread(StopCopy);
-                                        StopThread.Name = SaveFile.Title;
-                                        StopThread.Start();
-                                        SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
+
                                     }
-
                                 }
-                            }
+                                Thread.Sleep(1500);
+                                SocketHandler.Receive = true;
+                                break;
 
-                            Thread.Sleep(1500);
-                            SocketHandler.Receive = true;
-                            break;
+                            case "REMOTESTOPPED":
+
+                                foreach (RunningSaveFile SaveFile in TileList)
+                                {
+                                    if (RunningSaveFile.Title == SaveFile.Title)
+                                    {
+                                        if (SaveFile.CurrentAction == "READY")
+                                        {
+                                            SaveFile.CurrentAction = "STOPPED";
+                                            SaveFile.StopState = true;
+                                            SaveFile.StopButton = false;
+                                            SaveFile.PauseState = "Hidden";
+                                            SaveFile.PlayState = "Visible";
+                                            SaveFile.progression = 0;
+                                            SaveFile.TotalFile = 100;
+                                            SaveFile.progressionBuffer = 0;
+
+
+
+
+                                            Filetorun = SaveFile;
+
+                                            Thread StopThread = new Thread(StopCopy);
+                                            StopThread.Name = SaveFile.Title;
+                                            StopThread.Start();
+                                            SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
+                                        }
+
+                                    }
+                                }
+
+                                Thread.Sleep(1500);
+                                SocketHandler.Receive = true;
+                                break;
+                        }
+
+
                     }
+
+
+                   
                 }
 
 
