@@ -94,10 +94,35 @@
     <system:String x:Key="Log_Type">Type de log</system:String>
     <system:String x:Key="Change_Language">Changer de langue</system:String>
     <system:String x:Key="Path_to_process">Chemin vers le processus</system:String>
-    
-    
+
+    <system:String x:Key="Go_To_Advanced_Settings">Paramètres avancés...</system:String>
 
     <system:String x:Key="Add_Button">Ajouter</system:String>
     <system:String x:Key="Remove_Button">Supprimer</system:String>
+
+    
+    <!-- Global settings menu 2-->
+    <system:String x:Key="Define_priority_files">Les fichiers dit "prioritaires" :</system:String>
+    <system:String x:Key="files_non_priority_extensions">Fichiers non prioritaires</system:String>
+    <system:String x:Key="files_priority_extensions">Fichiers prioritaires</system:String>
+
+    <system:String x:Key="Maximum_size_authorised">Mise en pause des travaux de sauvegarde :</system:String>
+    <system:String x:Key="Threshold_value">Valeur du seuil :</system:String>
+    <system:String x:Key="Maximum_size_authorised_2Go">2Go (par défaut)</system:String>
+    <system:String x:Key="Maximum_size_authorised_3Go">3Go</system:String>
+    <system:String x:Key="Maximum_size_authorised_4Go">4Go</system:String>
+
+    <system:String x:Key="Option_Pausing">Activation de l'option ?</system:String>
+    <system:String x:Key="Option_Pausing_threshold">Si oui, veuillez sélectionner le seuil souhaité :</system:String>
+    <system:String x:Key="Option_Pausing_Threshold_1Go">1Go</system:String>
+    <system:String x:Key="Option_Pausing_Threshold_2Go">2Go</system:String>
+    
+    
+    <!-- Instructions-->
+    <system:String x:Key="Instructions_main" xml:space="preserve">Dans ce menu, vous pouvez modifier&#xA;certains paramètres plus poussés que&#xA;dans la fenêtre des paramètres généraux&#xA;puisque vous pouvez éditer les éléments &#xA;suivants :</system:String>
+    <system:String x:Key="Instructions_1" xml:space="preserve">1. Définir les fichiers prioritaires : Les fichiers &#xA;prioritaires dans EasySave sont les fichiers &#xA;qui vont être sauvegardez en premier &#xA;lorsqu’un ou plusieurs travaux de &#xA;sauvegarde sont en cours d’exécution. &#xA;Pour personnaliser la liste par défaut, vous &#xA;devez cliquer sur l’extension en question, &#xA;puis cliquer sur le bouton “ajouter” ou &#xA;“retitrer” en fonction de l’emplacement de &#xA;l’extension visée et ce que vous souhaitez &#xA;en faire.</system:String>
+    <system:String x:Key="Instructions_2" xml:space="preserve">2. Définir le seuil critique, en Kilo-octet,&#xA;des tailles de fichiers en cours de &#xA;sauvegarde simultanément : ce paramètre &#xA;permettra de définir un seuil qui ne doit pas &#xA;être dépassé pour éviter la surcharge de la &#xA;bande passante.</system:String>
+    <system:String x:Key="Instructions_3" xml:space="preserve">3. Option possible : mise en pause des &#xA;travaux de sauvegarde en cours d’exécution &#xA;si le seuil défini est dépassé pour éviter la &#xA;saturation du réseau. Vous pouvez choisir d’activer ou de désactiver cette option. Si vous choisissez de l’activer, vous avez la possibilité de sélection le seul en Kilo-octet.</system:String>
+
 
 </ResourceDictionary>

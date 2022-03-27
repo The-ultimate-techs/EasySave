@@ -74,10 +74,22 @@
                                 FontSize="15" 
                                 Margin="10,10,0,0"/>
 
-                            <TextBlock Text="Description Instruction 1"
+                            <TextBlock Text="{DynamicResource Instructions_main}"
                                 Foreground="white"
                                 FontSize="12" 
-                                Margin="10,5,0,0"/>
+                                Margin="10,5,0,0" Height="86"/>
+                            <TextBlock Text="{DynamicResource Instructions_1}"
+                                Foreground="white"
+                                FontSize="12" 
+                                Height="177"/>
+                            <TextBlock Text="{DynamicResource Instructions_2}"
+                                Foreground="white"
+                                FontSize="12" 
+                                Height="99"/>
+                            <TextBlock Text="{DynamicResource Instructions_3}"
+                                Foreground="white"
+                                FontSize="12" 
+                                Height="86"/>
 
                         </StackPanel>
 
@@ -112,14 +124,14 @@
 
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Les fichiers fichiers dit ''prioritaires'' : " 
+                    <TextBlock Text="{DynamicResource Define_priority_files}" 
                         Foreground="white"
                         FontSize="17" 
                         TextAlignment="Center"
                         Grid.ColumnSpan="4" 
                         Margin="0,65,1,30"/>
 
-                    <TextBlock Text="Fichiers non prioritaires" 
+                    <TextBlock Text="{DynamicResource files_non_priority_extensions}" 
                         Grid.Column="0" 
                         Foreground="white"
                         FontSize="17" 
@@ -149,7 +161,7 @@
                             Width="80"
                             Click="Add3Click" 
                             ClickMode="Release"
-                            Content="Add &gt;&gt;"
+                            Content="{DynamicResource Add_Button_}"
                             Style="{StaticResource CustomAppButton}"
                             Command="{Binding Add1Command}"/>
 
@@ -161,7 +173,7 @@
                             Margin="0,15,0,0"
                             Click="Remove3Click" 
                             ClickMode="Release"
-                            Content="&lt;&lt; Remove"
+                            Content="{DynamicResource Remove_Button_}"
                     
                             Style="{StaticResource CustomAppButton}"
                             Command="{Binding Remove1Command}"/>
@@ -171,7 +183,7 @@
 
 
 
-                    <TextBlock Text="Fichiers prioritaires" 
+                    <TextBlock Text="{DynamicResource files_priority_extensions}" 
                         Grid.Column="3" 
                         Foreground="white"
                         FontSize="17" 
@@ -193,7 +205,7 @@
                         SelectionChanged="ExtensionsPriority_SelectionChanged"/>
 
 
-                    <TextBlock Text="Mise en pause des travaux de sauvegarde : "
+                    <TextBlock Text="{DynamicResource Maximum_size_authorised}"
                         Foreground="white"
                         FontSize="17" 
                         TextAlignment="Center"
@@ -219,7 +231,7 @@
                     </StackPanel>
 
 
-                    <TextBlock Text="Valeur du seuil : "
+                    <TextBlock Text="{DynamicResource Threshold_value}"
                         Foreground="white"
                         FontSize="17" 
                         TextAlignment="Center" 
@@ -232,7 +244,7 @@
                                  Checked="WriteText3" 
                                  Foreground="white" 
                                  FontSize="17" 
-                                 Content="2 000 000 Ko, soit 2Go (par défaut)" 
+                                 Content="{DynamicResource Maximum_size_authorised_2Go}" 
                                  IsChecked="{Binding LogXml}" 
                                  Command ="{Binding XMLSelected}" 
                                  Height="24" 
@@ -246,7 +258,7 @@
                                  Checked="WriteText4" 
                                  Foreground="white" 
                                  FontSize="17" 
-                                 Content="3 000 000 Ko, soit 3Go" 
+                                 Content="{DynamicResource Maximum_size_authorised_3Go}" 
                                  IsChecked="{Binding LogXml}" 
                                  Command ="{Binding XMLSelected}" 
                                  Height="24" 
@@ -260,7 +272,7 @@
                                  Checked="WriteText5" 
                                  Foreground="white" 
                                  FontSize="17" 
-                                 Content="4 000 000 Ko, soit 4Go" 
+                                 Content="{DynamicResource Maximum_size_authorised_4Go}" 
                                  IsChecked="{Binding LogXml}" 
                                  Command ="{Binding XMLSelected}" 
                                  Height="24" 
@@ -269,7 +281,7 @@
                                  Grid.Row="2"/>
 
 
-                    <TextBlock Text="Activation de l'option ?"
+                    <TextBlock Text="{DynamicResource Option_Pausing}"
                         Grid.Row="2" 
                         Foreground="white"
                         FontSize="17" 
@@ -277,7 +289,7 @@
                         Grid.ColumnSpan="3" 
                         Margin="0,100,36,31"/>
 
-                    <TextBlock Text="Si oui, veuillez sélectionner le seuil souhaité :"
+                    <TextBlock Text="{DynamicResource Option_Pausing_threshold}"
                         Grid.Row="2" 
                         Foreground="white"
                         FontSize="17" 
@@ -291,7 +303,7 @@
                                  Checked="WriteText6" 
                                  Foreground="white" 
                                  FontSize="17" 
-                                 Content="Oui" 
+                                 Content="{DynamicResource Yes_Button_Text}" 
                                  IsChecked="{Binding LogXml}" 
                                  Command ="{Binding XMLSelected}" 
                                  Height="24" 
@@ -305,7 +317,7 @@
                                  Checked="WriteText7" 
                                  Foreground="white" 
                                  FontSize="17" 
-                                 Content="Non" 
+                                 Content="{DynamicResource No_Button_Text}" 
                                  IsChecked="{Binding LogXml}" 
                                  Command ="{Binding XMLSelected}" 
                                  Height="24" 
@@ -319,7 +331,7 @@
                                  Checked="WriteText8" 
                                  Foreground="white" 
                                  FontSize="17" 
-                                 Content="1 000 000 Ko, soit 1Go" 
+                                 Content="{DynamicResource Option_Pausing_Threshold_1Go}" 
                                  IsChecked="{Binding LogXml}" 
                                  Command ="{Binding XMLSelected}" 
                                  Height="24" 
@@ -334,7 +346,7 @@
                                  Checked="WriteText9" 
                                  Foreground="white" 
                                  FontSize="17" 
-                                 Content="2 000 000 Ko, soit 2Go" 
+                                 Content="{DynamicResource Option_Pausing_Threshold_2Go}" 
                                  IsChecked="{Binding LogXml}" 
                                  Command ="{Binding XMLSelected}" 
                                  Height="24" 

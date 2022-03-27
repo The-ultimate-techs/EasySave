@@ -99,4 +99,28 @@
     <system:String x:Key="Add_Button">Add</system:String>
     <system:String x:Key="Remove_Button">Remove</system:String>
 
+    
+    <!-- Global settings menu 2-->
+    <system:String x:Key="Define_priority_files">Priority file</system:String>
+    <system:String x:Key="files_non_priority_extensions">Non-priority file type</system:String>
+    <system:String x:Key="files_priority_extensions">Priority file type</system:String>
+
+    <system:String x:Key="Maximum_size_authorised">Pause of the backup work</system:String>
+    <system:String x:Key="Threshold_value">Threshold value :</system:String>
+    <system:String x:Key="Maximum_size_authorised_2Go">2Go (default)</system:String>
+    <system:String x:Key="Maximum_size_authorised_3Go">3Go</system:String>
+    <system:String x:Key="Maximum_size_authorised_4Go">4Go</system:String>
+
+    <system:String x:Key="Option_Pausing">Enable this option ?</system:String>
+    <system:String x:Key="Option_Pausing_threshold">If this option is enabled, please select the threshold value</system:String>
+    <system:String x:Key="Option_Pausing_Threshold_1Go">1Go</system:String>
+    <system:String x:Key="Option_Pausing_Threshold_2Go">2Go</system:String>
+
+
+    <!-- Instructions-->
+    <system:String x:Key="Instructions_main" xml:space="preserve">In this menu, you can change some &#xA;settings more advanced than in the &#xA;general settings page since you can edit &#xA;the following :</system:String>
+    <system:String x:Key="Instructions_1" xml:space="preserve">1. Set priority files: Priority files in EasySave &#xA;are the files that will be saved first when &#xA;one or more backup jobs are running. To &#xA;customize the default list, you need to click &#xA;on the extension that you want, and then &#xA;click on the “add” or “Remove” button &#xA;depending on the location of the targeted &#xA;extension and what you want to do with it.</system:String>
+    <system:String x:Key="Instructions_2" xml:space="preserve">2. Set the critical threshold, in Kilobytes, of &#xA;file sizes being backed up simultaneously: &#xA;This parameter will define a threshold that &#xA;must not be exceeded to avoid bandwidth &#xA;overload.</system:String>
+    <system:String x:Key="Instructions_3" xml:space="preserve">Additional option: Pause running backup &#xA;jobs if the set threshold is exceeded to &#xA;avoid network saturation. You can choose &#xA;to enable or disable this option. If you &#xA;choose to enable it, you have the option to &#xA;select the threshold in Kilobytes.</system:String>
+
 </ResourceDictionary>
