@@ -100,7 +100,6 @@
                         FontSize="17" 
                         TextAlignment="Center" Margin="0,115,0,30" Grid.RowSpan="2"/>
 
-                    <!--Modifier les Binding-->
                     <ListBox Grid.Row="1" 
                         Grid.Column="0"
                         x:Name="ExtensionsNoPriority" 
@@ -126,7 +125,7 @@
                             ClickMode="Release"
                             Content="Add &gt;&gt;"
                             Style="{StaticResource CustomAppButton}"
-                            Command="{Binding Add1Command}"/>
+                            Command="{Binding Add3Command}"/>
 
                         <!--Modifier les Binding-->
                         <Button
@@ -136,10 +135,9 @@
                             Margin="0,15,0,0"
                             Click="Remove3Click" 
                             ClickMode="Release"
-                            Content="&lt;&lt; Remove"
-                    
+                            Content="&lt;&lt; Remove"                    
                             Style="{StaticResource CustomAppButton}"
-                            Command="{Binding Remove1Command}"/>
+                            Command="{Binding Remove3Command}"/>
 
 
                     </StackPanel>
@@ -154,17 +152,15 @@
                         Margin="0,115,0,30" 
                         Grid.RowSpan="2"/>
 
-                    <!--Modifier les Binding-->
                     <ListBox Grid.Row="1" 
                         Grid.Column="3" 
                         x:Name="ExtensionsPriority" 
                         HorizontalAlignment="Left"
                         Width="185" 
                         Margin="15,10,0,52"
-                        SelectedItem="{Binding ExtensionToEncryptSelected}"
-                     
+                        SelectedItem="{Binding ExtensionFilesPriority}"
                         Style="{StaticResource listBoxStyle}"
-                        ItemsSource="{Binding ExtensionToEncryptlist}" 
+                        ItemsSource="{Binding FilesPriorityList}" 
                         SelectionChanged="ExtensionsPriority_SelectionChanged"/>
 
 
@@ -191,29 +187,26 @@
                         Grid.ColumnSpan="4"
                         VerticalAlignment="Top" Height="100"  Margin="47,71,0,0" Width="397" HorizontalAlignment="Left">
 
-                        <!--Modify Binding-->
                         <RadioButton x:Name="TwoGigaBytes"  
-                                    
                                      Checked="WriteText3" 
                                      Foreground="white" 
                                      FontSize="17" 
                                      Content="2 000 000 Ko, soit 2Go (par défaut)" 
-                                 
-                                     Command ="{Binding XMLSelected}" 
+                                     IsChecked="{Binding TwoSelected}"
+                                     Command ="{Binding TwoSelectedCommand}" 
                                      Height="24" 
                                      VerticalAlignment="Top" 
                                      Grid.ColumnSpan="4" 
                                      Grid.Row="2"/>
 
-                        <!--Modify Binding-->
                         <RadioButton x:Name="ThreeGigaBytes"  
                                       
                                      Checked="WriteText4" 
                                      Foreground="white" 
                                      FontSize="17" 
                                      Content="3 000 000 Ko, soit 3Go" 
-                                  
-                                     Command ="{Binding XMLSelected}" 
+                                     IsChecked="{Binding ThreeSelected}"
+                                     Command ="{Binding ThreeSelectedCommand}" 
                                      Height="24" 
                                      VerticalAlignment="Top" 
                                      Grid.ColumnSpan="4" 
@@ -224,12 +217,11 @@
                                      Foreground="white" 
                                      FontSize="17" 
                                      Content="4 000 000 Ko, soit 4Go" 
-                                 
-                                     Command ="{Binding XMLSelected}" 
+                                     IsChecked="{Binding FourSelected}"
+                                     Command ="{Binding FourSelectedCommand}" 
                                      Height="24" 
                                      />
 
-                        <!--Modify Binding-->
                     </StackPanel>
 
 
