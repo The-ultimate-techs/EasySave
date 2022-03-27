@@ -329,7 +329,7 @@ namespace EasySave.MVVM.ViewModel
 
                                             Filetorun = SaveFile;
 
-                                            Thread StopThread = new Thread(StopCopy);
+                                           Thread StopThread = new Thread(StopCopy);
                                             StopThread.Name = SaveFile.Title;
                                             StopThread.Start();
                                             SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);

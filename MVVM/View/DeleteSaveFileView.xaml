@@ -118,12 +118,14 @@
                       SelectedItem="{Binding Title}"
                       IsReadOnly="True"
                       Loaded="OnLoad"
-                      x:Name ="TitleSelected">
+                      x:Name ="TitleSelected"
+                     >
 
 
 
 
             </ComboBox>
+
 
         </StackPanel>
 
