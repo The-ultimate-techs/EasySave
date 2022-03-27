@@ -280,7 +280,6 @@ namespace EasySave
 
                 if (Iscopyrunning == false)
                 {
-
                     SocketHandler.Sending = true;
                     CurrentView = RunSaveFileVM;
                 
@@ -351,8 +350,10 @@ namespace EasySave
 
                 if (Iscopyrunning == false)
                 {
+                    SocketHandler.Close();
                     if (CurrentView == RunSaveFileVM)
                     {
+                        
                         SocketHandler.Sending = false;
                     }
                     Environment.Exit(0);
