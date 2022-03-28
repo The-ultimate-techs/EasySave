@@ -76,6 +76,12 @@ namespace EasySave
                         break;
 
                     case "5":
+                        SetMenuChoice(result);
+                        SubMenuChooseLogFileType();
+
+                        break;
+
+                    case "6":
                        
                         SetMenuChoice(result);
                         View.Clear();
@@ -84,7 +90,7 @@ namespace EasySave
                         break;
                 }
 
-            } while (GetMenuChoice() != "5" );
+            } while (GetMenuChoice() != "6" );
             
         }
 
@@ -406,6 +412,33 @@ namespace EasySave
 
         }
 
+        public void SubMenuChooseLogFileType()
+        {
+            string LogFileType;
+
+            do
+            {
+
+                View.Clear();
+                View.DisplayTranslatedMessage("ChooseLogFileType");
+                LogFileType = Console.ReadLine();
+
+                switch (LogFileType)
+                {
+                    case "1": //JSON
+                        ChooseLogFileType("JSON");
+                        break;
+
+                    case "2": //XML
+                        ChooseLogFileType("XML");
+                        break;
+                }
+            }
+            while ((LogFileType != "1") && (LogFileType != "2"));
+
+
+        }
+
         //Method to get which Language the user wants to choose 
         public string GetUserLanguage()
         {
@@ -434,30 +467,19 @@ namespace EasySave
         }
 
 
+        // Method to choose the Log File Type
+        public void ChooseLogFileType(string Type)
+        {
+            if(Type == "JSON")
+            {
+                //variable doit prendre la valeur JSON
+            }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            else if(Type == "XML")
+            {
+                //Variable doit prendre la valeur XML
+            }
+        }
 
 
         public void DisplayListSaveFile()

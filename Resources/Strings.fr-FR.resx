@@ -125,6 +125,14 @@
     
     </value>
   </data>
+  <data name="ChooseLogFileType" xml:space="preserve">
+    <value>Choix de l'extension du fichier log :
+
+Selectionner une extension:
+
+ JSON----------------------------------------------------  : 1
+ XML----------------------------------------------------  : 2</value>
+  </data>
   <data name="DeleteTool" xml:space="preserve">
     <value>Outil de suppression 
 
@@ -160,7 +168,8 @@ Selectionner une action:
  Editer ou supprimer un travail de sauvegarde-------------------------------------------  : 2
  Executer un travail de sauvegarde------------------------------------------------------  : 3
  Changer de langue / Change language----------------------------------------------------  : 4 
- Fermer le programme--------------------------------------------------------------------  : 5 
+ Choisir l'extension des fichiers logs générés------------------------------------------  : 5
+ Fermer le programme--------------------------------------------------------------------  : 6 
 
 Vôtre choix : </value>
   </data>
