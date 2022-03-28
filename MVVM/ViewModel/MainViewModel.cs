@@ -94,6 +94,21 @@ namespace EasySave
 
 
 
+            ListRunningLog = LogManagement.LogReader();
+
+            foreach (RunningLog RunningLog in ListRunningLog)
+            {
+                if (RunningLog.State == "ACTIVE")
+
+                {
+                    LogManagement.RunningLogGénérator(RunningLog.Name, "", "", 1, 0, 1, false);
+                }
+            }
+
+
+
+
+
             CreateSaveFileCommand = new RelayCommand(o =>
             {
 
