@@ -191,7 +191,7 @@
                         Grid.ColumnSpan="4"
                         VerticalAlignment="Top" Height="100"  Margin="47,71,0,0" Width="397" HorizontalAlignment="Left">
 
-                        <!--Modify Binding-->
+                        
                         <RadioButton x:Name="TwoGigaBytes"  
                                     
                                      Checked="WriteText3" 
@@ -199,13 +199,13 @@
                                      FontSize="17" 
                                      Content="2 000 000 Ko, soit 2Go (par défaut)" 
                                  
-                                     Command ="{Binding XMLSelected}" 
+                                    
                                      Height="24" 
                                      VerticalAlignment="Top" 
                                      Grid.ColumnSpan="4" 
                                      Grid.Row="2"/>
 
-                        <!--Modify Binding-->
+                        
                         <RadioButton x:Name="ThreeGigaBytes"  
                                       
                                      Checked="WriteText4" 
@@ -213,7 +213,7 @@
                                      FontSize="17" 
                                      Content="3 000 000 Ko, soit 3Go" 
                                   
-                                     Command ="{Binding XMLSelected}" 
+                                     
                                      Height="24" 
                                      VerticalAlignment="Top" 
                                      Grid.ColumnSpan="4" 
@@ -225,11 +225,11 @@
                                      FontSize="17" 
                                      Content="4 000 000 Ko, soit 4Go" 
                                  
-                                     Command ="{Binding XMLSelected}" 
+                                     
                                      Height="24" 
                                      />
 
-                        <!--Modify Binding-->
+                       
                     </StackPanel>
 
 

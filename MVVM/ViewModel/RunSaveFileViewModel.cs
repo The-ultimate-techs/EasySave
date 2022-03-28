@@ -452,7 +452,8 @@ namespace EasySave.MVVM.ViewModel
 
                         DailyLogManagement.BeginSaveFileExecution();
 
-
+                        bool encrypted = false;
+                        
                         foreach (string extension in Settingjson.ExtensionToEncryptlist)
                         {
                             if (extension.ToLower() == Path.GetExtension(files.GetSourceDirectory().ToLower()))
@@ -473,15 +474,17 @@ namespace EasySave.MVVM.ViewModel
 
 
                                 DailyLogManagement.EndSaveFileExecution();
-                                DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+                                DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_(),result);
+                                encrypted = true;
                             }
-                            else
-                            {
-                                FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
-                                DailyLogManagement.EndSaveFileExecution();
-                                DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
-                            }
+                            
+                        }
 
+                        if (encrypted == false )
+                        {
+                            FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
+                            DailyLogManagement.EndSaveFileExecution();
+                            DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_(),0);
                         }
 
 
