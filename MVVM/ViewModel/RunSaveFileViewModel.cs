@@ -507,10 +507,12 @@ namespace EasySave.MVVM.ViewModel
 
                         DailyLogManagement.BeginSaveFileExecution();
 
+                        bool encrypted = false;
+
 
                         foreach (string extension in Settingjson.ExtensionToEncryptlist)
                         {
-                            if (extension.ToLower() == Path.GetExtension(files.GetSourceDirectory().ToLower()))
+                            if (extension.ToLower() == Path.GetExtension(files.GetSourceDirectory()).ToLower())
                             {
 
                                 ProcessStartInfo startInfo = new ProcessStartInfo(@"../../../Cryptosoft/Cryptosoft.exe");        // exe file
@@ -529,14 +531,17 @@ namespace EasySave.MVVM.ViewModel
 
                                 DailyLogManagement.EndSaveFileExecution();
                                 DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_(), result);
+                                encrypted = true;
                             }
-                            else
-                            {
-                                FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
-                                DailyLogManagement.EndSaveFileExecution();
-                                DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_(), 0);
-                            }
+                           
 
+                        }
+
+                        if(encrypted == false)
+                        {
+                            FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
+                            DailyLogManagement.EndSaveFileExecution();
+                            DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_(), 0);
                         }
 
 
