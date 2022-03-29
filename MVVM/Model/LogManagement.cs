@@ -5,6 +5,8 @@ using System.IO;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using EasySave.MVVM.ObjectsForSerialization;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace EasySave.MVVM.Model
 {
@@ -15,11 +17,13 @@ namespace EasySave.MVVM.Model
         private System.Diagnostics.Stopwatch Stopwatch;
         private long TimeDuration;
         private bool ProcessRunning;
+        SettingManager SettingManager;
 
 
         public LogManagement()
         {
             Stopwatch = new System.Diagnostics.Stopwatch();
+            SettingManager = new SettingManager();
             SetProcessRunning(false);
 
             if (!Directory.Exists(GetDirectoryPath()))
@@ -51,10 +55,23 @@ namespace EasySave.MVVM.Model
 
 
 
-        public bool DailyLogGénérator(string Title , string SourceDirectory , string DestinationDirectory, string Type )
+        public void DailyLogGénérator(string Title , string SourceDirectory , string DestinationDirectory, string Type )
+        {
+            if (SettingManager.Getsettings().LogType == "JSON")
+            {
+                DailyLogGénératorJSON(Title, SourceDirectory, DestinationDirectory, Type);
+            }
+            else
+            {
+                DailyLogGénératorXML(Title, SourceDirectory, DestinationDirectory, Type);
+            }
+        }
+
+
+        public void DailyLogGénératorJSON (string Title, string SourceDirectory, string DestinationDirectory, string Type)
         {
             SetTitle(Title);
-            SetSourceDirectory(SourceDirectory.Replace("\\","\\\\"));
+            SetSourceDirectory(SourceDirectory.Replace("\\", "\\\\"));
             SetDestinationDirectory(DestinationDirectory.Replace("\\", "\\\\"));
             SetType(Type);
 
@@ -69,12 +86,12 @@ namespace EasySave.MVVM.Model
                 // Create a file to write to.
                 using (StreamWriter sw = File.CreateText(path))
                 {
-                    
+
                     sw.WriteLine("[\n { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": " + FileSize(SourceDirectory) + ",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
 
                 }
             }
-            else 
+            else
             {
                 // This text is always added, making the file longer over time
                 // if it is not deleted.
@@ -91,16 +108,67 @@ namespace EasySave.MVVM.Model
 
                 using (StreamWriter sw = File.AppendText(path))
                 {
-                   
 
-                    sw.WriteLine(" { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": "+FileSize(SourceDirectory)+",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
+
+                    sw.WriteLine(" { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": " + FileSize(SourceDirectory) + ",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
 
                     sw.Close();
 
                 }
             }
-            return true;
+            
         }
+
+
+
+        public void DailyLogGénératorXML(string Title, string SourceDirectory, string DestinationDirectory, string Type)
+        {
+            SetTitle(Title);
+            SetSourceDirectory(SourceDirectory.Replace("\\", "\\\\"));
+            SetDestinationDirectory(DestinationDirectory.Replace("\\", "\\\\"));
+            SetType(Type);
+
+            DailyLogXml obj = new DailyLogXml();
+
+            string path = GetDirectoryPath() + "SaveFilesLogs\\DailyLog\\" + GetTitle() + ".xml";
+
+            // if the file does not already exist, we create it
+            if (!File.Exists(path))
+            {
+                File.Create(path).Close();
+            }
+
+            #region Update attributes of the object
+            obj.Name = Title;
+            obj.FileSource = SourceDirectory;
+            obj.FileTarget = DestinationDirectory;
+            obj.DestPath = "";
+            obj.FileSize = FileSize(SourceDirectory);
+            obj.FileTransferTime = GetTimeDuration();
+            obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
+            #endregion
+
+            XmlSerializer XmlSerializer = new XmlSerializer(typeof(DailyLogXml));
+            StreamWriter WriterXml = new StreamWriter(path, true);
+            XmlSerializer.Serialize(WriterXml, obj); // This method serialize and write the xml file
+            var fi1 = new FileInfo(path);
+            long Fi1Length = fi1.Length;
+
+            if (Fi1Length == 0) // On crée le fichier s'il n'existe pas encore
+            {
+                File.AppendAllText(path, "");
+            }
+
+            WriterXml.Close();
+
+
+        }
+
+
+
+
+
+
 
 
 
@@ -146,7 +214,7 @@ namespace EasySave.MVVM.Model
             }
 
 
-            string json = JsonConvert.SerializeObject(myJsonList, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(myJsonList, Newtonsoft.Json.Formatting.Indented);
 
             using (StreamWriter sw = File.CreateText(path))
             {
@@ -186,7 +254,7 @@ namespace EasySave.MVVM.Model
                 }
             }
             
-            string json = JsonConvert.SerializeObject(myJsonList, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(myJsonList, Newtonsoft.Json.Formatting.Indented);
 
             using (StreamWriter sw = File.CreateText(path))
             {
