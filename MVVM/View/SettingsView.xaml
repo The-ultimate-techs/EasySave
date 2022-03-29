@@ -48,16 +48,30 @@
             </Border.Clip>
             <Grid>
                 <StackPanel>
-                    <TextBlock Text="{DynamicResource Settings}"
+                    <TextBlock Text="{DynamicResource InstructionsSettings1_1}"
                                Foreground="white"
                                FontSize="15" 
                                Margin="10,10,0,0"/>
 
-                    <TextBlock Text="Description Instruction 1"
+                    <TextBlock Text="{DynamicResource InstructionsSettings1_2}"
                                Foreground="white"
                                FontSize="12" 
                                Margin="10,5,0,0"/>
 
+                    <TextBlock Text="{DynamicResource InstructionsSettings1_3}"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
+
+                    <TextBlock Text="{DynamicResource InstructionsSettings1_4}"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
+
+                    <TextBlock Text="{DynamicResource InstructionsSettings1_5}"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
                 </StackPanel>
 
                 <Image Width="120"

@@ -9,7 +9,7 @@
     <!-- Main Menu buttons-->
     <system:String x:Key="Create_button" xml:space="preserve">Créer un travail&#xA;de sauvegarde</system:String>
     <system:String x:Key="Edit_button" xml:space="preserve">Editer un travail&#xA;de sauvegarde</system:String>
-    <system:String x:Key="Run_button" xml:space="preserve">Exécuter un travail&#xA;de sauvegarde</system:String>
+    <system:String x:Key="Run_button" xml:space="preserve">  Exécuter un travail de &#xA;  sauvegarde</system:String>
     <system:String x:Key="Delete_button" xml:space="preserve">Supprimer un travail&#xA;de sauvegarde</system:String>
     <system:String x:Key="Parameters" xml:space="preserve">Paramètres&#xA;généraux ...</system:String>
     
@@ -118,11 +118,45 @@
     <system:String x:Key="Option_Pausing_Threshold_2Go">2Go</system:String>
     
     
-    <!-- Instructions-->
+    <!-- Instructions settings 2-->
     <system:String x:Key="Instructions_main" xml:space="preserve">Dans ce menu, vous pouvez modifier&#xA;certains paramètres plus poussés que&#xA;dans la fenêtre des paramètres généraux&#xA;puisque vous pouvez éditer les éléments &#xA;suivants :</system:String>
-    <system:String x:Key="Instructions_1" xml:space="preserve">1. Définir les fichiers prioritaires : Les fichiers &#xA;prioritaires dans EasySave sont les fichiers &#xA;qui vont être sauvegardez en premier &#xA;lorsqu’un ou plusieurs travaux de &#xA;sauvegarde sont en cours d’exécution. &#xA;Pour personnaliser la liste par défaut, vous &#xA;devez cliquer sur l’extension en question, &#xA;puis cliquer sur le bouton “ajouter” ou &#xA;“retitrer” en fonction de l’emplacement de &#xA;l’extension visée et ce que vous souhaitez &#xA;en faire.</system:String>
-    <system:String x:Key="Instructions_2" xml:space="preserve">2. Définir le seuil critique, en Kilo-octet,&#xA;des tailles de fichiers en cours de &#xA;sauvegarde simultanément : ce paramètre &#xA;permettra de définir un seuil qui ne doit pas &#xA;être dépassé pour éviter la surcharge de la &#xA;bande passante.</system:String>
-    <system:String x:Key="Instructions_3" xml:space="preserve">3. Option possible : mise en pause des &#xA;travaux de sauvegarde en cours d’exécution &#xA;si le seuil défini est dépassé pour éviter la &#xA;saturation du réseau. Vous pouvez choisir d’activer ou de désactiver cette option. Si vous choisissez de l’activer, vous avez la possibilité de sélection le seul en Kilo-octet.</system:String>
+    <system:String x:Key="Instructions_1" xml:space="preserve">   1. Définir les fichiers prioritaires : Les fi-&#xA;   chiers prioritaires dans EasySave sont &#xA;   les fichiers qui vont être sauvegardez en &#xA;   premier lorsqu’un ou plusieurs travaux &#xA;   de sauvegarde sont en cours d’exécution. &#xA;   Pour personnaliser la liste par défaut,&#xA;   vous devez cliquer sur l’extension en &#xA;   question, puis cliquer sur le bouton &#xA;   “ajouter” ou “retitrer” en fonction &#xA;   de l’emplacement de l’extension visée &#xA;   et ce que vous souhaitez en faire.</system:String>
+    <system:String x:Key="Instructions_2" xml:space="preserve">   2. Définir le seuil critique, en Kilo-octet,&#xA;   des tailles de fichiers en cours de sauve- &#xA;   garde simultanément : ce paramètre per-&#xA;   mettra de définir un seuil qui ne doit pas &#xA;   être dépassé pour éviter la sur-&#xA;   charge de la bande passante.</system:String>
 
+    <!-- Instructions CreateSaveFile-->
+    <system:String x:Key="InstructionsCreateSaveFile_1" xml:space="preserve">Création d’un travail de sauve-&#xA;garde !</system:String>
+    <system:String x:Key="InstructionsCreateSaveFile_2" xml:space="preserve">Un travail de sauvegarde est caractérisé &#xA;par un nom, une source, une destination, &#xA;ainsi qu’un type de sauvegarde. &#xA;Nous pouvons trouver ci-dessous des &#xA;explications concernant les différents &#xA;champs a complété :</system:String>
+    <system:String x:Key="InstructionsCreateSaveFile_3" xml:space="preserve">Le nom du travail de sauvegarde :&#xA;Nous vous conseillons de sélectionner &#xA;des mots-clés qui caractérisent votre &#xA;travail de sauvegarde de façon à pou-&#xA;voir l’identifier sans difficulté parmi les &#xA;autres travaux enregistrés.</system:String>
+    <system:String x:Key="InstructionsCreateSaveFile_4" xml:space="preserve">La source et la destination : &#xA;Vous devez cliquer sur le bouton “ouvrir” &#xA;pour accéder à votre explorateur de fi-&#xA;chier et ainsi sélectionner le chemin &#xA;source que vous souhaitez sauvegarder &#xA;via ce travail de sauvegarde.</system:String>
+    <system:String x:Key="InstructionsCreateSaveFile_5" xml:space="preserve">Le type de sauvegarde : &#xA;La différentielle sauvegarde les fichiers &#xA;ainsi que les dossiers en comparant ce &#xA;que contient source et la destination. &#xA;La complète remplace ce qu’il y a &#xA;dans la destination par la source.</system:String>
+
+    <!-- Instructions RunSaveFile-->
+    <system:String x:Key="InstructionsRunSaveFile_1" xml:space="preserve">   Lancement des travaux de &#xA;   sauvegarde !</system:String>
+    <system:String x:Key="InstructionsRunSaveFile_2" xml:space="preserve">   C’est dans ce menu que nous pou-&#xA;   vons exécuter, stopper ou mettre en &#xA;   pause nos différents travaux de sau- &#xA;   vegarde. Pour cela, rien de plus&#xA;   simple, suivez les étapes suivantes : </system:String>
+    <system:String x:Key="InstructionsRunSaveFile_3" xml:space="preserve">   1. Cherchez dans la liste des travaux &#xA;   de sauvegarde celui ou ceux que vous &#xA;   souhaitez exécuter ; </system:String>
+    <system:String x:Key="InstructionsRunSaveFile_4" xml:space="preserve">   2. Ensuite, cliquer sur le bouton “play”&#xA;   pour lancer l’exécution du ou des&#xA;   travaux de sauvegarde que vous sou-&#xA;   haitez ;</system:String>
+    <system:String x:Key="InstructionsRunSaveFile_5" xml:space="preserve">   3. Une fois que le ou les travaux de&#xA;   sauvegarde sont lancés, nous pou-&#xA;   vons les mettre en pause en cliquant&#xA;   sur le bouton “pause”, ou alors les ar-&#xA;   rêter complètement en cliquant sur le&#xA;   bouton “stop”.</system:String>
+
+
+    <!-- Instructions EditSaveFile-->
+    <system:String x:Key="InstructionsEditSaveFile_1" xml:space="preserve">  Modification d’un travail de&#xA;  sauvegarde !</system:String>
+    <system:String x:Key="InstructionsEditSaveFile_2" xml:space="preserve">  Dans ce menu, vous pouvez désormais &#xA;  mofidier les champs d’un travail de &#xA;  sauvegarde existante ! </system:String>
+    <system:String x:Key="InstructionsEditSaveFile_3" xml:space="preserve">  Pour cela, il vous suffit de sélectionner &#xA;  le travail de sauvegarde, que vous sou-&#xA;  haitez modifier, grâce à la liste dérou-&#xA;  lante.</system:String>
+    <system:String x:Key="InstructionsEditSaveFile_4" xml:space="preserve">  Une fois que vous avez sélectionné &#xA;  votre travail de sauvegarde, les diffé-&#xA;  rents champs seront pré-remplis par &#xA;  les paramètres actuels : vous n’avez&#xA;  plus qu’à réaliser les modifications que&#xA;  vous souhaitez.</system:String>
+
+
+    <!-- Instructions DeleteSaveFile-->
+    <system:String x:Key="InstructionsDeleteSaveFile_1" xml:space="preserve">  Suppression d’un travail &#xA;  de sauvegarde !</system:String>
+    <system:String x:Key="InstructionsDeleteSaveFile_2" xml:space="preserve">  Dans ce menu, nous pouvons suppri-&#xA;  mer un  travail de sauvegarde que &#xA;  vous n’utiliser plus ! Pour cela, rien de &#xA;  plus que de suivre les étapes suivantes :</system:String>
+    <system:String x:Key="InstructionsDeleteSaveFile_3" xml:space="preserve">  1. Grâce à la liste déroulante, vous &#xA;  pouvez sélectionner le travail de sau- &#xA;  vegarde que vous souhaitez supprimer.</system:String>
+    <system:String x:Key="InstructionsDeleteSaveFile_4" xml:space="preserve">  2. Une fois que le travail de sauvegarde &#xA;  est sélectionné, les paramètres &#xA;  composant celui-ci vont s’afficher &#xA;  dans les champs dédier. Donc, nous &#xA;  allons retrouver : la source, la destina- &#xA;  tion ainsi que le type de sauvegarde. &#xA;  Cela permet tout simplement de vous &#xA;  assurer que vous supprimez le travail &#xA;  de sauvegarde voulu !</system:String>
+    <system:String x:Key="InstructionsDeleteSaveFile_5" xml:space="preserve">  3. Si vous êtes sûr de vous, vous pou-&#xA;  vez dès à présent cliquer sur “suppri-&#xA;  mer”. Dès lors, un bouton &#xA;  de confirmation apparaî-&#xA;  tra : vous n’aurez plus &#xA;  qu’à valider votre &#xA;  suppression.</system:String>
+
+    <!-- Instructions Settings 1-->
+    <system:String x:Key="InstructionsSettings1_1" xml:space="preserve"> Les paramètres généraux...</system:String>
+    <system:String x:Key="InstructionsSettings1_2" xml:space="preserve"> Ici, vous pouvez modifier les paramètres &#xA; généraux de l’application, dont ceux-ci :</system:String>
+    <system:String x:Key="InstructionsSettings1_3" xml:space="preserve"> 1. La langue : vous pouvez choisir &#xA;  de passer en anglais ou en français &#xA;  à n’importe quel moment grâce &#xA;  au bouton en haut à droit.</system:String>
+    <system:String x:Key="InstructionsSettings1_4" xml:space="preserve"> 2. La liste des extensions : vous pouvez &#xA; ajouter les extensions de fichier que &#xA; vous souhaitez chiffrer lors de votre &#xA; sauvegarde. Il vous suffit de  sélection-&#xA; ner  l’extension dans la liste de gauche&#xA; et à cliquer sur le bouton  “ajouter” &#xA; pour le passer dans la liste des exten-&#xA; sions à chiffrer. Pour la supprimer &#xA; de cette liste, il suffit de la sélectionner &#xA; et de cliquer sur “retirer”.</system:String>
+    <system:String x:Key="InstructionsSettings1_5" xml:space="preserve"> 3. La liste des logiciels métiers : cette lis-&#xA; te personnalisable permet d’indiquer &#xA; à l’application les différents  progiciels &#xA; que vous utilisez et par conséquent &#xA; de bloquer la sauvegarde si l’un &#xA; d’eux est en cours  d’utili-&#xA;sation ou d’exécution.</system:String>
 
 </ResourceDictionary>

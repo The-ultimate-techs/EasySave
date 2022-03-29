@@ -38,15 +38,27 @@
 
             <Grid>
                 <StackPanel>
-                    <TextBlock Text="Instruction 1"
+                    <TextBlock Text="{DynamicResource InstructionsEditSaveFile_1}"
                                Foreground="white"
                                FontSize="15" 
                                Margin="10,10,0,0"/>
 
-                    <TextBlock Text="Description Instruction 1"
+                    <TextBlock Text="{DynamicResource InstructionsEditSaveFile_2}"
                                Foreground="white"
                                FontSize="12" 
                                Margin="10,5,0,0"/>
+
+                    <TextBlock Text="{DynamicResource InstructionsEditSaveFile_3}"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
+
+                    <TextBlock Text="{DynamicResource InstructionsEditSaveFile_4}"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
+
+
                 </StackPanel>
                 <Image Width="110"
                        Height="110"

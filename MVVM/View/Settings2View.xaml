@@ -86,10 +86,6 @@
                                 Foreground="white"
                                 FontSize="12" 
                                 Height="99"/>
-                            <TextBlock Text="{DynamicResource Instructions_3}"
-                                Foreground="white"
-                                FontSize="12" 
-                                Height="86"/>
 
                         </StackPanel>
 
@@ -279,81 +275,6 @@
                                  VerticalAlignment="Top" 
                                  Grid.ColumnSpan="4" 
                                  Grid.Row="2"/>
-
-
-                    <TextBlock Text="{DynamicResource Option_Pausing}"
-                        Grid.Row="2" 
-                        Foreground="white"
-                        FontSize="17" 
-                        TextAlignment="Center" 
-                        Grid.ColumnSpan="3" 
-                        Margin="0,100,36,31"/>
-
-                    <TextBlock Text="{DynamicResource Option_Pausing_threshold}"
-                        Grid.Row="2" 
-                        Foreground="white"
-                        FontSize="17" 
-                        TextAlignment="Center" 
-                        Grid.ColumnSpan="4" 
-                        Margin="10,127,65,4"/>
-
-                    <!--Modify Binding-->
-                    <RadioButton x:Name="Yes1"  
-                                 Margin="29,104,193,0" 
-                                 Checked="WriteText6" 
-                                 Foreground="white" 
-                                 FontSize="17" 
-                                 Content="{DynamicResource Yes_Button_Text}" 
-                                 IsChecked="{Binding LogXml}" 
-                                 Command ="{Binding XMLSelected}" 
-                                 Height="24" 
-                                 VerticalAlignment="Top" 
-                                 Grid.Row="2" 
-                                 Grid.Column="2" Grid.ColumnSpan="2"/>
-
-                    <!--Modify Binding-->
-                    <RadioButton x:Name="No1"  
-                                 Margin="29,104,128,0" 
-                                 Checked="WriteText7" 
-                                 Foreground="white" 
-                                 FontSize="17" 
-                                 Content="{DynamicResource No_Button_Text}" 
-                                 IsChecked="{Binding LogXml}" 
-                                 Command ="{Binding XMLSelected}" 
-                                 Height="24" 
-                                 VerticalAlignment="Top" 
-                                 Grid.Row="2" 
-                                 Grid.Column="3"/>
-
-                    <!--Modify Binding-->
-                    <RadioButton x:Name="OneGigaBytes"  
-                                 Margin="59,157,29,0" 
-                                 Checked="WriteText8" 
-                                 Foreground="white" 
-                                 FontSize="17" 
-                                 Content="{DynamicResource Option_Pausing_Threshold_1Go}" 
-                                 IsChecked="{Binding LogXml}" 
-                                 Command ="{Binding XMLSelected}" 
-                                 Height="24" 
-                                 VerticalAlignment="Top" 
-                                 Grid.ColumnSpan="3" 
-                                 Grid.Row="2" 
-                                 Grid.RowSpan="2"/>
-
-                    <!--Modify Binding-->
-                    <RadioButton x:Name="TwoGigaBytesTwo"  
-                                 Margin="45,157,37,0" 
-                                 Checked="WriteText9" 
-                                 Foreground="white" 
-                                 FontSize="17" 
-                                 Content="{DynamicResource Option_Pausing_Threshold_2Go}" 
-                                 IsChecked="{Binding LogXml}" 
-                                 Command ="{Binding XMLSelected}" 
-                                 Height="24" 
-                                 VerticalAlignment="Top" 
-                                 Grid.ColumnSpan="2" 
-                                 Grid.Row="2" 
-                                 Grid.Column="2" Grid.RowSpan="2"/>
 
                 </Grid>
 

@@ -47,23 +47,30 @@
 
             <Grid>
                 <StackPanel>
-                    <TextBlock Text="{DynamicResource Run_button}"
+                    <TextBlock Text="{DynamicResource InstructionsRunSaveFile_1}"
                                Foreground="white"
                                FontSize="17" 
                                />
-
-
-                    <TextBlock Text="{DynamicResource First5_Line_Description}"
+                    <TextBlock Text="{DynamicResource InstructionsRunSaveFile_2}"
                                Foreground="white"
                                FontSize="13" 
                                TextAlignment="Justify"
                                />
-
-                    <TextBlock Text="Pour cela, veuillez-vous rendre &#xA;dans le menu ''Exécuter un ou plu-&#xA;sieurs travaux de sauvegarde'' sur &#xA;votre gauche."
+                    <TextBlock Text="{DynamicResource InstructionsRunSaveFile_3}"
                                Foreground="white"
-                               FontSize="11" 
-                               TextAlignment="Justify"/>
-
+                               FontSize="13" 
+                               TextAlignment="Justify"
+                               />
+                    <TextBlock Text="{DynamicResource InstructionsRunSaveFile_4}"
+                               Foreground="white"
+                               FontSize="13" 
+                               TextAlignment="Justify"
+                               />
+                    <TextBlock Text="{DynamicResource InstructionsRunSaveFile_5}"
+                               Foreground="white"
+                               FontSize="13" 
+                               TextAlignment="Justify"
+                               />
 
                 </StackPanel>
                 <Image Width="110"

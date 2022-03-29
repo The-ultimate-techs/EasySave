@@ -117,10 +117,45 @@
     <system:String x:Key="Option_Pausing_Threshold_2Go">2Go</system:String>
 
 
-    <!-- Instructions-->
-    <system:String x:Key="Instructions_main" xml:space="preserve">In this menu, you can change some &#xA;settings more advanced than in the &#xA;general settings page since you can edit &#xA;the following :</system:String>
-    <system:String x:Key="Instructions_1" xml:space="preserve">1. Set priority files: Priority files in EasySave &#xA;are the files that will be saved first when &#xA;one or more backup jobs are running. To &#xA;customize the default list, you need to click &#xA;on the extension that you want, and then &#xA;click on the “add” or “Remove” button &#xA;depending on the location of the targeted &#xA;extension and what you want to do with it.</system:String>
-    <system:String x:Key="Instructions_2" xml:space="preserve">2. Set the critical threshold, in Kilobytes, of &#xA;file sizes being backed up simultaneously: &#xA;This parameter will define a threshold that &#xA;must not be exceeded to avoid bandwidth &#xA;overload.</system:String>
-    <system:String x:Key="Instructions_3" xml:space="preserve">Additional option: Pause running backup &#xA;jobs if the set threshold is exceeded to &#xA;avoid network saturation. You can choose &#xA;to enable or disable this option. If you &#xA;choose to enable it, you have the option to &#xA;select the threshold in Kilobytes.</system:String>
+    <!-- Instructions settings 2-->
+    <system:String x:Key="Instructions_main" xml:space="preserve">In this menu, you can change some &#xA;settings more advanced than in the &#xA;general settings page since you can&#xA; edit the following :</system:String>
+    <system:String x:Key="Instructions_1" xml:space="preserve">  1. Set priority files: Priority files in Easy-&#xA;   Save are the files that will be saved first&#xA;   when one or more backup jobs are run-&#xA;   ning. To customize the default list, you&#xA;   need to click on the extension that you&#xA;   want, and then click on the “add” or&#xA;   “Remove” button depending on the loca-&#xA;   tion of the targeted extension and what&#xA;   you want to do with it.</system:String>
+    <system:String x:Key="Instructions_2" xml:space="preserve">  2. Set the critical threshold, in Kilobytes,&#xA;   of file sizes being backed up simultaneou-&#xA;   sly: This parameter will define a threshold &#xA;   that must not be exceeded to avoid&#xA;   bandwidth overload.</system:String>
+
+    <!-- Instructions CreateSaveFile-->
+    <system:String x:Key="InstructionsCreateSaveFile_1" xml:space="preserve">Creating a backup job !</system:String>
+    <system:String x:Key="InstructionsCreateSaveFile_2" xml:space="preserve">A backup job is characterized by a name, &#xA;source, destination and backup type. We &#xA;can find below explanations regarding &#xA;the different fiels completed:</system:String>
+    <system:String x:Key="InstructionsCreateSaveFile_3" xml:space="preserve">Backup job’s name: &#xA;We recommend that you select keywords &#xA;whose characterize your backup job: it’s &#xA;to identify it easily among other saved &#xA;jobs.</system:String>
+    <system:String x:Key="InstructionsCreateSaveFile_4" xml:space="preserve">Source destination: &#xA;You need to click on “open” button to &#xA;access you file explorer. After that, you &#xA;select the source path you want to back &#xA;up via this backup job. Of course, you &#xA;must proceed in the same way to select &#xA;the destination of your backup.</system:String>
+    <system:String x:Key="InstructionsCreateSaveFile_5" xml:space="preserve">The differential saves files as well as &#xA;folders by comparing what contains &#xA;source and destination. &#xA;The complete replaces what is in &#xA;the destination by &#xA;the source. </system:String>
+
+    <!-- Instructions RunSaveFile-->
+    <system:String x:Key="InstructionsRunSaveFile_1" xml:space="preserve">   Start of backup job!</system:String>
+    <system:String x:Key="InstructionsRunSaveFile_2" xml:space="preserve">   It’s in this menu that we can run, &#xA;   stop and pause our various backup &#xA;   jobs. To do this, nothing could be &#xA;   easier, follow these steps:</system:String>
+    <system:String x:Key="InstructionsRunSaveFile_3" xml:space="preserve">   1. Look in the list of backup jobs for &#xA;   the one or jobs you want to run; </system:String>
+    <system:String x:Key="InstructionsRunSaveFile_4" xml:space="preserve">   2. Then, click on the “play” button &#xA;   to start running the where backup &#xA;   jobs you want;</system:String>
+    <system:String x:Key="InstructionsRunSaveFile_5" xml:space="preserve">   3. Once the backup job(s) are started, &#xA;   we can pause them by clicking on the &#xA;   “pause” button, or you can also stop &#xA;   them completely by clicking on the &#xA;   “stop” button.</system:String>
+
+    <!-- Instructions EditSaveFile-->
+    <system:String x:Key="InstructionsEditSaveFile_1" xml:space="preserve">  Modify a backup job!</system:String>
+    <system:String x:Key="InstructionsEditSaveFile_2" xml:space="preserve">  In this menu, you can modify the fields &#xA;  of an existing backup job!</system:String>
+    <system:String x:Key="InstructionsEditSaveFile_3" xml:space="preserve">  To do this, simply select the backup&#xA;  job, which you want to modify, &#xA;  thanks to the drop-down list.</system:String>
+    <system:String x:Key="InstructionsEditSaveFile_4" xml:space="preserve">  Once you have selected you backup &#xA;  job, the different fields will be &#xA;  pre-populated by the current settings: &#xA;  all you have to do is make the changes&#xA;  you want.</system:String>
+
+    <!-- Instructions DeleteSaveFile-->
+    <system:String x:Key="InstructionsDeleteSaveFile_1" xml:space="preserve">  Deleting a backup job!</system:String>
+    <system:String x:Key="InstructionsDeleteSaveFile_2" xml:space="preserve">  In this menu, we can delete a backup &#xA;  job that you non longer use! To do &#xA;  this, nothing more than follow the &#xA;  next steps:</system:String>
+    <system:String x:Key="InstructionsDeleteSaveFile_3" xml:space="preserve">  1. Through the drop-down list, you can &#xA;  select the backup job you want to &#xA;  delete.</system:String>
+    <system:String x:Key="InstructionsDeleteSaveFile_4" xml:space="preserve">  2. Once the backup job is selected, &#xA;  the parameters composing it will be &#xA;  displayed in the dedicate fields. So, &#xA;  we will find: source, destination and &#xA;  backup’s type. This simply ensures &#xA;  that you delete the desired backup job!</system:String>
+    <system:String x:Key="InstructionsDeleteSaveFile_5" xml:space="preserve">  3. If you are sure of yourself, you can &#xA;  now click on “delete”. From then on, &#xA;  a confirmation button will appear: &#xA;  you will only have to validate your &#xA;  deletion.</system:String>
+
+    <!-- Instructions Settings 1-->
+    <system:String x:Key="InstructionsSettings1_1" xml:space="preserve">  The general settings...</system:String>
+    <system:String x:Key="InstructionsSettings1_2" xml:space="preserve">  Here, you can change the app’s general &#xA;  settings including the following:</system:String>
+    <system:String x:Key="InstructionsSettings1_3" xml:space="preserve">  1. Language: You can choose to switch &#xA;  to English or French at any time thanks &#xA;  to the button at the top right.</system:String>
+    <system:String x:Key="InstructionsSettings1_4" xml:space="preserve">  2. The extensions’ list: You can add the &#xA;  file extension you want to encrypt when &#xA;  you back up. To do this, you just have to &#xA;  select the extension from list on the left &#xA;  and click on the “add” button to pass it &#xA;  in the extensions’ list to be encrypted. &#xA;  Also, you can move an extension to ex- &#xA;  tensions' list, to don't encrypted them : &#xA;  for that, you have to click on "remove" &#xA;  when you select your extension.</system:String>
+    <system:String x:Key="InstructionsSettings1_5" xml:space="preserve">  3. The software package’s list: This custo-&#xA;  mizable list allows you to tell the appli-&#xA;  cation the different software packages &#xA;  you use and therefore block the backup &#xA;  if one of them is in use or running.</system:String>
+
+
 
 </ResourceDictionary>
