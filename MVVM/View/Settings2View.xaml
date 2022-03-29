@@ -14,10 +14,6 @@
         <Viewmomdel:Settings2ViewModel/>
     </UserControl.DataContext>
 
-
-
-
-
     <Grid  Margin="20,20,20,0">
 
         <Grid.ColumnDefinitions>
@@ -25,61 +21,40 @@
             <ColumnDefinition />
 
         </Grid.ColumnDefinitions>
-        <UserControl 
-            d:DesignHeight="500" 
-            d:DesignWidth="800"
-            Grid.ColumnSpan="2" 
-            Margin="1,1,-41,-41">
-
-            <UserControl.DataContext>
-                <Viewmomdel:SettingsViewModel/>
-            </UserControl.DataContext>
 
 
 
-
-
-            <Grid  Margin="0,12,40,8">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition />
-
-                </Grid.ColumnDefinitions>
+        <Border Grid.Column="0"
+                Margin="10,10,10,0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                    <GradientStop Color="#FF6400" Offset="0.0"/>
+                    <GradientStop Color="#FFC800" Offset="1.3"/>
 
 
 
-                <Border Grid.Column="0"
-                    Margin="10,10,10,0">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                            <GradientStop Color="#FF6400" Offset="0.0"/>
-                            <GradientStop Color="#FFC800" Offset="1.3"/>
+                </LinearGradientBrush>
 
+            </Border.Background>
+            <Border.Clip>
 
+                <RectangleGeometry RadiusX="10"
+                                   RadiusY="10"
+                                   Rect="0,0,230,460"/>
+            </Border.Clip>
+            <Grid>
+                <StackPanel>
+                    <TextBlock Text="{DynamicResource Settings}"
+                               Foreground="white"
+                               FontSize="15" 
+                               Margin="10,10,0,0"/>
 
-                        </LinearGradientBrush>
+                    <TextBlock Text="Description Instruction 1"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
 
-                    </Border.Background>
-                    <Border.Clip>
-
-                        <RectangleGeometry RadiusX="10"
-                            RadiusY="10"
-                            Rect="0,0,230,460"/>
-                    </Border.Clip>
-                    <Grid>
-                        <StackPanel>
-                            <TextBlock Text="{DynamicResource Settings}"
-                                Foreground="white"
-                                FontSize="15" 
-                                Margin="10,10,0,0"/>
-
-                            <TextBlock Text="Description Instruction 1"
-                                Foreground="white"
-                                FontSize="12" 
-                                Margin="10,5,0,0"/>
-
-                        </StackPanel>
+                </StackPanel>
 
                         <Image Width="120"
                             Height="120"
@@ -105,8 +80,8 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="125"/>
-                        <RowDefinition Height="160"/>
+                        <RowDefinition Height="145"/>
+                        <RowDefinition Height="180"/>
                         <RowDefinition Height="158"/>
                         <RowDefinition Height="27"/>
 
@@ -123,9 +98,8 @@
                         Grid.Column="0" 
                         Foreground="white"
                         FontSize="17" 
-                        TextAlignment="Center" Margin="0,95,0,30" Grid.RowSpan="2"/>
+                        TextAlignment="Center" Margin="0,115,0,30" Grid.RowSpan="2"/>
 
-                    <!--Modifier les Binding-->
                     <ListBox Grid.Row="1" 
                         Grid.Column="0"
                         x:Name="ExtensionsNoPriority" 
@@ -151,7 +125,7 @@
                             ClickMode="Release"
                             Content="Add &gt;&gt;"
                             Style="{StaticResource CustomAppButton}"
-                            Command="{Binding Add1Command}"/>
+                            Command="{Binding Add3Command}"/>
 
                         <!--Modifier les Binding-->
                         <Button
@@ -161,10 +135,9 @@
                             Margin="0,15,0,0"
                             Click="Remove3Click" 
                             ClickMode="Release"
-                            Content="&lt;&lt; Remove"
-                    
+                            Content="&lt;&lt; Remove"                    
                             Style="{StaticResource CustomAppButton}"
-                            Command="{Binding Remove1Command}"/>
+                            Command="{Binding Remove3Command}"/>
 
 
                     </StackPanel>
@@ -176,29 +149,27 @@
                         Foreground="white"
                         FontSize="17" 
                         TextAlignment="Center" 
-                        Margin="0,95,0,30" 
+                        Margin="0,115,0,30" 
                         Grid.RowSpan="2"/>
 
-                    <!--Modifier les Binding-->
                     <ListBox Grid.Row="1" 
                         Grid.Column="3" 
                         x:Name="ExtensionsPriority" 
                         HorizontalAlignment="Left"
                         Width="185" 
                         Margin="15,10,0,52"
-                        SelectedItem="{Binding ExtensionToEncryptSelected}"
-                     
+                        SelectedItem="{Binding ExtensionFilesPriority}"
                         Style="{StaticResource listBoxStyle}"
-                        ItemsSource="{Binding ExtensionToEncryptlist}" 
+                        ItemsSource="{Binding FilesPriorityList}" 
                         SelectionChanged="ExtensionsPriority_SelectionChanged"/>
 
 
-                    <TextBlock Text="Mise en pause des travaux de sauvegarde : "
+                    <TextBlock Text="Mise en pause des travaux de sauvegarde à partir de : "
                         Foreground="white"
                         FontSize="17" 
                         TextAlignment="Center"
-                        Margin="0,116,1,14" 
-                        Grid.Row="1" 
+                        Margin="0,26,0,102" 
+                        Grid.Row="2" 
                         Grid.ColumnSpan="4"/>
 
                     <StackPanel Orientation="Vertical"
@@ -212,136 +183,50 @@
 
                     <StackPanel Orientation="Vertical"
                         Grid.Row="2"
-                        Grid.Column="1"
-                        VerticalAlignment="Top" Height="66"
-                        Margin="0,56,0,0" Grid.ColumnSpan="2">
+                        Grid.RowSpan="2"
+                        Grid.ColumnSpan="4"
+                        VerticalAlignment="Top" Height="100"  Margin="47,71,0,0" Width="397" HorizontalAlignment="Left">
+
+                        <RadioButton x:Name="TwoGigaBytes"  
+                                     Checked="WriteText3" 
+                                     Foreground="white" 
+                                     FontSize="17" 
+                                     Content="2 000 000 Ko, soit 2Go (par défaut)" 
+                                     IsChecked="{Binding TwoSelected}"
+                                     Command ="{Binding TwoSelectedCommand}" 
+                                     Height="24" 
+                                     VerticalAlignment="Top" 
+                                     Grid.ColumnSpan="4" 
+                                     Grid.Row="2"/>
+
+                        <RadioButton x:Name="ThreeGigaBytes"  
+                                      
+                                     Checked="WriteText4" 
+                                     Foreground="white" 
+                                     FontSize="17" 
+                                     Content="3 000 000 Ko, soit 3Go" 
+                                     IsChecked="{Binding ThreeSelected}"
+                                     Command ="{Binding ThreeSelectedCommand}" 
+                                     Height="24" 
+                                     VerticalAlignment="Top" 
+                                     Grid.ColumnSpan="4" 
+                                     Grid.Row="2"/>
+                        <RadioButton x:Name="FourGigaBytes"  
+                                     
+                                     Checked="WriteText5" 
+                                     Foreground="white" 
+                                     FontSize="17" 
+                                     Content="4 000 000 Ko, soit 4Go" 
+                                     IsChecked="{Binding FourSelected}"
+                                     Command ="{Binding FourSelectedCommand}" 
+                                     Height="24" 
+                                     />
 
                     </StackPanel>
 
 
-                    <TextBlock Text="Valeur du seuil : "
-                        Foreground="white"
-                        FontSize="17" 
-                        TextAlignment="Center" 
-                        Margin="0,146,22,141" 
-                        Grid.Row="1" Grid.RowSpan="2"/>
-
-                    <!--Modify Binding-->
-                    <RadioButton x:Name="TwoGigaBytes"  
-                                 Margin="70,12,134,0" 
-                                 Checked="WriteText3" 
-                                 Foreground="white" 
-                                 FontSize="17" 
-                                 Content="2 000 000 Ko, soit 2Go (par défaut)" 
-                                 IsChecked="{Binding LogXml}" 
-                                 Command ="{Binding XMLSelected}" 
-                                 Height="24" 
-                                 VerticalAlignment="Top" 
-                                 Grid.ColumnSpan="4" 
-                                 Grid.Row="2"/>
-
-                    <!--Modify Binding-->
-                    <RadioButton x:Name="ThreeGigaBytes"  
-                                 Margin="70,39,134,0" 
-                                 Checked="WriteText4" 
-                                 Foreground="white" 
-                                 FontSize="17" 
-                                 Content="3 000 000 Ko, soit 3Go" 
-                                 IsChecked="{Binding LogXml}" 
-                                 Command ="{Binding XMLSelected}" 
-                                 Height="24" 
-                                 VerticalAlignment="Top" 
-                                 Grid.ColumnSpan="4" 
-                                 Grid.Row="2"/>
-
-                    <!--Modify Binding-->
-                    <RadioButton x:Name="FourGigaBytes"  
-                                 Margin="70,65,134,0" 
-                                 Checked="WriteText5" 
-                                 Foreground="white" 
-                                 FontSize="17" 
-                                 Content="4 000 000 Ko, soit 4Go" 
-                                 IsChecked="{Binding LogXml}" 
-                                 Command ="{Binding XMLSelected}" 
-                                 Height="24" 
-                                 VerticalAlignment="Top" 
-                                 Grid.ColumnSpan="4" 
-                                 Grid.Row="2"/>
 
 
-                    <TextBlock Text="Activation de l'option ?"
-                        Grid.Row="2" 
-                        Foreground="white"
-                        FontSize="17" 
-                        TextAlignment="Center" 
-                        Grid.ColumnSpan="3" 
-                        Margin="0,100,36,31"/>
-
-                    <TextBlock Text="Si oui, veuillez sélectionner le seuil souhaité :"
-                        Grid.Row="2" 
-                        Foreground="white"
-                        FontSize="17" 
-                        TextAlignment="Center" 
-                        Grid.ColumnSpan="4" 
-                        Margin="10,127,65,4"/>
-
-                    <!--Modify Binding-->
-                    <RadioButton x:Name="Yes1"  
-                                 Margin="29,104,193,0" 
-                                 Checked="WriteText6" 
-                                 Foreground="white" 
-                                 FontSize="17" 
-                                 Content="Oui" 
-                                 IsChecked="{Binding LogXml}" 
-                                 Command ="{Binding XMLSelected}" 
-                                 Height="24" 
-                                 VerticalAlignment="Top" 
-                                 Grid.Row="2" 
-                                 Grid.Column="2" Grid.ColumnSpan="2"/>
-
-                    <!--Modify Binding-->
-                    <RadioButton x:Name="No1"  
-                                 Margin="29,104,128,0" 
-                                 Checked="WriteText7" 
-                                 Foreground="white" 
-                                 FontSize="17" 
-                                 Content="Non" 
-                                 IsChecked="{Binding LogXml}" 
-                                 Command ="{Binding XMLSelected}" 
-                                 Height="24" 
-                                 VerticalAlignment="Top" 
-                                 Grid.Row="2" 
-                                 Grid.Column="3"/>
-
-                    <!--Modify Binding-->
-                    <RadioButton x:Name="OneGigaBytes"  
-                                 Margin="59,157,29,0" 
-                                 Checked="WriteText8" 
-                                 Foreground="white" 
-                                 FontSize="17" 
-                                 Content="1 000 000 Ko, soit 1Go" 
-                                 IsChecked="{Binding LogXml}" 
-                                 Command ="{Binding XMLSelected}" 
-                                 Height="24" 
-                                 VerticalAlignment="Top" 
-                                 Grid.ColumnSpan="3" 
-                                 Grid.Row="2" 
-                                 Grid.RowSpan="2"/>
-
-                    <!--Modify Binding-->
-                    <RadioButton x:Name="TwoGigaBytesTwo"  
-                                 Margin="45,157,37,0" 
-                                 Checked="WriteText9" 
-                                 Foreground="white" 
-                                 FontSize="17" 
-                                 Content="2 000 000 Ko, soit 2Go" 
-                                 IsChecked="{Binding LogXml}" 
-                                 Command ="{Binding XMLSelected}" 
-                                 Height="24" 
-                                 VerticalAlignment="Top" 
-                                 Grid.ColumnSpan="2" 
-                                 Grid.Row="2" 
-                                 Grid.Column="2" Grid.RowSpan="2"/>
 
                 </Grid>
 
@@ -350,10 +235,5 @@
             </Grid>
 
 
-
-
-        </UserControl>
-
-    </Grid>
 
 </UserControl>

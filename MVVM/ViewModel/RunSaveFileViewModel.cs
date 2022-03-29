@@ -23,7 +23,7 @@ namespace EasySave.MVVM.ViewModel
 
         public ObservableCollection<RunningSaveFile>TileList { get; set; }
         public RunningSaveFile Filetorun { get; set; }
-        
+        ThresholdLimit ThresholdLimit;
 
 
         FileSaveManagement FileSaveManagement;
@@ -51,7 +51,9 @@ namespace EasySave.MVVM.ViewModel
             LogManagement = new LogManagement();
             SettingManager = new SettingManager();
             Filetorun = new RunningSaveFile();
-            
+            ThresholdLimit = new ThresholdLimit();
+
+
             LoadContent2();
 
 
@@ -329,7 +331,7 @@ namespace EasySave.MVVM.ViewModel
 
                                             Filetorun = SaveFile;
 
-                                            Thread StopThread = new Thread(StopCopy);
+                                           Thread StopThread = new Thread(StopCopy);
                                             StopThread.Name = SaveFile.Title;
                                             StopThread.Start();
                                             SocketHandler.Data2Send = JsonConvert.SerializeObject(TileList);
@@ -387,8 +389,45 @@ namespace EasySave.MVVM.ViewModel
 
             List<DirectorySave> DirectoryList = FileSaveManagement.GetDirectoriesOnADirectory(SaveFileJson.SourcePath, SaveFileJson.DestPath);
 
-            List<FileSave> FileList = FileSaveManagement.GetFilesOnADirectory(SaveFileJson.SourcePath, SaveFileJson.DestPath);
+            List<FileSave> FileListTotal= FileSaveManagement.GetFilesOnADirectory(SaveFileJson.SourcePath, SaveFileJson.DestPath);
+            List<FileSave> FileList = new List<FileSave>();
 
+            if (SettingManager.Getsettings().FilesPriorityList == null)
+            {
+                FileList = FileListTotal;
+            }
+            else
+            {
+                foreach(FileSave files in FileListTotal)
+                {
+                    foreach (string extension in SettingManager.Getsettings().FilesPriorityList)
+                    {
+                        if (extension.ToLower() == Path.GetExtension(files.GetSourceDirectory().ToLower()))
+                        {
+                            FileList.Add(files);
+                           
+                        }
+                    }
+                }
+
+                foreach (FileSave files in FileListTotal)
+                {
+                    bool ExtensionDetected = false;
+                    foreach (string extension in SettingManager.Getsettings().FilesPriorityList)
+                    {
+                        if (extension.ToLower() == Path.GetExtension(files.GetSourceDirectory().ToLower()))
+                        {
+                            ExtensionDetected = true; 
+
+                        }
+                    }
+                    if (ExtensionDetected == false)
+                    {
+                        FileList.Add(files);
+                    }
+                }
+
+            }
 
             Settingjson Settingjson = new Settingjson();
             Settingjson = SettingManager.Getsettings();
@@ -440,6 +479,14 @@ namespace EasySave.MVVM.ViewModel
 
 
                     bool process = false;
+
+
+                    if (files.FileSize(files.GetSourceDirectory()) > SettingManager.Getsettings().ThresholdLimit * 1000000000)
+                    {
+                        Monitor.TryEnter(ThresholdLimit, 3600000);
+                    }
+
+
                     
                    
                     if (Filetoprocess == SaveFile && SaveFile.StopState == false && SaveFile.progressionBuffer < progress)
@@ -503,6 +550,11 @@ namespace EasySave.MVVM.ViewModel
 
                     }
 
+                    if (files.FileSize(files.GetSourceDirectory()) > SettingManager.Getsettings().ThresholdLimit * 1000000000)
+                    {
+                        Monitor.Exit(ThresholdLimit);
+                    }
+
 
 
 
@@ -511,7 +563,7 @@ namespace EasySave.MVVM.ViewModel
 
 
 
-                
+
 
 
             }
@@ -756,6 +808,18 @@ namespace EasySave.MVVM.ViewModel
 
 
 
+    class ThresholdLimit
+    {
+    
+
+        public ThresholdLimit()
+        {
+
+
+
+        }
+
+    }
 
 
 }

@@ -20,12 +20,9 @@ namespace EasySave
 
         public object Language { get; set; }
         public string BufferTitle { get; set; }
-        SettingManager SettingManager;
         SocketHandler SocketHandler = SocketHandler.Instance;
-
-
-
         LogManagement LogManagement = new LogManagement();
+        SettingManager SettingManager;
         List<RunningLog> ListRunningLog = new List<RunningLog>();
 
         //Relay Command for the different views
@@ -91,6 +88,21 @@ namespace EasySave
             CurrentView = HomePageVM;
             reload();
             SocketHandler.Sending = false;
+
+
+
+            ListRunningLog = LogManagement.LogReader();
+
+            foreach (RunningLog RunningLog in ListRunningLog)
+            {
+                if (RunningLog.State == "ACTIVE")
+
+                {
+                    LogManagement.RunningLogGénérator(RunningLog.Name, "", "", 1, 0, 1, false);
+                }
+            }
+
+
 
 
 
