@@ -134,15 +134,12 @@
                       SelectedItem="{Binding Title}"
                       IsReadOnly="True"
                       Loaded="OnLoad"
-                      x:Name ="TitleSelected"
-                      Foreground="DarkGray"
-                      Style="{DynamicResource ThemeComboBox}">
+                      x:Name ="TitleSelected">
 
 
 
 
             </ComboBox>
-
 
         </StackPanel>
 

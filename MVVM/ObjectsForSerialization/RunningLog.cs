@@ -14,7 +14,6 @@ namespace EasySave.MVVM.ObjectsForSerialization
         public long TotalFilesSize { get; set; }
         public int NbFilesLeftToDo { get; set; }
         public int Progression { get; set; }
-
        
     }
 }

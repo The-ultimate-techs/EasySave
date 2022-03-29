@@ -17,9 +17,7 @@ namespace EasySave.MVVM.ViewModel
     {
 
         SettingManager SettingManager;
-        LogManagement LogManagement;
-
-
+     
 
 
         public string Language { get; set; }
@@ -59,7 +57,6 @@ namespace EasySave.MVVM.ViewModel
             
 
             SettingManager = new SettingManager();
-            LogManagement = new LogManagement();
             Reload();
             string Log = (LogJson == true) ? "JSON" : "XML";
 
@@ -129,7 +126,7 @@ namespace EasySave.MVVM.ViewModel
 
                 string Log = (LogJson == true) ? "JSON" : "XML";
                 SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
-                LogManagement.Convert();
+
             });
 
 
@@ -137,7 +134,7 @@ namespace EasySave.MVVM.ViewModel
             {
                 string Log = (LogJson == true) ? "JSON" : "XML";
                 SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
-                LogManagement.Convert();
+
             });
 
 

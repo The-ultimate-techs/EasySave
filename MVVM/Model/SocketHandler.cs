@@ -14,8 +14,6 @@ namespace EasySave.MVVM.Model
         public Socket client { get; set; }
         public string Data2Send { get; set; }
         public bool Sending;
-        private bool close;
-        public bool Receive;
         Socket newsock;
 
 
@@ -26,7 +24,6 @@ namespace EasySave.MVVM.Model
         {
 
             Sending = false;
-            close = false; 
 
 
 
@@ -64,7 +61,7 @@ namespace EasySave.MVVM.Model
                 Thread.Sleep(500);
 
 
-                if (Data2Send != null && Sending == true && client != null && close == false)
+                if (Data2Send != null && Sending == true && client != null)
                 {
 
                     byte[] byData = System.Text.Encoding.ASCII.GetBytes(Data2Send);
@@ -83,139 +80,34 @@ namespace EasySave.MVVM.Model
                 }
 
 
-                if (Sending == false && client != null && close == false)
-                {
-
-                    string Flag = @"/!\STOPSENDING/!\";
-                    byte[] byData = System.Text.Encoding.ASCII.GetBytes(Flag);
-
-                    try
-                    {
-
-                        client.Send(byData);
-
-                    }
-                    catch (SocketException exp)
-                    {
-                        Console.WriteLine(exp.Message);
-
-                    }
-                }
-
-
             }
 
 
         }
 
-        public string ReceiveData()
-        {
 
-            //Déclaration d'un buffer de type byte pour enregistrer les données reçues
-            byte[] data = new byte[10240];
-
-            //appel de la méthode receive qui reçoit les données envoyées par le serveur et les stocker 
-            //dans le tableau data, elle renvoie le nombre d'octet reçus
-
-            if (Sending == true && client != null && client.Connected == true && close == false && Receive == true)
-            {
-                try
-                {
-                    int recv = client.Receive(data);
-                }
-                catch (SocketException exception)
-                {
-                    return null;
-                }
-
-                //transcodage de data en string
-                return Encoding.UTF8.GetString(data);
-
-            }else
-            {
-                return null;
-            }
-
-
-        }
 
 
 
 
         private void Listen()
         {
-
-            while (true)
-            {
-
-
-                if (client == null)
-                {
-                    newsock.Listen(1);
-                    client = newsock.Accept();
-
-                }
-                else
-                {
-                    if (client.Connected == false)
-                    {
-                        newsock.Listen(1);
-                        client = newsock.Accept();
-                    }
-                }
-
-
-
-            }
+            newsock.Listen(1);
+            client = newsock.Accept();
 
 
         }
 
 
-    
-
-
-
-
+ 
 
         public void Close()
         {
 
-            string closeMessage = @"/!\SERVEROFFLINE/!\";
 
-            Sending = false;
-            close = true;
-            Thread.Sleep(200);
-                   
             
-
-
-
-
-
             if (client != null)
             {
-
-
-
-                byte[] byData = System.Text.Encoding.ASCII.GetBytes(closeMessage);
-
-                try
-                {
-                    for (int i = 0; i < 150; i++)
-                    {
-                        client.Send(byData);
-                        Thread.Sleep(25);
-                    }
-
-                }
-                catch (SocketException exp)
-                {
-                    Console.WriteLine(exp.Message);
-
-                }
-
-
                 client.Shutdown(SocketShutdown.Both);
                 client.Close();
             }
@@ -246,19 +138,4 @@ namespace EasySave.MVVM.Model
         }
     }
 
-
-
-
-    class SocketReceiver
-    {
-     
-        public SocketReceiver()
-        {
-
-
-
-        }
-
-
-    }
 }

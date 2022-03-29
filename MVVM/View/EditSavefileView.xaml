@@ -145,8 +145,7 @@
                       IsReadOnly="True"
                       Loaded="OnLoad"
                       x:Name ="TitleSelected"
-                      Foreground="DarkGray"
-                      Style="{DynamicResource ThemeComboBox}">
+                     >
                 
             </ComboBox>
             

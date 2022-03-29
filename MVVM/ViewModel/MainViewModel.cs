@@ -20,9 +20,12 @@ namespace EasySave
 
         public object Language { get; set; }
         public string BufferTitle { get; set; }
-        SocketHandler SocketHandler = SocketHandler.Instance;
-        LogManagement LogManagement = new LogManagement();
         SettingManager SettingManager;
+        SocketHandler SocketHandler = SocketHandler.Instance;
+
+
+
+        LogManagement LogManagement = new LogManagement();
         List<RunningLog> ListRunningLog = new List<RunningLog>();
 
         //Relay Command for the different views
@@ -88,21 +91,6 @@ namespace EasySave
             CurrentView = HomePageVM;
             reload();
             SocketHandler.Sending = false;
-
-
-
-            ListRunningLog = LogManagement.LogReader();
-
-            foreach (RunningLog RunningLog in ListRunningLog)
-            {
-                if (RunningLog.State == "ACTIVE")
-
-                {
-                    LogManagement.RunningLogGénérator(RunningLog.Name, "", "", 1, 0, 1, false);
-                }
-            }
-
-
 
 
 
@@ -292,6 +280,7 @@ namespace EasySave
 
                 if (Iscopyrunning == false)
                 {
+
                     SocketHandler.Sending = true;
                     CurrentView = RunSaveFileVM;
                 
@@ -362,10 +351,8 @@ namespace EasySave
 
                 if (Iscopyrunning == false)
                 {
-                    SocketHandler.Close();
                     if (CurrentView == RunSaveFileVM)
                     {
-                        
                         SocketHandler.Sending = false;
                     }
                     Environment.Exit(0);
