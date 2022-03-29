@@ -14,6 +14,7 @@
                 <ResourceDictionary Source="Theme/AppButton.xaml"/>
                 <ResourceDictionary Source="Theme/ListTheme.xaml"/>
                 <ResourceDictionary Source="Theme/ProgressBar.xaml"/>
+                <ResourceDictionary Source="Theme/ThemeComboBox.xaml"/>
                 <ResourceDictionary Source="Languages/Language_en-US.xaml"/>
                 <ResourceDictionary Source="Languages/Language_fr-FR.xaml"/>
 

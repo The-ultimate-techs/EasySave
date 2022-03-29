@@ -73,6 +73,17 @@
                                />
 
                 </StackPanel>
+                
+                <Button
+                                    x:Name="STOPALL"
+                                    Height="25"
+                                    Width="120"
+                                    Margin="10,426,100,19"
+                                    
+                                    Content="STOPALL"
+                    
+                                    Style="{StaticResource CustomAppButton}"
+                                    Command="{Binding StopAllCommand}"/>
                 <Image Width="110"
                        Height="110"
                        Source="../../Resource/executif.png" 

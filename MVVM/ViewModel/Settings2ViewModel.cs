@@ -20,30 +20,25 @@ namespace EasySave.MVVM.ViewModel
      
 
 
-        public string Language { get; set; }
-        public static ObservableCollection<string> ExtensionToEncryptlist { get; set; } = new ObservableCollection<string>();
+        public static ObservableCollection<string> FilesPriorityList { get; set; } = new ObservableCollection<string>();
         public static ObservableCollection<string> ExtensionList { get; set; } = new ObservableCollection<string>();
-        public static ObservableCollection<string> SoftwarePackageList { get; set; } = new ObservableCollection<string>();
         public static ObservableCollection<string>TotalListExetensionsSupported { get; set; } = new ObservableCollection<string>() {".AIF",".AU",".AVI",".BAT",".BMP",".JAVA",".CSV",".CVS",".DBF",".DIF",".DOCX",".DOC",".EPS",".EXE",".FM3",".GIF",".HQX",".HTML",".JPEG",".JPG" ,".MAC",".MAP",".MDB",".MID",".MOV",".MTB",".PDF",".P65",".T65",".PNG",".PPTX",".PPT" ,".PSD",".PSP",".QXD",".RA",".RTF",".SIT",".TAR",".TIF",".TXT",".WAV",".WK3",".WKS",".WPD",".XLS",".ZIP",".RAR"};
 
         public object ExtensionSelected { get; set; }
-        public object ExtensionToEncryptSelected { get; set; }
-        public string SoftwarePath { get; set; }
-        public object SoftwareToRemove { get; set; }
-        public bool LogJson { get; set; }
-        public bool LogXml { get; set; }
+        public object ExtensionFilesPriority { get; set; }
 
 
+        public RelayCommand Add3Command { get; set; }
+        public RelayCommand Remove3Command { get; set; }
 
-        public RelayCommand Add1Command { get; set; }
-        public RelayCommand Remove1Command { get; set; }
-        public RelayCommand Add2Command { get; set; }
-        public RelayCommand Remove2Command { get; set; }
 
-        public RelayCommand JsonSelected { get; set; }
+        public RelayCommand TwoSelectedCommand { get; set; }
+        public RelayCommand ThreeSelectedCommand { get; set; }
+        public RelayCommand FourSelectedCommand { get; set; }
 
-        public RelayCommand XMLSelected { get; set; }
-
+        public bool TwoSelected { get; set; }
+        public bool ThreeSelected { get; set; }
+        public bool FourSelected { get; set; }
 
 
 
@@ -58,118 +53,63 @@ namespace EasySave.MVVM.ViewModel
 
             SettingManager = new SettingManager();
             Reload();
-            string Log = (LogJson == true) ? "JSON" : "XML";
 
-
-
-            Add1Command = new RelayCommand(o =>
+            Add3Command = new RelayCommand(o =>
             {
 
                 if (ExtensionSelected != null)
                 {
-                    ExtensionToEncryptlist.Add(ExtensionSelected.ToString());
+                    FilesPriorityList.Add(ExtensionSelected.ToString());
                     ExtensionList.Remove(ExtensionSelected.ToString());
-                    SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
+                    SettingManager.SetSettings2(FilesPriorityList, SettingManager.Getsettings().ThresholdLimit);
                 }
 
 
             });
 
-            Remove1Command = new RelayCommand(o =>
+            Remove3Command = new RelayCommand(o =>
             {
-                if (ExtensionToEncryptSelected != null)
+                if (ExtensionFilesPriority != null)
                 {
-                    ExtensionList.Add(ExtensionToEncryptSelected.ToString());
-                    ExtensionToEncryptlist.Remove(ExtensionToEncryptSelected.ToString());
-                    SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
+                    ExtensionList.Add(ExtensionFilesPriority.ToString());
+                    FilesPriorityList.Remove(ExtensionFilesPriority.ToString());
+                    SettingManager.SetSettings2(FilesPriorityList, SettingManager.Getsettings().ThresholdLimit);
                 }
             });
 
-            Add2Command = new RelayCommand(o =>
+            TwoSelectedCommand = new RelayCommand(o =>
             {
-                if (SoftwarePath != null && SoftwarePath.Contains(".exe") == true)
-                {
 
-                    bool Isthere = false; 
-
-                    foreach (string path in SoftwarePackageList)
-                    {
-                        if (SoftwarePath == path)
-                        {
-                            Isthere = true;
-                        }
-                    }
-
-
-                    if (Isthere == false)
-                    {
-                        SoftwarePackageList.Add(SoftwarePath.ToString());
-                        SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
-                    }
-                }
+                SettingManager.SetSettings2(FilesPriorityList,2);
 
             });
 
-            Remove2Command = new RelayCommand(o =>
-            {
-                if (SoftwareToRemove != null)
-                {
-                    SoftwarePackageList.Remove(SoftwareToRemove.ToString());
-                    SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
-                }
-            });
-
-
-
-            JsonSelected = new RelayCommand(o =>
+            ThreeSelectedCommand = new RelayCommand(o =>
             {
 
-                string Log = (LogJson == true) ? "JSON" : "XML";
-                SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
+                SettingManager.SetSettings2(FilesPriorityList, 3);
 
             });
 
-
-            XMLSelected = new RelayCommand(o =>
+            FourSelectedCommand = new RelayCommand(o =>
             {
-                string Log = (LogJson == true) ? "JSON" : "XML";
-                SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
+
+                SettingManager.SetSettings2(FilesPriorityList, 4);
 
             });
-
-
-
-
-
-
-
-
-
 
         }
 
         public void Reload()
         {
-            
-            ExtensionToEncryptlist.Clear();
-            SoftwarePackageList.Clear();
+
+            FilesPriorityList.Clear();
             ExtensionList.Clear();
 
-            foreach (string element in SettingManager.Getsettings().SoftwarePackageList)
+            foreach (string element in SettingManager.Getsettings().FilesPriorityList)
             {
-                SoftwarePackageList.Add(element);
+                FilesPriorityList.Add(element);
             }
-
-
-
-            foreach (string ElementToEncrypt in SettingManager.Getsettings().ExtensionToEncryptlist)
-            {
-
-                ExtensionToEncryptlist.Add(ElementToEncrypt);
-
-            }
-
-
 
             foreach (string Extension in TotalListExetensionsSupported)
             {
@@ -179,25 +119,32 @@ namespace EasySave.MVVM.ViewModel
             }
 
 
-            foreach (string ElementToEncrypt in SettingManager.Getsettings().ExtensionToEncryptlist)
+            foreach (string ElementPriority in SettingManager.Getsettings().FilesPriorityList)
             {
 
-                ExtensionList.Remove(ElementToEncrypt);
+                ExtensionList.Remove(ElementPriority);
 
             }
 
-            if (SettingManager.Getsettings().LogType == "JSON")
+            switch (SettingManager.Getsettings().ThresholdLimit)
             {
-                LogJson = true;
-                LogXml = false;
+                case 2:
+                    TwoSelected = true;
+                    ThreeSelected = false;
+                    FourSelected = false;
+                    break;
 
-            }
+                case 3:
+                    TwoSelected = false;
+                    ThreeSelected = true;
+                    FourSelected = false;
+                    break;
 
-            if (SettingManager.Getsettings().LogType == "XML")
-            {
-                LogJson = false;
-                LogXml = true;
-
+                case 4:
+                    TwoSelected = false;
+                    ThreeSelected = false;
+                    FourSelected = true;
+                    break;
             }
 
 
