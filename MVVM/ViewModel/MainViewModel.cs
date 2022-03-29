@@ -20,12 +20,9 @@ namespace EasySave
 
         public object Language { get; set; }
         public string BufferTitle { get; set; }
-        SettingManager SettingManager;
         SocketHandler SocketHandler = SocketHandler.Instance;
-
-
-
         LogManagement LogManagement = new LogManagement();
+        SettingManager SettingManager;
         List<RunningLog> ListRunningLog = new List<RunningLog>();
 
         //Relay Command for the different views

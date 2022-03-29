@@ -24,7 +24,6 @@ namespace EasySave.MVVM.Model
         public LogManagement()
         {
             Stopwatch = new System.Diagnostics.Stopwatch();
-            SettingManager = new SettingManager();
             SetProcessRunning(false);
 
             if (!Directory.Exists(GetDirectoryPath()))
@@ -42,7 +41,8 @@ namespace EasySave.MVVM.Model
 
             string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.Json";
 
-            if (!File.Exists(path))
+            SettingManager = new SettingManager();
+            if (!File.Exists(path) && SettingManager.Getsettings().LogType == "JSON")
             {
                 // Create a file to write to.
                 using (StreamWriter sw = File.CreateText(path))
@@ -129,39 +129,38 @@ namespace EasySave.MVVM.Model
             SetDestinationDirectory(DestinationDirectory.Replace("\\", "\\\\"));
             SetType(Type);
 
-            DailyLogXml obj = new DailyLogXml();
-
             string path = GetDirectoryPath() + "SaveFilesLogs\\DailyLog\\" + GetTitle() + ".xml";
 
-            // if the file does not already exist, we create it
-            if (!File.Exists(path))
+            StreamWriter sw = File.AppendText(path); // Write the file, or create it if it does not exit
+
+            if (new FileInfo(path).Length == 0)
             {
-                File.Create(path).Close();
+                sw.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<DailyLog>\n</DailyLog>");
             }
+            sw.Close();
 
-            #region Update attributes of the object
-            obj.Name = Title;
-            obj.FileSource = SourceDirectory;
-            obj.FileTarget = DestinationDirectory;
-            obj.DestPath = "";
-            obj.FileSize = FileSize(SourceDirectory);
-            obj.FileTransferTime = GetTimeDuration();
-            obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
-            #endregion
+                        
+            List<string> ListeLines;
+            string[] Lines = File.ReadAllLines(path);
 
-            XmlSerializer XmlSerializer = new XmlSerializer(typeof(DailyLogXml));
-            StreamWriter WriterXml = new StreamWriter(path, true);
-            XmlSerializer.Serialize(WriterXml, obj); // This method serialize and write the xml file
-            var fi1 = new FileInfo(path);
-            long Fi1Length = fi1.Length;
+            
+          
+            ListeLines = Lines.ToList();
+            ListeLines.Remove("</DailyLog>"); // delete the last line "</Statelog>"
+            ListeLines.Add("   <Save>");
+            ListeLines.Add("      <Name>" + GetTitle() + "</Name>");
+            ListeLines.Add("      <FileSource>" + GetSourceDirectory() + "</FileSource>");
+            ListeLines.Add("      <FileTarget>" + GetDestinationDirectory() + "</FileTarget>");
+            ListeLines.Add("     <DestPath />");
+            ListeLines.Add("      <FileSize>"+ FileSize(SourceDirectory) + "</FileSize>");
+            ListeLines.Add("      <FileTransferTime>" + GetTimeDuration() + "</FileTransferTime>");
+            ListeLines.Add("      <Time>" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "</Time>");
+            ListeLines.Add("   </Save>");
+            ListeLines.Add("</DailyLog>");
 
-            if (Fi1Length == 0) // On crée le fichier s'il n'existe pas encore
-            {
-                File.AppendAllText(path, "");
-            }
-
-            WriterXml.Close();
-
+            Lines = ListeLines.ToArray();
+            File.WriteAllLines(path, Lines);
+            
 
         }
 
@@ -247,15 +246,13 @@ namespace EasySave.MVVM.Model
         public  void RunningLogGénératorXML(string Title, string SourceDirectory, string DestinationDirectory, int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo , bool state)
         {
             string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.xml";
-
-
-            RunningLogXml ObjXml = new RunningLogXml();
-           
+                       
             int Progression;
             string Title_XML = "      <Title>" + Title + "</Title>";
 
 
             StreamWriter sw = File.AppendText(path); // Write the file, or create it if it does not exit
+           
             if (new FileInfo(path).Length == 0)
             {
                 sw.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Statelog>\n</Statelog>");
@@ -316,11 +313,30 @@ namespace EasySave.MVVM.Model
         }
 
 
+        public void RunningLogDeleted(string Title)
+
+        {
+
+
+            if (SettingManager.Getsettings().LogType == "JSON")
+            {
+                RunningLogDeletedJSON(Title);
+            }
+            else
+            {
+                RunningLogDeletedXML(Title);
+            }
+
+
+        }
 
 
 
 
-        public bool RunningLogDeleted(string Title)
+
+
+
+        public bool RunningLogDeletedJSON(string Title)
 
         {
 
@@ -349,6 +365,7 @@ namespace EasySave.MVVM.Model
             using (StreamWriter sw = File.CreateText(path))
             {
 
+
                 sw.WriteLine(json);
                 sw.Close();
 
@@ -357,6 +374,129 @@ namespace EasySave.MVVM.Model
 
             return true;
         }
+
+        public bool RunningLogDeletedXML(string Title)
+
+        {
+
+            string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.xml";
+
+            
+            string Title_XML = "      <Title>" + Title + "</Title>";
+
+
+            StreamWriter sw = File.AppendText(path); // Write the file, or create it if it does not exit
+
+            if (new FileInfo(path).Length == 0)
+            {
+                sw.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Statelog>\n</Statelog>");
+            }
+            sw.Close();
+
+
+          
+            List<string> ListeLines;
+
+            string[] Lines = File.ReadAllLines(path);
+
+            for (int i = 0; i < Lines.Length; i++)
+            {
+                if (Lines[i] == Title_XML) // if the process already exist
+                {
+                    ListeLines = Lines.ToList();
+                    ListeLines.Remove("</Statelog>"); // delete the last line "</Statelog>"
+                    ListeLines[i + 3] = ("      <State>DELETED</State>");
+                    ListeLines[i + 4] = ("      <TotalFilesToCopy>0</TotalFilesToCopy>");
+                    ListeLines[i + 5] = ("      <TotalFilesSize>0</TotalFilesSize>");
+                    ListeLines[i + 6] = ("      <NbFilesLeftToDo>0</NbFilesLeftToDo>");
+                    ListeLines[i + 7] = ("      <Progression>0</Progression>");
+                    ListeLines.Add("</Statelog>");
+
+                    Lines = ListeLines.ToArray();
+                    File.WriteAllLines(path, Lines);
+                    
+
+                    break;
+                }
+            }
+
+            return true;
+        }
+
+
+        public void Convert()
+        {
+
+                string pathJSON = GetDirectoryPath() + "SaveFilesLogs/StateLog.Json";
+                string pathXML = GetDirectoryPath() + "SaveFilesLogs/StateLog.xml";
+
+            if (SettingManager.Getsettings().LogType == "JSON")
+            {
+                List<RunningLog> List2Convert = LogReaderXML();
+                string json = JsonConvert.SerializeObject(List2Convert, Newtonsoft.Json.Formatting.Indented);
+
+                using (StreamWriter sw = File.CreateText(pathJSON))
+                {
+
+                    sw.WriteLine(json);
+                    sw.Close();
+
+                }
+                File.Delete(pathXML);
+            }
+            else
+            {
+                List<RunningLog> List2Convert = LogReaderJSON();
+
+                StreamWriter sw = File.AppendText(pathXML); // Write the file, or create it if it does not exit
+                if (new FileInfo(pathXML).Length == 0)
+                {
+                    sw.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Statelog>\n</Statelog>");
+
+                }
+                sw.Close();
+
+
+                List<string> ListeLines;
+
+                string[] Lines = File.ReadAllLines(pathXML);
+
+
+                foreach (RunningLog runningLog in List2Convert)
+                {
+
+                    ListeLines = Lines.ToList();
+                    ListeLines.Remove("</Statelog>"); // delete the last line "</Statelog>"
+                    ListeLines.Add("   <Save>");
+                    ListeLines.Add("      <Title>" + runningLog.Name + "</Title>");
+                    ListeLines.Add("      <SourceFilePath>" + runningLog.SourceFilePath + "</SourceFilePath>");
+                    ListeLines.Add("      <TargetFilePath>" + runningLog.TargetFilePath + "</TargetFilePath>");
+                    ListeLines.Add("      <State>" + runningLog.State + "</State>");
+                    ListeLines.Add("      <TotalFilesToCopy>" + runningLog.TotalFilesToCopy + "</TotalFilesToCopy>");
+                    ListeLines.Add("      <TotalFilesSize>" + runningLog.TotalFilesSize + "</TotalFilesSize>");
+                    ListeLines.Add("      <NbFilesLeftToDo>" + runningLog.NbFilesLeftToDo + "</NbFilesLeftToDo>");
+                    ListeLines.Add("      <Progression>" + runningLog.Progression + "</Progression>");
+                    ListeLines.Add("   </Save>");
+                    ListeLines.Add("</Statelog>");
+
+                    Lines = ListeLines.ToArray();
+                    File.WriteAllLines(pathXML, Lines);
+
+                }
+
+
+                File.Delete(pathJSON);
+            }
+
+
+        }
+
+
+
+
+
+
+
 
 
         public List<RunningLog> LogReader()
@@ -408,7 +548,77 @@ namespace EasySave.MVVM.Model
         public List<RunningLog> LogReaderXML()
         {
 
-       
+
+            string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.xml";
+            List<string> ListeLines;
+            string[] Lines = File.ReadAllLines(path);
+            List<RunningLog> ListRunningLog = new List<RunningLog>();
+            ListeLines = Lines.ToList();
+
+            for (int i = 2; i < Lines.Length -1; i = i+ 10)
+            {
+
+                RunningLog RunningLog = new RunningLog();
+
+                int index;
+                string value;
+
+               
+                index = ListeLines[i + 1].IndexOf(">");
+                value = ListeLines[i + 1].Substring(index +1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.Name = value;
+
+                index = ListeLines[i + 2].IndexOf(">");
+                value = ListeLines[i + 2].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.SourceFilePath = value;
+
+                index = ListeLines[i + 3].IndexOf(">");
+                value = ListeLines[i + 3].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.TargetFilePath = value;
+
+                index = ListeLines[i + 4].IndexOf(">");
+                value = ListeLines[i + 4].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.State = value;
+
+                index = ListeLines[i + 5].IndexOf(">");
+                value = ListeLines[i + 5].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+
+                RunningLog.TotalFilesToCopy = Int32.Parse(value);
+
+                index = ListeLines[i + 6].IndexOf(">");
+                value = ListeLines[i + 6].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.TotalFilesSize = long.Parse(value);
+
+
+                index = ListeLines[i + 7].IndexOf(">");
+                value = ListeLines[i + 7].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.NbFilesLeftToDo = Int32.Parse(value);
+
+                index = ListeLines[i + 8].IndexOf(">");
+                value = ListeLines[i + 8].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.Progression = Int32.Parse(value);
+                        
+                    
+
+                ListRunningLog.Add(RunningLog);
+            }
+
 
 
             return ListRunningLog;
