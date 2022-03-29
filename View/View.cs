@@ -52,7 +52,7 @@ namespace EasySave
 
 
             DisplayBasicMessage("[");
-            for (int i=0; i< 90; i++)
+            for (int i=0; i< 10; i++)
             {
                 DisplayBasicMessage("/");
                 System.Threading.Thread.Sleep(5);

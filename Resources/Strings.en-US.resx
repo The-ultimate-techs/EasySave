@@ -125,6 +125,14 @@
     
     </value>
   </data>
+  <data name="ChooseLogFileType" xml:space="preserve">
+    <value>Choose the extension:
+
+ JSON----------------------------------------------------  : 1
+ XML-----------------------------------------------------  : 2
+
+ Your choice : </value>
+  </data>
   <data name="DeleteTool" xml:space="preserve">
     <value>Deleting tool
 
@@ -159,10 +167,11 @@ Choose an action:
  Create a SaveFile routine--------------------------------------------------------  : 1
  Edit or delete a SaveFile routine------------------------------------------------  : 2
  Run a SaveFile routine ----------------------------------------------------------  : 3
- Changer de langue / Change language----------------------------------------------  : 4 
- Exit program---------------------------------------------------------------------  : 5 
+ Change language------------------------------------------------------------------  : 4 
+ Choose log file type-------------------------------------------------------------  : 5
+ Exit-----------------------------------------------------------------------------  : 6
 
-Your choice : </value>
+ Your choice : </value>
   </data>
   <data name="RunTool" xml:space="preserve">
     <value>Savefiles running tool
@@ -174,6 +183,22 @@ Your choice : </value>
     <value>
 
 Choose the savefile you want to run : </value>
+  </data>
+  <data name="SubMenuChooseLanguage" xml:space="preserve">
+    <value>Choose the language :
+
+French----------------------------------------------------------  : 1
+English---------------------------------------------------------  : 2
+
+Your choice : </value>
+  </data>
+  <data name="SubMenuChooseLogType" xml:space="preserve">
+    <value>Choose the log file type :
+
+Json---------------------------------------------------------  : 1
+XML---------------------------------------------------------  : 2
+
+Your choice : </value>
   </data>
   <data name="SubMenuCreate" xml:space="preserve">
     <value>SaveFile creation tool :

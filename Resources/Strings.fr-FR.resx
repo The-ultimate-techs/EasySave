@@ -131,7 +131,9 @@
 Selectionner une extension:
 
  JSON----------------------------------------------------  : 1
- XML----------------------------------------------------  : 2</value>
+ XML-----------------------------------------------------  : 2
+
+Vôtre choix : </value>
   </data>
   <data name="DeleteTool" xml:space="preserve">
     <value>Outil de suppression 
@@ -167,7 +169,7 @@ Selectionner une action:
  Créer un travail de sauvegarde---------------------------------------------------------  : 1
  Editer ou supprimer un travail de sauvegarde-------------------------------------------  : 2
  Executer un travail de sauvegarde------------------------------------------------------  : 3
- Changer de langue / Change language----------------------------------------------------  : 4 
+ Changer de langue----------------------------------------------------------------------  : 4 
  Choisir l'extension des fichiers logs générés------------------------------------------  : 5
  Fermer le programme--------------------------------------------------------------------  : 6 
 
@@ -183,6 +185,22 @@ Vôtre choix : </value>
     <value>
 
 Choisir le travail de sauvegarde à executer</value>
+  </data>
+  <data name="SubMenuChooseLanguage" xml:space="preserve">
+    <value>Choisissez la langue de l'application :
+
+Français---------------------------------------------------------  : 1
+Anglais---------------------------------------------------------  : 2
+
+Vôtre choix : </value>
+  </data>
+  <data name="SubMenuChooseLogType" xml:space="preserve">
+    <value>Choisissez le type de fichier log :
+
+Json---------------------------------------------------------  : 1
+XML----------------------------------------------------------  : 2
+
+Vôtre choix : </value>
   </data>
   <data name="SubMenuCreate" xml:space="preserve">
     <value>Outil création d'un travail de sauvegarde :

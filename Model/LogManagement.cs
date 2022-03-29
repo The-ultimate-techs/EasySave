@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.Threading;
 using System.Xml;
 using System.Xml.Serialization;
 
@@ -18,6 +20,8 @@ namespace EasySave
         private long TimeDuration;
         private bool ProcessRunning;
 
+
+        
 
         public LogManagement()
         {
@@ -38,186 +42,194 @@ namespace EasySave
             }
         }
 
-        public bool DailyLogGénérator_XML(string Title, string SourceDirectory, string DestinationDirectory, string Type)
+        public void DailyLogGénérator(string Title, string SourceDirectory, string DestinationDirectory, string Type)
+        {
+            if(GetLogFileTypeSetting() == "JSON")
+            {
+                DailyLogGénératorJSON(Title, SourceDirectory, DestinationDirectory, Type);
+            }
+            else
+            {
+                DailyLogGénératorXML(Title, SourceDirectory, DestinationDirectory, Type);
+            }
+        }
+
+
+        public void DailyLogGénératorJSON(string Title, string SourceDirectory, string DestinationDirectory, string Type)
         {
             SetTitle(Title);
             SetSourceDirectory(SourceDirectory.Replace("\\", "\\\\"));
             SetDestinationDirectory(DestinationDirectory.Replace("\\", "\\\\"));
             SetType(Type);
 
-            DailyLogXml obj = new DailyLogXml();
 
-            string path = GetDirectoryPath() + "SaveFilesLogs\\DailyLog\\" + GetTitle() + ".xml";
-                        
-            // if the file does not already exist, we create it
-            if (!File.Exists(path))
-            {
-                File.Create(path).Close();
-            }
-
-            #region Update attributes of the object
-            obj.Name = Title;
-            obj.FileSource = SourceDirectory;
-            obj.FileTarget = DestinationDirectory;
-            obj.DestPath = "";
-            obj.FileSize = FileSize(SourceDirectory);
-            obj.FileTransferTime = GetTimeDuration();
-            obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
-            #endregion
-
-            XmlSerializer XmlSerializer = new XmlSerializer(typeof(DailyLogXml));
-            StreamWriter WriterXml = new StreamWriter(path, true);
-            XmlSerializer.Serialize(WriterXml, obj ); // This method serialize and write the xml file
-            var fi1 = new FileInfo(path);
-            long Fi1Length = fi1.Length;
-
-            if (Fi1Length == 0) // On crée le fichier s'il n'existe pas encore
-            {
-                File.AppendAllText(path, "");
-            }
-
-            WriterXml.Close();
-
-            return true;
-
-        }
-
-
-
-        public bool DailyLogGénérator_JSON(string Title , string SourceDirectory , string DestinationDirectory, string Type)
-        {
-            SetTitle(Title);
-            SetSourceDirectory(SourceDirectory.Replace("\\","\\\\"));
-            SetDestinationDirectory(DestinationDirectory.Replace("\\", "\\\\"));
-            SetType(Type);
-
-            DailyLogJson obj= new DailyLogJson();
 
 
             string path = GetDirectoryPath() + "SaveFilesLogs\\DailyLog\\" + GetTitle() + ".Json";
 
-            if (!File.Exists(path)) // if the file does not already exist, we create it
+
+            if (!File.Exists(path))
             {
-                File.WriteAllText(path, "");
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(path))
+                {
+
+                    sw.WriteLine("[\n { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": " + FileSize(SourceDirectory) + ",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
+
+                }
             }
-
-            // update of the attributes
-            obj.Name = Title;
-            obj.FileSource = SourceDirectory;
-            obj.FileTarget = DestinationDirectory;
-            obj.DestPath = "";
-            obj.FileSize = FileSize(SourceDirectory);
-            obj.FileTransferTime = GetTimeDuration();
-            obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
-
-            
-
-            string json = JsonConvert.SerializeObject(obj, Newtonsoft.Json.Formatting.Indented);
-            var fi1 = new FileInfo(path);
-            string line;
-            long Fi1Length = fi1.Length;
-
-            if (Fi1Length == 0) // On crée le fichier q'il n'existe pas encore
-            {
-                File.AppendAllText(path, "");
-            }
-
-            // on récupère le texte existant
-            var sr = new StreamReader(path);
-            line = sr.ReadToEnd();
-            sr.Close();
-
-            // mise en forme entre chaque objet
-
-            line= String.Concat(line, json);
-            if (Fi1Length != 0)
-            {
-                line= line.Replace("}{", "}, {");
-            }
-            File.WriteAllText(path, line);
-            
-            
-            
-
-
-            /*// Create a file to write to.
-            using (StreamWriter sw = File.CreateText(path))
-            {
-                obj.FileSource = SourceDirectory;
-                obj.FileTarget = DestinationDirectory;
-                obj.DestPath = "";
-                obj.FileSize = FileSize(SourceDirectory);
-                obj.FileTransferTime = GetTimeDuration();
-                obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
-                trigger = true;
-
-
-
-                string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
-                sw.Write("\n ");
-                sw.Write(json);
-                sw.WriteLine(" \n");
-                sw.Close();
-
-                // old methode
-                //sw.WriteLine("[\n { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": " + FileSize(SourceDirectory) + ",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
-
-            }
-        }
-
-            else 
+            else
             {
                 // This text is always added, making the file longer over time
                 // if it is not deleted.
 
+                StreamReader reader = new StreamReader(File.OpenRead(path));
+                string fileContent = reader.ReadToEnd();
+                reader.Close();
+
+                fileContent = fileContent.Replace("}\n]", "},");
+                StreamWriter writer = new StreamWriter(File.OpenWrite(path));
+                writer.Write(fileContent);
+                writer.Close();
+
+
                 using (StreamWriter sw = File.AppendText(path))
                 {
-                    // Update the attributes
-                    obj.FileSource = SourceDirectory;
-                    obj.FileTarget = DestinationDirectory;
-                    obj.DestPath = "";
-                    obj.FileSize = FileSize(SourceDirectory);
-                    obj.FileTransferTime = GetTimeDuration();
-                    obj.Time = DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss");
-                    trigger = true;
-
-                    //old methode
-                    //sw.WriteLine(" { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": "+FileSize(SourceDirectory)+",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
 
 
-                    //transform the string into a json string
-                    string newJson= JsonConvert.SerializeObject(obj, Formatting.Indented);
+                    sw.WriteLine(" { \n   \"Name\": \"" + GetTitle() + "\",\n   \"FileSource\": \"" + GetSourceDirectory() + "\",\n   \"FileTarget\": \"" + GetDestinationDirectory() + "\",\n   \"destPath\": \"\",\n   \"FileSize\": " + FileSize(SourceDirectory) + ",\n   \"FileTransferTime\": " + GetTimeDuration() + ",\n   \"time\": \"" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "\"\n }\n]");
 
-                    sw.Write(newJson);
-                    sw.Write("\n]");
                     sw.Close();
+
                 }
-            }*/
-            return true;
+            }
+
+        }
+
+        public void DailyLogGénératorXML(string Title, string SourceDirectory, string DestinationDirectory, string Type)
+        {
+            SetTitle(Title);
+            SetSourceDirectory(SourceDirectory.Replace("\\", "\\\\"));
+            SetDestinationDirectory(DestinationDirectory.Replace("\\", "\\\\"));
+            SetType(Type);
+
+            string path = GetDirectoryPath() + "SaveFilesLogs\\DailyLog\\" + GetTitle() + ".xml";
+
+            StreamWriter sw = File.AppendText(path); // Write the file, or create it if it does not exit
+
+            if (new FileInfo(path).Length == 0)
+            {
+                sw.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<DailyLog>\n</DailyLog>");
+            }
+            sw.Close();
+
+            List<string> ListeLines;
+            string[] Lines = File.ReadAllLines(path);
+
+            ListeLines = Lines.ToList();
+            ListeLines.Remove("</DailyLog>"); // delete the last line "</Statelog>"
+            ListeLines.Add("   <Save>");
+            ListeLines.Add("      <Name>" + GetTitle() + "</Name>");
+            ListeLines.Add("      <FileSource>" + GetSourceDirectory() + "</FileSource>");
+            ListeLines.Add("      <FileTarget>" + GetDestinationDirectory() + "</FileTarget>");
+            ListeLines.Add("     <DestPath />");
+            ListeLines.Add("      <FileSize>" + FileSize(SourceDirectory) + "</FileSize>");
+            ListeLines.Add("      <FileTransferTime>" + GetTimeDuration() + "</FileTransferTime>");
+            ListeLines.Add("      <Time>" + DateTime.Now.ToString("dd/MM/yyyy  HH:mm:ss") + "</Time>");
+            ListeLines.Add("   </Save>");
+            ListeLines.Add("</DailyLog>");
+
+            Lines = ListeLines.ToArray();
+            File.WriteAllLines(path, Lines);
         }
 
 
-        public bool RunningLogGénérator_XML(string Title, string SourceDirectory, string DestinationDirectory, int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo)
+        public void RunningLogGénérator(string Title, string SourceDirectory, string DestinationDirectory, int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo, bool state)
+
+        {
+            if(GetLogFileTypeSetting() == "JSON")
+            {
+                RunningLogGénératorJSON(Title, SourceDirectory, DestinationDirectory, TotalFilesToCopy, TotalFilesSize, NbFilesLeftToDo, state);
+            }
+            else
+            {
+                RunningLogGénératorXML(Title, SourceDirectory, DestinationDirectory, TotalFilesToCopy, TotalFilesSize, NbFilesLeftToDo, state);
+            }
+
+
+        }
+
+
+        public void RunningLogGénératorJSON(string Title, string SourceDirectory, string DestinationDirectory, int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo, bool state)
+
+        {
+
+            string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.Json";
+
+
+            string myJsonFile = File.ReadAllText(path);
+            var myJsonList = JsonConvert.DeserializeObject<List<RunningLogJson>>(myJsonFile);
+            bool trigger = false;
+            foreach (RunningLogJson obj in myJsonList)
+            {
+                if (obj.Name == Title && trigger == false)
+                {
+                    obj.SourceFilePath = SourceDirectory;
+                    obj.TargetFilePath = DestinationDirectory;
+                    obj.State = (state == true) ? "ACTIVE" : "END";
+                    obj.TotalFilesToCopy = TotalFilesToCopy;
+                    obj.TotalFilesSize = TotalFilesSize;
+                    obj.NbFilesLeftToDo = NbFilesLeftToDo;
+                    obj.Progression = ((TotalFilesToCopy - NbFilesLeftToDo) * 100 / TotalFilesToCopy);
+                    trigger = true;
+                }
+            }
+            if (trigger == false)
+            {
+                RunningLogJson Newobj = new RunningLogJson();
+                Newobj.Name = Title;
+                Newobj.SourceFilePath = SourceDirectory;
+                Newobj.TargetFilePath = DestinationDirectory;
+                Newobj.State = (state == true) ? "ACTIVE" : "END";
+                Newobj.TotalFilesToCopy = TotalFilesToCopy;
+                Newobj.TotalFilesSize = TotalFilesSize;
+                Newobj.NbFilesLeftToDo = NbFilesLeftToDo;
+                Newobj.Progression = ((TotalFilesToCopy - NbFilesLeftToDo) * 100 / TotalFilesToCopy);
+                trigger = true;
+
+                myJsonList.Add(Newobj);
+            }
+
+
+            string json = JsonConvert.SerializeObject(myJsonList, Newtonsoft.Json.Formatting.Indented);
+
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine(json);
+                sw.Close();
+            }
+        }
+
+        public void RunningLogGénératorXML(string Title, string SourceDirectory, string DestinationDirectory, int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo, bool state)
         {
             string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.xml";
 
-
-            RunningLogXml ObjXml = new RunningLogXml();
-            string State;
             int Progression;
             string Title_XML = "      <Title>" + Title + "</Title>";
 
 
             StreamWriter sw = File.AppendText(path); // Write the file, or create it if it does not exit
-            if(new FileInfo(path).Length == 0)
+
+            if (new FileInfo(path).Length == 0)
             {
                 sw.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Statelog>\n</Statelog>");
             }
             sw.Close();
 
-            State = (GetProcessRunning() == true) ? "ACTIVE" : "END";
+
             Progression = ((TotalFilesToCopy - NbFilesLeftToDo) * 100 / TotalFilesToCopy);
             bool writed = false;
+            string State = (state == true) ? "ACTIVE" : "END";
             List<string> ListeLines;
 
             string[] Lines = File.ReadAllLines(path);
@@ -228,11 +240,11 @@ namespace EasySave
                 {
                     ListeLines = Lines.ToList();
                     ListeLines.Remove("</Statelog>"); // delete the last line "</Statelog>"
-                    ListeLines[i + 3]= ("      <State>" + State + "</State>");
-                    ListeLines[i + 4]=  ("      <TotalFilesToCopy>" + TotalFilesToCopy + "</TotalFilesToCopy>");
-                    ListeLines[i + 5]= ("      <TotalFilesSize>" + TotalFilesSize + "</TotalFilesSize>");
-                    ListeLines[i + 6]= ("      <NbFilesLeftToDo>" + NbFilesLeftToDo + "</NbFilesLeftToDo>");
-                    ListeLines[i + 7]=  ("      <Progression>" + Progression + "</Progression>");
+                    ListeLines[i + 3] = ("      <State>" + State + "</State>");
+                    ListeLines[i + 4] = ("      <TotalFilesToCopy>" + TotalFilesToCopy + "</TotalFilesToCopy>");
+                    ListeLines[i + 5] = ("      <TotalFilesSize>" + TotalFilesSize + "</TotalFilesSize>");
+                    ListeLines[i + 6] = ("      <NbFilesLeftToDo>" + NbFilesLeftToDo + "</NbFilesLeftToDo>");
+                    ListeLines[i + 7] = ("      <Progression>" + Progression + "</Progression>");
                     ListeLines.Add("</Statelog>");
 
                     Lines = ListeLines.ToArray();
@@ -259,84 +271,212 @@ namespace EasySave
                 ListeLines.Add("   </Save>");
                 ListeLines.Add("</Statelog>");
 
-                Lines= ListeLines.ToArray();
+                Lines = ListeLines.ToArray();
                 File.WriteAllLines(path, Lines);
             }
-            
 
-            return true;
+
+
         }
 
-        public bool RunningLogGénérator_JSON(string Title, string SourceDirectory, string DestinationDirectory,  int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo)
+        public List<RunningLogJson> LogReader()
         {
 
             
-            string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.Json";
-
-            #region if the file does not exist 
-            if (!File.Exists(path))
+            if (GetLogFileTypeSetting() == "JSON")
             {
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(path))
-                {
-
-                    sw.WriteLine("[]");
-
-                }
+                return LogReaderJSON();
             }
-            #endregion
-
-            string myJsonFile = File.ReadAllText(path);
-            var myJsonList = JsonConvert.DeserializeObject<List<RunningLogJson>>(myJsonFile);
-            bool trigger = false;
-            foreach (RunningLogJson obj in myJsonList)
+            else
             {
-                if (obj.Name == Title && trigger == false)
-                {
-                    obj.SourceFilePath = SourceDirectory;
-                    obj.TargetFilePath = DestinationDirectory;
-                    obj.State = (GetProcessRunning() == true) ? "ACTIVE" : "END"; 
-                    obj.TotalFilesToCopy = TotalFilesToCopy;
-                    obj.TotalFilesSize = TotalFilesSize;
-                    obj.NbFilesLeftToDo = NbFilesLeftToDo;
-                    obj.Progression = ((TotalFilesToCopy - NbFilesLeftToDo)*100 / TotalFilesToCopy);
-                    trigger = true;
-                }
-            }
-            if (trigger == false)
-            {
-                RunningLogJson Newobj = new RunningLogJson();
-                Newobj.Name = Title;
-                Newobj.SourceFilePath = SourceDirectory;
-                Newobj.TargetFilePath = DestinationDirectory;
-                Newobj.State = (GetProcessRunning() == true) ? "ACTIVE" : "END";
-                Newobj.TotalFilesToCopy = TotalFilesToCopy;
-                Newobj.TotalFilesSize = TotalFilesSize;
-                Newobj.NbFilesLeftToDo = NbFilesLeftToDo;
-                Newobj.Progression = ((TotalFilesToCopy - NbFilesLeftToDo) * 100 / TotalFilesToCopy);
-                trigger = true;
-
-                myJsonList.Add(Newobj);
-
+                return LogReaderXML();
             }
 
 
-            string json = JsonConvert.SerializeObject(myJsonList, Newtonsoft.Json.Formatting.Indented);
-
-            using (StreamWriter sw = File.CreateText(path))
-            {
-
-                sw.WriteLine(json);
-                sw.Close();
-
-            }
-
-
-            return true;
         }
 
 
-        
+        public List<RunningLogJson> LogReaderJSON()
+        {
+
+            string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.Json";
+            var myJsonFile = File.ReadAllText(path);
+            List<RunningLogJson> ListRunningLog = new List<RunningLogJson>();
+
+
+            try
+            {
+                ListRunningLog = JsonConvert.DeserializeObject<List<RunningLogJson>>(myJsonFile);
+
+            }
+            catch (InvalidCastException e)
+            {
+
+                RunningLogJson RunningLog = new RunningLogJson();
+                RunningLog.State = "ACTIVE";
+
+                ListRunningLog.Add(RunningLog);
+            }
+
+
+
+            return ListRunningLog;
+
+        }
+
+
+        public List<RunningLogJson> LogReaderXML()
+        {
+
+
+            string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.xml";
+            List<string> ListeLines;
+            string[] Lines = File.ReadAllLines(path);
+            List<RunningLogJson> ListRunningLog = new List<RunningLogJson>();
+            ListeLines = Lines.ToList();
+
+            for (int i = 2; i < Lines.Length - 1; i = i + 10)
+            {
+
+                RunningLogJson RunningLog = new RunningLogJson();
+
+                int index;
+                string value;
+
+
+                index = ListeLines[i + 1].IndexOf(">");
+                value = ListeLines[i + 1].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.Name = value;
+
+                index = ListeLines[i + 2].IndexOf(">");
+                value = ListeLines[i + 2].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.SourceFilePath = value;
+
+                index = ListeLines[i + 3].IndexOf(">");
+                value = ListeLines[i + 3].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.TargetFilePath = value;
+
+                index = ListeLines[i + 4].IndexOf(">");
+                value = ListeLines[i + 4].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.State = value;
+
+                index = ListeLines[i + 5].IndexOf(">");
+                value = ListeLines[i + 5].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+
+                RunningLog.TotalFilesToCopy = Int32.Parse(value);
+
+                index = ListeLines[i + 6].IndexOf(">");
+                value = ListeLines[i + 6].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.TotalFilesSize = long.Parse(value);
+
+
+                index = ListeLines[i + 7].IndexOf(">");
+                value = ListeLines[i + 7].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.NbFilesLeftToDo = Int32.Parse(value);
+
+                index = ListeLines[i + 8].IndexOf(">");
+                value = ListeLines[i + 8].Substring(index + 1);
+                index = value.IndexOf("<");
+                value = value.Substring(0, index);
+                RunningLog.Progression = Int32.Parse(value);
+
+
+
+                ListRunningLog.Add(RunningLog);
+            }
+
+
+
+            return ListRunningLog;
+
+        }
+
+
+
+        public void Convert()
+        {
+
+            string pathJSON = GetDirectoryPath() + "SaveFilesLogs/StateLog.Json";
+            string pathXML = GetDirectoryPath() + "SaveFilesLogs/StateLog.xml";
+            
+            if (GetLogFileTypeSetting() == "JSON")
+            {
+                List<RunningLogJson> List2Convert = LogReaderXML();
+                string json = JsonConvert.SerializeObject(List2Convert, Newtonsoft.Json.Formatting.Indented);
+
+                using (StreamWriter sw = File.CreateText(pathJSON))
+                {
+
+                    sw.WriteLine(json);
+                    sw.Close();
+
+                }
+                File.Delete(pathXML);
+            }
+            else
+            {
+                List<RunningLogJson> List2Convert = LogReaderJSON();
+
+                StreamWriter sw = File.AppendText(pathXML); // Write the file, or create it if it does not exit
+                if (new FileInfo(pathXML).Length == 0)
+                {
+                    sw.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Statelog>\n</Statelog>");
+
+                }
+                sw.Close();
+
+
+                List<string> ListeLines;
+
+                string[] Lines = File.ReadAllLines(pathXML);
+
+
+                foreach (RunningLogJson runningLog in List2Convert)
+                {
+
+                    ListeLines = Lines.ToList();
+                    ListeLines.Remove("</Statelog>"); // delete the last line "</Statelog>"
+                    ListeLines.Add("   <Save>");
+                    ListeLines.Add("      <Title>" + runningLog.Name + "</Title>");
+                    ListeLines.Add("      <SourceFilePath>" + runningLog.SourceFilePath + "</SourceFilePath>");
+                    ListeLines.Add("      <TargetFilePath>" + runningLog.TargetFilePath + "</TargetFilePath>");
+                    ListeLines.Add("      <State>" + runningLog.State + "</State>");
+                    ListeLines.Add("      <TotalFilesToCopy>" + runningLog.TotalFilesToCopy + "</TotalFilesToCopy>");
+                    ListeLines.Add("      <TotalFilesSize>" + runningLog.TotalFilesSize + "</TotalFilesSize>");
+                    ListeLines.Add("      <NbFilesLeftToDo>" + runningLog.NbFilesLeftToDo + "</NbFilesLeftToDo>");
+                    ListeLines.Add("      <Progression>" + runningLog.Progression + "</Progression>");
+                    ListeLines.Add("   </Save>");
+                    ListeLines.Add("</Statelog>");
+
+                    Lines = ListeLines.ToArray();
+                    File.WriteAllLines(pathXML, Lines);
+
+                }
+
+
+                File.Delete(pathJSON);
+            }
+
+
+        }
+
+
+
+
 
         public void BeginSaveFileExecution()
         {
@@ -384,7 +524,114 @@ namespace EasySave
             return this.ProcessRunning;
         }
 
+        public string GetLanguageSetting()
+        {
+            string path = GetDirectoryPath() + @"\Setting.json";
+            if (!File.Exists(path))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine("{\n  \"Language\": \"fr-FR\",\n  \"LogType\": \"XML\"\n}");
+                }
+            }
 
+            #region GetSettings
+            string myJsonFile = File.ReadAllText(path);
+            Settingjson SettingObj = JsonConvert.DeserializeObject<Settingjson>(myJsonFile);
+            #endregion
+
+            return SettingObj.Language;
+        }
+        public void SetLanguageSetting(string Language)
+        {
+            string path = GetDirectoryPath() + @"\Setting.json";
+
+            #region if the file does not exist 
+            if (!File.Exists(path))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine("[]");
+                }
+            }
+            #endregion
+
+            #region GetSettings
+            string myJsonFile = File.ReadAllText(path);
+            Settingjson SettingObj = JsonConvert.DeserializeObject<Settingjson>(myJsonFile);
+            #endregion
+
+            #region SetSettings
+            SettingObj.Language = Language;
+
+            string json = JsonConvert.SerializeObject(SettingObj, Newtonsoft.Json.Formatting.Indented);
+
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine(json);
+                sw.Close();
+            }
+            #endregion
+
+        }
+
+        public void SetLogFileTypeSetting(string LogFileType)
+        {
+            string path = GetDirectoryPath() + @"\Setting.json";
+
+            #region if the file does not exist 
+            if (!File.Exists(path))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine("[]");
+                }
+            }
+            #endregion
+
+            #region GetSettings
+            string myJsonFile = File.ReadAllText(path);
+            Settingjson SettingObj = JsonConvert.DeserializeObject<Settingjson>(myJsonFile);
+            #endregion
+
+            #region SetSettings
+            SettingObj.LogType = LogFileType;
+
+            string json = JsonConvert.SerializeObject(SettingObj, Newtonsoft.Json.Formatting.Indented);
+
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine(json);
+                sw.Close();
+            }
+
+
+            #endregion
+
+        }
+
+        public string GetLogFileTypeSetting()
+        {
+            string path = GetDirectoryPath() + @"\Setting.json";
+            if (!File.Exists(path))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.WriteLine("{\n  \"Language\": \"fr-FR\",\n  \"LogType\": \"XML\"\n}");
+                }
+            }
+
+            #region GetSettings
+            string myJsonFile = File.ReadAllText(path);
+            Settingjson SettingObj = JsonConvert.DeserializeObject<Settingjson>(myJsonFile);
+            #endregion
+
+            return SettingObj.LogType;
+        }
 
 
     }

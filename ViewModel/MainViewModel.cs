@@ -1,8 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading;
 
 namespace EasySave
 {
@@ -26,9 +28,8 @@ namespace EasySave
             View = new View();
             FileSaveManagement = new FileSaveManagement();
             LogManagement = new LogManagement();
-            View.SetCLILanguage(GetUserLanguage());
-            View.DisplayTranslatedMessage("Language");
-            System.Threading.Thread.Sleep(2000);
+            
+            View.SetCLILanguage(LogManagement.GetLanguageSetting());
             View.Clear();
             Menu();
 
@@ -50,38 +51,39 @@ namespace EasySave
 
                 switch (result)
                 {
-                    case "1":
+                    case "1": //Create a savefile routine
                         SetMenuChoice(result);
                         SubMenuCreate();
                         break;
 
-                    case "2":
+                    case "2": // Edit
                         SetMenuChoice(result);
                         SubMenuEditDelete();
                         break;
 
-                    case "3":
+                    case "3": // Run
                         SetMenuChoice(result);
                         SubMenuRun();
 
                         break;
 
-                    case "4":
+                    case "4": // Change language
                         SetMenuChoice(result);
+                        
                         View.Clear();
-                        View.SetCLILanguage(GetUserLanguage());
-                        View.DisplayTranslatedMessage("Language");
-                        System.Threading.Thread.Sleep(2000);
+                        SubMenuChooseLanguage();
                         View.Clear();
+                        View.DisplayTranslatedMessage("MainMenu");
                         break;
 
-                    case "5":
+                    case "5": // Choice de logfile type
                         SetMenuChoice(result);
                         SubMenuChooseLogFileType();
-
+                        View.Clear();
+                        View.DisplayTranslatedMessage("MainMenu");
                         break;
 
-                    case "6":
+                    case "6": // Exit
                        
                         SetMenuChoice(result);
                         View.Clear();
@@ -371,11 +373,8 @@ namespace EasySave
                 LogManagement.EndSaveFileExecution();
 
 
-                LogManagement.DailyLogGénérator_XML(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
-                LogManagement.DailyLogGénérator_JSON(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
-                LogManagement.RunningLogGénérator_XML(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), FileList.Count, filesize, FileList.Count - progress);
-                //LogManagement.RunningLogGénérator_XML_V2(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), FileList.Count, filesize, FileList.Count - progress);
-                LogManagement.RunningLogGénérator_JSON(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), FileList.Count, filesize , FileList.Count - progress);
+                LogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+                LogManagement.RunningLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), FileList.Count, filesize, FileList.Count - progress, true);
 
                 int progressionpercent = progress * 100/ FileList.Count  ;
 
@@ -397,17 +396,45 @@ namespace EasySave
                     View.DisplayBasicMessage(" ");
                 }
                 View.DisplayBasicMessage("]");
-
+                    
                     bufferpourcentage = progressionpercent;
                 }
             }
 
             LogManagement.BeginEndProcess();
-            LogManagement.RunningLogGénérator_JSON(SaveFileJson.Title, "", "", FileList.Count, 0, 0);
-            LogManagement.RunningLogGénérator_XML(SaveFileJson.Title, "", "", FileList.Count, 0, 0);
+            LogManagement.RunningLogGénérator(SaveFileJson.Title, "", "", FileList.Count, 0, 0, false);
 
 
 
+
+
+        }
+
+        public void SubMenuChooseLanguage()
+        {
+            string LanguageChoosed;
+
+            do
+            {
+                View.Clear();
+                View.DisplayTranslatedMessage("SubMenuChooseLanguage");
+                LanguageChoosed = Console.ReadLine();
+
+                switch (LanguageChoosed)
+                {
+                    case "1": //French
+                        LogManagement.SetLanguageSetting("fr-FR");
+                        View.SetCLILanguage("fr-FR");
+                        break;
+                    
+                    case "2": //English
+                        LogManagement.SetLanguageSetting("en-US");
+                        View.SetCLILanguage("en-US");
+                        break;
+                }
+
+
+            } while (LanguageChoosed != "1" && LanguageChoosed != "2");
 
 
         }
@@ -426,11 +453,24 @@ namespace EasySave
                 switch (LogFileType)
                 {
                     case "1": //JSON
-                        ChooseLogFileType("JSON");
+
+                        if (LogManagement.GetLogFileTypeSetting() == "XML")
+                        {
+                            LogManagement.SetLogFileTypeSetting("JSON");
+                            LogManagement.Convert();
+                        }
+
+
                         break;
 
                     case "2": //XML
-                        ChooseLogFileType("XML");
+                        if (LogManagement.GetLogFileTypeSetting() == "JSON")
+                        {
+                            LogManagement.SetLogFileTypeSetting("XML");
+                            LogManagement.Convert();
+                        }
+
+
                         break;
                 }
             }
@@ -464,21 +504,6 @@ namespace EasySave
 
             } while (GetMenuChoice() != "en-US" && GetMenuChoice() != "fr-FR");
             return GetMenuChoice();
-        }
-
-
-        // Method to choose the Log File Type
-        public void ChooseLogFileType(string Type)
-        {
-            if(Type == "JSON")
-            {
-                //variable doit prendre la valeur JSON
-            }
-
-            else if(Type == "XML")
-            {
-                //Variable doit prendre la valeur XML
-            }
         }
 
 
