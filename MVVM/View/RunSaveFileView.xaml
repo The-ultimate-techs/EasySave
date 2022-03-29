@@ -80,7 +80,7 @@
                                     Width="120"
                                     Margin="10,426,100,19"
                                     
-                                    Content="STOPALL"
+                                    Content="{DynamicResource STOPALL}"
                     
                                     Style="{StaticResource CustomAppButton}"
                                     Command="{Binding StopAllCommand}"/>

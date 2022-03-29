@@ -127,17 +127,33 @@ namespace EasySave.MVVM.ViewModel
             JsonSelected = new RelayCommand(o =>
             {
 
-                string Log = (LogJson == true) ? "JSON" : "XML";
-                SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
-                LogManagement.Convert();
+                
+
+                if (SettingManager.Getsettings().LogType == "XML")
+                {
+                    string Log = (LogJson == true) ? "JSON" : "XML";
+                    SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
+                    LogManagement.Convert();
+
+                }
+
+
+
+
             });
 
 
             XMLSelected = new RelayCommand(o =>
             {
-                string Log = (LogJson == true) ? "JSON" : "XML";
-                SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
-                LogManagement.Convert();
+
+                if (SettingManager.Getsettings().LogType == "JSON")
+                {
+
+                    string Log = (LogJson == true) ? "JSON" : "XML";
+                    SettingManager.SetSettings(ExtensionToEncryptlist, SoftwarePackageList, Log);
+                    LogManagement.Convert();
+
+                }
             });
 
 

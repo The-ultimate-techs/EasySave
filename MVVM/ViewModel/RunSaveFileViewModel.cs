@@ -238,13 +238,21 @@ namespace EasySave.MVVM.ViewModel
                 string test = SocketHandler.ReceiveData();
                 if (SocketHandler.ReceiveData() != null )
                 {
+                    RunningSaveFile RunningSaveFile = new RunningSaveFile();
+                    try
+                    {
+                         RunningSaveFile = JsonConvert.DeserializeObject<RunningSaveFile>(SocketHandler.ReceiveData());
 
-                    RunningSaveFile RunningSaveFile = JsonConvert.DeserializeObject<RunningSaveFile>(SocketHandler.ReceiveData());
-                    SocketHandler.Receive = false;
+                    }
+                    catch
+                    {
+                        RunningSaveFile = null;
+                    }
+                   
 
                     if (RunningSaveFile != null)
                     {
-
+                        SocketHandler.Receive = false;
 
                         switch (RunningSaveFile.CurrentAction)
 

@@ -73,6 +73,7 @@
 
     <!--Run backup job menu -->
     <system:String x:Key="Backup_Job_List">List of backup jobs :</system:String>
+    <system:String x:Key="STOPALL">Stop All</system:String>
 
 
     <!-- Delete a backup job menu-->

@@ -249,10 +249,7 @@
                                TextAlignment="Justify"
                                />
 
-                <Image Width="25"
-                   Height="25"
-                   Source="../../Resource/crayon.png" 
-                   Margin="-480,-390,-470,-115"/>
+
 
             </StackPanel>
         </Border>

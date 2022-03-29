@@ -73,7 +73,7 @@
     
     <!--Run backup job menu -->
     <system:String x:Key="Backup_Job_List">Liste des travaux de sauvegarde :</system:String>
-    
+    <system:String x:Key="STOPALL">Arrêt Total</system:String>
     
     <!-- Delete a backup job menu-->
     <system:String x:Key="Deleted_Backup_Job_Name">Nom du travail de travail que vous souhaitez supprimer :</system:String>

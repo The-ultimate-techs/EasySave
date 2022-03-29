@@ -82,7 +82,7 @@
                 <Button
                         x:Name="Settings2"
                         Height="25"
-                        Margin="10,430,95,15"
+                        Margin="10,420,95,15"
                         Content="{DynamicResource Go_To_Advanced_Settings}"
                         Style="{StaticResource CustomAppButton}"
                         Command="{Binding DataContext.SettingsCommand2, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}"/>
