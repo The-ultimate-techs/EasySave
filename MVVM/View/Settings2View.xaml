@@ -54,7 +54,40 @@
                                FontSize="12" 
                                Margin="10,5,0,0"/>
 
+
+                        </LinearGradientBrush>
+
+                    </Border.Background>
+                    <Border.Clip>
+
+                        <RectangleGeometry RadiusX="10"
+                            RadiusY="10"
+                            Rect="0,0,230,460"/>
+                    </Border.Clip>
+                    <Grid>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Settings}"
+                                Foreground="white"
+                                FontSize="15" 
+                                Margin="10,10,0,0"/>
+
+                            <TextBlock Text="{DynamicResource Instructions_main}"
+                                Foreground="white"
+                                FontSize="12" 
+                                Margin="10,5,0,0" Height="86"/>
+                            <TextBlock Text="{DynamicResource Instructions_1}"
+                                Foreground="white"
+                                FontSize="12" 
+                                Height="177"/>
+                            <TextBlock Text="{DynamicResource Instructions_2}"
+                                Foreground="white"
+                                FontSize="12" 
+                                Height="99"/>
+
+                        </StackPanel>
+
                 </StackPanel>
+
 
                         <Image Width="120"
                             Height="120"
@@ -87,14 +120,14 @@
 
                     </Grid.RowDefinitions>
 
-                    <TextBlock Text="Les fichiers fichiers dit ''prioritaires'' : " 
+                    <TextBlock Text="{DynamicResource Define_priority_files}" 
                         Foreground="white"
                         FontSize="17" 
                         TextAlignment="Center"
                         Grid.ColumnSpan="4" 
                         Margin="0,65,1,30"/>
 
-                    <TextBlock Text="Fichiers non prioritaires" 
+                    <TextBlock Text="{DynamicResource files_non_priority_extensions}" 
                         Grid.Column="0" 
                         Foreground="white"
                         FontSize="17" 
@@ -123,7 +156,7 @@
                             Width="80"
                             Click="Add3Click" 
                             ClickMode="Release"
-                            Content="Add &gt;&gt;"
+                            Content="{DynamicResource Add_Button_}"
                             Style="{StaticResource CustomAppButton}"
                             Command="{Binding Add3Command}"/>
 
@@ -135,16 +168,14 @@
                             Margin="0,15,0,0"
                             Click="Remove3Click" 
                             ClickMode="Release"
-                            Content="&lt;&lt; Remove"                    
+                            Content="{DynamicResource Remove_Button_}"
                             Style="{StaticResource CustomAppButton}"
                             Command="{Binding Remove3Command}"/>
-
-
                     </StackPanel>
 
 
 
-                    <TextBlock Text="Fichiers prioritaires" 
+                    <TextBlock Text="{DynamicResource files_priority_extensions}" 
                         Grid.Column="3" 
                         Foreground="white"
                         FontSize="17" 
@@ -164,7 +195,8 @@
                         SelectionChanged="ExtensionsPriority_SelectionChanged"/>
 
 
-                    <TextBlock Text="Mise en pause des travaux de sauvegarde à partir de : "
+
+                    <TextBlock Text="{DynamicResource Maximum_size_authorised}"
                         Foreground="white"
                         FontSize="17" 
                         TextAlignment="Center"
@@ -226,6 +258,54 @@
 
 
 
+                    <TextBlock Text="{DynamicResource Threshold_value}"
+                        Foreground="white"
+                        FontSize="17" 
+                        TextAlignment="Center" 
+                        Margin="0,146,22,141" 
+                        Grid.Row="1" Grid.RowSpan="2"/>
+
+                    <!--Modify Binding-->
+                    <RadioButton x:Name="TwoGigaBytes"  
+                                 Margin="70,12,134,0" 
+                                 Checked="WriteText3" 
+                                 Foreground="white" 
+                                 FontSize="17" 
+                                 Content="{DynamicResource Maximum_size_authorised_2Go}" 
+                                 IsChecked="{Binding LogXml}" 
+                                 Command ="{Binding XMLSelected}" 
+                                 Height="24" 
+                                 VerticalAlignment="Top" 
+                                 Grid.ColumnSpan="4" 
+                                 Grid.Row="2"/>
+
+                    <!--Modify Binding-->
+                    <RadioButton x:Name="ThreeGigaBytes"  
+                                 Margin="70,39,134,0" 
+                                 Checked="WriteText4" 
+                                 Foreground="white" 
+                                 FontSize="17" 
+                                 Content="{DynamicResource Maximum_size_authorised_3Go}" 
+                                 IsChecked="{Binding LogXml}" 
+                                 Command ="{Binding XMLSelected}" 
+                                 Height="24" 
+                                 VerticalAlignment="Top" 
+                                 Grid.ColumnSpan="4" 
+                                 Grid.Row="2"/>
+
+                    <!--Modify Binding-->
+                    <RadioButton x:Name="FourGigaBytes"  
+                                 Margin="70,65,134,0" 
+                                 Checked="WriteText5" 
+                                 Foreground="white" 
+                                 FontSize="17" 
+                                 Content="{DynamicResource Maximum_size_authorised_4Go}" 
+                                 IsChecked="{Binding LogXml}" 
+                                 Command ="{Binding XMLSelected}" 
+                                 Height="24" 
+                                 VerticalAlignment="Top" 
+                                 Grid.ColumnSpan="4" 
+                                 Grid.Row="2"/>
 
 
                 </Grid>

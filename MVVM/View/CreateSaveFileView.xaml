@@ -41,17 +41,31 @@
 
             <Grid>
                 <StackPanel>
-                    <TextBlock Text="Instruction 1"
+                    <TextBlock Text="{DynamicResource InstructionsCreateSaveFile_1}"
                                Foreground="white"
                                FontSize="15" 
                                Margin="10,10,0,0"/>
 
-                    <TextBlock Text="Description Instruction 1"
+                    <TextBlock Text="{DynamicResource InstructionsCreateSaveFile_2}"
                                Foreground="white"
                                FontSize="12" 
                                Margin="10,5,0,0"/>
-                </StackPanel>
-                <Image Width="120"
+
+                    <TextBlock Text="{DynamicResource InstructionsCreateSaveFile_3}"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
+                    <TextBlock Text="{DynamicResource InstructionsCreateSaveFile_4}"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
+                    <TextBlock Text="{DynamicResource InstructionsCreateSaveFile_5}"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
+                 </StackPanel>
+
+                        <Image Width="120"
                        Height="120"
                        Source="../../Resource/idee.png" 
                        Margin="140,360,0,0"/>

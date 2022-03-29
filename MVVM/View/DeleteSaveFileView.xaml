@@ -36,15 +36,31 @@
 
             <Grid>
                 <StackPanel>
-                    <TextBlock Text="Instruction 1"
+                    <TextBlock Text="{DynamicResource InstructionsDeleteSaveFile_1}"
                                Foreground="white"
                                FontSize="15" 
                                Margin="10,10,0,0"/>
 
-                    <TextBlock Text="Description Instruction 1"
+                    <TextBlock Text="{DynamicResource InstructionsDeleteSaveFile_2}"
                                Foreground="white"
                                FontSize="12" 
                                Margin="10,5,0,0"/>
+                    
+                    <TextBlock Text="{DynamicResource InstructionsDeleteSaveFile_3}"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
+
+                    <TextBlock Text="{DynamicResource InstructionsDeleteSaveFile_4}"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
+
+                    <TextBlock Text="{DynamicResource InstructionsDeleteSaveFile_5}"
+                               Foreground="white"
+                               FontSize="12" 
+                               Margin="10,5,0,0"/>
+
                 </StackPanel>
                 <Image Width="110"
                        Height="110"
