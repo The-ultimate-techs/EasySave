@@ -528,13 +528,13 @@ namespace EasySave.MVVM.ViewModel
 
 
                                 DailyLogManagement.EndSaveFileExecution();
-                                DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+                                DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_(), result);
                             }
                             else
                             {
                                 FileSaveManagement.CreateSaveFile(files.GetTitle(), files.GetSourceDirectory(), files.GetDestinationDirectory(), SaveFileJson.Type);
                                 DailyLogManagement.EndSaveFileExecution();
-                                DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_());
+                                DailyLogManagement.DailyLogGénérator(SaveFileJson.Title, files.GetSourceDirectory(), files.GetDestinationDirectory(), files.GetType_(), 0);
                             }
 
                         }
