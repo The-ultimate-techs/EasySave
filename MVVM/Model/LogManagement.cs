@@ -7,6 +7,7 @@ using System.Text;
 using EasySave.MVVM.ObjectsForSerialization;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Linq;
 
 namespace EasySave.MVVM.Model
 {
@@ -165,14 +166,28 @@ namespace EasySave.MVVM.Model
         }
 
 
+        public void RunningLogGénérator(string Title, string SourceDirectory, string DestinationDirectory, int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo, bool state)
+
+        {
+
+            if (SettingManager.Getsettings().LogType == "JSON")
+            {
+                RunningLogGénératorJSON( Title,  SourceDirectory,  DestinationDirectory,  TotalFilesToCopy,  TotalFilesSize,  NbFilesLeftToDo,  state);
+            }
+            else
+            {
+                RunningLogGénératorXML(Title, SourceDirectory, DestinationDirectory, TotalFilesToCopy, TotalFilesSize, NbFilesLeftToDo, state);
+            }
+
+
+        }
 
 
 
 
 
 
-
-        public bool RunningLogGénérator(string Title, string SourceDirectory, string DestinationDirectory,  int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo , bool state)
+        public void RunningLogGénératorJSON(string Title, string SourceDirectory, string DestinationDirectory,  int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo , bool state)
         
         {
 
@@ -225,8 +240,83 @@ namespace EasySave.MVVM.Model
             }
 
 
-            return true;
+           
         }
+
+
+        public  void RunningLogGénératorXML(string Title, string SourceDirectory, string DestinationDirectory, int TotalFilesToCopy, long TotalFilesSize, int NbFilesLeftToDo , bool state)
+        {
+            string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.xml";
+
+
+            RunningLogXml ObjXml = new RunningLogXml();
+           
+            int Progression;
+            string Title_XML = "      <Title>" + Title + "</Title>";
+
+
+            StreamWriter sw = File.AppendText(path); // Write the file, or create it if it does not exit
+            if (new FileInfo(path).Length == 0)
+            {
+                sw.Write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Statelog>\n</Statelog>");
+            }
+            sw.Close();
+
+           
+            Progression = ((TotalFilesToCopy - NbFilesLeftToDo) * 100 / TotalFilesToCopy);
+            bool writed = false;
+            string State = (state == true) ? "ACTIVE" : "END";
+            List<string> ListeLines;
+
+            string[] Lines = File.ReadAllLines(path);
+
+            for (int i = 0; i < Lines.Length; i++)
+            {
+                if (Lines[i] == Title_XML) // if the process already exist
+                {
+                    ListeLines = Lines.ToList();
+                    ListeLines.Remove("</Statelog>"); // delete the last line "</Statelog>"
+                    ListeLines[i + 3] = ("      <State>" + State + "</State>");
+                    ListeLines[i + 4] = ("      <TotalFilesToCopy>" + TotalFilesToCopy + "</TotalFilesToCopy>");
+                    ListeLines[i + 5] = ("      <TotalFilesSize>" + TotalFilesSize + "</TotalFilesSize>");
+                    ListeLines[i + 6] = ("      <NbFilesLeftToDo>" + NbFilesLeftToDo + "</NbFilesLeftToDo>");
+                    ListeLines[i + 7] = ("      <Progression>" + Progression + "</Progression>");
+                    ListeLines.Add("</Statelog>");
+
+                    Lines = ListeLines.ToArray();
+                    File.WriteAllLines(path, Lines);
+                    writed = true;
+
+                    break;
+                }
+            }
+
+            if (writed == false)
+            {
+                ListeLines = Lines.ToList();
+                ListeLines.Remove("</Statelog>"); // delete the last line "</Statelog>"
+                ListeLines.Add("   <Save>");
+                ListeLines.Add("      <Title>" + Title + "</Title>");
+                ListeLines.Add("      <SourceFilePath>" + SourceDirectory + "</SourceFilePath>");
+                ListeLines.Add("      <TargetFilePath>" + DestinationDirectory + "</TargetFilePath>");
+                ListeLines.Add("      <State>" + State + "</State>");
+                ListeLines.Add("      <TotalFilesToCopy>" + TotalFilesToCopy + "</TotalFilesToCopy>");
+                ListeLines.Add("      <TotalFilesSize>" + TotalFilesSize + "</TotalFilesSize>");
+                ListeLines.Add("      <NbFilesLeftToDo>" + NbFilesLeftToDo + "</NbFilesLeftToDo>");
+                ListeLines.Add("      <Progression>" + Progression + "</Progression>");
+                ListeLines.Add("   </Save>");
+                ListeLines.Add("</Statelog>");
+
+                Lines = ListeLines.ToArray();
+                File.WriteAllLines(path, Lines);
+            }
+
+
+            
+        }
+
+
+
 
 
 
@@ -269,10 +359,24 @@ namespace EasySave.MVVM.Model
         }
 
 
-
-
-
         public List<RunningLog> LogReader()
+        {
+
+
+            if (SettingManager.Getsettings().LogType == "JSON")
+            {
+                return LogReaderJSON();
+            }
+            else
+            {
+                return LogReaderXML();
+            }
+
+
+        }
+
+
+        public List<RunningLog> LogReaderJSON()
         {
 
             string path = GetDirectoryPath() + "SaveFilesLogs/StateLog.Json";
@@ -294,6 +398,17 @@ namespace EasySave.MVVM.Model
                 ListRunningLog.Add(RunningLog);
             }
 
+
+
+            return ListRunningLog;
+
+        }
+
+
+        public List<RunningLog> LogReaderXML()
+        {
+
+       
 
 
             return ListRunningLog;
